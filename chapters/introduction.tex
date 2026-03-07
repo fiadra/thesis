@@ -1,2 +1,47 @@
 \chapter{Introduction}
-blabla
+
+\section{Motivation}
+
+\section{Scope}
+
+\section{\(C^{*}\)-algebras}
+
+We will start this section by the introduction of the concept of a
+\(C^{*}\)-algebra. The following section is based on \cite{huaxinlin2001}. We
+assume that the Reader is familiar with notions such as Banach space, complex
+algebra etc.
+
+\begin{definition}[Positive functional]
+  A functional \( \psi \) on a \(C^{*}\)-algebra \( A \) is called
+  \emph{positive}, if
+  \[
+    \psi(a^{*}a) \geq 0 \text{ for all }a \in A.
+  \]
+\end{definition}
+
+\begin{proof}
+  blabla
+\end{proof}
+
+\begin{definition}[Faithful functional]
+  A positive functional \( \psi \) on a \(C^{*}\)-algebra \( A \) is
+  called \emph{faithful}, if
+  \[
+    \psi(a^{*}a) = 0 \leftrightarrow a = 0.
+  \]
+\end{definition}
+
+\section{Quantum sets}
+
+% TODO: cite the Gelfand-Naimark thm
+Let \( B \) denote a \(C^{*}\)-algebra and let \( \psi \) denote a functional
+on this algebra. By the Gelfand-Naimark theorem, every \(C^{*}\)-algebra is
+isometrically \( * \)-isomorphic to a \(C^{*}\)-subalgebra \( B(\mathcal{H}) \)
+for some Hilbert space \( \mathcal{H} \). If \( B \) is
+finite-dimensional, one can identify \( L^{2}(B) \) with \( B \) and think of
+\( B \) as a Hilbert space with an inner product given by
+\[
+  \left\langle a, b \right\rangle_{\psi} = \psi(a^{*}b).
+\]
+
+\section{Quantum graphs}
