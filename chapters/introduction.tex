@@ -4,31 +4,144 @@
 
 \section{Scope}
 
-\section{\(C^{*}\)-algebras}
+\section{Group theory}
 
-We will start this section by the introduction of the concept of a
-\(C^{*}\)-algebra. The following section is based on \cite{huaxinlin2001}. We
-assume that the Reader is familiar with notions such as Banach space, complex
-algebra etc.
+In the following section we will introduce some group theoretic notions that
+be used throughout this thesis. We assume that the Reader is familiar with
+the notion of a group.
 
-\begin{definition}[Positive functional]
-  A functional \( \psi \) on a \(C^{*}\)-algebra \( A \) is called
-  \emph{positive}, if
-  \[
-    \psi(a^{*}a) \geq 0 \text{ for all }a \in A.
-  \]
+% This is from Dummit & Foote's Algebra, page 167
+\begin{definition}[Dual of a group]
+    Let \( G \) be a group. The \emph{dual group} \( \hat{G} \) is the
+    set of all homomorphisms from \( G \) into the multiplicative group
+    of roots of unity in \( \mathbb{C} \) with the group operation defined
+    as
+    \[
+        \left( \varphi \psi \right)(g) = \varphi(g) \psi(g)
+    \]
+    for all \( \varphi, \psi \in \hat{G} \) and \( g \in G\), where the latter
+    multiplication takes place in \( \mathbb{C} \). We will often call the
+    members of the dual group \emph{characters}.
 \end{definition}
 
+\begin{remark}
+    We will often call the elements of the dual group
+    \emph{characters}. If a group is
+    isomorphic to its complement it will be called \emph{self-dual}.
+\end{remark}
+
+The following proposition will be used throughout the thesis, as almost
+all of the groups we will be dealing with will be finite and abelian.
+
+\begin{proposition}
+    If \( G \) is finite and abelian, then it is self-dual.
+\end{proposition}
+
 \begin{proof}
-  blabla
+    First we will prove the statement for finite cyclic groups \( G =
+    \left\langle g \right\rangle \), \( \operatorname{ord}(g) = n \).
+    We will prove that the dual is cyclic of order \( n \). Let \(
+    \chi: G \rightarrow \mathbb{C} \) be a character. Since the group
+    is cyclic, it is entirely determined by the value it takes on its
+    generator \( g \). Since \( g^{n} = e \), obviously \(
+    \chi(g)^{n} = 1 \), so \( \chi(g)^{n} \in \mu_{n} \).
+    For each possible choice of \( \chi(g) \in \mu_{n} \) we get a
+    different character.
+    It is then easy to see that \( \chi: G \rightarrow \mathbb{C} \)
+    such that \( \chi(g) = \exp\left( 2 \pi i / n \right) \)
+    generates this group.
+
+    Now since every finite abelian group can be written as a finite product
+    of finite cycles, all we need to do is check whether the statement
+    holds for a product of two groups \( A, B \) that are themselves
+    self-dual, i.e. \( \widehat{A \times B} \cong \widehat{A} \times
+    \widehat{B} \). This is self-evident as every character
+    \( \chi \in \widehat{A \times B} \) is determined by its restrictions
+    to \( A \times \{e_{A}\} \) and \( \left\{ e \right\} \times B \), since
+    \[
+        \chi(a, b) = \chi((a, e)(e, b)) = \chi(a, e)\chi(e, b).
+    \]
+    Thus \( \chi \leftrightarrow (\chi|_{A}, \chi|_{B})
+    \) is an isomorphism.
 \end{proof}
 
+\begin{definition}[Group action on a \(C^{*}\)-algebra]
+    By \emph{group action} of a group \( G \) on a \(C^{*}\)-algebra \(
+    A \) we mean a homomorphism
+    \[
+        \alpha: G \rightarrow \operatorname{Aut}(A).
+    \]
+    We will write \( g \cdot a \) instead of \( \alpha(g)(a) \).
+\end{definition}
+
+\section{\(C^{*}\)-algebras}
+
+In the following section we will introduce some notions stemming from the
+theory of \( C^{*} \)-algebras.
+
+\begin{definition}[Linear functional]
+    A \emph{linear functional} on a \(C^{*}\)-algebra \( A \) is a
+    linear function \( \psi: A \rightarrow \mathbb{C} \).
+\end{definition}
+
+\begin{remark}
+    We will call linear functionals simply as \emph{functionals}.
+\end{remark}
+
+The following notions will be useful for defining an inner product on
+\(C^{*}\)-algebras. Positiveness and faithfulness is all we need to
+define a norm on a \(C^{*}\)-algebra equipped with a suitable functional.
+
+\begin{definition}[Positive functional]
+    A functional \( \psi \) on a \(C^{*}\)-algebra \( A \) is called
+    \emph{positive}, if
+    \[
+        \psi(a^{*}a) \geq 0
+    \]
+    for any \( a \in A \).
+\end{definition}
+
 \begin{definition}[Faithful functional]
-  A positive functional \( \psi \) on a \(C^{*}\)-algebra \( A \) is
-  called \emph{faithful}, if
-  \[
-    \psi(a^{*}a) = 0 \leftrightarrow a = 0.
-  \]
+    A positive functional \( \psi \) on a \(C^{*}\)-algebra \( A \) is
+    called \emph{faithful}, if
+    \[
+        \psi(a^{*}a) = 0 \Leftrightarrow a = 0
+    \]
+    for any \( a \in A \).
+\end{definition}
+
+\subsection{Crossed-product \(C^{*}\)-algebra}
+
+In this section we will introduce the notion of a crossed-product
+\(C^{*}\)-algebra. We will do so in a limited manner, only to the
+extent to which the theory of such products is necessary for our
+purposes. For a more general reference we refer the Reader to \cite{blackadar}.
+
+% Sierakowski
+\begin{definition}[\( C^{*} \)-dynamical system]
+    A \( C^{*} \)-dynamical system is a triple \( (A, G, \alpha) \),
+    where \( A \) is a \(C^{*}\)-algebra, \( G \) is a group, and \(
+    \alpha: G \rightarrow \operatorname{Aut}(A) \) is a group action on \( A \).
+    For a \( C^{*} \) dynamical system \( (A, G, \alpha) \) with \( G
+    \) finite we define
+    \[
+        C_{c}(G, A, \alpha) = \left\{ f: G \rightarrow A \right\},
+    \]
+    i.e. the space of all functions on \( G \) with values in \( A \).
+\end{definition}
+
+\( C_{c}(G, A, \alpha) \) is equipped with both a product and a \( *
+\)-operation in such a way that the action becomes "inner", i.e. \( g
+\cdot a = u_{g} a u^{*}_{g} \) for all \( g \in G \), \( a \in A \).
+More precisely we define those two operations in the following way:
+\[
+    ab = \sum_{g,h \in G}
+\]
+
+\begin{definition}[Cross-product \(C^{*}\)-algebra]
+    Let \( A \) be a \(C^{*}\)-algebra and let \( G \) be a group
+    acting on \( A \).
+    blabl
 \end{definition}
 
 \section{Quantum sets}
@@ -41,7 +154,31 @@ for some Hilbert space \( \mathcal{H} \). If \( B \) is
 finite-dimensional, one can identify \( L^{2}(B) \) with \( B \) and think of
 \( B \) as a Hilbert space with an inner product given by
 \[
-  \left\langle a, b \right\rangle_{\psi} = \psi(a^{*}b).
+    \left\langle a, b \right\rangle_{\psi} = \psi(a^{*}b).
 \]
+
+The following definition introduces one of the central notions used
+in this thesis. It is taken directly from \cite{tobolski26}, Definition 2.1.
+
+\begin{definition}[Quantum set, \cite[Definition 2.1]{tobolski26}]
+    A quantum set \( (B, \psi) \) is a pair consisting of a finite-dimensional
+    \(C^{*}\)-algebra \( B \) and a faithful positive functional \( \psi: B
+    \rightarrow \mathbb{C} \) such that
+    \[
+        mm^{*} = \operatorname{Id}_{B}
+    \]
+    holds for the multiplication map \( m: B \otimes B \rightarrow B
+    \) and its adjoint \( m^{*} \) given by
+    \[
+        \left\langle m(a \otimes b), c \right\rangle = \left\langle a
+        \otimes b, m^{*}(c) \right\rangle_{\psi \otimes \psi}
+    \]
+    for all \( a, b, c \in B \).
+\end{definition}
+
+\begin{remark}
+    We will call any functional with the property given in the
+    definition above a \emph{quantum set functional} on \( B \).
+\end{remark}
 
 \section{Quantum graphs}
