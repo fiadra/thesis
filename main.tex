@@ -22,7 +22,11 @@ because bees don't care what humans think is impossible.}
 %%%%%
 
 %%%%% WLASNE DODATKOWE PAKIETY
-\usepackage{graphicx,listings,amsmath,amssymb,amsthm,amsfonts,tikz, biblatex}
+\usepackage{graphicx,listings,amsmath,amsthm,amsfonts,tikz,}
+
+%%%%% CYTOWANIA
+\usepackage[backend=biber]{biblatex}
+\addbibresource{cits.bib}
 
 %%%%% WŁASNE DEFINICJE I POLECENIA
 \theoremstyle{definition} \newtheorem{definition}{Definition}[section]
@@ -44,7 +48,6 @@ because bees don't care what humans think is impossible.}
 \include{chapters/classification}
 
 %%%%% BIBLIOGRAFIA
-\bibliographystyle{amsplain}
-\bibliography{cits}
+\printbibliography
 
 \end{document}
