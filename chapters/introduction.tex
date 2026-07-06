@@ -179,6 +179,26 @@ in this thesis. It is taken directly from \textcite{tobolski26}.
 \end{definition}
 
 \begin{remark}
+    Recall that in general, a \emph{comultiplication} on a
+    \(C^{*}\)-algebra is a \(*\)-homomorphism
+    \[
+        \Delta:A\to A\otimes A
+    \]
+    such that the following diagram commutes:
+    \[
+        \begin{tikzcd}
+            A \arrow[r,"\Delta"] \arrow[d,"\Delta"']
+            & A\otimes A \arrow[d,"{\Delta\otimes\mathrm{id}}"] \\
+            A\otimes A \arrow[r,"{\mathrm{id}\otimes\Delta}"']
+            & A\otimes A\otimes A
+        \end{tikzcd}
+    \]
+    Note that in general a comultiplication is \emph{not} unique. In our
+    setting it is uniquely determined by the additional structure and the
+    Riesz representation theorem for Hilbert spaces.
+\end{remark}
+
+\begin{remark}
     We will call any functional with the property given in the
     definition above a \emph{quantum set functional} on \( B \).
 \end{remark}
@@ -201,6 +221,8 @@ in this thesis. It is taken directly from \textcite{tobolski26}.
     \operatorname{Tr}) \) is a quantum set, with \( \operatorname{Tr}
     \) being the trace.
 \end{example}
+
+Recall that comultiplication
 
 \section{Quantum graphs}
 
