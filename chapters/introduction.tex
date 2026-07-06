@@ -90,7 +90,7 @@ theory of \( C^{*} \)-algebras.
 \end{remark}
 
 The following notions will be useful for defining an inner product on
-\(C^{*}\)-algebras. Positiveness and faithfulness is all we need to
+\(C^{*}\)-algebras. Positiveness and faithfulness are all we need to
 define a norm on a \(C^{*}\)-algebra equipped with a suitable functional.
 
 \begin{definition}[Positive functional]
@@ -183,4 +183,63 @@ in this thesis. It is taken directly from \textcite{tobolski26}.
     definition above a \emph{quantum set functional} on \( B \).
 \end{remark}
 
+% TODO: Prove that the examples are correct (do some calculations)
+\begin{example}
+    Every finite set \( X \) gives rise to a quantum set \( (C(X), \psi_{X}) \)
+    with \( \psi_{X}: C(X) \rightarrow \mathbb{C} \), \( \psi_{X}(f) = \sum_{x
+    \in X} f(x) \) for any \( f \in C(X) \). Indeed, with this setup \(
+    m^{*}(e_{x}) = e_{x} \otimes e_{x} \) holds:
+\end{example}
+
+\begin{example}
+    In particular, \( (C^{n}, \psi_{n}) \) with \( \psi_{n}(e_{i}) = 1 \) is a
+    quantum set. In this case...
+\end{example}
+
+\begin{example}
+    For any \( n \in \mathbb{N}_{+} \), \( (M_{n}, n
+    \operatorname{Tr}) \) is a quantum set, with \( \operatorname{Tr}
+    \) being the trace.
+\end{example}
+
 \section{Quantum graphs}
+
+A simple graph is classically defined as a pair \( (V, E) \) with \( V \)
+serving as the \emph{set of vertices} and \( E \subseteq [V]^{2} \) serving as
+the \emph{set of edges}. Such a graph could be interpreted as a matrix \( A =
+[a_{ij}] \in \{0, 1\}^{n \times n} \) with \( \{v_{i}, v_{j}\} \in E
+\Leftrightarrow a_{ij} = 1 \); such a representation is often called the
+\emph{adjacency matrix}. The key property of such matrices is that they are
+invariant with respect to entrywise multiplication. In turn we can use this
+property to generalise graphs on sets to graphs on quantum sets.
+
+The following definitions are due to \textcite{tobolski26}.
+% TODO: Tell where this notion was first introduced
+\begin{definition}[Quantum adjacency matrix, \textcite{tobolski26},
+    Definition 2.5]
+    Let \( (B, \psi) \) be a quantum set. A \emph{quantum adjacency
+    matrix} on this quantum set is a linear map \( A: B \rightarrow B
+    \) which is Schur-idempotent and *-preserving, by which we mean
+    that it satisfies
+    \[
+        m(A \otimes A)m^{*} = A,
+        \qquad
+        A(b^{*}) = A(b)^{*}
+        \quad \text{for all } b \in B.
+    \]
+\end{definition}
+
+\begin{definition}[Quantum graph, \textcite{tobolski26}, Definition 2.5]
+    A \emph{quantum graph} on \( (B, \psi) \) is given by a quantum
+    adjacency matrix on this quantum set.
+\end{definition}
+
+For all intents and purposes we will identify both notions and simply
+call an appropriate \( A: B \rightarrow B \) both a quantum adjancenty matrix
+and a quantum graph.
+
+% TODO: comment on equivalent notions of a quantum graph
+
+\begin{remark}
+    There are other equivalent definitions of a quantum graph, namely...
+\end{remark}
