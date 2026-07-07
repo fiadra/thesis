@@ -1,4 +1,7 @@
-\chapter{Classification of quantum graphs over \( 3 \times 3 \) matrices}
+\chapter{Quantum graphs over \( 3 \times 3 \) matrices}
+
+The classification on \( 2 \times 2 \) matrices was done by
+\textcite{matsuda22}.
 
 \section{Gromada's theorem}
 
@@ -6,6 +9,54 @@ In the following section we will state...
 
 The following theorem is due to \textcite{gromada22}.
 
-\begin{theorem}[\textcite{gromada22}, Proposition 3.1]
-    Let \( A \) be a finite quantum set. A quantum graph...
+\begin{theorem}[\textcite{gromada22}, Theorem 3.7]
+    Consider \( m \in \left\{ 0, 1, \dots, n^{2} \right\} \). Quantum
+    graphs on \( M_{n} \) with \( m \) quantum edges are in a
+    one-to-one correspondence with \( m \)-dimensional subspaces \( V
+    \subseteq \mathfrak{gl}_{n} \). The adjacency matrix is given by
+    \( A_{V} = \sum_{s=1}^{m} \xi_{s} \otimes \xi_{s}^{*} \), where
+    \( (\xi_{1}, \xi_{2}, \dots, \xi_{m}) \) is some orthonormal basis
+    of \( V \).
+
+    The quantum graph has no loops if and only if \( V \subseteq
+    \mathfrak{sl}_{n} \).
+    It is undirected if and only if \( V = V^{*} \).
 \end{theorem}
+
+\begin{proof}
+    See Gromada's paper for reference.
+\end{proof}
+
+\begin{lemma}[\textcite{gromada22}, Lemma 3.8]
+    Any vector subspace \( V \subseteq \mathfrak{gl}_{n} \) with \( V
+    = V^{*} \) has a self-adjoint basis \( \left\{ \xi_{s} \right\}
+    \), \( \xi_{s} = \xi_{s}^{*} \).
+\end{lemma}
+
+\begin{proof}
+    We construct the basis by induction. Suppose we already have a
+    basis \( \left\{ \xi_{s} \right\} \) of a subspace \( V_{1}
+    \subseteq V \) such that \( \xi_{s} = \xi_{s}^{*} \). This means
+    that \( V_{1} = V_{1}^{*} \). Let \( V_{2} \) be complement to \(
+    V_{1} \). Take any \( \xi \in V_{2} \) and consider \( (\xi +
+    \xi^{*})/2 \) and \( i(\xi^{*} - \xi)/2 \). Both elements are
+    self-adjoint and elements of \( V_{2} \). They might or might not
+    be linearly independent, but definitely at least one of them is
+    non-zero. So, include both (if they are linearly independent) or
+    one of them (if they are not) to our basis \( \left\{ \xi_{s}
+    \right\} \) and repeat.
+\end{proof}
+
+\begin{remark}
+    The following lemma tells us that any undirected graph on \( M_{n} \) can
+    be thought of as being made from symmetric quantum edges only.
+\end{remark}
+
+\begin{remark}
+    A complex vector space \( V = V^{*} \subseteq \mathfrak{gl}_{n}
+    \) uniquely determines a real vector space spanned by the basis
+    \( \left\{ \xi_{s} \right\} \) of self-adjoint elements \( \xi_{s} =
+    \xi_{s}^{*} \). Indeed, it is easy to see that any other self-adjoint
+    element \( \xi = \xi^{*} \) must be a real linear combination of
+    \( \left\{ \xi_{s} \right\} \).
+\end{remark}
