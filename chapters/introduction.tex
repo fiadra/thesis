@@ -37,18 +37,18 @@ all of the groups we will be dealing with will be finite and abelian.
 \end{proposition}
 
 \begin{proof}
-    First we will prove the statement for finite cyclic groups \( G =
-    \left\langle g \right\rangle \), \( \operatorname{ord}(g) = n \).
-    We will prove that the dual is cyclic of order \( n \). Let \(
-    \chi: G \rightarrow \mathbb{C} \) be a character. Since the group
-    is cyclic, it is entirely determined by the value it takes on its
-    generator \( g \). Since \( g^{n} = e \), obviously \(
-    \chi(g)^{n} = 1 \), so \( \chi(g)^{n} \in \mu_{n} \).
-    For each possible choice of \( \chi(g) \in \mu_{n} \) we get a
-    different character.
-    It is then easy to see that \( \chi: G \rightarrow \mathbb{C} \)
-    such that \( \chi(g) = \exp\left( 2 \pi i / n \right) \)
-    generates this group.
+    First we will prove the statement for finite cyclic groups. Let \( G =
+    \left\langle g \right\rangle \), \( \operatorname{ord}(g) = n \). We will
+    prove that the dual is cyclic of order \( n \). Let \( \chi: G \rightarrow
+    \mathbb{C} \) be a character. Since the group is cyclic, the character is
+    entirely determined by the value it takes on the generator \( g \). Since
+    \( g^{n} = e \), obviously \( \chi(g)^{n} = 1 \), so \( \chi(g)^{n} \in
+        \mu_{n} = \left\{ \exp\left( 2k \pi i / n \right) : k = 0, 1, \dots, n-1
+    \right\}\). For each possible choice of \( \chi(g) \in \mu_{n} \) we get a
+    different character. It is then easy to see that \( \chi: G \rightarrow
+    \mathbb{C} \) such that \( \chi(g) = \exp\left( 2 \pi i / n \right) \)
+    generates this group, i.e. \( \hat{G} = \left\{ \chi, \chi^{2},
+    \dots, \chi^{n-1}, \chi^{n} = e_{\hat{G}} \right\} \).
 
     Now since every finite abelian group can be written as a finite product
     of finite cycles, all we need to do is check whether the statement
@@ -58,7 +58,7 @@ all of the groups we will be dealing with will be finite and abelian.
     \( \chi \in \widehat{A \times B} \) is determined by its restrictions
     to \( A \times \{e_{B}\} \) and \( \left\{ e_{A} \right\} \times B \), since
     \[
-        \chi(a, b) = \chi((a, e)(e, b)) = \chi(a, e)\chi(e, b).
+        \chi(a, b) = \chi((a, e_{B})(e_{A}, b)) = \chi(a, e_{B})\chi(e_{A}, b).
     \]
     Thus \( \chi \leftrightarrow (\chi|_{A}, \chi|_{B})
     \) is an isomorphism.
@@ -66,7 +66,7 @@ all of the groups we will be dealing with will be finite and abelian.
 
 \begin{definition}[Group action on a \(C^{*}\)-algebra]
     By \emph{group action} of a group \( G \) on a \(C^{*}\)-algebra \(
-    A \) we mean a homomorphism
+    A \) we mean a group homomorphism
     \[
         \alpha: G \rightarrow \operatorname{Aut}(A).
     \]
@@ -139,7 +139,8 @@ extent to which the theory of such products is necessary for our
 purposes. For a more general reference we refer the Reader to
 \textcite{blackadar}.
 
-% Sierakowski
+The following definitions are based off of \textcite{sierakowski09}.
+
 \begin{definition}[\( C^{*} \)-dynamical system]
     A \( C^{*} \)-dynamical system is a triple \( (A, G, \alpha) \),
     where \( A \) is a \(C^{*}\)-algebra, \( G \) is a group, and \(
@@ -147,9 +148,11 @@ purposes. For a more general reference we refer the Reader to
     For a \( C^{*} \) dynamical system \( (A, G, \alpha) \) with \( G
     \) finite we define
     \[
-        C_{c}(G, A, \alpha) = \left\{ f: G \rightarrow A \right\},
+        C_{c}(G, A, \alpha) = \left\{ f: G \rightarrow A :
+        \operatorname{supp}(f) \text{ is finite}\right\},
     \]
-    i.e. the space of all functions on \( G \) with values in \( A \).
+    i.e. the space of all finitely supported functions on \( G \) with values
+    in \( A \).
 \end{definition}
 
 \( C_{c}(G, A, \alpha) \) is equipped with both a product and a \( *
@@ -160,21 +163,41 @@ More precisely we define those two operations in the following way:
     ab = \sum_{g,h \in G}
 \]
 
-\begin{definition}[Cross-product \(C^{*}\)-algebra]
-    Let \( A \) be a \(C^{*}\)-algebra and let \( G \) be a group
-    acting on \( A \).
-    blabl
+\begin{definition}[Covariant representation]
+    Fix a dynamical system \( (A, G, \alpha) \). A \emph{covariant
+    representation} \( (\pi, u, H) \) of \( (A, G, \alpha) \) consist of a
+    unitary representation \( u: G \rightarrow B(\mathcal{H}) \) of \( G \) and
+    a representation \( \pi: A \rightarrow B(\mathcal{H}) \) of \( A \) such
+    that \( u(g) \pi(a) u(g)^{*} = \pi(g \cdot a) \) for every \( g \in G \)
+    and \( a \in A \).
+\end{definition}
+
+\begin{definition}[Full \(C^{*}\)-algebra norm on \( C_{c}(G, A, \alpha) \)]
+    The full \(C^{*}\)-algebra norm on \( C_{c}(G, A, \alpha) \) is given by
+    \[
+        \left\| \cdot \right\| = \sup \left\| (\pi \times u)(\cdot) \right\|,
+    \]
+    where the supremum is taken over all covariant representations \(
+    (\pi, u, H) \)
+    of \( (A, G, \alpha) \).
+\end{definition}
+
+\begin{definition}[Crossed product \(C^{*}\)-algebra]
+    The crossed product of a \(C^{*}\)-algebra and a discrete group \( G \) is
+    the completion of \( C_{c}(G, A, \alpha) \) with respect to the full norm.
+    We denote the crossed product by \( \tilde{B}
+    \rtimes_{\hat{\alpha}} \hat{G} \).
 \end{definition}
 
 \section{Quantum sets}
 
-% TODO: textcite the Gelfand-Naimark thm
+% TODO: cite the Gelfand-Naimark thm
 Let \( B \) denote a \(C^{*}\)-algebra and let \( \psi \) denote a functional
 on this algebra. By the Gelfand-Naimark theorem, every \(C^{*}\)-algebra is
 isometrically \( * \)-isomorphic to a \(C^{*}\)-subalgebra \( B(\mathcal{H}) \)
-for some Hilbert space \( \mathcal{H} \). If \( B \) is
-finite-dimensional, one can identify \( L^{2}(B) \) with \( B \) and think of
-\( B \) as a Hilbert space with an inner product given by
+for some Hilbert space \( \mathcal{H} \). If \( B \) is finite-dimensional, one
+can identify \( L^{2}(B) \) with \( B \) and think of \( B \) as a Hilbert
+space with an inner product given by
 \[
     \left\langle a, b \right\rangle_{\psi} = \psi(a^{*}b).
 \]
@@ -303,6 +326,46 @@ in this thesis. It is taken directly from \textcite{tobolski26}.
     The two expressions agree. Since the matrix unix form an orthonormal
     basis, this linearly extends to all matrices.
 \end{proof}
+
+\subsection{Crossed-product quantum sets}
+
+\textcite{tobolski26} have introduced the notion of crossed product quantum
+sets. Suppose we are given a finite-dimensional \(C^{*}\)-algebra \( \tilde{B}
+\) along with a dual group action \( \hat{a}: \hat{G} \rightarrow
+\operatorname{Aut}(\tilde{B}) \) where \( G \) is finite and abelian. One can
+then consider the crossed product
+\[
+    B := \tilde{B} \rtimes_{\hat{\alpha}} \hat{G}.
+\]
+
+If \( \tilde{B} \) is equipped with a faithful functional \( \tilde{\psi} \)
+in such a way as to make \( (\tilde{B}, \tilde{\psi}) \) a quantum
+set, one can define a new faithful functional on \( B \) to make it a
+quantum set, as described below.
+
+\begin{definition}[Crossed product quantum set,
+    \textcite{tobolski26}, Definition 3.1]
+    Let \( (\tilde{B}, \tilde{\psi}) \) be a quantum set and let \(
+        \hat{\alpha}: \hat{G} \rightarrow \operatorname{Aut}(\tilde{B},
+    \tilde{\psi}) \) be an action of the dual of a finite abelian
+    group \( G \). The \emph{crossed product quantum set} is defined as
+    \[
+        (\tilde{B}, \tilde{\psi}) \rtimes_{\hat{\alpha}} \hat{G} :=
+        \left( \tilde{B} \rtimes_{\hat{\alpha}} \hat{G}, \psi_{\rtimes} \right),
+    \]
+    where \( \tilde{B} \rtimes_{\hat{\alpha}} \hat{G} \) is the
+    crossed product \(C^{*}\)-algebra and \( \psi_{\rtimes} \) is the
+    functional given by
+    \[
+        \psi_{\rtimes} \left( \sum_{\chi \in \hat{G}}
+        b_{\chi}u_{\chi} \right) = n \tilde{\psi}(b_{1})
+    \]
+    with \( n = | \hat{G} | \).
+\end{definition}
+
+The proof that this definition is sensible, i.e. the newly defined
+object is indeed a quantum set, can be seen in \textcite{tobolski26},
+Proposition 3.4.
 
 \section{Quantum graphs}
 
