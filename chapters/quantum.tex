@@ -1,0 +1,422 @@
+\chapter{Quantum sets and quantum graphs}
+
+In this chapter we will introduce the notions of quantum sets and quantum
+graphs. They were first considered by...
+
+\section{Quantum sets}
+
+Let \( B \) be a \(C^*\)-algebra equipped with a faithful positive functional
+\( \psi \). By the Gelfand-Naimark theorem, \( B \) can be realized concretely
+as a closed \(*\)-subalgebra of the bounded linear operators \( B(\mathcal{H})
+\) on some Hilbert space \( \mathcal{H} \). When \( B \) is finite-dimensional,
+this abstract framework simplifies considerably: we can identify \( B \) with
+its own Hilbert space completion \( L^2(B, \psi) \) by defining the inner
+product directly via the functional: \[ \langle x, y \rangle = \psi(x^* y)
+\quad \forall x, y \in B. \]
+
+The following definition introduces one of the central notions used
+in this thesis. It is taken directly from \textcite{tobolski26}.
+
+\begin{definition}[Quantum set, \textcite[Definition~2.1]{tobolski26}]
+    A quantum set \( (B, \psi) \) is a pair consisting of a finite-dimensional
+    \(C^{*}\)-algebra \( B \) and a faithful positive functional \( \psi\colon B
+    \rightarrow \mathbb{C} \) such that
+    \[
+        mm^{*} = \operatorname{Id}_{B}
+    \]
+    holds for the multiplication map \( m\colon B \otimes B \rightarrow B
+    \) and its adjoint \( m^{*} \) given by
+    \[
+        \left\langle m(a \otimes b), c \right\rangle = \left\langle a
+        \otimes b, m^{*}(c) \right\rangle_{\psi \otimes \psi}
+    \]
+    for all \( a, b, c \in B \).
+\end{definition}
+
+\begin{remark}
+    We will call any functional with the property given in the
+    definition above a \emph{quantum set functional} on \( B \).
+\end{remark}
+
+\begin{remark}
+    Recall that in general, a \emph{comultiplication} on a
+    \(C^{*}\)-algebra is a \(*\)-homomorphism
+    \[
+        \Delta\colonA\to A\otimes A
+    \]
+    such that the following diagram commutes:
+    \[
+        \begin{tikzcd}
+            A \arrow[r,"\Delta"] \arrow[d,"\Delta"']
+            & A\otimes A \arrow[d,"{\Delta\otimes\mathrm{id}}"] \\
+            A\otimes A \arrow[r,"{\mathrm{id}\otimes\Delta}"']
+            & A\otimes A\otimes A
+        \end{tikzcd}
+    \]
+    Note that in general a comultiplication is \emph{not} unique. In our
+    setting it is uniquely determined by the additional structure and the
+    Riesz representation theorem for Hilbert spaces.
+\end{remark}
+
+\begin{remark}
+    Since in our setup the comultiplication is given by the scalar product
+    and regular multiplication \( m \), we will denote it by \( m^{*} \).
+\end{remark}
+
+% TODO: Prove that the examples are correct (do some calculations)
+\begin{example}
+    Every finite set \( X \) gives rise to a quantum set \( (C(X), \psi_{X}) \)
+    with \( \psi_{X}\colon C(X) \rightarrow \mathbb{C} \), \(
+        \psi_{X}(f) = \sum_{x
+    \in X} f(x) \) for any \( f \in C(X) \).
+    Let \( X \) be a finite set and \( C(X) \) be the \(*\)-algebra of
+    complex-valued functions on \( X \), where the involution is given by
+    pointwise complex conjugation: \( f^*(x) = \overline{f(x)} \).
+
+    To show that \( \psi_X \) is positive, we must verify that
+    \( \psi_X(f^* f) \geq 0 \) for all \( f \in C(X) \). For any function
+    \( f \), the product \( f^* f \) evaluates pointwise to:
+    \[
+        (f^* f)(x) = \overline{f(x)} f(x) = |f(x)|^2.
+    \]
+    Applying the functional yields:
+    \[
+        \psi_X(f^* f) = \sum_{x \in X} |f(x)|^2.
+    \]
+    Thus the functional is positive.
+
+    To prove faithfulness, suppose \( \psi_X(f^* f) = 0 \) for some \( f
+    \in C(X) \). This implies:
+    \[
+        \sum_{x \in X} |f(x)|^2 = 0.
+    \]
+    Because each term \( |f(x)|^2 \) is strictly non-negative, a sum of
+    such terms can only equal zero if every individual term is zero.
+    Thus, we must have:
+    \[
+        |f(x)|^2 = 0 \quad \forall x \in X,
+    \]
+    which directly implies \( f(x) = 0 \) for all \( x \in X \). Therefore,
+    \( f \) is the zero function (\( f = 0 \)), establishing that \(
+    \psi_X \) is faithful.
+
+    Let \( \{e_x\}_{x \in X} \) be the standard orthonormal basis of
+    characteristic functions on \( X \). Recall the definitions of the
+    multiplication map \( m \) and its adjoint \( m^* \):
+    \begin{align*}
+        m(f \otimes g) &= fg, \\
+        m^*(e_x) &= e_x \otimes e_x.
+    \end{align*}
+
+    We wish to show that the composition \( mm^*\colon C(X)
+    \rightarrow C(X) \) is the identity operator (\( \text{Id} \)). Let us
+    evaluate the action of \( m m^* \) on an arbitrary basis element \( e_x \):
+    \[
+        (m m^*)(e_x) = m\big(m^*(e_x)\big) = m(e_x \otimes e_x) = e_x e_x = e_x.
+    \]
+
+    Because the linear operators \( m m^* \) and \( \text{Id} \) agree on
+    every element of the basis \( \{e_x\}_{x \in X} \), by linearity they
+    must be equal on the entire space \( C(X) \). Therefore:
+    \[
+        m m^* = \text{Id}.
+    \]
+\end{example}
+
+% TODO: Is this necessary?
+\begin{example}
+    In particular, \( (\mathbb{C}^{n}, \psi_{n}) \) with \( \psi_{n}(e_{i}) = 1
+    \) is a quantum set. The functional naturally extends to:
+    \[
+        \psi_n(x) = \sum_{i=1}^n x_i.
+    \]
+
+    To show that \(\psi_n\) is positive, we evaluate it on the
+    element \(x^* x\). Using the orthogonality of the basis, we have:
+    \[
+        x^* x = \left( \sum_{i=1}^n \overline{x_i} e_i \right) \left(
+        \sum_{j=1}^n x_j e_j \right) = \sum_{i,j=1}^n \overline{x_i}
+        x_j e_i e_j = \sum_{i=1}^n \overline{x_i} x_i e_i =
+        \sum_{i=1}^n |x_i|^2 e_i.
+    \]
+    Applying the functional yields:
+    \[
+        \psi_n(x^* x) = \psi_n\left( \sum_{i=1}^n |x_i|^2 e_i \right)
+        = \sum_{i=1}^n |x_i|^2 \psi_n(e_i) = \sum_{i=1}^n |x_i|^2.
+    \]
+    Since \(|x_i|^2 \geq 0\) for all \(i\), the sum of these
+    non-negative real numbers is also non-negative, meaning
+    \(\psi_n(x^* x) \geq 0\). Thus, the functional is positive.
+
+    To prove faithfulness, suppose \(\psi_n(x^* x) = 0\) for some \(x
+    \in \mathbb{C}^n\). This implies:
+    \[
+        \sum_{i=1}^n |x_i|^2 = 0.
+    \]
+    Because each term \(|x_i|^2\) is strictly non-negative, the sum
+    can only be zero if every individual component satisfies
+    \(|x_i|^2 = 0\) for all \(i \in \{1, \dots, n\}\). This directly
+    implies \(x_i = 0\) for all \(i\). Therefore, \(x = \sum_{i=1}^n
+    0 \cdot e_i = 0\), establishing that \(\psi_n\) is faithful.
+
+    The adjoint map \(m^*\colon \mathbb{C}^n
+    \rightarrow \mathbb{C}^n \otimes \mathbb{C}^n\) acts on a basis
+    element \(e_i\) by:
+    \[
+        m^*(e_i) = e_i \otimes e_i.
+    \]
+
+    We wish to show that the composition \(mm^*\colon \mathbb{C}^n
+    \rightarrow \mathbb{C}^n\) is the identity operator. We check:
+    \[
+        (m m^*)(e_i) = m\big(m^*(e_i)\big) = m(e_i \otimes e_i) = e_i.
+    \]
+    Because the linear operators \(m m^* \) and \(\text{Id}\) agree
+    on every element of the basis \(\{e_i\}_{i=1}^n\), by linearity
+    they must be equal on the entire vector space \(\mathbb{C}^n\). Therefore:
+    \[
+        m m^* = \text{Id}.
+    \]
+\end{example}
+
+% TODO: Why is there nTr instead of Tr?
+\begin{example}
+    For any \( n \in \mathbb{N}_{+} \), \( (M_{n}, n
+    \operatorname{Tr}) \) is a quantum set, with \( \operatorname{Tr}
+    \) being the trace. We will later show that this structure can be
+    obtained as the crossed product \( (\mathbb{C}^{n}, \psi_{n}) \) and
+    \( \hat{\mathbb{Z}}_{n} \) with the standard action, i.e.
+    \[
+        (M_{n}, n \operatorname{Tr}) \cong (\mathbb{C}^{n} \rtimes
+        \hat{\mathbb{Z}}_{n}, \psi_{\rtimes}).
+    \]
+\end{example}
+
+% TODO: give a better name
+\begin{lemma}[Comultiplication for matrix algebras]
+    In the context of \( (M_{n}, n \operatorname{Tr}) \), the
+    comultiplication
+    is given by the formula
+    \[
+        m^{*}(e_{ij}) = \sum_{k=1}^{n} e_{ik} \otimes e_{kj}
+    \]
+    with \( e_{ij} \) being the matrix with a single \( 1 \) in
+    the \( i \)-th
+    row and \( j \)-th column, and extended linearly.
+\end{lemma}
+
+% TODO: check this proof carefully
+\begin{proof}
+    This is simply a computational excercise. We will use the following
+    well-known formulas:
+    \begin{enumerate}
+        \item \( e_{ab}e_{cd} = \delta_{bc}e_{ad} \),
+        \item \( \left\langle e_{ij}, e_{kl} \right\rangle =
+            \operatorname{Tr}(e_{ji}e_{kl}) = \delta_{ik}e_{jl} \),
+    \end{enumerate}
+    with
+    \[
+        \delta_{ij} =
+        \begin{cases}
+            1 & \text{if } i = j,\\
+            0 & \text{otherwise}.
+        \end{cases}
+    \]
+    In particular \( \left\{ e_{ij} \right\}_{i,j=1,\dots,n} \) form
+    a orthonormal basis.
+
+    Take arbitrary basis vectors \( e_{ab} \), \( e_{cd} \). Then
+    \[
+        m(e_{ab} \otimes e_{cd}) = e_{ab} e_{cd} = \delta_{bc}e_{ad},
+    \]
+    hence
+    \begin{align*}
+        \left\langle m(e_{ab} \otimes e_{cd}), e_{ij} \right\rangle
+        &= \delta_{bc} \left\langle e_{ad}, e_{ij} \right\rangle \\
+        &= \delta_{bc}\delta_{ai}\delta_{dj}.
+    \end{align*}
+    Now compute the inner product with the proposed adjoint:
+    \begin{align*}
+        \left\langle e_{ab} \otimes e_{cd}, \sum_{k=1}^{n} e_{ik}
+        \otimes e_{kj} \right\rangle
+        &= \sum_{k=1}^{n} \left\langle
+        e_{ab}, e_{ik} \right\rangle
+        \left\langle e_{cd}, e_{kj} \right\rangle \\
+        &= \sum_{k=1}^{n}
+        \delta_{ai}\delta_{bk}\delta_{ck}\delta_{dj} \\
+        &= \delta_{ai}\delta_{bc}\delta_{dj}.
+    \end{align*}
+    The two expressions agree. Since the matrix unix form an orthonormal
+    basis, this linearly extends to all matrices.
+\end{proof}
+
+\subsection{Crossed product quantum sets}
+
+\textcite{tobolski26} have introduced the notion of crossed product quantum
+sets. Suppose we are given a finite-dimensional \(C^{*}\)-algebra
+\( \tilde{B}
+\) along with a dual group action \( \hat{a}\colon \hat{G} \rightarrow
+\operatorname{Aut}(\tilde{B}) \) where \( G \) is finite and
+abelian. One can
+then consider the crossed product
+\[
+    B \coloneqq \tilde{B} \rtimes_{\hat{\alpha}} \hat{G}.
+\]
+
+If \( \tilde{B} \) is equipped with a faithful functional \( \tilde{\psi} \)
+in such a way as to make \( (\tilde{B}, \tilde{\psi}) \) a quantum
+set, one can define a new faithful functional on \( B \) to make it a
+quantum set, as described below.
+
+\begin{definition}[Crossed product quantum set,
+    \textcite[Definition~3.1]{tobolski26}]
+    Let \( (\tilde{B}, \tilde{\psi}) \) be a quantum set and let \(
+        \hat{\alpha}\colon \hat{G} \rightarrow \operatorname{Aut}(\tilde{B},
+    \tilde{\psi}) \) be an action of the dual of a finite abelian
+    group \( G \). The \emph{crossed product quantum set} is defined as
+    \[
+        (\tilde{B}, \tilde{\psi}) \rtimes_{\hat{\alpha}} \hat{G} \coloneqq
+        \left( \tilde{B} \rtimes_{\hat{\alpha}} \hat{G},
+        \psi_{\rtimes} \right),
+    \]
+    where \( \tilde{B} \rtimes_{\hat{\alpha}} \hat{G} \) is the
+    crossed product \(C^{*}\)-algebra and \( \psi_{\rtimes} \) is the
+    functional given by
+    \[
+        \psi_{\rtimes} \left( \sum_{\chi \in \hat{G}}
+        b_{\chi}u_{\chi} \right) = n \tilde{\psi}(b_{1})
+    \]
+    with \( n = | \hat{G} | \).
+\end{definition}
+
+The proof that this definition is sensible, i.e. the newly defined
+object is indeed a quantum set, can be seen in \textcite{tobolski26},
+Proposition 3.4.
+
+% TODO: Prove this lemma
+\begin{lemma}
+    Let \( \hat{\alpha}\colon \hat{\mathbb{Z}}_{n} \rightarrow
+    \operatorname{A} \) be
+    the action of cyclically shifting elements. Then
+    \[
+        (M_{n}, n \operatorname{Tr}) \cong (\mathbb{C}^{n} \rtimes_{\alpha}
+        \hat{\mathbb{Z}}_{n}, \psi_{\rtimes}).
+    \]
+\end{lemma}
+
+\section{Quantum graphs}
+
+A simple graph is classically defined as a pair \( (V, E) \) with \( V \)
+serving as the \emph{set of vertices} and \( E \subseteq [V]^{2} \)
+serving as the \emph{set of edges}. Such a graph could be interpreted
+as a matrix \( A = [a_{ij}] \in \{0, 1\}^{n \times n} \) with \(
+\{v_{i}, v_{j}\} \in E \Leftrightarrow a_{ij} = 1 \); such a
+representation is often called the \emph{adjacency matrix}. The key
+property of such matrices is that they are invariant with respect to
+entrywise multiplication. In turn we can use this property to
+generalise graphs on sets to graphs on quantum sets.
+
+The following definitions are due to \textcite{tobolski26}.
+% TODO: Tell where this notion was first introduced
+\begin{definition}[Quantum adjacency matrix,
+    \textcite[Definition~2.5]{tobolski26}]
+    Let \( (B, \psi) \) be a quantum set. A \emph{quantum adjacency
+    matrix} on this quantum set is a linear map \( A\colon B \rightarrow B
+    \) which is Schur-idempotent and *-preserving, by which we mean
+    that it satisfies
+    \[
+        m(A \otimes A)m^{*} = A,
+        \qquad
+        A(b^{*}) = A(b)^{*}
+        \quad \text{for all } b \in B.
+    \]
+\end{definition}
+
+\begin{definition}[Quantum graph, \textcite[Definition~2.5]{tobolski26}]
+    A \emph{quantum graph} on \( (B, \psi) \) is given by a quantum
+    adjacency matrix on this quantum set.
+\end{definition}
+
+For all intents and purposes we will identify both notions and
+simply call an
+appropriate \( A\colon B \rightarrow B \) both a quantum adjancenty matrix and a
+quantum graph.
+
+\begin{remark}
+    There are other equivalent definitions of a quantum graph, namely those
+    based on
+    \begin{itemize}
+        \item an \emph{edge projection}, i.e. a projection \(
+            \tilde{A} \in C(X) \otimes C(X)^{\operatorname{op}} \)
+            \textcite{musto18},
+        \item
+    \end{itemize}
+\end{remark}
+
+\begin{definition}[\textcite[Definition~4.6{tobolski26}]]
+    Let \( A \) be a quantum graph on a quantum set \( (B, \psi) \).
+    We call the quantum graph
+    \begin{itemize}
+        \item \emph{loopfree} if \( m(A \otimes
+            \operatorname{Id})m^{*} = 0, \)
+        \item \emph{undirected} if \( A = A^{*} \), where the adjoint
+            is taken with respect to the inner product induced by
+            \( \psi \).
+    \end{itemize}
+    We say that a voltage quantum graph \( \tilde{A} = \left\{
+    \tilde{A}_{g} \right\}_{g \in G} \) has these properties if the
+    same equations hold for \( \sum_{g \in G} \tilde{A}_{g} \),
+    respectively.
+\end{definition}
+
+\section{Isomorphisms and Quantum Isomorphisms of Quantum Sets}
+
+\begin{definition}[Quantum isomorphisms,
+    \textcite[Definition~2.8]{tobolski26}]
+    Let \( (B_{1}, \psi_{1}) \) and \( (B_{2}, \psi_{2}) \) be
+    quantum sets and
+    let \( A_{1}\colon B_{1} \rightarrow B_{1} \) and \( A_{2}\colon B_{2}
+    \rightarrow B_{2} \)
+    be quantum graphs on \( (B_{1}, \psi_{1}) \), \( (B_{2},
+    \psi_{2}) \), respectively.
+    \begin{itemize}
+        \item The two quantum sets are \emph{isomorphic} if there is
+            a \( * \)-isomorphism
+            \( \phi\colon B_{1} \rightarrow B_{2} \) such that \( \psi_{2}
+            \phi = \psi_{1} \).
+            We denote by \( \operatorname{Aut}(B, \psi) \) the group
+            of quantum set
+            automorphisms of a quantum set \( (B, \psi) \).
+        \item The two quantum graphs are \emph{isomorphic} if there
+            is an isomorpshism
+            \( \phi\colon B_{1} \rightarrow B_{2} \) of the underlying
+            quantum sets such that
+            \( \phi A_{1} = A_{2} \phi \). We denote by \(
+            \operatorname{Aut}(A) \) the
+            group of quantum graph automorphisms of a quantum graph \( A \).
+        \item The two quantum sets are \emph{quantum isomorphic}, written
+            \( (B_{1}, \psi_{1}) \cong (B_{2}, \psi_{2}) \), if there is
+            a finite-dimensional Hilbert space \( \mathcal{H} \) and a
+            unital \( * \)-homomorphism
+            \[
+                \rho\colon B_{1} \rightarrow B_{2} \otimes B(\mathcal{H}),
+            \]
+            such that the map
+            \[
+                p\colon L^{2}(B_{1}) \otimes \mathcal{H} \rightarrow
+                L^{2}(B_{2}) \otimes \mathcal{H}, \; a \otimes \xi
+                \mapsto \rho(a)(1 \otimes \xi)
+            \]
+            is unitary as an operator between Hilbert spaces.
+        \item The two quantum graphs are \emph{quantum isomorphic},
+            written \( A_{1} \cong_{q} A_{2} \), if there is a
+            quantum isomorphism \( \rho\colon B_{1} \rightarrow B_{2}
+            \otimes B(\mathcal{H}) \) between the underlying quantum
+            sets such that
+            \[
+                \rho A_{1} = (A_{2} \otimes
+                \operatorname{Id}_{B(\mathcal{H})}) \rho
+            \]
+            holds.
+    \end{itemize}
+\end{definition}
