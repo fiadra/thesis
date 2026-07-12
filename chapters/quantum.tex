@@ -17,7 +17,8 @@ product directly via the functional: \[ \langle x, y \rangle = \psi(x^* y)
 The following definition introduces one of the central notions used
 in this thesis. It is taken directly from \textcite{tobolski26}.
 
-\begin{definition}[Quantum set, \textcite[Definition~2.1]{tobolski26}]
+\begin{definition}
+    (Quantum set, \textcite[Definition~2.1]{tobolski26})
     A quantum set \( (B, \psi) \) is a pair consisting of a finite-dimensional
     \(C^{*}\)-algebra \( B \) and a faithful positive functional \( \psi\colon B
     \rightarrow \mathbb{C} \) such that
@@ -190,6 +191,7 @@ in this thesis. It is taken directly from \textcite{tobolski26}.
         (M_{n}, n \operatorname{Tr}) \cong (\mathbb{C}^{n} \rtimes
         \hat{\mathbb{Z}}_{n}, \psi_{\rtimes}).
     \]
+    This is proven in~\ref{lem:iso}.
 \end{example}
 
 % TODO: give a better name
@@ -257,10 +259,9 @@ sets. Suppose we are given a finite-dimensional \(C^{*}\)-algebra
 \( \tilde{B}
 \) along with a dual group action \( \hat{a}\colon \hat{G} \rightarrow
 \operatorname{Aut}(\tilde{B}) \) where \( G \) is finite and
-abelian. One can
-then consider the crossed product
+abelian. One can then consider the crossed product
 \[
-    B \coloneqq \tilde{B} \rtimes_{\hat{\alpha}} \hat{G}.
+    B := \tilde{B} \rtimes_{\hat{\alpha}} \hat{G}.
 \]
 
 If \( \tilde{B} \) is equipped with a faithful functional \( \tilde{\psi} \)
@@ -268,14 +269,14 @@ in such a way as to make \( (\tilde{B}, \tilde{\psi}) \) a quantum
 set, one can define a new faithful functional on \( B \) to make it a
 quantum set, as described below.
 
-\begin{definition}[Crossed product quantum set,
-    \textcite[Definition~3.1]{tobolski26}]
+\begin{definition}
+    (Crossed product quantum set, \textcite[Definition~3.1]{tobolski26})
     Let \( (\tilde{B}, \tilde{\psi}) \) be a quantum set and let \(
         \hat{\alpha}\colon \hat{G} \rightarrow \operatorname{Aut}(\tilde{B},
     \tilde{\psi}) \) be an action of the dual of a finite abelian
     group \( G \). The \emph{crossed product quantum set} is defined as
     \[
-        (\tilde{B}, \tilde{\psi}) \rtimes_{\hat{\alpha}} \hat{G} \coloneqq
+        (\tilde{B}, \tilde{\psi}) \rtimes_{\hat{\alpha}} \hat{G} :=
         \left( \tilde{B} \rtimes_{\hat{\alpha}} \hat{G},
         \psi_{\rtimes} \right),
     \]
@@ -293,10 +294,23 @@ The proof that this definition is sensible, i.e. the newly defined
 object is indeed a quantum set, can be seen in \textcite{tobolski26},
 Proposition 3.4.
 
+\begin{fact}
+    (\textcite{tobolksi26}, Example 3.5)
+    If \( \hat{\alpha} = \operatorname{triv} \), i.e. it is the trivial action,
+    then
+    \[
+        \tilde{B} \rtimes_{\hat{\alpha}} \hat{\hat{G}} \cong
+        \tilde{B} \otimes C(G),
+    \]
+    where the isomorphism is given by \( b_{\chi} u_{\chi} \mapsto
+    b_{\chi} \otimes \tilde{u}_{\chi} \),
+    where \( \tilde{u}_{\chi} \in C(G) \) is the function that
+    evaluates to \( \chi(g) \) on \( g \in G \).
+\end{fact}
+
 % TODO: Prove this lemma
-\begin{lemma}
-    Let \( \hat{\alpha}\colon \hat{\mathbb{Z}}_{n} \rightarrow
-    \operatorname{A} \) be
+\begin{lemma}\label{lem:iso}
+    Let \( \hat{\alpha}\colon \hat{\mathbb{Z}}_{n} \rightarrow A\) be
     the action of cyclically shifting elements. Then
     \[
         (M_{n}, n \operatorname{Tr}) \cong (\mathbb{C}^{n} \rtimes_{\alpha}
@@ -318,8 +332,8 @@ generalise graphs on sets to graphs on quantum sets.
 
 The following definitions are due to \textcite{tobolski26}.
 % TODO: Tell where this notion was first introduced
-\begin{definition}[Quantum adjacency matrix,
-    \textcite[Definition~2.5]{tobolski26}]
+\begin{definition}
+    (Quantum adjacency matrix, \textcite[Definition~2.5]{tobolski26})
     Let \( (B, \psi) \) be a quantum set. A \emph{quantum adjacency
     matrix} on this quantum set is a linear map \( A\colon B \rightarrow B
     \) which is Schur-idempotent and *-preserving, by which we mean
@@ -332,7 +346,8 @@ The following definitions are due to \textcite{tobolski26}.
     \]
 \end{definition}
 
-\begin{definition}[Quantum graph, \textcite[Definition~2.5]{tobolski26}]
+\begin{definition}
+    (Quantum graph, \textcite[Definition~2.5]{tobolski26})
     A \emph{quantum graph} on \( (B, \psi) \) is given by a quantum
     adjacency matrix on this quantum set.
 \end{definition}
@@ -347,13 +362,14 @@ quantum graph.
     based on
     \begin{itemize}
         \item an \emph{edge projection}, i.e. a projection \(
-            \tilde{A} \in C(X) \otimes C(X)^{\operatorname{op}} \)
+            \tilde{A} \in C(X) \otimes C(X)^{\operatorname{op}} \), see
             \textcite{musto18},
         \item
     \end{itemize}
 \end{remark}
 
-\begin{definition}[\textcite[Definition~4.6{tobolski26}]]
+\begin{definition}
+    (\textcite[Definition~4.6]{tobolski26})
     Let \( A \) be a quantum graph on a quantum set \( (B, \psi) \).
     We call the quantum graph
     \begin{itemize}
@@ -363,16 +379,280 @@ quantum graph.
             is taken with respect to the inner product induced by
             \( \psi \).
     \end{itemize}
-    We say that a voltage quantum graph \( \tilde{A} = \left\{
-    \tilde{A}_{g} \right\}_{g \in G} \) has these properties if the
+    We say that a voltage quantum graph \( \tilde{A} = \{
+    \tilde{A}_{g} \}_{g \in G} \) has these properties if the
     same equations hold for \( \sum_{g \in G} \tilde{A}_{g} \),
     respectively.
 \end{definition}
 
+\section{Voltage and Derived Quantum Graphs}
+
+\subsection{Classical Voltage Graphs}
+
+% TODO: dać referencję do pracy Grossa i Tuckera
+\begin{definition}[Classical voltage graph]
+    A \emph{voltage graph} is a pair \( (\Gamma, \lambda) \) consisting
+    of (not necesarily simple) finite directed graph \( \Gamma \) with
+    vertex set \( V \) and edge set \( E \), together with a labelling
+    \( \lambda: E \rightarrow G \) of the edges of \( \Gamma \) by
+    elements of a finite group \( G \).
+\end{definition}
+
+\begin{definition}[Classical derived graph]
+    The \emph{derived graph} \( \Gamma^{\lambda} \) of \( (\Gamma, \lambda) \)
+    is a graph with vertex set \( V \times G \) and edge set \( E \times G \).
+    Whenever \( e \in E \) is an edge from \( u \) to \( v \) in \( \Gamma \)
+    and \( g \in G \) is a group element, then the edge \( (e, g) \) goes from
+    \( (u, g) \) to \( (v, g \lambda(e)) \) in \( \Gamma^{\lambda} \).
+\end{definition}
+
+\begin{figure}[htbp]
+    \centering
+    \begin{minipage}{0.4\textwidth}
+        \centering
+        \begin{tikzpicture}[>=Stealth, auto, node distance=2.5cm,
+                main node/.style={circle,draw,minimum
+            size=0.7cm,font=\sffamily\bfseries}]
+            \node[main node] (u) {\( u \)};
+            \node[main node] (v) [right of=u] {\( v \)};
+
+            \path[->, thick]
+            (u) edge [bend left=25] node {\( e_1, \mathbf{0} \)} (v)
+            (v) edge [bend left=25] node {\( e_2, \mathbf{1} \)} (u);
+        \end{tikzpicture}
+        \caption{Base voltage graph \( \Gamma \) over \( \mathbb{Z}_2 \)}
+    \end{minipage}\hfill
+    \begin{minipage}{0.55\textwidth}
+        \centering
+        \begin{tikzpicture}[>=Stealth, auto, main
+                node/.style={circle,draw,minimum
+            size=0.7cm,font=\sffamily\small\bfseries}]
+            % Group level 0 (Blue)
+            \node[main node, draw=blue, text=blue] (u0) at
+            (0,2.8) {\( (u,0) \)};
+            \node[main node, draw=blue, text=blue] (v0) at
+            (2.8,2.8) {\( (v,0) \)};
+
+            % Group level 1 (Red)
+            \node[main node, draw=red, text=red] (u1) at (0,0) {\( (u,1) \)};
+            \node[main node, draw=red, text=red] (v1) at (2.8,0) {\( (v,1) \)};
+
+            % Edges
+            \path[->, thick, blue] (u0) edge node [above] {\( (e_1,0) \)} (v0);
+            \path[->, thick, red] (u1) edge node [below] {\( (e_1,1) \)} (v1);
+
+            \path[->, thick, purple] (v0) edge node [left,
+            pos=0.7] {\( (e_2,0) \)} (u1);
+            \path[->, thick, purple] (v1) edge node [right,
+            pos=0.7] {\( (e_2,1) \)} (u0);
+        \end{tikzpicture}
+        \caption{Derived graph \( \Gamma^\lambda \) (Directed 4-cycle)}
+    \end{minipage}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \begin{minipage}{0.35\textwidth}
+        \centering
+        \begin{tikzpicture}[>=Stealth, auto, main
+                node/.style={circle,draw,minimum
+            size=0.7cm,font=\sffamily\bfseries}]
+            \node[main node] (v) {\( v \)};
+
+            \path[->, thick]
+            (v) edge [loop left, distance=1.7cm, in=145, out=215]
+            node {\( e_1, \mathbf{1} \)} (v)
+            (v) edge [loop right, distance=1.7cm, in=35, out=-35]
+            node {\( e_2, \mathbf{2} \)} (v);
+        \end{tikzpicture}
+        \caption{Base voltage graph \( \Gamma \) over \( \mathbb{Z}_3 \)}
+    \end{minipage}\hfill
+    \begin{minipage}{0.6\textwidth}
+        \centering
+        \begin{tikzpicture}[>=Stealth, auto, main
+                node/.style={circle,draw,minimum
+            size=0.75cm,font=\sffamily\small\bfseries}]
+            % Vertices arranged circularly on a 2.6cm radius
+            \node[main node, draw=blue, text=blue] (v0) at
+            (90:2.6) {\( (v,0) \)};
+            \node[main node, draw=red, text=red] (v1) at
+            (210:2.6) {\( (v,1) \)};
+            \node[main node, draw=orange, text=orange] (v2) at
+            (330:2.6) {\( (v,2) \)};
+
+            % e1 lifts: v0 -> v1 -> v2 -> v0 (Bending outwards, solid teal)
+            \path[->, thick, teal]
+            (v0) edge [bend right=32] node [left, pos=0.5] {\( (e_1,0) \)} (v1)
+            (v1) edge [bend right=32] node [below, pos=0.5] {\( (e_1,1) \)} (v2)
+            (v2) edge [bend right=32] node [right, pos=0.5]
+            {\( (e_1,2) \)} (v0);
+
+            % e2 lifts: v0 -> v2 -> v1 -> v0 (Bending inwards, dashed violet)
+            \path[->, thick, dashed, violet]
+            (v0) edge [bend left=12] node [left, pos=0.3] {\( (e_2,0) \)} (v2)
+            (v2) edge [bend left=12] node [above, pos=0.3] {\( (e_2,2) \)} (v1)
+            (v1) edge [bend left=12] node [right, pos=0.3] {\( (e_2,1) \)} (v0);
+        \end{tikzpicture}
+        \caption{Derived graph \( \Gamma^\lambda \) (Two 3-cycles)}
+    \end{minipage}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \begin{minipage}{0.35\textwidth}
+        \centering
+        \begin{tikzpicture}[>=Stealth, auto, node distance=2.2cm,
+                main node/.style={circle,draw,minimum
+            size=0.7cm,font=\sffamily\bfseries}]
+            \node[main node] (u) {\( u \)};
+            \node[main node] (v) [right of=u] {\( v \)};
+
+            % Labeled base graph edges
+            \path[->, thick]
+            (u) edge [bend left=45] node {\( e_1, \mathbf{0} \)} (v)
+            (u) edge node [fill=white, inner sep=1pt] {\( e_2,
+            \mathbf{1} \)} (v)
+            (u) edge [bend right=45] node [below] {\( e_3, \mathbf{2} \)} (v);
+        \end{tikzpicture}
+        \caption{Base Theta graph \( \Gamma \) with edge labels}
+    \end{minipage}\hfill
+    \begin{minipage}{0.6\textwidth}
+        \centering
+        \begin{tikzpicture}[>=Stealth, auto, main
+                node/.style={circle,draw,minimum
+            size=0.75cm,font=\sffamily\small\bfseries}]
+            % Left Partite Set: u fibers (Clean, standard nodes)
+            \node[main node] (u0) at (0,3) {\( (u,0) \)};
+            \node[main node] (u1) at (0,1.5) {\( (u,1) \)};
+            \node[main node] (u2) at (0,0) {\( (u,2) \)};
+
+            % Right Partite Set: v fibers (Clean, standard nodes)
+            \node[main node] (v0) at (3.5,3) {\( (v,0) \)};
+            \node[main node] (v1) at (3.5,1.5) {\( (v,1) \)};
+            \node[main node] (v2) at (3.5,0) {\( (v,2) \)};
+
+            % Unlabelled edges colored by their parent edge
+            % mapping to track the lift clearly
+            % Lifts of e1 (voltage 0) -> Navy Blue
+            \path[->, thick, blue!80!black] (u0) edge (v0);
+            \path[->, thick, blue!80!black] (u1) edge (v1);
+            \path[->, thick, blue!80!black] (u2) edge (v2);
+
+            % Lifts of e2 (voltage 1) -> red
+            \path[->, thick, red] (u0) edge (v1);
+            \path[->, thick, red] (u1) edge (v2);
+            \path[->, thick, red] (u2) edge (v0);
+
+            % Lifts of e3 (voltage 2) -> purple
+            \path[->, thick, purple] (u0) edge (v2);
+            \path[->, thick, purple] (u1) edge (v0);
+            \path[->, thick, purple] (u2) edge (v1);
+        \end{tikzpicture}
+        \caption{Derived graph \( \Gamma^\lambda \) (\( K_{3,3} \)
+        colored by edge class)}
+    \end{minipage}
+\end{figure}
+
+\subsection{Generalisation to quantum voltage and derived quantum graphs}
+
+In the following definition we will introduce some key notions. The
+motivation behind the definition of \( X_{g} \) will be given later
+in the thesis.
+
+% TODO: Maybe replace the dagger?
+\begin{definition}
+    (\textcite{tobolski26}, Definition 4.1)
+    Let \( (\tilde{B}, \tilde{\psi}) \), \( \hat{\alpha}: \hat{G} \to
+    \mathrm{Aut}(\tilde{B}, \tilde{\psi}) \), \( (B, \psi_\rtimes) \) and
+    \( (u_\chi)_{\chi \in \hat{G}} \subset B \) be as above.
+    \begin{enumerate}
+        \item For every \( g \in G \) let \( X_g := \frac{1}{n} \sum_{\chi
+            \in \hat{G}}\overline{\chi(g)} u_\chi u_\chi^\dagger \), i.e.
+            \[
+                X_g : B \to B, \quad b \mapsto \frac{1}{n} \sum_{\chi
+                \in \hat{G}} \overline{\chi(g)} \langle u_\chi, b
+                \rangle_{\psi_\rtimes} u_\chi.
+            \]
+        \item A \emph{voltage quantum graph} on the quantum set
+            \( (\tilde{B}, \tilde{\psi}) \) with respect to the group
+            action \( \hat{\alpha}: \hat{G} \to \mathrm{Aut}(\tilde{B},
+            \tilde{\psi}) \) is a family \( \tilde{A} = (\tilde{A}_g)_{g
+            \in G} \) of quantum adjacency matrices that is indexed by
+            \( G \) and satisfies
+            \[
+                \tilde{A}_g \hat{\alpha}_\chi = \hat{\alpha}_\chi \tilde{A}_g
+            \]
+            for all \( g \in G \) and \( \chi \in \hat{G} \).
+        \item The \emph{derived quantum graph} \( \tilde{A}
+            \rtimes_{\hat{\alpha}} \hat{G}: B \to B \) on \( (B,
+            \psi_\rtimes) \) is then given by
+            \[
+                \tilde{A} \rtimes_{\hat{\alpha}} \hat{G} := \sum_{g
+                \in G} m(X_g \otimes E_\rtimes^\ast \tilde{A}_g
+                E_\rtimes) m^\ast,
+            \]
+            where we write (here and in the rest of the section) \( m \)
+            for the multiplication map on \( B \), i.e. \( m = m_\rtimes \).
+    \end{enumerate}
+\end{definition}
+
+One can easily check that \( X_{g} \) is a adjacency matrix for any
+\( g \in G \).
+
+\begin{lemma}
+    If \( A, B \in M_n(\{0,1\}) \) and \( m^*: \mathbb{C}^n
+    \to \mathbb{C}^n \otimes \mathbb{C}^n \) is the adjoint of the
+    multiplication map \( m \), then \( m(A \otimes B)m^* = A \odot B
+    \), the entrywise (Hadamard) product of \( A \) and \( B \).
+\end{lemma}
+
+\begin{proof}
+    Let \( \{e_1, \dots, e_n\} \) be the standard basis of \(
+    \mathbb{C}^n \). The componentwise multiplication map \( m \) acts as:
+    \[
+        m(e_i \otimes e_j) = \delta_{ij} e_i
+    \]
+    By definition of the adjoint via the standard inner product, \(
+        \langle m(e_i \otimes e_j), e_k \rangle = \langle e_i \otimes
+    e_j, m^*(e_k) \rangle \). Since the left-hand side is \(
+    \delta_{ij}\delta_{ik} \), it follows that:
+    \[
+        m^*(e_k) = e_k \otimes e_k
+    \]
+    We expand the action of the matrices \( A \) and \( B \) on a
+    basis vector \( e_k \) via their entries \( A_{ik}, B_{jk} \):
+    \[
+        Ae_k = \sum_{i=1}^n A_{ik} e_i, \quad Be_k = \sum_{j=1}^n B_{jk} e_j
+    \]
+    Applying the composite operator \( m(A \otimes B)m^* \) to \( e_k \) yields:
+    \[
+        m(A \otimes B)m^*(e_k) = m(Ae_k \otimes Be_k)
+    \]
+    \[
+        = m\left( \sum_{i=1}^n \sum_{j=1}^n A_{ik} B_{jk} (e_i
+        \otimes e_j) \right)
+    \]
+    \[
+        = \sum_{i=1}^n \sum_{j=1}^n A_{ik} B_{jk} \delta_{ij} e_i
+    \]
+    \[
+        = \sum_{i=1}^n (A_{ik} B_{ik}) e_i
+    \]
+    Thus, the \( (i,k) \)-th entry of the matrix \( m(A \otimes B)m^*
+    \) is exactly \( A_{ik} B_{ik} \). Because \( A \) and \( B \)
+    are binary, this entry evaluates to \( 1 \) if and only if \(
+    A_{ik} = 1 \) and \( B_{ik} = 1 \), and \( 0 \) otherwise.
+\end{proof}
+
+\begin{remark}
+    \( m(A \otimes B)m^{*} \) can be thought of as taking the intersecion
+    of two quantum matrices blabla...
+\end{remark}
+
 \section{Isomorphisms and Quantum Isomorphisms of Quantum Sets}
 
-\begin{definition}[Quantum isomorphisms,
-    \textcite[Definition~2.8]{tobolski26}]
+\begin{definition}
+    (Quantum isomorphisms, \textcite[Definition~2.8]{tobolski26})
     Let \( (B_{1}, \psi_{1}) \) and \( (B_{2}, \psi_{2}) \) be
     quantum sets and
     let \( A_{1}\colon B_{1} \rightarrow B_{1} \) and \( A_{2}\colon B_{2}

@@ -140,22 +140,22 @@ In this section we will introduce the notion of a crossed-product
 extent to which the theory of such products is necessary for our
 purposes. For a more general reference we refer the Reader to
 \textcite{blackadar}.
-
-The following definitions are based off of \textcite{sierakowski09}.
-
-\begin{definition}[\( C^{*} \)-dynamical system]
-    A \( C^{*} \)-dynamical system is a triple \( (A, G, \alpha) \),
-    where \( A \) is a \(C^{*}\)-algebra, \( G \) is a group, and \(
-    \alpha\colon G \rightarrow \operatorname{Aut}(A) \) is a group
-    action on \( A \).
-    For a \( C^{*} \) dynamical system \( (A, G, \alpha) \) with \( G
-    \) finite we define
-    \[
-        C_{c}(G, A, \alpha) = \left\{ f\colon G \rightarrow A \colon
-        \operatorname{supp}(f) \text{ is finite}\right\},
-    \]
-    i.e. the space of all finitely supported functions on \( G \) with values
-    in \( A \).
+%
+% The following definitions are based off of \textcite{sierakowski09}.
+%
+% \begin{definition}[\( C^{*} \)-dynamical system]
+%     A \( C^{*} \)-dynamical system is a triple \( (A, G, \alpha) \),
+%     where \( A \) is a \(C^{*}\)-algebra, \( G \) is a group, and \(
+\alpha\colon G \rightarrow \operatorname{Aut}(A) \) is a group
+action on \( A \).
+For a \( C^{*} \) dynamical system \( (A, G, \alpha) \) with \( G
+\) finite we define
+\[
+C_{c}(G, A, \alpha) = \left\{ f\colon G \rightarrow A \colon
+\operatorname{supp}(f) \text{ is finite}\right\},
+\]
+i.e. the space of all finitely supported functions on \( G \) with values
+in \( A \).
 \end{definition}
 
 \( C_{c}(G, A, \alpha) \) is equipped with both a product and a \( *
@@ -163,33 +163,33 @@ The following definitions are based off of \textcite{sierakowski09}.
 \cdot a = u_{g} a u^{*}_{g} \) for all \( g \in G \), \( a \in A \).
 More precisely we define those two operations in the following way:
 \[
-    ab = \sum_{g,h \in G}
+ab = \sum_{g,h \in G}
 \]
 
 \begin{definition}[Covariant representation]
-    Fix a dynamical system \( (A, G, \alpha) \). A \emph{covariant
-    representation} \( (\pi, u, H) \) of \( (A, G, \alpha) \) consist of a
-    unitary representation \( u\colon G \rightarrow B(\mathcal{H}) \)
-    of \( G \) and
-    a representation \( \pi\colon A \rightarrow B(\mathcal{H}) \) of
-    \( A \) such
-    that \( u(g) \pi(a) u(g)^{*} = \pi(g \cdot a) \) for every \( g \in G \)
-    and \( a \in A \).
+Fix a dynamical system \( (A, G, \alpha) \). A \emph{covariant
+representation} \( (\pi, u, H) \) of \( (A, G, \alpha) \) consist of a
+unitary representation \( u\colon G \rightarrow B(\mathcal{H}) \)
+of \( G \) and
+a representation \( \pi\colon A \rightarrow B(\mathcal{H}) \) of
+\( A \) such
+that \( u(g) \pi(a) u(g)^{*} = \pi(g \cdot a) \) for every \( g \in G \)
+and \( a \in A \).
 \end{definition}
 
 \begin{definition}[Full \(C^{*}\)-algebra norm on \( C_{c}(G, A, \alpha) \)]
-    The full \(C^{*}\)-algebra norm on \( C_{c}(G, A, \alpha) \) is given by
-    \[
-        \left\| \cdot \right\| = \sup \left\| (\pi \times u)(\cdot) \right\|,
-    \]
-    where the supremum is taken over all covariant representations \(
-    (\pi, u, H) \)
-    of \( (A, G, \alpha) \).
+The full \(C^{*}\)-algebra norm on \( C_{c}(G, A, \alpha) \) is given by
+\[
+\left\| \cdot \right\| = \sup \left\| (\pi \times u)(\cdot) \right\|,
+\]
+where the supremum is taken over all covariant representations \(
+(\pi, u, H) \)
+of \( (A, G, \alpha) \).
 \end{definition}
 
 \begin{definition}[Crossed product \(C^{*}\)-algebra]
-    The crossed product of a \(C^{*}\)-algebra and a discrete group \( G \) is
-    the completion of \( C_{c}(G, A, \alpha) \) with respect to the full norm.
-    We denote the crossed product by \( \tilde{B}
-    \rtimes_{\hat{\alpha}} \hat{G} \).
+The crossed product of a \(C^{*}\)-algebra and a discrete group \( G \) is
+the completion of \( C_{c}(G, A, \alpha) \) with respect to the full norm.
+We denote the crossed product by \( \tilde{B}
+\rtimes_{\hat{\alpha}} \hat{G} \).
 \end{definition}
