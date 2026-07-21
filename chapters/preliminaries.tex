@@ -193,3 +193,136 @@ the completion of \( C_{c}(G, A, \alpha) \) with respect to the full norm.
 We denote the crossed product by \( \tilde{B}
 \rtimes_{\hat{\alpha}} \hat{G} \).
 \end{definition}
+
+\section{Matrix Lie groups and algebras}
+
+In this section we will remind the Reader some notions pertaining to
+the theory of matrix Lie groups and algebras that will be relevant to
+the rest of the thesis. A \emph{Lie group} is a group that is also a
+smooth differential manifold such that the group action and taking inverses
+are smooth maps. A \emph{Lie algebra} \(\mathfrak{g}\) is a vector space
+over any field (in our case over \(\mathbb{C}\)), equipped with a
+bilinear form (often called the Lie bracket)
+\[
+[\cdot, \cdot]: \mathfrak{g} \times \mathfrak{g} \rightarrow
+\mathfrak{g}
+\]
+that is antisymmetric and has the Jacobi property:
+\begin{itemize}
+\item \( [x, y] = -[y, x] \),
+\item \( [x, [y, z]] + [y, [z, x]] + [z, [x, y]] = 0 \).
+\end{itemize}
+
+Those two notions are closely related, as Lie algebras naturally arise
+as tangent spaces of the identity element of Lie groups.
+
+We will be concerned with \emph{matrix Lie groups}, namely subgroups
+of the general linear group
+\[
+GL(n,\mathbb{C})=\{A\in M_{n}(\mathbb{C}): \det(A)\neq0\},
+\]
+equipped with matrix multiplication. Examples include the unitary group
+\[
+U(n)= \left\{ U \in M_{n}(\mathbb{C}) : U^{*}U = UU^{*} = I \right\},
+\]
+as well as its subgroup, the special unitary group
+\[
+SU(n)=\{U\in M_{n}(\mathbb{C}): U^{*} U = U U^{*}=I,\ \det(U)=1\},
+\]
+whose elements are unitary matrices with determinant equal to one,
+and the projective unitary group
+\[
+PU(n)=U(n)/Z(U(n)),
+\]
+where \(Z(U(n))\) denotes the center of \(U(n)\).
+
+\begin{proposition}
+\( Z(U(n)) \cong \mathbb{C} \).
+\end{proposition}
+
+\begin{proof}
+Recall that the center of \(U(n)\) is defined as
+\[
+Z(U(n))=\{A\in U(n): AU=UA,\ \forall\,U\in U(n)\}.
+\]
+
+We will show that
+\[
+Z(U(n))=\{\lambda I_n: |\lambda|=1\}.
+\]
+
+Let \(A\in Z(U(n))\). Then \(A\) commutes with every unitary matrix.
+In particular, it commutes with every permutation matrix. Let
+\(P_{ij}\) denote the permutation matrix that exchanges the \(i\)-th
+and \(j\)-th basis vectors. Since
+\[
+AP_{ij}=P_{ij}A,
+\]
+conjugation by \(P_{ij}\) leaves \(A\) unchanged. As conjugation by
+\(P_{ij}\) exchanges the \(i\)-th and \(j\)-th rows and columns of
+\(A\), it follows that all off-diagonal entries of \(A\) must vanish
+and all diagonal entries must be equal. Hence,
+\[
+A=\lambda I_n
+\]
+for some \(\lambda\in\mathbb{C}\).
+
+Since \(A\in U(n)\), we have
+\[
+A^{*}A=I.
+\]
+Substituting \(A=\lambda I_n\), we obtain
+\[
+(\overline{\lambda}I_n)(\lambda I_n)
+=
+|\lambda|^2I_n
+=
+I_n,
+\]
+which implies
+\[
+|\lambda|=1.
+\]
+
+Conversely, let \(A=\lambda I_n\) with \(|\lambda|=1\). Then \(A\in
+U(n)\), and for every \(U\in U(n)\),
+\[
+AU=\lambda U=UA.
+\]
+Therefore \(A\in Z(U(n))\).
+
+We conclude that
+\[
+Z(U(n)) = \{\lambda I_n: |\lambda|=1\},
+\]
+as claimed.
+\end{proof}
+
+We will also be interested in
+\[
+SO(n) = \left\{ R \in M_{n}(\mathbb{R}) : R^{T}R = RR^{T} = I,
+\operatorname{det}(R) = 1 \right\},
+\]
+i.e. the Lie group of orientation-preserving rotations around the
+origin point.
+
+For matrix Lie groups, the Lie bracket is given by the matrix
+commutator
+\[
+[X,Y]=XY-YX,
+\]
+for matrices \(X\) and \(Y\) in the Lie algebra.
+
+The Lie algebra corresponding to \(GL(n,\mathbb{C})\) is denoted by
+\(\mathfrak{gl}(n,\mathbb{C})\) and consists of all complex
+\(n\times n\) matrices,
+\[
+\mathfrak{gl}(n,\mathbb{C})=M_n(\mathbb{C}).
+\]
+
+On the other hand the Lie algebra corresponding to \(SU(n)\) is denoted by
+\(\mathfrak{su}(n)\) and consists of all traceless skew-Hermitian
+matrices,
+\[
+\mathfrak{su}(n)=\{X\in M_{n}(\mathbb{C}): X^{*}=-X,\ \operatorname{Tr}(X)=0\}.
+\]

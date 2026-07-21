@@ -3,6 +3,227 @@
 The classification on \( 2 \times 2 \) matrices was done by
 \textcite{matsuda22}.
 
+\section{Pauli Matrices and their generalisations}
+
+\subsection{Pauli matrices}
+
+An important basis of the Lie algebra \(\mathfrak{sl}(2,\mathbb{C})\)
+is given by the Pauli matrices
+\[
+    \sigma_1=
+    \begin{pmatrix}
+        0 & 1\\
+        1 & 0
+    \end{pmatrix},
+    \qquad
+    \sigma_2=
+    \begin{pmatrix}
+        0 & -i\\
+        i & 0
+    \end{pmatrix},
+    \qquad
+    \sigma_3=
+    \begin{pmatrix}
+        1 & 0\\
+        0 & -1
+    \end{pmatrix}.
+\]
+
+The Pauli matrices are Hermitian, traceless, and linearly independent.
+Since \(\dim_{\mathbb{C}}\mathfrak{sl}(2,\mathbb{C})=3\), they form a
+basis of \(\mathfrak{sl}(2,\mathbb{C})\).
+
+Since the Pauli matrices are Hermitian rather than skew-Hermitian, they
+do not belong to the Lie algebra \(\mathfrak{su}(2)\). Instead, the
+matrices
+\[
+    i\sigma_1,\qquad
+    i\sigma_2,\qquad
+    i\sigma_3
+\]
+form a basis of \(\mathfrak{su}(2)\), as they are traceless and
+skew-Hermitian.
+
+\subsection{Generalised Pauli matrices}
+
+For dimensions greater than two, the role of the Pauli matrices is
+played by the \emph{generalised Pauli matrices}, also known as the
+\emph{clock} and \emph{shift} matrices. In dimension three they are
+defined by
+\[
+    P=
+    \begin{pmatrix}
+        1 & 0 & 0\\
+        0 & \omega & 0\\
+        0 & 0 & \omega^2
+    \end{pmatrix},
+    \qquad
+    Q=
+    \begin{pmatrix}
+        0 & 0 & 1\\
+        1 & 0 & 0\\
+        0 & 1 & 0
+    \end{pmatrix},
+\]
+where
+\[
+    \omega=\exp( 2 \pi i / 3 ).
+\]
+
+The matrices \(P\) and \(Q\) are unitary and satisfy
+\[
+    P^3=Q^3=I,
+\]
+together with the commutation relation
+\[
+    PQ=\omega QP.
+\]
+
+The clock and shift matrices are related by the discrete Fourier transform.
+The Fourier matrix is defined by
+\[
+    F=\frac{1}{\sqrt{3}}
+    \begin{pmatrix}
+        1&1&1\\
+        1&\omega&\omega^2\\
+        1&\omega^2&\omega
+    \end{pmatrix}.
+\]
+It is unitary and satisfies
+\[
+    F^{*}F=FF^{*}=I.
+\]
+The Fourier transform exchanges the roles of the clock and shift
+operators according to
+\[
+    FPF^{*}=Q^{-1},
+    \qquad
+    FQF^{*}=P.
+\]
+Therefore, the matrices \(P\) and \(Q\) are unitarily equivalent and
+represent two complementary bases in the three-dimensional Hilbert
+space. This duality is the finite-dimensional analogue of the relation
+between position and momentum operators and is a fundamental property
+of the generalised Pauli matrices.
+
+\begin{lemma}
+    The matrices
+    \[
+        P^aQ^b,\qquad a,b\in\{0,1,2\},
+    \]
+    form an orthogonal basis of \(M_3(\mathbb{C})\) with respect to the
+    Hilbert--Schmidt inner product
+    \[
+        \langle A,B\rangle=\operatorname{Tr}(A^{*}B).
+    \]
+\end{lemma}
+
+\begin{proof}
+    There are \(3^2=9\) matrices of the form \(P^aQ^b\), while
+    \(\dim_{\mathbb{C}}M_3(\mathbb{C})=9\). It therefore suffices to show
+    that they are pairwise orthogonal.
+
+    Since
+    \[
+        P^{*}=P^{-1},\qquad
+        Q^{*}=Q^{-1},
+    \]
+    we have
+    \[
+        (P^aQ^b)^{*}
+        =
+        Q^{-b}P^{-a}.
+    \]
+    Hence
+    \[
+        \langle P^aQ^b,P^cQ^d\rangle
+        =
+        \operatorname{Tr}
+        \left(
+            Q^{-b}P^{-a}P^cQ^d
+        \right)
+        =
+        \operatorname{Tr}
+        \left(
+            Q^{-b}P^{\,c-a}Q^d
+        \right).
+    \]
+
+    Using the commutation relation
+    \[
+        Q^kP^\ell=\omega^{-k\ell}P^\ell Q^k,
+    \]
+    we obtain
+    \[
+        Q^{-b}P^{\,c-a}
+        =
+        \omega^{b(c-a)}
+        P^{\,c-a}Q^{-b},
+    \]
+    and therefore
+    \[
+        \langle P^aQ^b,P^cQ^d\rangle
+        =
+        \omega^{b(c-a)}
+        \operatorname{Tr}
+        \left(
+            P^{\,c-a}Q^{\,d-b}
+        \right).
+    \]
+
+    If \(b\neq d\), then \(Q^{\,d-b}\) is a nontrivial permutation matrix,
+    so \(P^{\,c-a}Q^{\,d-b}\) has zero diagonal entries. Hence
+    \[
+        \operatorname{Tr}(P^{\,c-a}Q^{\,d-b})=0.
+    \]
+
+    If \(b=d\), then
+    \[
+        \langle P^aQ^b,P^cQ^b\rangle
+        =
+        \operatorname{Tr}(P^{\,c-a}).
+    \]
+    Since
+    \[
+        P^{\,c-a}
+        =
+        \operatorname{diag}
+        (1,\omega^{c-a},\omega^{2(c-a)}),
+    \]
+    we have
+    \[
+        \operatorname{Tr}(P^{\,c-a})
+        =
+        1+\omega^{c-a}+\omega^{2(c-a)}
+        =
+        \begin{cases}
+            3,& a=c,\\
+            0,& a\neq c,
+        \end{cases}
+    \]
+    because \(1+\omega+\omega^2=0\).
+
+    Therefore
+    \[
+        \langle P^aQ^b,P^cQ^d\rangle
+        =
+        3\,\delta_{ac}\delta_{bd},
+    \]
+    which proves that the matrices \(P^aQ^b\) are pairwise orthogonal.
+    Since there are nine of them, they form an orthogonal basis of
+    \(M_3(\mathbb{C})\).
+\end{proof}
+
+% Excluding the identity matrix leaves eight traceless matrices, which span
+% \(\mathfrak{su}_{3}(\mathbb{C})\).
+%
+% A basis of \(\mathfrak{su}_{3}\) is then
+% obtained by taking suitable skew-Hermitian linear combinations of these
+% matrices. In particular, the clock and shift matrices provide a natural
+% generalisation of the Pauli matrices for three-level quantum systems.
+
+% TODO: subsection on Gell--Mann matrices
+
 \section{Gromada's theorem}
 
 In the following section we will state...
@@ -21,6 +242,11 @@ The following theorem is due to \textcite{gromada22}.
     The quantum graph has no loops if and only if \( V \subseteq
     \mathfrak{sl}_{n} \).
     It is undirected if and only if \( V = V^{*} \).
+
+    Let \( V, W \subseteq \mathfrak{gl}_{n} \) be two vector spaces
+    corresponding
+    to isomorphic quantum graphs. Then \( V = UWU^{*} \) for some \(
+    U \in SU_{3} \).
 \end{theorem}
 
 \begin{proof}
@@ -34,17 +260,30 @@ The following theorem is due to \textcite{gromada22}.
 \end{lemma}
 
 \begin{proof}
-    We construct the basis by induction. Suppose we already have a
-    basis \( \left\{ \xi_{s} \right\} \) of a subspace \( V_{1}
-    \subseteq V \) such that \( \xi_{s} = \xi_{s}^{*} \). This means
-    that \( V_{1} = V_{1}^{*} \). Let \( V_{2} \) be complement to \(
-    V_{1} \). Take any \( \xi \in V_{2} \) and consider \( (\xi +
-    \xi^{*})/2 \) and \( i(\xi^{*} - \xi)/2 \). Both elements are
-    self-adjoint and elements of \( V_{2} \). They might or might not
-    be linearly independent, but definitely at least one of them is
-    non-zero. So, include both (if they are linearly independent) or
-    one of them (if they are not) to our basis \( \left\{ \xi_{s}
-    \right\} \) and repeat.
+    We construct the desired basis inductively. Suppose we have
+    obtained a linearly independent set of self-adjoint vectors \( \{
+    \xi_{s} \} \) spanning a subspace \( V_{1} \subseteq V \). By
+    construction, \( V_{1} \) is invariant under the involution,
+    meaning \( V_{1} = V_{1}^{*} \).
+
+    If \( V_{1} \neq V \), let \( V_{2} = V_{1}^{\perp} \) be the
+    orthogonal complement of \( V_{1} \) with respect to the inner
+    product. Because the inner product and the involution are
+    compatible, \( V_{2} \) is also invariant under the map \( \cdot^{*} \).
+
+    Select any non-zero element \( \xi \in V_{2} \) and decompose it
+    into its real and imaginary self-adjoint components:
+    \[
+        \xi_{\text{Re}} = \frac{\xi + \xi^{*}}{2} \quad \text{and}
+        \quad \xi_{\text{Im}} = \frac{i(\xi^{*} - \xi)}{2}
+    \]
+    Both \( \xi_{\text{Re}} \) and \( \xi_{\text{Im}} \) are
+    self-adjoint elements belonging to \( V_{2} \). Since \( \xi \neq
+    0 \), at least one of these components must be non-zero. We then
+    extend our independent set by appending either both components
+    (if they are linearly independent) or the sole non-zero component
+    (if they are dependent). Iterating this process eventually yields
+    a full self-adjoint basis for \( V \).
 \end{proof}
 
 \begin{remark}
@@ -52,11 +291,208 @@ The following theorem is due to \textcite{gromada22}.
     be thought of as being made from symmetric quantum edges only.
 \end{remark}
 
-\begin{remark}
+\begin{lemma}
     A complex vector space \( V = V^{*} \subseteq \mathfrak{gl}_{n}
     \) uniquely determines a real vector space spanned by the basis
     \( \left\{ \xi_{s} \right\} \) of self-adjoint elements \( \xi_{s} =
-    \xi_{s}^{*} \). Indeed, it is easy to see that any other self-adjoint
-    element \( \xi = \xi^{*} \) must be a real linear combination of
-    \( \left\{ \xi_{s} \right\} \).
+    \xi_{s}^{*} \).
+\end{lemma}
+
+\begin{proof}
+    Let \(V\subseteq\mathfrak{gl}_{n}\) be a complex vector
+    space satisfying
+    \[
+        V=V^{*}.
+    \]
+
+    Since \(V\) is invariant under taking the Hermitian adjoint, every element
+    \(v\in V\) admits the decomposition
+    \[
+        v=\frac{v+v^{*}}{2}
+        +i\frac{v-v^{*}}{2i}.
+    \]
+    Both summands belong to \(V\), because \(V\) is closed under addition,
+    scalar multiplication, and the adjoint operation. Moreover,
+    \[
+        \left(\frac{v+v^{*}}{2}\right)^{*}
+        =
+        \frac{v+v^{*}}{2},
+    \]
+    and
+    \[
+        \left(i\frac{v-v^{*}}{2i}\right)^{*}
+        =
+        i\frac{v-v^{*}}{2i},
+    \]
+    so both matrices are self-adjoint.
+
+    Now let \(\xi\in V\) be self-adjoint. Let \( \left\{ \xi_{s} \right\} \)
+    be a self-adjoint basis. Then there exist coefficients
+    \(c_s\in\mathbb{C}\) such that
+    \[
+        \xi=\sum_s c_s\xi_s.
+    \]
+    Taking the Hermitian adjoint yields
+    \[
+        \xi
+        =
+        \xi^{*}
+        =
+        \sum_s \overline{c_s}\,\xi_s,
+    \]
+    because each \(\xi_s\) is self-adjoint. By the uniqueness of the expansion
+    with respect to the basis \(\{\xi_s\}\), we obtain
+    \[
+        c_s=\overline{c_s}
+    \]
+    for every \(s\). Hence each coefficient \(c_s\) is real.
+
+    Therefore every self-adjoint element of \(V\) is a real linear
+    combination of the basis elements \(\{\xi_s\}\). Consequently, the
+    self-adjoint part of \(V\) is a real vector space uniquely determined by
+    \(V\).
+\end{proof}
+
+By the above lemma we can think of self-adjoint \( V \subseteq
+\mathfrak{sl}_{n} \) as real subspaces of \( \mathfrak{sl}_{n} \).
+
+\begin{remark}
+    A self-adjoint subspace \( V \subseteq \mathfrak{sl}_{3} \)
+    generated by the generalized Pauli matrices can only be of even
+    dimension, i.e., \( \operatorname{dim}(V) = m \in \left\{ 0, 2,
+    4, 6, 8 \right\} \). This is because the non-identity Pauli basis
+    generators \( P^a Q^b \in \mathcal{B} \) are non-self-adjoint (as
+        \( (a,b) \neq (3-a, 3-b) \text{ in } \mathbb{Z}_3 \times
+    \mathbb{Z}_3 \)) and are partitioned into mutually disjoint pairs
+    of adjoint partners \( \{ v, v^* \} \). Since \( V = V^* \), the
+    inclusion of any generator \( v \in V \) forces its linearly
+    independent reflection partner \( v^* \in V \), meaning \( V \)
+    decomposes into a direct sum of 2-dimensional
+    reflection-invariant blocks \( \mathcal{P}_k =
+    \operatorname{span}\{v, v^*\} \). Thus, \( \operatorname{dim}(V)
+    = 2r \) for some integer \( r \ge 0 \).
 \end{remark}
+
+To characterize all possible loop-free and undirected quntum graphs
+we only need to focus on the relevant subspaces.
+
+\section{Classification of Self-Reflective Subspaces Generated by
+\(P\) and \(Q\)}
+
+\subsection{Fundamental Reflection Invariant Pairs}
+
+Since \(P\) and \(Q\) are unitary matrices (\(P^* = P^2\) and \(Q^* =
+Q^2\)), the conjugate transpose of an arbitrary generator obeys:
+\[
+    (P^a Q^b)^* = \omega^{-ab} P^{3-a} Q^{3-b}.
+\]
+Because any self-reflective subspace must be closed under conjugate
+transposition, every basis generator \(P^a Q^b\) must belong to a
+subspace alongside its structural reflection partner \(P^{3-a}
+Q^{3-b}\). This partitions the 8 non-identity generators into 4
+mutually exclusive, reflection-invariant blocks of dimension 2:
+\begin{align*}
+    \mathcal{P}_1 &= \{P, P^2\} && \text{(Purely Diagonal Block)} \\
+    \mathcal{P}_2 &= \{Q, Q^2\} && \text{(Purely Shift Block)} \\
+    \mathcal{P}_3 &= \{PQ, P^2Q^2\} && \text{(First Mixed Block)} \\
+    \mathcal{P}_4 &= \{P^2Q, PQ^2\} && \text{(Second Mixed Block)}
+\end{align*}
+
+\subsection{Action of the Discrete Fourier Transform}
+
+Let \(F\) denote the $3 \times 3$ Discrete Fourier
+Transform matrix. The unitary similarity transformation $X
+\mapsto F X F^*$ acts as an automorphism on the generalized Pauli
+algebra, mapping clock and shift operators into one another:
+\[
+    F P F^* = Q^2 \quad \text{and} \quad F Q F^* = P.
+\]
+On the fundamental blocks $\mathcal{P}_k$, the DFT induces a natural
+pair-swapping involution:
+\[
+    F \mathcal{P}_1 F^* = \mathcal{P}_2, \quad F \mathcal{P}_2 F^* =
+    \mathcal{P}_1, \quad F \mathcal{P}_3 F^* = \mathcal{P}_4, \quad F
+    \mathcal{P}_4 F^* = \mathcal{P}_3.
+\]
+
+\subsection{Complete Classification Theorem}
+
+Because the fundamental building blocks \(\mathcal{P}_k\) are
+non-overlapping 2-dimensional sets, every self-reflective subspace
+generated by powers of \(P\) and \(Q\) is formed by taking a direct
+sum of a subset of these blocks (including the empty set).
+
+\begin{theorem}
+    All self-reflective subspaces \(V \subseteq M_3\) generated by
+    \(P\) and \(Q\) are classified by their dimension \(m = \dim(V)\)
+    and their orbits under the Discrete Fourier Transform action \(V
+    \mapsto F V F^*\) as follows:
+
+    \begin{enumerate}
+        \item \textbf{Odd Dimensions \(m \in \{1, 3, 5, 7\}\):}
+            No such subspaces exist (0 subspaces).
+
+        \item \textbf{Dimension \(m = 0\) (1 subspace):}
+            The trivial zero space \(V_0 = \{0\}\).
+            \begin{itemize}
+                \item Orbit: \(\{V_0\}\) (\(F\)-invariant).
+            \end{itemize}
+
+        \item \textbf{Dimension \(m = 2\) (4 subspaces):}
+            Let \(V_k = \operatorname{span}(\mathcal{P}_k)\) for \(k
+            \in \{1, 2, 3, 4\}\). These partition into 2 Fourier
+            orbits of size 2:
+            \begin{itemize}
+                \item \textbf{Diagonal/Shift Orbit:} \(\{V_1,
+                    V_2\}\), where \(F V_1 F^* = V_2\).
+                \item \textbf{Mixed-Shift Orbit:} \(\{V_3, V_4\}\),
+                    where \(F V_3 F^* = V_4\).
+            \end{itemize}
+
+        \item \textbf{Dimension \(m = 4\) (6 subspaces):}
+            Let \(W_{i,j} = \operatorname{span}(\mathcal{P}_i \oplus
+            \mathcal{P}_j)\) for \(1 \le i < j \le 4\). These
+            partition into 4 Fourier orbits (2 invariant singletons
+            and 2 pairs):
+            \begin{itemize}
+                \item \textbf{Pure Block Orbit:} \(\{W_{1,2}\}\)
+                    (\(F\)-invariant, since \(F \mathcal{P}_1 F^* =
+                    \mathcal{P}_2\)).
+                \item \textbf{Mixed Block Orbit:} \(\{W_{3,4}\}\)
+                    (\(F\)-invariant, since \(F \mathcal{P}_3 F^* =
+                    \mathcal{P}_4\)).
+                \item \textbf{Cross Orbit A:} \(\{W_{1,3}, \,
+                    W_{2,4}\}\), where \(F W_{1,3} F^* = W_{2,4}\).
+                \item \textbf{Cross Orbit B:} \(\{W_{1,4}, \,
+                    W_{2,3}\}\), where \(F W_{1,4} F^* = W_{2,3}\).
+            \end{itemize}
+
+        \item \textbf{Dimension \(m = 6\) (4 subspaces):}
+            Let \(U_k = \operatorname{span}\big(\bigoplus_{i \neq k}
+            \mathcal{P}_i\big)\) for \(k \in \{1, 2, 3, 4\}\). These
+            partition into 2 Fourier orbits of size 2:
+            \begin{itemize}
+                \item \textbf{Complementary Diagonal/Shift Orbit:}
+                    \(\{U_1, U_2\}\), where \(F U_1 F^* = U_2\).
+                \item \textbf{Complementary Mixed Orbit:} \(\{U_3,
+                    U_4\}\), where \(F U_3 F^* = U_4\).
+            \end{itemize}
+
+        \item \textbf{Dimension \(m = 8\) (1 subspace):}
+            The full traceless algebra
+            \(\mathfrak{su}_3 =
+            \operatorname{span}\big(\bigoplus_{k=1}^4 \mathcal{P}_k\big)\).
+            \begin{itemize}
+                \item Orbit: \(\{\mathfrak{su}_3\}\)
+                    (\(F\)-invariant).
+            \end{itemize}
+    \end{enumerate}
+\end{theorem}
+
+\begin{corollary}
+    Including the trivial subspace \(V_0\), there exist precisely
+    \(16\) self-reflective subspaces generated by \(P\) and \(Q\).
+    Under the action of the Discrete Fourier Transform \(V \mapsto F
+    V F^*\), these 16 subspaces partition into **10 equivalence
+    classes** (3 $F$-invariant fixed points and 7 swapped pairs).
+\end{corollary}
