@@ -140,22 +140,22 @@ In this section we will introduce the notion of a crossed-product
 extent to which the theory of such products is necessary for our
 purposes. For a more general reference we refer the Reader to
 \textcite{blackadar}.
-%
-% The following definitions are based off of \textcite{sierakowski09}.
-%
-% \begin{definition}[\( C^{*} \)-dynamical system]
-%     A \( C^{*} \)-dynamical system is a triple \( (A, G, \alpha) \),
-%     where \( A \) is a \(C^{*}\)-algebra, \( G \) is a group, and \(
-\alpha\colon G \rightarrow \operatorname{Aut}(A) \) is a group
-action on \( A \).
-For a \( C^{*} \) dynamical system \( (A, G, \alpha) \) with \( G
-\) finite we define
-\[
-C_{c}(G, A, \alpha) = \left\{ f\colon G \rightarrow A \colon
-\operatorname{supp}(f) \text{ is finite}\right\},
-\]
-i.e. the space of all finitely supported functions on \( G \) with values
-in \( A \).
+
+The following definitions are based off of \textcite{sierakowski09}.
+
+\begin{definition}[\( C^{*} \)-dynamical system]
+    A \( C^{*} \)-dynamical system is a triple \( (A, G, \alpha) \),
+    where \( A \) is a \(C^{*}\)-algebra, \( G \) is a group, and \(
+    \alpha\colon G \rightarrow \operatorname{Aut}(A) \) is a group
+    action on \( A \).
+    For a \( C^{*} \) dynamical system \( (A, G, \alpha) \) with \( G
+    \) finite we define
+    \[
+        C_{c}(G, A, \alpha) = \left\{ f\colon G \rightarrow A \colon
+        \operatorname{supp}(f) \text{ is finite}\right\},
+    \]
+    i.e. the space of all finitely supported functions on \( G \) with values
+    in \( A \).
 \end{definition}
 
 \( C_{c}(G, A, \alpha) \) is equipped with both a product and a \( *
@@ -163,38 +163,38 @@ in \( A \).
 \cdot a = u_{g} a u^{*}_{g} \) for all \( g \in G \), \( a \in A \).
 More precisely we define those two operations in the following way:
 \[
-ab = \sum_{g,h \in G}
+    ab = \sum_{g,h \in G}
 \]
 
 \begin{definition}[Covariant representation]
-Fix a dynamical system \( (A, G, \alpha) \). A \emph{covariant
-representation} \( (\pi, u, H) \) of \( (A, G, \alpha) \) consist of a
-unitary representation \( u\colon G \rightarrow B(\mathcal{H}) \)
-of \( G \) and
-a representation \( \pi\colon A \rightarrow B(\mathcal{H}) \) of
-\( A \) such
-that \( u(g) \pi(a) u(g)^{*} = \pi(g \cdot a) \) for every \( g \in G \)
-and \( a \in A \).
+    Fix a dynamical system \( (A, G, \alpha) \). A \emph{covariant
+    representation} \( (\pi, u, H) \) of \( (A, G, \alpha) \) consist of a
+    unitary representation \( u\colon G \rightarrow B(\mathcal{H}) \)
+    of \( G \) and
+    a representation \( \pi\colon A \rightarrow B(\mathcal{H}) \) of
+    \( A \) such
+    that \( u(g) \pi(a) u(g)^{*} = \pi(g \cdot a) \) for every \( g \in G \)
+    and \( a \in A \).
 \end{definition}
 
 \begin{definition}[Full \(C^{*}\)-algebra norm on \( C_{c}(G, A, \alpha) \)]
-The full \(C^{*}\)-algebra norm on \( C_{c}(G, A, \alpha) \) is given by
-\[
-\left\| \cdot \right\| = \sup \left\| (\pi \times u)(\cdot) \right\|,
-\]
-where the supremum is taken over all covariant representations \(
-(\pi, u, H) \)
-of \( (A, G, \alpha) \).
+    The full \(C^{*}\)-algebra norm on \( C_{c}(G, A, \alpha) \) is given by
+    \[
+        \left\| \cdot \right\| = \sup \left\| (\pi \times u)(\cdot) \right\|,
+    \]
+    where the supremum is taken over all covariant representations \(
+    (\pi, u, H) \)
+    of \( (A, G, \alpha) \).
 \end{definition}
 
 \begin{definition}[Crossed product \(C^{*}\)-algebra]
-The crossed product of a \(C^{*}\)-algebra and a discrete group \( G \) is
-the completion of \( C_{c}(G, A, \alpha) \) with respect to the full norm.
-We denote the crossed product by \( \tilde{B}
-\rtimes_{\hat{\alpha}} \hat{G} \).
+    The crossed product of a \(C^{*}\)-algebra and a discrete group \( G \) is
+    the completion of \( C_{c}(G, A, \alpha) \) with respect to the full norm.
+    We denote the crossed product by \( \tilde{B}
+    \rtimes_{\hat{\alpha}} \hat{G} \).
 \end{definition}
 
-\section{Matrix Lie groups and algebras}
+\section{Matrix Lie Groups and Algebras}
 
 In this section we will remind the Reader some notions pertaining to
 the theory of matrix Lie groups and algebras that will be relevant to
@@ -204,13 +204,13 @@ are smooth maps. A \emph{Lie algebra} \(\mathfrak{g}\) is a vector space
 over any field (in our case over \(\mathbb{C}\)), equipped with a
 bilinear form (often called the Lie bracket)
 \[
-[\cdot, \cdot]: \mathfrak{g} \times \mathfrak{g} \rightarrow
-\mathfrak{g}
+    [\cdot, \cdot]: \mathfrak{g} \times \mathfrak{g} \rightarrow
+    \mathfrak{g}
 \]
 that is antisymmetric and has the Jacobi property:
 \begin{itemize}
-\item \( [x, y] = -[y, x] \),
-\item \( [x, [y, z]] + [y, [z, x]] + [z, [x, y]] = 0 \).
+    \item \( [x, y] = -[y, x] \),
+    \item \( [x, [y, z]] + [y, [z, x]] + [z, [x, y]] = 0 \).
 \end{itemize}
 
 Those two notions are closely related, as Lie algebras naturally arise
@@ -219,97 +219,99 @@ as tangent spaces of the identity element of Lie groups.
 We will be concerned with \emph{matrix Lie groups}, namely subgroups
 of the general linear group
 \[
-GL(n,\mathbb{C})=\{A\in M_{n}(\mathbb{C}): \det(A)\neq0\},
+    GL(n,\mathbb{C})=\{A\in M_{n}(\mathbb{C}): \det(A)\neq0\},
 \]
 equipped with matrix multiplication. Examples include the unitary group
 \[
-U(n)= \left\{ U \in M_{n}(\mathbb{C}) : U^{*}U = UU^{*} = I \right\},
+    U(n)= \left\{ U \in M_{n}(\mathbb{C}) : U^{*}U = UU^{*} = I \right\},
 \]
 as well as its subgroup, the special unitary group
 \[
-SU(n)=\{U\in M_{n}(\mathbb{C}): U^{*} U = U U^{*}=I,\ \det(U)=1\},
+    SU(n)=\{U\in M_{n}(\mathbb{C}): U^{*} U = U U^{*}=I,\ \det(U)=1\},
 \]
-whose elements are unitary matrices with determinant equal to one,
 and the projective unitary group
 \[
-PU(n)=U(n)/Z(U(n)),
+    PU(n)=U(n)/Z(U(n)),
 \]
-where \(Z(U(n))\) denotes the center of \(U(n)\).
+where \(Z(U(n))\) denotes the center of \(U(n)\). In all these cases the
+respective Lie group possess the subspace topology inherited from \(
+M_{n}(\mathbb{C}) \), or, in the case of \( PU(n) \), the quotient topology.
 
 \begin{proposition}
-\( Z(U(n)) \cong \mathbb{C} \).
+    \( Z(U(n)) \cong \left\{ \lambda \in \mathbb{C} : \left| \lambda
+    \right| = 1 \right\}\).
 \end{proposition}
 
 \begin{proof}
-Recall that the center of \(U(n)\) is defined as
-\[
-Z(U(n))=\{A\in U(n): AU=UA,\ \forall\,U\in U(n)\}.
-\]
+    Recall that the center of \(U(n)\) is defined as
+    \[
+        Z(U(n))=\{A\in U(n): \forall\,U\in U(n) \; AU=UA\}.
+    \]
 
-We will show that
-\[
-Z(U(n))=\{\lambda I_n: |\lambda|=1\}.
-\]
+    We will show that
+    \[
+        Z(U(n))=\{\lambda I_n: |\lambda|=1\}.
+    \]
 
-Let \(A\in Z(U(n))\). Then \(A\) commutes with every unitary matrix.
-In particular, it commutes with every permutation matrix. Let
-\(P_{ij}\) denote the permutation matrix that exchanges the \(i\)-th
-and \(j\)-th basis vectors. Since
-\[
-AP_{ij}=P_{ij}A,
-\]
-conjugation by \(P_{ij}\) leaves \(A\) unchanged. As conjugation by
-\(P_{ij}\) exchanges the \(i\)-th and \(j\)-th rows and columns of
-\(A\), it follows that all off-diagonal entries of \(A\) must vanish
-and all diagonal entries must be equal. Hence,
-\[
-A=\lambda I_n
-\]
-for some \(\lambda\in\mathbb{C}\).
+    Let \(A\in Z(U(n))\). Then \(A\) commutes with every unitary matrix.
+    In particular, it commutes with every permutation matrix. Let
+    \(P_{ij}\) denote the permutation matrix that exchanges the \(i\)-th
+    and \(j\)-th basis vectors. Since
+    \[
+        AP_{ij}=P_{ij}A,
+    \]
+    conjugation by \(P_{ij}\) leaves \(A\) unchanged. As conjugation by
+    \(P_{ij}\) exchanges the \(i\)-th and \(j\)-th rows and columns of
+    \(A\), it follows that all off-diagonal entries of \(A\) must vanish
+    and all diagonal entries must be equal. Hence,
+    \[
+        A=\lambda I_n
+    \]
+    for some \(\lambda\in\mathbb{C}\).
 
-Since \(A\in U(n)\), we have
-\[
-A^{*}A=I.
-\]
-Substituting \(A=\lambda I_n\), we obtain
-\[
-(\overline{\lambda}I_n)(\lambda I_n)
-=
-|\lambda|^2I_n
-=
-I_n,
-\]
-which implies
-\[
-|\lambda|=1.
-\]
+    Since \(A\in U(n)\), we have
+    \[
+        A^{*}A=I.
+    \]
+    Substituting \(A=\lambda I_n\), we obtain
+    \[
+        (\overline{\lambda}I_n)(\lambda I_n)
+        =
+        |\lambda|^2I_n
+        =
+        I_n,
+    \]
+    which implies
+    \[
+        |\lambda|=1.
+    \]
 
-Conversely, let \(A=\lambda I_n\) with \(|\lambda|=1\). Then \(A\in
-U(n)\), and for every \(U\in U(n)\),
-\[
-AU=\lambda U=UA.
-\]
-Therefore \(A\in Z(U(n))\).
+    Conversely, let \(A=\lambda I_n\) with \(|\lambda|=1\). Then \(A\in
+    U(n)\), and for every \(U\in U(n)\),
+    \[
+        AU=\lambda U=UA.
+    \]
+    Therefore \(A\in Z(U(n))\).
 
-We conclude that
-\[
-Z(U(n)) = \{\lambda I_n: |\lambda|=1\},
-\]
-as claimed.
+    We conclude that
+    \[
+        Z(U(n)) = \{\lambda I_n: |\lambda|=1\},
+    \]
+    as claimed.
 \end{proof}
 
 We will also be interested in
 \[
-SO(n) = \left\{ R \in M_{n}(\mathbb{R}) : R^{T}R = RR^{T} = I,
-\operatorname{det}(R) = 1 \right\},
+    SO(n) = \left\{ R \in M_{n}(\mathbb{R}) : R^{T}R = RR^{T} = I,
+    \operatorname{det}(R) = 1 \right\},
 \]
 i.e. the Lie group of orientation-preserving rotations around the
 origin point.
 
-For matrix Lie groups, the Lie bracket is given by the matrix
+For matrix Lie algebras, the Lie bracket is given by the matrix
 commutator
 \[
-[X,Y]=XY-YX,
+    [X,Y]=XY-YX,
 \]
 for matrices \(X\) and \(Y\) in the Lie algebra.
 
@@ -317,12 +319,14 @@ The Lie algebra corresponding to \(GL(n,\mathbb{C})\) is denoted by
 \(\mathfrak{gl}(n,\mathbb{C})\) and consists of all complex
 \(n\times n\) matrices,
 \[
-\mathfrak{gl}(n,\mathbb{C})=M_n(\mathbb{C}).
+    \mathfrak{gl}(n,\mathbb{C})=M_n(\mathbb{C}).
 \]
 
 On the other hand the Lie algebra corresponding to \(SU(n)\) is denoted by
 \(\mathfrak{su}(n)\) and consists of all traceless skew-Hermitian
 matrices,
 \[
-\mathfrak{su}(n)=\{X\in M_{n}(\mathbb{C}): X^{*}=-X,\ \operatorname{Tr}(X)=0\}.
+    \mathfrak{su}(n)=\{X\in M_{n}(\mathbb{C}):
+    X^{*}=-X,\ \operatorname{Tr}(X)=0\}.
 \]
+We can treat \( \mathfrak{su}_2 \) as a 3-dimensional vector space (why?).
