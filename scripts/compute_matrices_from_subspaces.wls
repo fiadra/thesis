@@ -8,41 +8,59 @@ ClearAll["Global`*"];
 
 Clear[\[Omega]];
 
-(* Expand conjugates and reduce all omega powers down to <= 2 *)
+(* Replacement rules for omega reductions *)
 omegaRules = {
   Conjugate[\[Omega]] -> \[Omega]^2,
   Conjugate[\[Omega]^2] -> \[Omega],
   \[Omega]^n_Integer /; n > 2 :> \[Omega]^Mod[n, 3],
-  \[Omega]^2 + \[Omega] + 1 -> 0
+
+  (* Exact linear binomial sum simplifications *)
+  1 + \[Omega] -> -\[Omega]^2,
+  \[Omega] + 1 -> -\[Omega]^2,
+  1 + \[Omega]^2 -> -\[Omega],
+  \[Omega]^2 + 1 -> -\[Omega],
+  \[Omega] + \[Omega]^2 -> -1,
+  \[Omega]^2 + \[Omega] -> -1,
+
+  (* Full relation *)
+  1 + \[Omega] + \[Omega]^2 -> 0
 };
 
-SimplifyMatrix[M_] := FullSimplify[M /. omegaRules] /. omegaRules;
+(* Full simplification forcing reduction modulo (1 + omega + omega^2) *)
+SimplifyMatrix[M_] := Module[{reduced},
+  reduced = M /. omegaRules;
+  reduced = Map[
+    Function[elem,
+      Last[PolynomialReduce[elem, {1 + \[Omega] + \[Omega]^2}, {\[Omega]}]]
+    ],
+    reduced,
+    {-1}
+  ];
+  FullSimplify[reduced /. omegaRules] /. omegaRules
+];
 
 (* Factor out 1/3 from matrices for clean visual presentation *)
 FactorThird[M_] := If[M === ConstantArray[0, {9, 9}], M, Inactive[Times][1/3, MatrixForm[SimplifyMatrix[3 * M]]]];
 
-(* Vectorization *)
-vec[X_] := Flatten[Normal[X]];
-
-(* Matrix generators P (Updated Shift) and Q (Clock) *)
+(* Matrix generators P (Shift) and Q (Clock) *)
 P = {{0, 0, 1}, {1, 0, 0}, {0, 1, 0}};
 Q = {{1, 0, 0}, {0, \[Omega], 0}, {0, 0, \[Omega]^2}};
 
 (* ====================================================== *)
-(* Block Projector Construction                           *)
+(* Tensor Product Block Construction                      *)
 (* ====================================================== *)
 
-Projector[G1_, G2_] := Module[{v1, v2},
-  v1 = vec[G1];
-  v2 = vec[G2];
-  SimplifyMatrix[(KroneckerProduct[v1, Conjugate[v1]] + KroneckerProduct[v2, Conjugate[v2]]) / 3]
+(* Computes G x G* + G* x G *)
+TensorBlock[G_] := Module[{GStar},
+  GStar = ConjugateTranspose[G];
+  SimplifyMatrix[KroneckerProduct[G, GStar] + KroneckerProduct[GStar, G]]
 ];
 
-(* The 4 elementary 2D Fourier-invariant blocks *)
-P1 = Projector[{{1,0,0},{0,1,0},{0,0,1}}, {{0,1,0},{0,0,1},{1,0,0}} + {{0,0,1},{1,0,0},{0,1,0}}];
-P2 = Projector[P, P . P];
-P3 = Projector[P . Q, (P . P) . (Q . Q)];
-P4 = Projector[(P . P) . Q, P . (Q . Q)];
+(* The 4 elementary tensor product blocks *)
+P1 = TensorBlock[P];               (* P x P* + P* x P *)
+P2 = TensorBlock[Q];               (* Q x Q* + Q* x Q *)
+P3 = TensorBlock[P . Q];           (* PQ x (PQ)* + (PQ)* x PQ *)
+P4 = TensorBlock[(P . P) . Q];    (* P^2 Q x (P^2 Q)* + (P^2 Q)* x P^2 Q *)
 
 blocks = {P1, P2, P3, P4};
 Psl3 = SimplifyMatrix[Total[blocks]];

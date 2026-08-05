@@ -8,14 +8,36 @@ ClearAll["Global`*"];
 
 Clear[\[Omega]];
 
+(* Algebraic replacement rules for omega *)
 omegaRules = {
   Conjugate[\[Omega]] -> \[Omega]^2,
   Conjugate[\[Omega]^2] -> \[Omega],
   \[Omega]^n_Integer /; n > 2 :> \[Omega]^Mod[n, 3],
-  \[Omega]^2 + \[Omega] + 1 -> 0
+
+  (* Exact linear binomial sum simplifications *)
+  1 + \[Omega] -> -\[Omega]^2,
+  \[Omega] + 1 -> -\[Omega]^2,
+  1 + \[Omega]^2 -> -\[Omega],
+  \[Omega]^2 + 1 -> -\[Omega],
+  \[Omega] + \[Omega]^2 -> -1,
+  \[Omega]^2 + \[Omega] -> -1,
+
+  (* Full relation *)
+  1 + \[Omega] + \[Omega]^2 -> 0
 };
 
-SimplifyMatrix[M_] := FullSimplify[M /. omegaRules] /. omegaRules;
+(* Full simplification forcing reduction modulo (1 + omega + omega^2) *)
+SimplifyMatrix[M_] := Module[{reduced},
+  reduced = M /. omegaRules;
+  reduced = Map[
+    Function[elem,
+      Last[PolynomialReduce[elem, {1 + \[Omega] + \[Omega]^2}, {\[Omega]}]]
+    ],
+    reduced,
+    {-1}
+  ];
+  FullSimplify[reduced /. omegaRules] /. omegaRules
+];
 
 FactorThird[M_] := If[M === ConstantArray[0, {9, 9}], M, Inactive[Times][1/3, MatrixForm[SimplifyMatrix[3 * M]]]];
 
@@ -118,7 +140,6 @@ ComputeFinalOperator[A1_, A2_, A3_] := Module[
 (* Define Triples to Test                                 *)
 (* ====================================================== *)
 
-(* Add as many {Label, A1, A2, A3} combinations as you'd like here *)
 triplesToTest = {
   {
     "Only 1-loops",
