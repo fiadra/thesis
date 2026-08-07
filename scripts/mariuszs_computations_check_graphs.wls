@@ -10,20 +10,25 @@ Clear[\[Omega]];
 
 (* Algebraic replacement rules for omega *)
 omegaRules = {
-  Conjugate[\[Omega]] -> \[Omega]^2,
-  Conjugate[\[Omega]^2] -> \[Omega],
-  \[Omega]^n_Integer /; n > 2 :> \[Omega]^Mod[n, 3],
+    Conjugate[\[Omega]] -> \[Omega]^2,
+    Conjugate[\[Omega]^2] -> \[Omega],
 
-  (* Exact linear binomial sum simplifications *)
-  1 + \[Omega] -> -\[Omega]^2,
-  \[Omega] + 1 -> -\[Omega]^2,
-  1 + \[Omega]^2 -> -\[Omega],
-  \[Omega]^2 + 1 -> -\[Omega],
-  \[Omega] + \[Omega]^2 -> -1,
-  \[Omega]^2 + \[Omega] -> -1,
+    (* Reduce all integer powers modulo 3 *)
+    \[Omega]^n_Integer :> \[Omega]^Mod[n, 3],
 
-  (* Full relation *)
-  1 + \[Omega] + \[Omega]^2 -> 0
+    (* Convert omega^0 to 1 *)
+    \[Omega]^0 -> 1,
+
+    (* Linear identities *)
+    1 + \[Omega] -> -\[Omega]^2,
+    \[Omega] + 1 -> -\[Omega]^2,
+    1 + \[Omega]^2 -> -\[Omega],
+    \[Omega]^2 + 1 -> -\[Omega],
+    \[Omega] + \[Omega]^2 -> -1,
+    \[Omega]^2 + \[Omega] -> -1,
+
+    (* Cyclotomic relation *)
+    1 + \[Omega] + \[Omega]^2 -> 0
 };
 
 (* Full simplification forcing reduction modulo (1 + omega + omega^2) *)
@@ -38,8 +43,6 @@ SimplifyMatrix[M_] := Module[{reduced},
   ];
   FullSimplify[reduced /. omegaRules] /. omegaRules
 ];
-
-FactorThird[M_] := If[M === ConstantArray[0, {9, 9}], M, Inactive[Times][1/3, MatrixForm[SimplifyMatrix[3 * M]]]];
 
 (* ====================================================== *)
 (* Vectorization & Matrix Units                           *)
@@ -143,73 +146,107 @@ ComputeFinalOperator[A1_, A2_, A3_] := Module[
 triplesToTest = {
 
 {
-  "Only 1-loops",
-  {{0,0,0},{0,0,0},{0,0,0}},
-  IdentityMatrix[3],
-  IdentityMatrix[3]
+  "Only 1-cycles",
+  {{0,0,0},
+   {0,0,0},
+   {0,0,0}},
+  {{1,0,0},
+   {0,1,0},
+   {0,0,1}},
+  {{0,0,0},
+   {0,0,0},
+   {0,0,0}}
 },
 
 {
-  "Only 1- and 2-loops",
-  {{0,0,0},{0,0,0},{0,0,0}},
-  IdentityMatrix[3],
-  IdentityMatrix[3]
+  "Only 1- and 2- cycles",
+  {{0,0,0},
+   {0,0,0},
+   {0,0,0}},
+  {{1,0,0},
+   {0,1,0},
+   {0,0,1}},
+  {{1,0,0},
+   {0,1,0},
+   {0,0,1}}
 },
 
 {
-  "1- and 2-loops and a 1-cycle",
-  {{0,0,0},{0,0,0},{0,0,0}},
-  {{1,0,1},
-   {1,1,0},
-   {0,1,1}},
+  "Only 1- and 2- cycles",
+  {{0,0,0},
+   {0,0,0},
+   {0,0,0}},
   {{1,1,0},
    {0,1,1},
-   {1,0,1}}
+   {1,0,1}},
+  {{1,0,0},
+   {0,1,0},
+   {0,0,1}}
 },
 
 {
-  "1- and 2-loops and a 1-cycle and a 2-cycle in the other direction",
-  {{0,0,0},{0,0,0},{0,0,0}},
-  {{1,0,1},
-   {1,1,0},
-   {0,1,1}},
+  "Only 1- and 2- cycles",
+  {{0,0,0},
+   {0,0,0},
+   {0,0,0}},
   {{1,1,0},
    {0,1,1},
-   {1,0,1}}
+   {1,0,1}},
+  {{1,0,1},
+   {1,1,0},
+   {0,1,1}}
 },
 
 {
-  "Everything except 0-loops",
-  {{0,1,1},
-   {1,0,1},
-   {1,1,0}},
-  ConstantArray[1,{3,3}],
-  ConstantArray[1,{3,3}]
+  "Only 1- cycles and all 2's",
+  {{0,0,0},
+   {0,0,0},
+   {0,0,0}},
+  {{1,1,0},
+   {0,1,1},
+   {1,0,1}},
+  {{1,1,1},
+   {1,1,1},
+   {1,1,1}}
 },
 
 {
-  "One 1-cycle",
-  {{0,0,0},{0,0,0},{0,0,0}},
+  "All 1's and all 2's",
+  {{0,0,0},
+   {0,0,0},
+   {0,0,0}},
+  {{1,1,1},
+   {1,1,1},
+   {1,1,1}},
+  {{1,1,1},
+   {1,1,1},
+   {1,1,1}}
+},
+
+{
+  "All 1's and 2's and a 0-loop",
   {{0,0,1},
    {1,0,0},
    {0,1,0}},
-  {{0,1,0},
-   {0,0,1},
-   {1,0,0}}
+  {{1,1,1},
+   {1,1,1},
+   {1,1,1}},
+  {{1,1,1},
+   {1,1,1},
+   {1,1,1}}
 },
 
 {
-  "All 1's",
-  {{0,0,0},{0,0,0},{0,0,0}},
-  ConstantArray[1,{3,3}],
-  ConstantArray[1,{3,3}]
-}
-
-{
-  "All 1's",
-  {{0,0,0},{0,0,0},{0,0,0}},
-  ConstantArray[1,{3,3}],
-  ConstantArray[1,{3,3}]
+  "All except 0-loops",
+  {{0,1,1},
+   {1,0,1},
+   {1,1,0}},
+  {{1,1,1},
+   {1,1,1},
+   {1,1,1}},
+  {{1,1,1},
+   {1,1,1},
+   {1,1,1}}
 }
 
 };
@@ -218,19 +255,18 @@ triplesToTest = {
 (* Execution and PDF Export                               *)
 (* ====================================================== *)
 
-(* Compute results for all triples and format into a single row *)
 pdfPages = Table[
   Module[{label, A1, A2, A3, resultMatrix},
     {label, A1, A2, A3} = triple;
     resultMatrix = ComputeFinalOperator[A1, A2, A3];
 
     Row[{
-      Text[Style[label <> "  =  ", Bold, 12]],
-      If[MatrixQ[resultMatrix], FactorThird[resultMatrix], MatrixForm[resultMatrix]]
+      Text[Style[label <> " = ", Bold, 12]],
+      MatrixForm[resultMatrix]
     }, Alignment -> Center]
   ],
   {triple, triplesToTest}
 ];
 
 (* Export to PDF silently without standard output *)
-Export["ComparedOperators.pdf", pdfPages];
+Export["MariuszGraphsCheck.pdf", pdfPages];

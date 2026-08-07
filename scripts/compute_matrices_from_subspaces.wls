@@ -40,7 +40,11 @@ SimplifyMatrix[M_] := Module[{reduced},
 ];
 
 (* Factor out 1/3 from matrices for clean visual presentation *)
-FactorThird[M_] := If[M === ConstantArray[0, {9, 9}], M, Inactive[Times][1/3, MatrixForm[SimplifyMatrix[3 * M]]]];
+FactorThird[M_] := If[
+  M === ConstantArray[0, {9, 9}],
+  M,
+  MatrixForm[SimplifyMatrix[M]]
+];
 
 (* Matrix generators P (Shift) and Q (Clock) *)
 P = {{0, 0, 1}, {1, 0, 0}, {0, 1, 0}};
