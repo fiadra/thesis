@@ -90,7 +90,7 @@ this thesis, taken directly from \textcite{tobolski26}.
 % TODO: Prove that the examples are correct (do some calculations)
 \begin{example}[Classical finite sets as quantum sets]
     Every finite set \( X \) gives rise to a quantum set
-    \( (C(X), \psi_X) \), where \( C(X) \) denotes the \( * \)-algebra of
+    \( (C(X), \psi_X) \), where \( C(X) \) denotes the \( C^{*} \)-algebra of
     complex-valued functions on \( X \) with pointwise multiplication and
     involution given by pointwise complex conjugation,
     \( f^*(x) = \overline{f(x)} \), and where
@@ -135,6 +135,22 @@ this thesis, taken directly from \textcite{tobolski26}.
     \( (C(X), \psi_X) \) is indeed a quantum set.
 \end{example}
 
+\begin{remark}
+    The identification of finite sets and commutative \(C^{*}\)-algebras is
+    inspired by Gelfand's duality theorem, which establishes that
+    every commutative \(C^{*}\)-algebra is isomorphic to the algebra of
+    continuous functions on a compact Hausdorff space. In the
+    finite-dimensional case, this space reduces to a discrete finite
+    set, and the algebra's minimal projections correspond directly to
+    the individual elements of the set. Furthermore, the functional \( \psi_X \)
+    serves as a quantum analogue of the counting measure (summing
+    over all elements), while the condition \( mm^{*} =
+    \operatorname{Id} \) ensures the correct normalization and
+    structural compatibility of the multiplication map with this
+    measure, generalizing the discrete Cartesian framework of
+    classical sets to the quantum setting.
+\end{remark}
+
 \begin{example}[The special case \( \mathbb{C}^n \)]
     Taking \( X = \{1, \dots, n\} \) in the previous example recovers the
     quantum set \( (\mathbb{C}^n, \psi_n) \), where \( \psi_n \) is
@@ -178,9 +194,11 @@ this thesis, taken directly from \textcite{tobolski26}.
         (\mathbb{C}^n \rtimes \hat{\mathbb{Z}}_n,\ \psi_\rtimes),
     \]
     a fact we prove in \ref{lem:iso}.
+    \( n \operatorname{Tr} \) is chosen instead of simply \(
+    \operatorname{Tr} \) so that the condition \( mm^{*} =
+    \operatorname{Id} \) is fulfilled.
 \end{example}
 
-% TODO: give a better name
 \begin{lemma}[Comultiplication for matrix algebras]
     In the quantum set \( (M_n, n\operatorname{Tr}) \), the
     comultiplication \( m^* \) is given on matrix units by
@@ -192,7 +210,6 @@ this thesis, taken directly from \textcite{tobolski26}.
     \( M_n \).
 \end{lemma}
 
-% TODO: check this proof carefully
 \begin{proof}
     The proof is a direct computation using two standard facts about
     matrix units:
@@ -403,11 +420,11 @@ object is indeed a quantum set, can be found in
 
 \section{Quantum graphs}
 
-A simple graph is classically defined as a pair \( (V, E) \) with \( V \)
-serving as the \emph{set of vertices} and \( E \subseteq [V]^{2} \)
+A graph is classically defined as a pair \( (V, E) \) with \( V \)
+serving as the \emph{set of vertices} and \( E \subseteq V^{2} \)
 serving as the \emph{set of edges}. Such a graph could be interpreted
 as a matrix \( A = [a_{ij}] \in \{0, 1\}^{n \times n} \) with \(
-\{v_{i}, v_{j}\} \in E \Leftrightarrow a_{ij} = 1 \); such a
+(v_{i}, v_{j}) \in E \Leftrightarrow a_{ij} = 1 \); such a
 representation is often called the \emph{adjacency matrix}. The key
 property of such matrices is that they are invariant with respect to
 entrywise multiplication. In turn we can use this property to
@@ -436,11 +453,11 @@ The following definitions are due to \textcite{tobolski26}.
     adjacency matrix on this quantum set.
 \end{definition}
 
-For all intents and purposes we will identify both notions and
-simply call an
-appropriate \( A\colon B \rightarrow B \) both a quantum adjancenty matrix and a
-quantum graph.
+For all intents and purposes we will identify both notions and simply
+call an appropriate \( A\colon B \rightarrow B \) both a quantum
+adjancenty matrix and a quantum graph.
 
+% TODO: finish this remark
 \begin{remark}
     There are other equivalent definitions of a quantum graph, namely those
     based on
@@ -450,9 +467,11 @@ quantum graph.
             \textcite{musto18},
         \item
     \end{itemize}
+    We will make use of the latter definition later in the thesis.
 \end{remark}
 
 \begin{definition}
+    \label{def:quantum-loopfree}
     (\textcite[Definition~4.6]{tobolski26})
     Let \( A \) be a quantum graph on a quantum set \( (B, \psi) \).
     We call the quantum graph
@@ -463,255 +482,165 @@ quantum graph.
             is taken with respect to the inner product induced by
             \( \psi \).
     \end{itemize}
-    We say that a voltage quantum graph \( \tilde{A} = \{
-    \tilde{A}_{g} \}_{g \in G} \) has these properties if the
-    same equations hold for \( \sum_{g \in G} \tilde{A}_{g} \),
-    respectively.
 \end{definition}
 
 \section{Voltage and Derived Quantum Graphs}
 
-In this section we will introduce the notions of voltage
-and derived quantum graphs. They were first introduced
-by Gross in \textcite{gross74}. Those notions have been extended
-to quantum graphs by Bjorn and Tobolski in \textcite{tobolski26}.
+In this section we introduce the notions of voltage and derived
+quantum graphs. Voltage graphs and their derived graphs were first
+introduced by Gross in \textcite{gross74}; these notions have since
+been extended to the setting of quantum graphs by Bjorn and Tobolski
+in \textcite{tobolski26}.
 
-\subsection{Classical Voltage Graphs}
+\subsection{Classical voltage graphs}
 
-Voltage graphs can be understood simply as classical graphs
-whose edges have been labeled with elements of some finite group:
+Before turning to the quantum setting, it is instructive to first
+recall the classical construction. Informally, a voltage graph is
+simply a graph whose edges have been labeled, or \emph{weighted}, by
+elements of a finite group; the derived graph then unfolds this
+labeled graph into a (typically much larger) covering graph, built by
+tracking how these group elements accumulate as one walks along paths
+in the original graph. This construction originates in topological
+graph theory, where it was used to build graph embeddings on surfaces
+of higher genus, but it also turns out to provide a rich and flexible
+source of examples of graphs with interesting symmetry, which is the
+perspective we adopt here.
 
 % TODO: dać referencję do pracy Grossa i Tuckera
 \begin{definition}[Classical voltage graph]
     A \emph{voltage graph} is a pair \( (\Gamma, \lambda) \) consisting
-    of (not necesarily simple) finite directed graph \( \Gamma \) with
-    vertex set \( V \) and edge set \( E \), together with a labelling
-    \( \lambda: E \rightarrow G \) of the edges of \( \Gamma \) by
-    elements of a finite group \( G \).
+    of a (not necessarily simple) finite directed graph \( \Gamma \),
+    with vertex set \( V \) and edge set \( E \), together with a
+    labelling \( \lambda \colon E \to G \) of the edges of \( \Gamma \)
+    by elements of a finite group \( G \).
 \end{definition}
 
-With every voltage graph one can construct a new graph, called a
-\emph{derived graph}, as below.
+From every voltage graph one can construct a new graph, called its
+\emph{derived graph}, as follows.
 
 \begin{definition}[Classical derived graph]
-    The \emph{derived graph} \( \Gamma^{\lambda} \) of \( (\Gamma, \lambda) \)
-    is a graph with vertex set \( V \times G \) and edge set \( E \times G \).
-    Whenever \( e \in E \) is an edge from \( u \) to \( v \) in \( \Gamma \)
-    and \( g \in G \) is a group element, then the edge \( (e, g) \) goes from
-    \( (u, g) \) to \( (v, g \lambda(e)) \) in \( \Gamma^{\lambda} \).
+    The \emph{derived graph} \( \Gamma^\lambda \) of \( (\Gamma,\lambda) \)
+    has vertex set \( V \times G \) and edge set \( E \times G \).
+    Whenever \( e \in E \) is an edge from \( u \) to \( v \) in
+    \( \Gamma \), and \( g \in G \) is a group element, the
+    corresponding edge \( (e,g) \) in \( \Gamma^\lambda \) runs from
+    \( (u,g) \) to \( (v,\, g\lambda(e)) \).
 \end{definition}
 
-This is a major result in the theory of voltage and derived graphs.
-It can be found
-in \textcite{gross87}, Theorem 2.2.2.
+Intuitively, the derived graph consists of \( |G| \) labeled copies
+(\emph{fibers}) of the vertex set of \( \Gamma \), one for each group
+element, and every edge \( e \) of \( \Gamma \) is lifted to \( |G| \)
+edges in \( \Gamma^\lambda \), one leaving each fiber, whose endpoint
+is determined by translating within the target fiber according to the
+voltage \( \lambda(e) \). This is precisely the picture underlying the
+worked examples given below.
+
+The following is a major result in the theory of voltage and derived
+graphs, showing that this construction is not merely a convenient way
+of producing examples, but in fact accounts for \emph{every} graph
+admitting a free action of a finite group. It can be found in
+\textcite[Theorem~2.2.2]{gross87}.
 
 % TODO: Is \Gamma directed?
-\begin{theorem}[Gross and Tucker Theorem]
-    Let \( \tilde{\Gamma} \) be a graph and let \( G \) be a finite
-    group acting freely on \( \tilde{\Gamma} \) by automorphisms.
-    Then there exists a voltage graph \( (\Gamma, \lambda) \) with
-    edges labeled with elements of \( G \) such that \(
-    \tilde{\Gamma} \) is isomprphic to the derived graph of \(
-    (\Gamma, \lambda) \).
-    The graph \( \Gamma \) is the quotient graph \( \tilde{\Gamma} / G \).
+\begin{theorem}[Gross and Tucker theorem]
+    Let \( \tilde\Gamma \) be a graph and let \( G \) be a finite group
+    acting freely on \( \tilde\Gamma \) by automorphisms. Then there
+    exists a voltage graph \( (\Gamma,\lambda) \), with edges labeled
+    by elements of \( G \), such that \( \tilde\Gamma \) is isomorphic
+    to the derived graph of \( (\Gamma,\lambda) \). The graph
+    \( \Gamma \) is the quotient graph \( \tilde\Gamma / G \).
 \end{theorem}
 
-Below one can find are some examples of voltage graphs and their derived graphs.
+In other words, voltage graphs classify free group actions on graphs
+up to isomorphism: recovering \( (\Gamma,\lambda) \) from
+\( \tilde\Gamma \) amounts to nothing more than quotienting by the
+group action, while reconstructing \( \tilde\Gamma \) from
+\( (\Gamma,\lambda) \) is exactly the derived graph construction
+above. Below we give some examples of voltage graphs together with
+their derived graphs.
 
-\begin{center}
-    \centering
-    {\normalsize\sffamily\bfseries Directed base graph over \(
-    \mathbb{Z}_2 \)}\\[4pt]
-    \begin{minipage}[t]{0.435\textwidth}
-        \centering
-        \begin{tikzpicture}[>=Stealth, scale=1.0]
-            \node[base node] (u) at (0,0) {\( u \)};
-            \node[base node] (v) at (2.5,0) {\( v \)};
-            \path[->, thick]
-            (u) edge [bend left=25] node[edge label] {\( 0 \)} (v)
-            (v) edge [bend left=25] node[edge label] {\( 1 \)} (u);
-        \end{tikzpicture}\\[6pt]
-        \captionof{}{Base voltage graph \( \Gamma \) over \(
-        \mathbb{Z}_2 \)}
-    \end{minipage}\hfill
-    \begin{minipage}[t]{0.515\textwidth}
-        \centering
-        \begin{tikzpicture}[>=Stealth, scale=0.72]
-            \node[font=\sffamily\bfseries\small, text=gray] at
-            (0,4.6)   {Fiber \( u \)};
-            \node[font=\sffamily\bfseries\small, text=gray] at
-            (3.6,4.6) {Fiber \( v \)};
-
-            \node[derived node, draw=volt0, text=volt0] (u0) at
-            (0,3.6)   {\( u,0 \)};
-            \node[derived node, draw=volt0, text=volt0] (v0) at
-            (3.6,3.6) {\( v,0 \)};
-            \node[derived node, draw=volt1, text=volt1] (u1) at (0,0)
-            {\( u,1 \)};
-            \node[derived node, draw=volt1, text=volt1] (v1) at
-            (3.6,0)   {\( v,1 \)};
-
-            \path[->, thick, volt0, opacity=0.7] (u0) edge (v0);
-            \path[->, thick, volt1, opacity=0.6] (u1) edge (v1);
-            \path[->, thick, volt2, opacity=0.6] (v0) edge (u1);
-            \path[->, thick, volt2, opacity=0.6] (v1) edge (u0);
-        \end{tikzpicture}\\[6pt]
-        \captionof{}{Derived graph \( \Gamma^\lambda \)
-        (directed 4-cycle)}
-    \end{minipage}
-\end{center}
-
-\vspace{0.3cm}
-
-\begin{center}
-    \centering
-    {\normalsize\sffamily\bfseries Directed base graph over \(
-    \mathbb{Z}_3 \) (single vertex, two loops)}\\[4pt]
-    \begin{minipage}[t]{0.435\textwidth}
-        \centering
-        \begin{tikzpicture}[>=Stealth, scale=1.0]
-            \node[base node] (v) at (0,0) {\( v \)};
-            \path[->, thick]
-            (v) edge [loop left, distance=1.7cm, in=145, out=215]
-            node[edge label] {\( 1 \)} (v)
-            (v) edge [loop right, distance=1.7cm, in=35, out=-35]
-            node[edge label] {\( 2 \)} (v);
-        \end{tikzpicture}\\[6pt]
-        \captionof{}{Base voltage graph \( \Gamma \) over \(
-        \mathbb{Z}_3 \)}
-    \end{minipage}\hfill
-    \begin{minipage}[t]{0.515\textwidth}
-        \centering
-        \begin{tikzpicture}[>=Stealth, scale=0.72]
-            \node[derived node, draw=volt0, text=volt0] (v0) at
-            (90:2.6)  {\( v,0 \)};
-            \node[derived node, draw=volt1, text=volt1] (v1) at
-            (210:2.6) {\( v,1 \)};
-            \node[derived node, draw=volt2, text=volt2] (v2) at
-            (330:2.6) {\( v,2 \)};
-
-            % e1 lifts (voltage 1): v0 -> v1 -> v2 -> v0
-            \path[->, thick, volt1, opacity=0.6]
-            (v0) edge [bend right=32] (v1)
-            (v1) edge [bend right=32] (v2)
-            (v2) edge [bend right=32] (v0);
-
-            % e2 lifts (voltage 2): v0 -> v2 -> v1 -> v0
-            \path[->, thick, volt2, opacity=0.6]
-            (v0) edge [bend left=12] (v2)
-            (v2) edge [bend left=12] (v1)
-            (v1) edge [bend left=12] (v0);
-        \end{tikzpicture}\\[6pt]
-        \captionof{}{Derived graph \( \Gamma^\lambda \) (two \(
-        3 \)-cycles)}
-    \end{minipage}
-\end{center}
-
-\vspace{0.3cm}
-
-\begin{center}
-    \centering
-    {\normalsize\sffamily\bfseries Directed theta graph over \(
-    \mathbb{Z}_3 \)}\\[4pt]
-    \begin{minipage}[t]{0.435\textwidth}
-        \centering
-        \begin{tikzpicture}[>=Stealth, scale=1.0]
-            \node[base node] (u) at (0,0) {\( u \)};
-            \node[base node] (v) at (2.2,0) {\( v \)};
-            \path[->, thick]
-            (u) edge [bend left=45] node[edge label] {\( 0 \)} (v)
-            (u) edge node[edge label] {\( 1 \)} (v)
-            (u) edge [bend right=45] node[edge label] {\( 2 \)} (v);
-        \end{tikzpicture}\\[6pt]
-        \captionof{}{Base theta graph \( \Gamma \) with edge labels}
-    \end{minipage}\hfill
-    \begin{minipage}[t]{0.515\textwidth}
-        \centering
-        \begin{tikzpicture}[>=Stealth, scale=0.72]
-            \node[font=\sffamily\bfseries\small, text=gray] at
-            (0,5.3)   {Fiber \( u \)};
-            \node[font=\sffamily\bfseries\small, text=gray] at
-            (4.5,5.3) {Fiber \( v \)};
-
-            \node[derived node, draw=volt0, text=volt0] (u0) at
-            (0,4.2)   {\( u,0 \)};
-            \node[derived node, draw=volt1, text=volt1] (u1) at
-            (0,2.1)   {\( u,1 \)};
-            \node[derived node, draw=volt2, text=volt2] (u2) at (0,0)
-            {\( u,2 \)};
-            \node[derived node, draw=volt0, text=volt0] (v0) at
-            (4.5,4.2) {\( v,0 \)};
-            \node[derived node, draw=volt1, text=volt1] (v1) at
-            (4.5,2.1) {\( v,1 \)};
-            \node[derived node, draw=volt2, text=volt2] (v2) at
-            (4.5,0)   {\( v,2 \)};
-
-            % Lifts of e1 (voltage 0)
-            \path[->, thick, volt0, opacity=0.7] (u0) edge (v0);
-            \path[->, thick, volt0, opacity=0.7] (u1) edge (v1);
-            \path[->, thick, volt0, opacity=0.7] (u2) edge (v2);
-
-            % Lifts of e2 (voltage 1)
-            \path[->, thick, volt1, opacity=0.6] (u0) edge (v1);
-            \path[->, thick, volt1, opacity=0.6] (u1) edge (v2);
-            \path[->, thick, volt1, opacity=0.6] (u2) edge (v0);
-
-            % Lifts of e3 (voltage 2)
-            \path[->, thick, volt2, opacity=0.6] (u0) edge (v2);
-            \path[->, thick, volt2, opacity=0.6] (u1) edge (v0);
-            \path[->, thick, volt2, opacity=0.6] (u2) edge (v1);
-        \end{tikzpicture}\\[6pt]
-        \captionof{}{Derived graph \( \Gamma^\lambda \) (\(
-        K_{3,3} \) colored by edge class)}
-    \end{minipage}
-\end{center}
+\input{chapters/examplegraphs}
 
 \subsection{Generalisation to quantum voltage and derived quantum graphs}
 
-Now we will generalise the Gross-Tucker construction to quantum graphs. This was
-first done by Bjorn and Tobolski in \textcite{tobolski26}.
-
-The following definition will introduce some key notions.
+We now turn to generalising the Gross--Tucker construction to the
+setting of quantum graphs. This generalisation was first carried out
+by Bjorn and Tobolski in \textcite{tobolski26}, building on the notion
+of a crossed product quantum set introduced earlier in this chapter.
+Just as a classical voltage graph is a labelling of the edges of a
+graph by group elements, a voltage \emph{quantum} graph will be a
+family of quantum adjacency matrices indexed by the group \( G \)
+rather than a single labelling function; the derived quantum graph
+then reassembles this family into a single quantum adjacency matrix on
+the crossed product quantum set \( (B, \psi_\rtimes) \), playing the
+role of the derived graph \( \Gamma^\lambda \) from the classical
+picture. The following definition makes this precise.
 
 % TODO: Maybe replace the dagger?
 \begin{definition}
-    (\textcite{tobolski26}, Definition 4.1)
-    Let \( (\tilde{B}, \tilde{\psi}) \), \( \hat{\alpha}: \hat{G} \to
-    \mathrm{Aut}(\tilde{B}, \tilde{\psi}) \), \( (B, \psi_\rtimes) \) and
-    \( (u_\chi)_{\chi \in \hat{G}} \subset B \) be as above.
+    (\textcite[Definition~4.1]{tobolski26})
+    Let \( (\tilde{B}, \tilde\psi) \), \( \hat\alpha \colon \hat{G} \to
+    \operatorname{Aut}(\tilde{B}, \tilde\psi) \), \( (B, \psi_\rtimes) \),
+    and \( (u_\chi)_{\chi \in \hat{G}} \subset B \) be as above.
     \begin{enumerate}
-        \item For every \( g \in G \) let \( X_g := \frac{1}{n} \sum_{\chi
-            \in \hat{G}}\overline{\chi(g)} u_\chi u_\chi^\dagger \), i.e.
+        \item For every \( g \in G \), define
             \[
-                X_g : B \to B, \quad b \mapsto \frac{1}{n} \sum_{\chi
-                \in \hat{G}} \overline{\chi(g)} \langle u_\chi, b
-                \rangle_{\psi_\rtimes} u_\chi.
+                X_g := \frac{1}{n} \sum_{\chi \in \hat{G}}
+                \overline{\chi(g)}\, u_\chi u_\chi^\dagger,
+            \]
+            i.e.\ \( X_g \) is the operator
+            \[
+                X_g \colon B \to B, \qquad
+                b \mapsto \frac{1}{n} \sum_{\chi \in \hat{G}}
+                \overline{\chi(g)}\, \langle u_\chi, b
+                \rangle_{\psi_\rtimes}\, u_\chi.
             \]
         \item A \emph{voltage quantum graph} on the quantum set
-            \( (\tilde{B}, \tilde{\psi}) \) with respect to the group
-            action \( \hat{\alpha}: \hat{G} \to \mathrm{Aut}(\tilde{B},
-            \tilde{\psi}) \) is a family \( \tilde{A} = (\tilde{A}_g)_{g
-            \in G} \) of quantum adjacency matrices that is indexed by
-            \( G \) and satisfies
+            \( (\tilde{B}, \tilde\psi) \), with respect to the group
+            action \( \hat\alpha \colon \hat{G} \to
+            \operatorname{Aut}(\tilde{B}, \tilde\psi) \),
+            is a family \( \tilde{A} = (\tilde{A}_g)_{g \in G} \) of
+            quantum adjacency matrices, indexed by \( G \), satisfying
+            the equivariance condition
             \[
-                \tilde{A}_g \hat{\alpha}_\chi = \hat{\alpha}_\chi \tilde{A}_g
+                \tilde{A}_g \hat\alpha_\chi = \hat\alpha_\chi \tilde{A}_g
             \]
             for all \( g \in G \) and \( \chi \in \hat{G} \).
-        \item The \emph{derived quantum graph} \( \tilde{A}
-            \rtimes_{\hat{\alpha}} \hat{G}: B \to B \) on \( (B,
-            \psi_\rtimes) \) is then given by
+        \item The \emph{derived quantum graph}
+            \( \tilde{A} \rtimes_{\hat\alpha} \hat{G} \colon B \to B \)
+            on \( (B, \psi_\rtimes) \) is then defined by
             \[
-                \tilde{A} \rtimes_{\hat{\alpha}} \hat{G} := \sum_{g
-                \in G} m(X_g \otimes E_\rtimes^\ast \tilde{A}_g
-                E_\rtimes) m^\ast,
+                \tilde{A} \rtimes_{\hat\alpha} \hat{G}
+                := \sum_{g \in G} m\big( X_g \otimes E_\rtimes^*
+                \tilde{A}_g E_\rtimes \big)\, m^*,
             \]
-            where we write  \( m \) for the multiplication map on \(
-            B \), i.e. \( m = m_\rtimes \).
+            where \( m \) denotes the multiplication map on \( B \),
+            i.e.\ \( m = m_\rtimes \).
     \end{enumerate}
 \end{definition}
 
-The fact that \( X_{g} \) is an adjacency matrix on the quantum set
-\( (B, \psi) \) is checked in \textcite{tobolski26}, Proposition 4.5.
+The role played by \( X_g \) here is directly analogous to the
+indicator function of the fiber \( V \times \{g\} \) in the classical
+derived graph: it isolates, within \( B \), the "copy of \( g \)"
+sitting inside the crossed product. The fact that \( X_g \) is itself
+an adjacency matrix on the quantum set \( (B,\psi_\rtimes) \) is
+checked in \textcite[Proposition~4.5]{tobolski26}, and the derived
+quantum graph is then built by combining these fiber projections with
+the individual voltage components \( \tilde{A}_g \), summed over all
+\( g \in G \) -- mirroring how, in the classical construction, each
+edge of \( \Gamma^\lambda \) is assigned both to a specific fiber and
+to a specific lift of an edge of \( \Gamma \).
+
+As in the classical case, it will be useful to know when a voltage
+quantum graph gives rise to a derived quantum graph with no loops, or
+one that is undirected.
+
+\begin{definition}
+    A voltage quantum graph \( \tilde{A} = \{\tilde{A}_g\}_{g \in G} \)
+    is called \emph{loopfree} or \emph{directed} if the respective
+    property from Definition~\ref{def:quantum-loopfree} holds for the
+    sum \( \sum_{g \in G} \tilde{A}_g \).
+\end{definition}
 
 % TODO: Moze to wyjebac?
 \begin{lemma}

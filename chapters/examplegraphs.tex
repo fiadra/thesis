@@ -1,0 +1,147 @@
+\begin{center}
+    \centering
+    {\normalsize\sffamily\bfseries Directed base graph over \(
+    \mathbb{Z}_2 \)}\\[4pt]
+    \begin{minipage}[t]{0.435\textwidth}
+        \centering
+        \begin{tikzpicture}[>=Stealth, scale=1.0]
+            \node[base node] (u) at (0,0) {\( u \)};
+            \node[base node] (v) at (2.5,0) {\( v \)};
+            \path[->, thick]
+            (u) edge [bend left=25] node[edge label] {\( 0 \)} (v)
+            (v) edge [bend left=25] node[edge label] {\( 1 \)} (u);
+        \end{tikzpicture}\\[6pt]
+        \captionof{}{Base voltage graph \( \Gamma \) over \(
+        \mathbb{Z}_2 \)}
+    \end{minipage}\hfill
+    \begin{minipage}[t]{0.515\textwidth}
+        \centering
+        \begin{tikzpicture}[>=Stealth, scale=0.72]
+            \node[font=\sffamily\bfseries\small, text=gray] at
+            (0,4.6)   {Fiber \( u \)};
+            \node[font=\sffamily\bfseries\small, text=gray] at
+            (3.6,4.6) {Fiber \( v \)};
+
+            \node[derived node, draw=volt0, text=volt0] (u0) at
+            (0,3.6)   {\( u,0 \)};
+            \node[derived node, draw=volt0, text=volt0] (v0) at
+            (3.6,3.6) {\( v,0 \)};
+            \node[derived node, draw=volt1, text=volt1] (u1) at (0,0)
+            {\( u,1 \)};
+            \node[derived node, draw=volt1, text=volt1] (v1) at
+            (3.6,0)   {\( v,1 \)};
+
+            \path[->, thick, volt0, opacity=0.7] (u0) edge (v0);
+            \path[->, thick, volt1, opacity=0.6] (u1) edge (v1);
+            \path[->, thick, volt2, opacity=0.6] (v0) edge (u1);
+            \path[->, thick, volt2, opacity=0.6] (v1) edge (u0);
+        \end{tikzpicture}\\[6pt]
+        \captionof{}{Derived graph \( \Gamma^\lambda \)
+        (directed 4-cycle)}
+    \end{minipage}
+\end{center}
+
+\vspace{0.3cm}
+
+\begin{center}
+    \centering
+    {\normalsize\sffamily\bfseries Directed base graph over \(
+    \mathbb{Z}_3 \) (single vertex, two loops)}\\[4pt]
+    \begin{minipage}[t]{0.435\textwidth}
+        \centering
+        \begin{tikzpicture}[>=Stealth, scale=1.0]
+            \node[base node] (v) at (0,0) {\( v \)};
+            \path[->, thick]
+            (v) edge [loop left, distance=1.7cm, in=145, out=215]
+            node[edge label] {\( 1 \)} (v)
+            (v) edge [loop right, distance=1.7cm, in=35, out=-35]
+            node[edge label] {\( 2 \)} (v);
+        \end{tikzpicture}\\[6pt]
+        \captionof{}{Base voltage graph \( \Gamma \) over \(
+        \mathbb{Z}_3 \)}
+    \end{minipage}\hfill
+    \begin{minipage}[t]{0.515\textwidth}
+        \centering
+        \begin{tikzpicture}[>=Stealth, scale=0.72]
+            \node[derived node, draw=volt0, text=volt0] (v0) at
+            (90:2.6)  {\( v,0 \)};
+            \node[derived node, draw=volt1, text=volt1] (v1) at
+            (210:2.6) {\( v,1 \)};
+            \node[derived node, draw=volt2, text=volt2] (v2) at
+            (330:2.6) {\( v,2 \)};
+
+            % e1 lifts (voltage 1): v0 -> v1 -> v2 -> v0
+            \path[->, thick, volt1, opacity=0.6]
+            (v0) edge [bend right=32] (v1)
+            (v1) edge [bend right=32] (v2)
+            (v2) edge [bend right=32] (v0);
+
+            % e2 lifts (voltage 2): v0 -> v2 -> v1 -> v0
+            \path[->, thick, volt2, opacity=0.6]
+            (v0) edge [bend left=12] (v2)
+            (v2) edge [bend left=12] (v1)
+            (v1) edge [bend left=12] (v0);
+        \end{tikzpicture}\\[6pt]
+        \captionof{}{Derived graph \( \Gamma^\lambda \) (two \(
+        3 \)-cycles)}
+    \end{minipage}
+\end{center}
+
+\vspace{0.3cm}
+
+\begin{center}
+    \centering
+    {\normalsize\sffamily\bfseries Directed theta graph over \(
+    \mathbb{Z}_3 \)}\\[4pt]
+    \begin{minipage}[t]{0.435\textwidth}
+        \centering
+        \begin{tikzpicture}[>=Stealth, scale=1.0]
+            \node[base node] (u) at (0,0) {\( u \)};
+            \node[base node] (v) at (2.2,0) {\( v \)};
+            \path[->, thick]
+            (u) edge [bend left=45] node[edge label] {\( 0 \)} (v)
+            (u) edge node[edge label] {\( 1 \)} (v)
+            (u) edge [bend right=45] node[edge label] {\( 2 \)} (v);
+        \end{tikzpicture}\\[6pt]
+        \captionof{}{Base theta graph \( \Gamma \) with edge labels}
+    \end{minipage}\hfill
+    \begin{minipage}[t]{0.515\textwidth}
+        \centering
+        \begin{tikzpicture}[>=Stealth, scale=0.72]
+            \node[font=\sffamily\bfseries\small, text=gray] at
+            (0,5.3)   {Fiber \( u \)};
+            \node[font=\sffamily\bfseries\small, text=gray] at
+            (4.5,5.3) {Fiber \( v \)};
+
+            \node[derived node, draw=volt0, text=volt0] (u0) at
+            (0,4.2)   {\( u,0 \)};
+            \node[derived node, draw=volt1, text=volt1] (u1) at
+            (0,2.1)   {\( u,1 \)};
+            \node[derived node, draw=volt2, text=volt2] (u2) at (0,0)
+            {\( u,2 \)};
+            \node[derived node, draw=volt0, text=volt0] (v0) at
+            (4.5,4.2) {\( v,0 \)};
+            \node[derived node, draw=volt1, text=volt1] (v1) at
+            (4.5,2.1) {\( v,1 \)};
+            \node[derived node, draw=volt2, text=volt2] (v2) at
+            (4.5,0)   {\( v,2 \)};
+
+            % Lifts of e1 (voltage 0)
+            \path[->, thick, volt0, opacity=0.7] (u0) edge (v0);
+            \path[->, thick, volt0, opacity=0.7] (u1) edge (v1);
+            \path[->, thick, volt0, opacity=0.7] (u2) edge (v2);
+
+            % Lifts of e2 (voltage 1)
+            \path[->, thick, volt1, opacity=0.6] (u0) edge (v1);
+            \path[->, thick, volt1, opacity=0.6] (u1) edge (v2);
+            \path[->, thick, volt1, opacity=0.6] (u2) edge (v0);
+
+            % Lifts of e3 (voltage 2)
+            \path[->, thick, volt2, opacity=0.6] (u0) edge (v2);
+            \path[->, thick, volt2, opacity=0.6] (u1) edge (v0);
+            \path[->, thick, volt2, opacity=0.6] (u2) edge (v1);
+        \end{tikzpicture}\\[6pt]
+        \captionof{}{Derived graph \( \Gamma^\lambda \) (\(
+        K_{3,3} \) colored by edge class)}
+    \end{minipage}
+\end{center}
