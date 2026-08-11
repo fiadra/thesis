@@ -1,217 +1,133 @@
 \chapter{Quantum graphs over \( 3 \times 3 \) matrices}
 
-The classification on \( 2 \times 2 \) matrices was done by
-\textcite{matsuda22}.
+The classification of quantum graphs on \( 2 \times 2 \) matrices was
+carried out by \textcite{matsuda22} and \textcite{gromada22} independently.
 
-\section{Pauli Matrices and their generalisations}
+\section{Pauli matrices and their generalisations}
 
 \subsection{Pauli matrices}
 
-An important basis of the Lie algebra \(\mathfrak{sl}(2,\mathbb{C})\)
+An important basis of the Lie algebra \( \mathfrak{sl}(2,\mathbb{C}) \)
 is given by the Pauli matrices
 \[
-    \sigma_1=
-    \begin{pmatrix}
-        0 & 1\\
-        1 & 0
-    \end{pmatrix},
-    \qquad
-    \sigma_2=
-    \begin{pmatrix}
-        0 & -i\\
-        i & 0
-    \end{pmatrix},
-    \qquad
-    \sigma_3=
-    \begin{pmatrix}
-        1 & 0\\
-        0 & -1
+    \sigma_1 =
+    \begin{pmatrix} 0 & 1 \\ 1 & 0
+    \end{pmatrix}, \qquad
+    \sigma_2 =
+    \begin{pmatrix} 0 & -i \\ i & 0
+    \end{pmatrix}, \qquad
+    \sigma_3 =
+    \begin{pmatrix} 1 & 0 \\ 0 & -1
     \end{pmatrix}.
 \]
+The Pauli matrices are Hermitian, traceless, and linearly independent;
+since \( \dim_{\mathbb{C}} \mathfrak{sl}(2,\mathbb{C}) = 3 \), they form a
+basis of \( \mathfrak{sl}(2,\mathbb{C}) \).
 
-The Pauli matrices are Hermitian, traceless, and linearly independent.
-Since \(\dim_{\mathbb{C}}\mathfrak{sl}(2,\mathbb{C})=3\), they form a
-basis of \(\mathfrak{sl}(2,\mathbb{C})\).
-
-Since the Pauli matrices are Hermitian rather than skew-Hermitian, they
-do not belong to the Lie algebra \(\mathfrak{su}(2)\). Instead, the
+Because the Pauli matrices are Hermitian rather than skew-Hermitian, they
+do not themselves belong to \( \mathfrak{su}(2) \). Instead, it is the
 matrices
 \[
-    i\sigma_1,\qquad
-    i\sigma_2,\qquad
-    i\sigma_3
+    i\sigma_1, \qquad i\sigma_2, \qquad i\sigma_3
 \]
-form a basis of \(\mathfrak{su}(2)\), as they are traceless and
+that form a basis of \( \mathfrak{su}(2) \), being both traceless and
 skew-Hermitian.
 
 \subsection{Generalised Pauli matrices}
 
-For dimensions greater than two, the role of the Pauli matrices is
-played by the \emph{generalised Pauli matrices}, also known as the
-\emph{clock} and \emph{shift} matrices. In dimension three they are
-defined by
+In dimensions greater than two, the role of the Pauli matrices is played
+by the \emph{generalised Pauli matrices}, also known as the \emph{clock}
+and \emph{shift} matrices. In dimension three, they are defined by
 \[
-    P=
-    \begin{pmatrix}
-        1 & 0 & 0\\
-        0 & \omega & 0\\
-        0 & 0 & \omega^2
-    \end{pmatrix},
-    \qquad
-    Q=
-    \begin{pmatrix}
-        0 & 0 & 1\\
-        1 & 0 & 0\\
-        0 & 1 & 0
+    P =
+    \begin{pmatrix} 1 & 0 & 0 \\ 0 & \omega & 0 \\ 0 & 0 & \omega^2
+    \end{pmatrix}, \qquad
+    Q =
+    \begin{pmatrix} 0 & 0 & 1 \\ 1 & 0 & 0 \\ 0 & 1 & 0
     \end{pmatrix},
 \]
-where
-\[
-    \omega=\exp( 2 \pi i / 3 ).
-\]
+where \( \omega = \exp(2\pi i/3) \).
 
-The matrices \(P\) and \(Q\) are unitary and satisfy
+The matrices \( P \) and \( Q \) are unitary and satisfy
 \[
-    P^3=Q^3=I,
+    P^3 = Q^3 = I,
 \]
 together with the commutation relation
 \[
-    PQ=\omega QP.
+    PQ = \omega\, QP.
 \]
 
-The clock and shift matrices are related by the discrete Fourier transform.
-The Fourier matrix is defined by
+The clock and shift matrices are related by the discrete Fourier
+transform. The Fourier matrix is
 \[
-    F=\frac{1}{\sqrt{3}}
-    \begin{pmatrix}
-        1&1&1\\
-        1&\omega&\omega^2\\
-        1&\omega^2&\omega
-    \end{pmatrix}.
+    F = \frac{1}{\sqrt{3}}
+    \begin{pmatrix} 1 & 1 & 1 \\ 1 & \omega & \omega^2 \\ 1 & \omega^2 & \omega
+    \end{pmatrix},
 \]
-It is unitary and satisfies
+which is unitary, i.e.\ satisfies \( F^*F = FF^* = I \), and exchanges
+the roles of the clock and shift operators according to
 \[
-    F^{*}F=FF^{*}=I.
+    FPF^* = Q^{-1}, \qquad FQF^* = P.
 \]
-The Fourier transform exchanges the roles of the clock and shift
-operators according to
-\[
-    FPF^{*}=Q^{-1},
-    \qquad
-    FQF^{*}=P.
-\]
-Therefore, the matrices \(P\) and \(Q\) are unitarily equivalent and
-represent two complementary bases in the three-dimensional Hilbert
-space. This duality is the finite-dimensional analogue of the relation
-between position and momentum operators and is a fundamental property
-of the generalised Pauli matrices.
+Consequently, \( P \) and \( Q \) are unitarily equivalent and represent
+two complementary bases of the three-dimensional Hilbert space. This
+duality is the finite-dimensional analogue of the relation between
+position and momentum operators, and is a fundamental feature of the
+generalised Pauli matrices.
 
 \begin{lemma}
-    The matrices
-    \[
-        P^aQ^b,\qquad a,b\in\{0,1,2\},
-    \]
-    form an orthogonal basis of \(M_3(\mathbb{C})\) with respect to the
-    Hilbert--Schmidt inner product
-    \[
-        \langle A,B\rangle=\operatorname{Tr}(A^{*}B).
-    \]
+    The matrices \( P^aQ^b \), \( a,b \in \{0,1,2\} \), form an
+    orthogonal basis of \( M_3(\mathbb{C}) \) with respect to the
+    Hilbert--Schmidt inner product \( \langle A,B \rangle =
+    \operatorname{Tr}(A^*B) \).
 \end{lemma}
 
 \begin{proof}
-    There are \(3^2=9\) matrices of the form \(P^aQ^b\), while
-    \(\dim_{\mathbb{C}}M_3(\mathbb{C})=9\). It therefore suffices to show
-    that they are pairwise orthogonal.
+    There are \( 3^2 = 9 \) matrices of the form \( P^aQ^b \), matching
+    \( \dim_{\mathbb{C}} M_3(\mathbb{C}) = 9 \); it therefore suffices to
+    show that they are pairwise orthogonal.
 
-    Since
+    Since \( P^* = P^{-1} \) and \( Q^* = Q^{-1} \), we have
+    \( (P^aQ^b)^* = Q^{-b}P^{-a} \), so
     \[
-        P^{*}=P^{-1},\qquad
-        Q^{*}=Q^{-1},
+        \langle P^aQ^b, P^cQ^d \rangle
+        = \operatorname{Tr}\big(Q^{-b}P^{-a}P^cQ^d\big)
+        = \operatorname{Tr}\big(Q^{-b}P^{c-a}Q^d\big).
     \]
-    we have
-    \[
-        (P^aQ^b)^{*}
-        =
-        Q^{-b}P^{-a}.
-    \]
-    Hence
-    \[
-        \langle P^aQ^b,P^cQ^d\rangle
-        =
-        \operatorname{Tr}
-        \left(
-            Q^{-b}P^{-a}P^cQ^d
-        \right)
-        =
-        \operatorname{Tr}
-        \left(
-            Q^{-b}P^{ c-a}Q^d
-        \right).
-    \]
-
-    Using the commutation relation
-    \[
-        Q^kP^\ell=\omega^{-k\ell}P^\ell Q^k,
-    \]
+    Using the commutation relation \( Q^kP^\ell = \omega^{-k\ell}P^\ell Q^k \),
     we obtain
     \[
-        Q^{-b}P^{ c-a}
-        =
-        \omega^{b(c-a)}
-        P^{ c-a}Q^{-b},
+        Q^{-b}P^{c-a} = \omega^{b(c-a)}\, P^{c-a}Q^{-b},
     \]
-    and therefore
+    and hence
     \[
-        \langle P^aQ^b,P^cQ^d\rangle
-        =
-        \omega^{b(c-a)}
-        \operatorname{Tr}
-        \left(
-            P^{ c-a}Q^{ d-b}
-        \right).
+        \langle P^aQ^b, P^cQ^d \rangle
+        = \omega^{b(c-a)} \operatorname{Tr}\big(P^{c-a}Q^{d-b}\big).
     \]
 
-    If \(b\neq d\), then \(Q^{ d-b}\) is a nontrivial permutation matrix,
-    so \(P^{ c-a}Q^{ d-b}\) has zero diagonal entries. Hence
-    \[
-        \operatorname{Tr}(P^{ c-a}Q^{ d-b})=0.
-    \]
+    If \( b \neq d \), then \( Q^{d-b} \) is a nontrivial permutation
+    matrix, so \( P^{c-a}Q^{d-b} \) has zero diagonal entries and
+    \( \operatorname{Tr}(P^{c-a}Q^{d-b}) = 0 \).
 
-    If \(b=d\), then
+    If \( b = d \), then
     \[
-        \langle P^aQ^b,P^cQ^b\rangle
-        =
-        \operatorname{Tr}(P^{ c-a}).
+        \langle P^aQ^b, P^cQ^b \rangle = \operatorname{Tr}(P^{c-a}).
     \]
-    Since
+    Since \( P^{c-a} = \operatorname{diag}(1,\omega^{c-a},\omega^{2(c-a)}) \),
     \[
-        P^{ c-a}
+        \operatorname{Tr}(P^{c-a}) = 1 + \omega^{c-a} + \omega^{2(c-a)}
         =
-        \operatorname{diag}
-        (1,\omega^{c-a},\omega^{2(c-a)}),
-    \]
-    we have
-    \[
-        \operatorname{Tr}(P^{ c-a})
-        =
-        1+\omega^{c-a}+\omega^{2(c-a)}
-        =
-        \begin{cases}
-            3,& a=c,\\
-            0,& a\neq c,
+        \begin{cases} 3, & a = c, \\ 0, & a \neq c,
         \end{cases}
     \]
-    because \(1+\omega+\omega^2=0\).
+    using \( 1 + \omega + \omega^2 = 0 \).
 
-    Therefore
+    Combining both cases gives
     \[
-        \langle P^aQ^b,P^cQ^d\rangle
-        =
-        3 \delta_{ac}\delta_{bd},
+        \langle P^aQ^b, P^cQ^d \rangle = 3\,\delta_{ac}\delta_{bd},
     \]
-    which proves that the matrices \(P^aQ^b\) are pairwise orthogonal.
-    Since there are nine of them, they form an orthogonal basis of
-    \(M_3(\mathbb{C})\).
+    so the nine matrices \( P^aQ^b \) are pairwise orthogonal, and
+    therefore form an orthogonal basis of \( M_3(\mathbb{C}) \).
 \end{proof}
 
 % Excluding the identity matrix leaves eight traceless matrices, which span
@@ -226,374 +142,571 @@ of the generalised Pauli matrices.
 
 \section{Gromada's theorem}
 
-In the following section we will state...
+In this section we state...
+
+% TODO: finish this sentence
 
 The following theorem is due to \textcite{gromada22}.
 
 \begin{theorem}[\textcite{gromada22}, Theorem 3.7]
-    Consider \( m \in \left\{ 0, 1, \dots, n^{2} \right\} \). Quantum
-    graphs on \( M_{n} \) with \( m \) quantum edges are in a
-    one-to-one correspondence with \( m \)-dimensional subspaces \( V
-    \subseteq \mathfrak{gl}_{n} \). The adjacency matrix is given by
-    \( A_{V} = \sum_{s=1}^{m} \xi_{s} \otimes \xi_{s}^{*} \), where
-    \( (\xi_{1}, \xi_{2}, \dots, \xi_{m}) \) is some orthonormal basis
-    of \( V \).
+    Let \( m \in \{0, 1, \dots, n^2\} \). Quantum graphs on \( M_n \) with
+    \( m \) quantum edges are in one-to-one correspondence with
+    \( m \)-dimensional subspaces \( V \subseteq \mathfrak{gl}_n \), the
+    adjacency matrix being given by
+    \( A_V = \sum_{s=1}^m \xi_s \otimes \xi_s^* \), where
+    \( (\xi_1, \dots, \xi_m) \) is any orthonormal basis of \( V \).
 
-    The quantum graph has no loops if and only if \( V \subseteq
-    \mathfrak{sl}_{n} \).
-    It is undirected if and only if \( V = V^{*} \).
+    The quantum graph has no loops if and only if
+    \( V \subseteq \mathfrak{sl}_n \), and is undirected if and only if
+    \( V = V^* \).
 
-    Let \( V, W \subseteq \mathfrak{gl}_{n} \) be two vector spaces
-    corresponding
-    to isomorphic quantum graphs. Then \( V = UWU^{*} \) for some \(
-    U \in SU_{3} \).
+    If \( V, W \subseteq \mathfrak{gl}_n \) correspond to isomorphic
+    quantum graphs, then \( V = UWU^* \) for some \( U \in SU_3 \).
 \end{theorem}
 
 \begin{proof}
-    See Gromada's paper for reference.
+    See Gromada's paper for the proof.
 \end{proof}
 
 \begin{lemma}[\textcite{gromada22}, Lemma 3.8]
-    Any vector subspace \( V \subseteq \mathfrak{gl}_{n} \) with \( V
-    = V^{*} \) has a self-adjoint basis \( \left\{ \xi_{s} \right\}
-    \), \( \xi_{s} = \xi_{s}^{*} \).
+    Every vector subspace \( V \subseteq \mathfrak{gl}_n \) with
+    \( V = V^* \) admits a self-adjoint basis \( \{\xi_s\} \), i.e.\ with
+    \( \xi_s = \xi_s^* \) for every \( s \).
 \end{lemma}
 
 \begin{proof}
-    We construct the desired basis inductively. Suppose we have
-    obtained a linearly independent set of self-adjoint vectors \( \{
-    \xi_{s} \} \) spanning a subspace \( V_{1} \subseteq V \). By
-    construction, \( V_{1} \) is invariant under the involution,
-    meaning \( V_{1} = V_{1}^{*} \).
+    We construct the desired basis inductively. Suppose we have already
+    obtained a linearly independent set of self-adjoint vectors
+    \( \{\xi_s\} \) spanning a subspace \( V_1 \subseteq V \). By
+    construction, \( V_1 \) is invariant under the involution, i.e.\
+    \( V_1 = V_1^* \).
 
-    If \( V_{1} \neq V \), let \( V_{2} = V_{1}^{\perp} \) be the
-    orthogonal complement of \( V_{1} \) with respect to the inner
-    product. Because the inner product and the involution are
-    compatible, \( V_{2} \) is also invariant under the map \( \cdot^{*} \).
+    If \( V_1 \neq V \), let \( V_2 = V_1^\perp \) be the orthogonal
+    complement of \( V_1 \) with respect to the inner product. Since the
+    inner product and the involution are compatible, \( V_2 \) is also
+    invariant under \( \cdot^* \).
 
-    Select any non-zero element \( \xi \in V_{2} \) and decompose it
-    into its real and imaginary self-adjoint components:
+    Choose any nonzero \( \xi \in V_2 \) and decompose it into its
+    self-adjoint real and imaginary parts,
     \[
-        \xi_{\text{Re}} = \frac{\xi + \xi^{*}}{2} \quad \text{and}
-        \quad \xi_{\text{Im}} = \frac{i(\xi^{*} - \xi)}{2}
+        \xi_{\mathrm{Re}} = \frac{\xi + \xi^*}{2}, \qquad
+        \xi_{\mathrm{Im}} = \frac{i(\xi^* - \xi)}{2}.
     \]
-    Both \( \xi_{\text{Re}} \) and \( \xi_{\text{Im}} \) are
-    self-adjoint elements belonging to \( V_{2} \). Since \( \xi \neq
-    0 \), at least one of these components must be non-zero. We then
-    extend our independent set by appending either both components
-    (if they are linearly independent) or the sole non-zero component
-    (if they are dependent). Iterating this process eventually yields
-    a full self-adjoint basis for \( V \).
+    Both \( \xi_{\mathrm{Re}} \) and \( \xi_{\mathrm{Im}} \) are
+    self-adjoint elements of \( V_2 \), and since \( \xi \neq 0 \), at
+    least one of them is nonzero. We extend our independent set by
+    appending either both (if linearly independent) or the single
+    nonzero one (if not). Iterating this process eventually produces a
+    full self-adjoint basis of \( V \).
 \end{proof}
 
 \begin{remark}
-    The following lemma tells us that any undirected graph on \( M_{n} \) can
-    be thought of as being made from symmetric quantum edges only.
+    The following lemma shows that any undirected graph on \( M_n \) may
+    be thought of as being built out of symmetric quantum edges alone.
 \end{remark}
 
 \begin{lemma}
-    A complex vector space \( V = V^{*} \subseteq \mathfrak{gl}_{n}
-    \) uniquely determines a real vector space spanned by the basis
-    \( \left\{ \xi_{s} \right\} \) of self-adjoint elements \( \xi_{s} =
-    \xi_{s}^{*} \).
+    A complex vector space \( V = V^* \subseteq \mathfrak{gl}_n \)
+    uniquely determines a real vector space, spanned by a basis
+    \( \{\xi_s\} \) of self-adjoint elements \( \xi_s = \xi_s^* \).
 \end{lemma}
 
 \begin{proof}
-    Let \(V\subseteq\mathfrak{gl}_{n}\) be a complex vector
-    space satisfying
-    \[
-        V=V^{*}.
-    \]
+    Let \( V \subseteq \mathfrak{gl}_n \) be a complex vector space with
+    \( V = V^* \).
 
-    Since \(V\) is invariant under taking the Hermitian adjoint, every element
-    \(v\in V\) admits the decomposition
+    Since \( V \) is invariant under the Hermitian adjoint, every
+    \( v \in V \) admits the decomposition
     \[
-        v=\frac{v+v^{*}}{2}
-        +i\frac{v-v^{*}}{2i}.
+        v = \frac{v + v^*}{2} + i\,\frac{v - v^*}{2i}.
     \]
-    Both summands belong to \(V\), because \(V\) is closed under addition,
-    scalar multiplication, and the adjoint operation. Moreover,
+    Both summands lie in \( V \), as \( V \) is closed under addition,
+    scalar multiplication, and the adjoint operation, and moreover
     \[
-        \left(\frac{v+v^{*}}{2}\right)^{*}
-        =
-        \frac{v+v^{*}}{2},
+        \left(\frac{v+v^*}{2}\right)^* = \frac{v+v^*}{2}, \qquad
+        \left(i\,\frac{v-v^*}{2i}\right)^* = i\,\frac{v-v^*}{2i},
     \]
-    and
-    \[
-        \left(i\frac{v-v^{*}}{2i}\right)^{*}
-        =
-        i\frac{v-v^{*}}{2i},
-    \]
-    so both matrices are self-adjoint.
+    so both are self-adjoint.
 
-    Now let \(\xi\in V\) be self-adjoint. Let \( \left\{ \xi_{s} \right\} \)
-    be a self-adjoint basis. Then there exist coefficients
-    \(c_s\in\mathbb{C}\) such that
+    Now let \( \xi \in V \) be self-adjoint, and let \( \{\xi_s\} \) be a
+    self-adjoint basis of \( V \). Write \( \xi = \sum_s c_s \xi_s \) for
+    some \( c_s \in \mathbb{C} \). Taking the Hermitian adjoint gives
     \[
-        \xi=\sum_s c_s\xi_s.
+        \xi = \xi^* = \sum_s \overline{c_s}\, \xi_s,
     \]
-    Taking the Hermitian adjoint yields
-    \[
-        \xi
-        =
-        \xi^{*}
-        =
-        \sum_s \overline{c_s} \xi_s,
-    \]
-    because each \(\xi_s\) is self-adjoint. By the uniqueness of the expansion
-    with respect to the basis \(\{\xi_s\}\), we obtain
-    \[
-        c_s=\overline{c_s}
-    \]
-    for every \(s\). Hence each coefficient \(c_s\) is real.
+    since each \( \xi_s \) is self-adjoint, and by uniqueness of the
+    expansion with respect to \( \{\xi_s\} \) we get \( c_s = \overline{c_s} \)
+    for every \( s \), i.e.\ every coefficient \( c_s \) is real.
 
-    Therefore every self-adjoint element of \(V\) is a real linear
-    combination of the basis elements \(\{\xi_s\}\). Consequently, the
-    self-adjoint part of \(V\) is a real vector space uniquely determined by
-    \(V\).
+    Hence every self-adjoint element of \( V \) is a real linear
+    combination of \( \{\xi_s\} \), so the self-adjoint part of \( V \)
+    is a real vector space uniquely determined by \( V \).
 \end{proof}
 
-By the above lemma we can think of self-adjoint \( V \subseteq
-\mathfrak{sl}_{n} \) as real subspaces of \( \mathfrak{sl}_{n} \).
+By the above lemma, we may regard any self-adjoint
+\( V \subseteq \mathfrak{sl}_n \) as a real subspace of
+\( \mathfrak{sl}_n \).
 
 \begin{remark}
-    A self-adjoint subspace \( V \subseteq \mathfrak{sl}_{3} \)
-    generated by the generalized Pauli matrices can only be of even
-    dimension, i.e., \( \operatorname{dim}(V) = m \in \left\{ 0, 2,
-    4, 6, 8 \right\} \). This is because the non-identity Pauli basis
-    generators \( P^a Q^b \in \mathcal{B} \) are non-self-adjoint (as
-        \( (a,b) \neq (3-a, 3-b) \text{ in } \mathbb{Z}_3 \times
-    \mathbb{Z}_3 \)) and are partitioned into mutually disjoint pairs
-    of adjoint partners \( \{ v, v^* \} \). Since \( V = V^* \), the
-    inclusion of any generator \( v \in V \) forces its linearly
-    independent reflection partner \( v^* \in V \), meaning \( V \)
-    decomposes into a direct sum of 2-dimensional
+    A self-adjoint subspace \( V \subseteq \mathfrak{sl}_3 \) generated
+    by the generalised Pauli matrices can only have even dimension, i.e.\
+    \( \dim(V) = m \in \{0,2,4,6,8\} \). Indeed, the non-identity Pauli
+    basis generators \( P^aQ^b \in \mathcal{B} \) are non-self-adjoint
+    (as \( (a,b) \neq (3-a,3-b) \) in \( \mathbb{Z}_3 \times \mathbb{Z}_3 \))
+    and split into mutually disjoint adjoint pairs \( \{v, v^*\} \).
+    Since \( V = V^* \), including any generator \( v \in V \) forces the
+    inclusion of its linearly independent partner \( v^* \), so \( V \)
+    decomposes as a direct sum of \( 2 \)-dimensional
     reflection-invariant blocks \( \mathcal{P}_k =
-    \operatorname{span}\{v, v^*\} \). Thus, \( \operatorname{dim}(V)
-    = 2r \) for some integer \( r \ge 0 \).
+    \operatorname{span}\{v,v^*\} \).
+    Thus \( \dim(V) = 2r \) for some integer \( r \geq 0 \).
 \end{remark}
 
-To characterize all possible loop-free and undirected quntum graphs
-we only need to focus on the relevant subspaces.
+To characterize all possible loop-free, undirected quantum graphs, it
+therefore suffices to focus on these relevant subspaces.
 
-\section{Classification of Self-Reflective Subspaces Generated by
+\section{Classification of self-reflective subspaces generated by
 \(P\) and \(Q\)}
 
-\subsection{Fundamental Reflection Invariant Pairs}
+\subsection{Fundamental reflection-invariant pairs}
 
-Since \(P\) and \(Q\) are unitary matrices (\(P^* = P^2\) and \(Q^* =
-Q^2\)), the conjugate transpose of an arbitrary generator obeys:
+Since \( P \) and \( Q \) are unitary (\( P^* = P^2 \), \( Q^* = Q^2 \)),
+the conjugate transpose of an arbitrary generator satisfies
 \[
-    (P^a Q^b)^* = \omega^{-ab} P^{3-a} Q^{3-b}.
+    (P^aQ^b)^* = \omega^{-ab}\, P^{3-a}Q^{3-b}.
 \]
 Because any self-reflective subspace must be closed under conjugate
-transposition, every basis generator \(P^a Q^b\) must belong to a
-subspace alongside its structural reflection partner \(P^{3-a}
-Q^{3-b}\). This partitions the 8 non-identity generators into 4
-mutually exclusive, reflection-invariant blocks of dimension 2:
+transposition, each basis generator \( P^aQ^b \) must appear alongside
+its structural reflection partner \( P^{3-a}Q^{3-b} \). This partitions
+the eight non-identity generators into four mutually exclusive,
+reflection-invariant blocks of dimension two:
 \begin{align*}
-    \mathcal{P}_1 &= \{P, P^2\} && \text{(Purely Diagonal Block)} \\
-    \mathcal{P}_2 &= \{Q, Q^2\} && \text{(Purely Shift Block)} \\
-    \mathcal{P}_3 &= \{PQ, P^2Q^2\} && \text{(First Mixed Block)} \\
-    \mathcal{P}_4 &= \{P^2Q, PQ^2\} && \text{(Second Mixed Block)}
+    \mathcal{P}_1 &= \{P, P^2\} && \text{(purely diagonal block)} \\
+    \mathcal{P}_2 &= \{Q, Q^2\} && \text{(purely shift block)} \\
+    \mathcal{P}_3 &= \{PQ, P^2Q^2\} && \text{(first mixed block)} \\
+    \mathcal{P}_4 &= \{P^2Q, PQ^2\} && \text{(second mixed block)}
 \end{align*}
 
-\subsection{Action of the Discrete Fourier Transform}
+\subsection{Action of the discrete Fourier transform}
 
-Let \(F\) denote the $3 \times 3$ Discrete Fourier
-Transform matrix. The unitary similarity transformation $X
-\mapsto F X F^*$ acts as an automorphism on the generalized Pauli
-algebra, mapping clock and shift operators into one another:
+Let \( F \) denote the \( 3 \times 3 \) discrete Fourier transform
+matrix. The unitary similarity transformation \( X \mapsto FXF^* \) acts
+as an automorphism of the generalised Pauli algebra, exchanging clock and
+shift operators:
 \[
-    F P F^* = Q^2 \quad \text{and} \quad F Q F^* = P.
+    FPF^* = Q^2, \qquad FQF^* = P.
 \]
-On the fundamental blocks $\mathcal{P}_k$, the DFT induces a natural
+On the fundamental blocks \( \mathcal{P}_k \), this induces a natural
 pair-swapping involution:
 \[
-    F \mathcal{P}_1 F^* = \mathcal{P}_2, \quad F \mathcal{P}_2 F^* =
-    \mathcal{P}_1, \quad F \mathcal{P}_3 F^* = \mathcal{P}_4, \quad F
-    \mathcal{P}_4 F^* = \mathcal{P}_3.
+    F\mathcal{P}_1F^* = \mathcal{P}_2, \qquad
+    F\mathcal{P}_2F^* = \mathcal{P}_1, \qquad
+    F\mathcal{P}_3F^* = \mathcal{P}_4, \qquad
+    F\mathcal{P}_4F^* = \mathcal{P}_3.
 \]
 
-\subsection{Complete Classification Theorem}
+\subsection{Subspace classification theorem}
 
-Because the fundamental building blocks \(\mathcal{P}_k\) are
-non-overlapping 2-dimensional sets, every self-reflective subspace
-generated by powers of \(P\) and \(Q\) is formed by taking a direct
+Because the fundamental building blocks \( \mathcal{P}_k \) are
+non-overlapping \( 2 \)-dimensional sets, every self-reflective subspace
+generated by powers of \( P \) and \( Q \) is formed by taking a direct
 sum of a subset of these blocks (including the empty set).
 
 \begin{theorem}
-    All self-reflective subspaces \(V \subseteq M_3\) generated by
-    \(P\) and \(Q\) are classified by their dimension \(m = \dim(V)\)
-    and their orbits under the Discrete Fourier Transform action \(V
-    \mapsto F V F^*\) as follows:
-
-    \begin{enumerate}
-        \item \textbf{Odd Dimensions \(m \in \{1, 3, 5, 7\}\):}
-            No such subspaces exist (0 subspaces).
-
-        \item \textbf{Dimension \(m = 0\) (1 subspace):}
-            The trivial zero space \(V_0 = \{0\}\).
-            \begin{itemize}
-                \item Orbit: \(\{V_0\}\) (\(F\)-invariant).
-            \end{itemize}
-
-        \item \textbf{Dimension \(m = 2\) (4 subspaces):}
-            Let \(V_k = \operatorname{span}(\mathcal{P}_k)\) for \(k
-            \in \{1, 2, 3, 4\}\). These partition into 2 Fourier
-            orbits of size 2:
-            \begin{itemize}
-                \item \textbf{Diagonal/Shift Orbit:} \(\{V_1,
-                    V_2\}\), where \(F V_1 F^* = V_2\).
-                \item \textbf{Mixed-Shift Orbit:} \(\{V_3, V_4\}\),
-                    where \(F V_3 F^* = V_4\).
-            \end{itemize}
-
-        \item \textbf{Dimension \(m = 4\) (6 subspaces):}
-            Let \(W_{i,j} = \operatorname{span}(\mathcal{P}_i \oplus
-            \mathcal{P}_j)\) for \(1 \le i < j \le 4\). These
-            partition into 4 Fourier orbits (2 invariant singletons
-            and 2 pairs):
-            \begin{itemize}
-                \item \textbf{Pure Block Orbit:} \(\{W_{1,2}\}\)
-                    (\(F\)-invariant, since \(F \mathcal{P}_1 F^* =
-                    \mathcal{P}_2\)).
-                \item \textbf{Mixed Block Orbit:} \(\{W_{3,4}\}\)
-                    (\(F\)-invariant, since \(F \mathcal{P}_3 F^* =
-                    \mathcal{P}_4\)).
-                \item \textbf{Cross Orbit A:} \(\{W_{1,3},
-                    W_{2,4}\}\), where \(F W_{1,3} F^* = W_{2,4}\).
-                \item \textbf{Cross Orbit B:} \(\{W_{1,4},
-                    W_{2,3}\}\), where \(F W_{1,4} F^* = W_{2,3}\).
-            \end{itemize}
-
-        \item \textbf{Dimension \(m = 6\) (4 subspaces):}
-            Let \(U_k = \operatorname{span}\big(\bigoplus_{i \neq k}
-            \mathcal{P}_i\big)\) for \(k \in \{1, 2, 3, 4\}\). These
-            partition into 2 Fourier orbits of size 2:
-            \begin{itemize}
-                \item \textbf{Complementary Diagonal/Shift Orbit:}
-                    \(\{U_1, U_2\}\), where \(F U_1 F^* = U_2\).
-                \item \textbf{Complementary Mixed Orbit:} \(\{U_3,
-                    U_4\}\), where \(F U_3 F^* = U_4\).
-            \end{itemize}
-
-        \item \textbf{Dimension \(m = 8\) (1 subspace):}
-            The full traceless algebra
-            \(\mathfrak{su}_3 =
-            \operatorname{span}\big(\bigoplus_{k=1}^4 \mathcal{P}_k\big)\).
-            \begin{itemize}
-                \item Orbit: \(\{\mathfrak{su}_3\}\)
-                    (\(F\)-invariant).
-            \end{itemize}
-    \end{enumerate}
+    Every self-reflective subspace \( V \subseteq M_3 \) generated by
+    \( P \) and \( Q \) is classified by its dimension \( m = \dim(V) \),
+    as recorded in Table~\ref{tab:classification-no-dft}.
 \end{theorem}
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{@{}clc@{}}
+        \toprule
+        \( m \) & Subspaces & Count \\
+        \midrule
+        \( 1,3,5,7 \) & none exist & \( 0 \) \\
+        \addlinespace
+        \( 0 \) & \( V_0 = \{0\} \) & \( 1 \) \\
+        \addlinespace
+        \( 2 \) & \( V_k = \operatorname{span}(\mathcal{P}_k) \), \(
+        k \in \{1,2,3,4\} \) & \( 4 \) \\
+        \addlinespace
+        \( 4 \) & \( W_{i,j} = \operatorname{span}(\mathcal{P}_i
+        \oplus \mathcal{P}_j) \), \( 1 \le i < j \le 4 \) & \( 6 \) \\
+        \addlinespace
+        \( 6 \) & \( U_k = \operatorname{span}\big(\bigoplus_{i \neq
+        k} \mathcal{P}_i\big) \), \( k \in \{1,2,3,4\} \) & \( 4 \) \\
+        \addlinespace
+        \( 8 \) & \( \mathfrak{su}_3 =
+            \operatorname{span}\big(\bigoplus_{k=1}^4 \mathcal{P}_k\big)
+        \) & \( 1 \) \\
+        \bottomrule
+    \end{tabular}
+    \caption{Classification of self-reflective subspaces \( V \subseteq M_3 \)
+    generated by \( P \) and \( Q \), by dimension.}
+    \label{tab:classification-no-dft}
+\end{table}
 
 \begin{corollary}
-    Including the trivial subspace \(V_0\), there exist precisely
-    \(16\) self-reflective subspaces generated by \(P\) and \(Q\).
-    Under the action of the Discrete Fourier Transform \(V \mapsto F
-    V F^*\), these 16 subspaces partition into \emph{10 equivalence
-    classes} (3 \( F \)-invariant fixed points and 7 swapped pairs).
+    Including the trivial subspace \( V_0 \), there exist precisely
+    \( 16 \) self-reflective subspaces generated by \( P \) and \( Q \).
 \end{corollary}
 
+The classification above reduces to elementary combinatorics once the
+blocks \( \mathcal{P}_1, \ldots, \mathcal{P}_4 \) are fixed: because
+these four blocks partition the eight non-identity Pauli generators
+into disjoint reflection-invariant pairs, choosing a self-reflective
+subspace \( V \) amounts to nothing more than choosing a subset
+\( S \subseteq \{1,2,3,4\} \) of blocks to include, with
+\( V = \bigoplus_{k \in S} \mathcal{P}_k \). There are \( 2^4 = 16 \)
+such subsets in total, matching the count in the corollary, and since
+each included block contributes exactly \( 2 \) dimensions, the
+resulting dimension is always even, explaining why \( V \) can never
+have odd dimension. The counts in each row of the table are then just
+binomial coefficients \( \binom{4}{r} \) for \( r = |S| \) blocks
+chosen (namely \( 1, 4, 6, 4, 1 \) for \( r = 0,1,2,3,4 \)), which is
+also why the table is symmetric under \( m \leftrightarrow 8-m \):
+choosing \( r \) blocks to include is the same data as choosing
+\( 4-r \) blocks to exclude.
+
+\section{Classification of loopfree and undirected graphs on \( M_{3} \)}
+
+In this section we exhibit, for each of the sixteen self-reflective
+subspaces classified above, the corresponding voltage graph on
+\( \mathbb{Z}_3 \) together with its derived (covering) graph. Four
+representative cases are shown below; the base graph \( \Gamma \) has
+its edges and loops labeled by elements of \( \mathbb{Z}_3 \), and the
+derived graph \( \Gamma^\lambda \) consists of three fibers of three
+vertices each, with edge colors indicating voltage:
+\begin{center}
+    \vspace{-0.3cm}
+    \voltagelegend
+    \vspace{-0.3cm}
+\end{center}
+
+% ==========================================
+% CASE 1: Only 1- and 2- loops
+% ==========================================
+\begin{center}
+    \centering
+    {\normalsize\sffamily\bfseries Case 1 of 4: Only loops labeled
+    \(1,2\)}\\[4pt]
+    \begin{minipage}[c]{0.435\textwidth}
+        \centering
+        \begin{tikzpicture}[scale=0.85]
+            \drawbase
+            \path[-, thick]
+            (u) edge [loop left, looseness=8] node[edge label] {\( 1,2 \)} (u)
+            (v) edge [loop right, looseness=8] node[edge label] {\( 1,2 \)} (v)
+            (w) edge [loop above, looseness=8] node[edge label] {\( 1,2 \)} (w);
+        \end{tikzpicture}
+        \captionof{}{Base \( \Gamma \): undirected loops}
+    \end{minipage}\hfill
+    \begin{minipage}[c]{0.515\textwidth}
+        \centering
+        \begin{tikzpicture}[scale=0.62]
+            \drawfibers
+            \drawderivedloops
+            \drawfibernodes
+        \end{tikzpicture}
+        \captionof{}{Derived \( \Gamma^\lambda \): undirected 3-cycles}
+    \end{minipage}
+\end{center}
+
+\vspace{0.3cm}
+
+% ==========================================
+% CASE 2: 1- and 2- cycles along with loops
+% ==========================================
+\begin{center}
+    \centering
+    {\normalsize\sffamily\bfseries Case 2 of 4: Loops plus a
+    \(1\)-voltage triangle}\\[4pt]
+    \begin{minipage}[c]{0.435\textwidth}
+        \centering
+        \begin{tikzpicture}[scale=0.85]
+            \drawbase
+            \path[-, thick]
+            (u) edge [loop left, looseness=8] node[edge label] {\( 1,2 \)} (u)
+            (v) edge [loop right, looseness=8] node[edge label] {\( 1,2 \)} (v)
+            (w) edge [loop above, looseness=8] node[edge label] {\( 1,2 \)} (w)
+            (u) edge node[edge label] {\( 1 \)} (v)
+            (v) edge node[edge label] {\( 1 \)} (w)
+            (w) edge node[edge label] {\( 1 \)} (u);
+        \end{tikzpicture}
+        \captionof{}{Base \( \Gamma \): undirected triangle \& loops}
+    \end{minipage}\hfill
+    \begin{minipage}[c]{0.515\textwidth}
+        \centering
+        \begin{tikzpicture}[scale=0.62]
+            \drawfibers
+            \drawderivedloops
+            \drawlift{u}{v}{1}
+            \drawlift{v}{w}{1}
+            \drawlift{w}{u}{1}
+            \drawfibernodes
+        \end{tikzpicture}
+        \captionof{}{Derived \( \Gamma^\lambda \): exactly 18
+        undirected edges}
+    \end{minipage}
+\end{center}
+
+\vspace{0.3cm}
+
+% ==========================================
+% CASE 3: All 1's and all 2's
+% ==========================================
+\begin{center}
+    \centering
+    {\normalsize\sffamily\bfseries Case 3 of 4: Loops plus \(1\)- and
+    \(2\)-voltage triangle edges}\\[4pt]
+    \begin{minipage}[c]{0.435\textwidth}
+        \centering
+        \begin{tikzpicture}[scale=0.85]
+            \drawbase
+            \path[-, thick]
+            (u) edge [loop left, looseness=8] node[edge label] {\( 1,2 \)} (u)
+            (v) edge [loop right, looseness=8] node[edge label] {\( 1,2 \)} (v)
+            (w) edge [loop above, looseness=8] node[edge label] {\( 1,2 \)} (w)
+            (u) edge [bend left=25] node[edge label] {\( 1 \)} (v)
+            (u) edge [bend right=25] node[edge label] {\( 2 \)} (v)
+            (v) edge [bend left=25] node[edge label] {\( 1 \)} (w)
+            (v) edge [bend right=25] node[edge label] {\( 2 \)} (w)
+            (w) edge [bend left=25] node[edge label] {\( 1 \)} (u)
+            (w) edge [bend right=25] node[edge label] {\( 2 \)} (u);
+        \end{tikzpicture}
+        \captionof{}{Base \( \Gamma \): undirected multigraph}
+    \end{minipage}\hfill
+    \begin{minipage}[c]{0.515\textwidth}
+        \centering
+        \begin{tikzpicture}[scale=0.62]
+            \drawfibers
+            \drawderivedloops
+            \foreach \src/\dst in {u/v, v/w, w/u} {
+                \drawlift{\src}{\dst}{1}
+                \drawlift{\src}{\dst}{2}
+            }
+            \drawfibernodes
+        \end{tikzpicture}
+        \captionof{}{Derived \( \Gamma^\lambda \): partial
+        \(K_{3,3}\) between fibers}
+    \end{minipage}
+\end{center}
+
+\vspace{0.3cm}
+
+% ==========================================
+% CASE 4: Everything except 0-loops
+% ==========================================
+\begin{center}
+    \centering
+    {\normalsize\sffamily\bfseries Case 4 of 4: Loops plus \(0\)-,
+    \(1\)-, and \(2\)-voltage triangle edges}\\[4pt]
+    \begin{minipage}[c]{0.435\textwidth}
+        \centering
+        \begin{tikzpicture}[scale=0.85]
+            \drawbase
+            \path[-, thick]
+            (u) edge [loop left, looseness=8] node[edge label] {\( 1,2 \)} (u)
+            (v) edge [loop right, looseness=8] node[edge label] {\( 1,2 \)} (v)
+            (w) edge [loop above, looseness=8] node[edge label] {\( 1,2 \)} (w)
+            (u) edge [bend left=32] node[edge label] {\( 1 \)} (v)
+            (u) edge node[edge label] {\( 0 \)} (v)
+            (u) edge [bend right=32] node[edge label] {\( 2 \)} (v)
+            (v) edge [bend left=32] node[edge label] {\( 1 \)} (w)
+            (v) edge node[edge label] {\( 0 \)} (w)
+            (v) edge [bend right=32] node[edge label] {\( 2 \)} (w)
+            (w) edge [bend left=32] node[edge label] {\( 1 \)} (u)
+            (w) edge node[edge label] {\( 0 \)} (u)
+            (w) edge [bend right=32] node[edge label] {\( 2 \)} (u);
+        \end{tikzpicture}
+        \captionof{}{Base \( \Gamma \): full undirected multigraph}
+    \end{minipage}\hfill
+    \begin{minipage}[c]{0.515\textwidth}
+        \centering
+        \begin{tikzpicture}[scale=0.62]
+            \drawfibers
+            \drawderivedloops
+            \foreach \src/\dst in {u/v, v/w, w/u} {
+                \drawlift{\src}{\dst}{0}
+                \drawlift{\src}{\dst}{1}
+                \drawlift{\src}{\dst}{2}
+            }
+            \drawfibernodes
+        \end{tikzpicture}
+        \captionof{}{Derived \( \Gamma^\lambda \): perfect
+        \(K_{3,3}\) between all fibers}
+    \end{minipage}
+\end{center}
+
+% \section{Our graphs are vertex-transitive}
+%
+% \begin{definition}
+%     Let \( R \subseteq M_n(\mathbb{C}) \) be a subspace associated
+%     with a quantum graph \( A \).
+%     A quantum graph \( A \) is called \emph{vertex-transitive}
+%     if, in addition, the set
+%     \[
+%         \{ u \in U(n) : uRu^* = R \}
+%     \]
+%     spans \( M_n(\mathbb{C}) \).
+% \end{definition}
+%
+% \begin{proposition}
+%     Every self-reflective subspace \( V \subseteq M_3 \) generated by
+%     \( P \) and \( Q \) (i.e.\ every direct sum of a subset of the
+%     blocks \( \mathcal{P}_1, \mathcal{P}_2, \mathcal{P}_3, \mathcal{P}_4 \))
+%     gives rise to a vertex-transitive quantum graph.
+% \end{proposition}
+%
+% \begin{proof}
+%     We first show that conjugation by any element \( P^aQ^b \),
+%     \( a,b \in \{0,1,2\} \), preserves each one-dimensional span
+%     \( \operatorname{span}\{P^cQ^d\} \) individually. Using the
+%     commutation relation \( PQ = \omega\,QP \), one computes
+%     \[
+%         Q^bPQ^{-b} = \omega^{-b}P, \qquad P^aQP^{-a} = \omega^{a}Q,
+%     \]
+%     and more generally, for any generator \( P^cQ^d \),
+%     \[
+%         (P^aQ^b)\,P^cQ^d\,(P^aQ^b)^{-1}
+%         = \omega^{\,bc-ad}\; P^cQ^d.
+%     \]
+%     Thus conjugation by \( P^aQ^b \) fixes the generator \( P^cQ^d \)
+%     up to a scalar phase \( \omega^{bc-ad} \), and in particular sends
+%     \( \operatorname{span}\{P^cQ^d\} \) to itself.
+%
+%     Since every block \( \mathcal{P}_k \) is a set of two such
+%     generators, and every self-reflective subspace \( V \) is a direct
+%     sum of some subset of the blocks, it follows that
+%     \[
+%         (P^aQ^b)\, V\, (P^aQ^b)^{-1} = V
+%     \]
+%     for \emph{every} \( a,b \in \{0,1,2\} \), i.e.\ the full
+%     Weyl--Heisenberg group \( \{P^aQ^b\}_{a,b=0,1,2} \) stabilizes
+%     \( V \), regardless of which subset of blocks was chosen.
+%
+%     But we have already shown that the nine matrices \( P^aQ^b \) form
+%     an orthogonal basis of \( M_3(\mathbb{C}) \); in particular they
+%     span \( M_3(\mathbb{C}) \). Since
+%     \[
+%         \{P^aQ^b\}_{a,b=0,1,2} \;\subseteq\; \{ u \in U(3) : uVu^* = V \},
+%     \]
+%     the stabilizer of \( V \) already spans \( M_3(\mathbb{C}) \) on
+%     its own, so \( V \) is vertex-transitive.
+% \end{proof}
+%
+% \begin{remark}
+%     In particular, this covers all sixteen subspaces of
+%     Table~\ref{tab:classification-no-dft}, including the extremal
+%     cases \( V_0 = \{0\} \) and \( \mathfrak{su}_3 \), whose
+%     stabilizers are trivially all of \( U(3) \). More strikingly, the
+%     proposition shows that vertex-transitivity holds already at the
+%     \emph{minimal} nontrivial dimension \( m = 2 \): even the smallest
+%     quantum graphs \( V_k = \operatorname{span}(\mathcal{P}_k) \) are
+%     vertex-transitive, stabilized by the same \( 9 \)-element
+%     Weyl--Heisenberg group that stabilizes every other subspace in the
+%     classification.
+% \end{remark}
+%
 \section{Classification of different types of graphs}
 
-In this section we will consider the possibility of classification of
-quantum graphs that are not necessarily loopfree and/or are not undirected.
+In this section we consider the prospects for classifying quantum graphs
+that are not necessarily loop-free and/or undirected.
 
 \begin{theorem}
-    (\textcite[Theorem~3.11.]{gromada22})
-    A simple graph on \( M_{2} \) is determined up to isomorphism
-    only by the number of quantum edges \( m \in \left\{ 0, 1, 2,
-    3  \right\} \).
+    (\textcite[Theorem~3.11]{gromada22})
+    A simple graph on \( M_2 \) is determined up to isomorphism solely by
+    the number of quantum edges \( m \in \{0,1,2,3\} \).
 \end{theorem}
 
-The proof of this theorem uses the fact that \( PU_{2} \cong SO_{3}  \),
-which is well-known and is key in the proof. This cannot be generalised
-to higher dimensions, as the lemma below states.
+The proof of this theorem relies on the well-known isomorphism
+\( PU(2) \cong SO(3) \), which plays a key role throughout. This result
+does not generalise to higher dimensions, as the following lemma shows.
 
 \begin{lemma}
     The natural action
     \[
-        PU(3)\curvearrowright
-        \mathbb{P}(\mathbb{R}^{8})
-        =
-        \{ W\leq \mathbb{R}^{8}:\dim(W)=1 \}
+        PU(3) \curvearrowright \mathbb{P}(\mathbb{R}^8)
+        = \{ W \leq \mathbb{R}^8 : \dim(W) = 1 \}
     \]
     has infinitely many orbits.
 \end{lemma}
 
 \begin{proof}
-    Let
+    Let \( V = \mathfrak{su}(3) \cong \mathbb{R}^8 \), and identify
+    \( \mathbb{P}(\mathbb{R}^8) \) with \( \mathbb{P}(V) \). The action of
+    \( PU(3) \) on \( V \) is the adjoint representation
     \[
-        V=\mathfrak{su}(3)\cong\mathbb{R}^8,
+        g \cdot X = gXg^{-1},
     \]
-    and identify \(\mathbb{P}(\mathbb{R}^8)\) with \(\mathbb{P}(V)\).
-    The action of
-    \(PU(3)\) on \(V\) is the adjoint representation
-    \[
-        g\cdot X=gXg^{-1},
-    \]
-    which induces an action on the $1$-dimensional subspaces of \(V\).
-
-    To prove that there are infinitely many orbits, it suffices to
-    construct a projective invariant taking infinitely many values.
+    which induces an action on the \( 1 \)-dimensional subspaces of
+    \( V \). To show that this action has infinitely many orbits, it
+    suffices to exhibit a projective invariant taking infinitely many
+    values.
 
     Define
     \[
-        q(X)=-\operatorname{Tr}(X^2), \qquad
-        c(X)=i \operatorname{Tr}(X^3).
+        q(X) = -\operatorname{Tr}(X^2), \qquad c(X) = i\operatorname{Tr}(X^3).
     \]
     Since the trace is invariant under conjugation,
     \[
-        q(gXg^{-1})=q(X), \qquad
-        c(gXg^{-1})=c(X)
+        q(gXg^{-1}) = q(X), \qquad c(gXg^{-1}) = c(X)
     \]
-    for every \(g\in PU(3)\). Moreover, for every
-    \(\lambda\in\mathbb{R}\),
+    for every \( g \in PU(3) \). Moreover, for every \( \lambda \in
+    \mathbb{R} \),
     \[
-        q(\lambda X)=\lambda^2q(X), \qquad
-        c(\lambda X)=\lambda^3c(X).
+        q(\lambda X) = \lambda^2 q(X), \qquad c(\lambda X) = \lambda^3 c(X),
     \]
-    Hence
+    so the ratio
     \[
-        I(X)=\frac{c(X)^2}{q(X)^3}
+        I(X) = \frac{c(X)^2}{q(X)^3}
     \]
-    is invariant under both the adjoint action and multiplication by
-    nonzero scalars. Therefore \(I\) is a well-defined invariant of the
-    induced action on \(\mathbb{P}(V)\).
+    is invariant both under the adjoint action and under rescaling by
+    nonzero scalars, and hence defines a well-defined invariant of the
+    induced action on \( \mathbb{P}(V) \).
 
-    Now consider the family
+    Consider now the family
     \[
-        X_a=i \operatorname{diag}(a,1,-a-1),
-        \qquad a\in\mathbb{R}.
+        X_a = i\operatorname{diag}(a, 1, -a-1), \qquad a \in \mathbb{R}.
     \]
     A direct computation gives
     \[
-        q(X_a)=2(a^2+a+1),
+        q(X_a) = 2(a^2+a+1), \qquad c(X_a) = -3a(a+1),
     \]
-    and
+    and therefore
     \[
-        c(X_a)=-3a(a+1).
+        I(X_a) = \frac{9a^2(a+1)^2}{8(a^2+a+1)^3}.
     \]
-    Therefore
+    This is a nonconstant continuous function of \( a \); for instance,
     \[
-        I(X_a)
-        =
-        \frac{9a^2(a+1)^2}{8(a^2+a+1)^3}.
+        I(X_0) = 0, \qquad I(X_1) = \frac{1}{6},
     \]
-    This is a nonconstant continuous function of \(a\); for example,
-    \[
-        I(X_0)=0,
-        \qquad
-        I(X_1)=\frac16.
-    \]
-    Hence \(I(X_a)\) assumes infinitely many values as \(a\) varies over
-    \(\mathbb{R}\).
-
-    Since \(I\) is constant on each \(PU(3)\)-orbit of
-    \(\mathbb{P}(V)\), distinct values of \(I\) correspond to distinct
-    orbits. Therefore the action of \(PU(3)\) on
-    \(\mathbb{P}(\mathbb{R}^8)\) has infinitely many orbits.
+    so \( I(X_a) \) takes infinitely many values as \( a \) ranges over
+    \( \mathbb{R} \). Since \( I \) is constant on each \( PU(3) \)-orbit
+    of \( \mathbb{P}(V) \), distinct values of \( I \) must correspond to
+    distinct orbits. Hence the action of \( PU(3) \) on
+    \( \mathbb{P}(\mathbb{R}^8) \) has infinitely many orbits.
 \end{proof}
+
+\subsection{Simple quantum graph that is not quantum isomprphic to a
+classical graph}
+
+% TODO: write some stuff.
+
+\begin{example}
+    (\textcite[Example~8.5]{gromada22})
+    The matrix
+    \[
+        \lambda_{8} = \frac{1}{\sqrt{2}}
+        \begin{matrix}
+            1 & 0 & 0 \\
+            0 & 1 & 0 \\
+            0 & 0 & -2 \\
+        \end{matrix},
+    \]
+    which is one of the \emph{Gell--Mann matrices} spanning the
+    Lie algebra \( \mathfrak{su}_3 \). Then
+    the adjacency matrix \( A = \lambda_{8} \otimes \lambda_{8}
+    \) defines a simple graph on \( M_{3} \).
+\end{example}

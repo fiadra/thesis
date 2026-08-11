@@ -1,17 +1,26 @@
 \chapter{Preliminaries}
 
+The following sections cover various topics in algebra. They are not
+intended to provide an exhaustive treatment; rather, they are meant
+to equip the Reader with the necessary background to understand the
+remainder of this work. References to further information are
+provided where appropriate.
+
 \section{Group theory}
 
 In the following section we will introduce some group theoretic notions that
 be used throughout this thesis. We assume that the Reader is familiar with
-the notion of a group.
+the notion of a group. By \( \mathbb{T} \) we will denote the torus, i.e. the
+set of complex numbers with the absolute value of 1, along with multiplication
+as its group action. By \( e_{G} \) we will denote the identity
+element of \( G \). If \( G \) is abelian, its identity element will
+be expressed by \( 1_{G} \).
 
 % This is from Dummit & Foote's Algebra, page 167
 \begin{definition}[Dual of a group]
     Let \( G \) be a group. The \emph{dual group} \( \hat{G} \) is the
-    set of all homomorphisms from \( G \) into the multiplicative group
-    of roots of unity in \( \mathbb{C} \) with the group operation defined
-    as
+    set of all homomorphisms from \( G \) into the torus \(
+    \mathbb{T} \) with the group operation defined as
     \[
         \left( \varphi \psi \right)(g) = \varphi(g) \psi(g)
     \]
@@ -36,15 +45,16 @@ all of the groups we will be dealing with will be finite and abelian.
     First we will prove the statement for finite cyclic groups. Let \( G =
     \left\langle g \right\rangle \), \( \operatorname{ord}(g) = n \). We will
     prove that the dual is cyclic of order \( n \). Let \( \chi\colon
-        G \rightarrow
-    \mathbb{C} \) be a character. Since the group is cyclic, the character is
+    G \rightarrow \mathbb{T} \) be a character. Since the group is
+    cyclic, the character is
     entirely determined by the value it takes on the generator \( g \). Since
-    \( g^{n} = e \), obviously \( \chi(g)^{n} = 1 \), so \( \chi(g)^{n} \in
-        \mu_{n} = \left\{ \exp\left( 2k \pi i / n \right) \colon k =
-            0, 1, \dots, n-1
-    \right\}\). For each possible choice of \( \chi(g) \in \mu_{n} \) we get a
-    different character. It is then easy to see that \( \chi\colon G \rightarrow
-    \mathbb{C} \) such that \( \chi(g) = \exp\left( 2 \pi i / n \right) \)
+    \( g^{n} = e \), obviously \( \chi(g)^{n} = 1 \), so \( \chi(g)
+        \in \mu_{n} = \left\{ \exp\left( 2k \pi i / n \right) \colon k =
+    0, 1, \dots, n-1 \right\} \subseteq \mathbb{T} \). For each
+    possible choice of \(
+    \chi(g) \in \mu_{n} \) we get a
+    different character. It is then easy to see that \( \chi: G \rightarrow
+    \mathbb{T} \) such that \( \chi(g) = \exp\left( 2 \pi i / n \right) \)
     generates this group, i.e. \( \hat{G} = \left\{ \chi, \chi^{2},
     \dots, \chi^{n-1}, \chi^{n} = e_{\hat{G}} \right\} \).
 
@@ -83,7 +93,7 @@ on the context to distinguish between the two.
 
 \begin{definition}[Linear functional]
     A \emph{linear functional} on a \(C^{*}\)-algebra \( A \) is a
-    linear function \( \psi\colon A \rightarrow \mathbb{C} \).
+    linear function \( \psi: A \rightarrow \mathbb{C} \).
 \end{definition}
 
 \begin{remark}
@@ -99,7 +109,7 @@ a suitable functional.
     A functional \( \psi \) on a \(C^{*}\)-algebra \( A \) is called
     \emph{positive}, if
     \[
-        \psi(a^{*}a) \geq 0
+        0\leq \psi(a^{*}a)
     \]
     for any \( a \in A \).
 \end{definition}
@@ -119,6 +129,39 @@ a suitable functional.
     % For example see \textcite{gromada22}.
 \end{remark}
 
+\begin{example}[Positive and faithful functionals on matrix algebras]
+    Let \( A = M_{n}(\mathbb{C}) \), the \(C^{*}\)-algebra of \( n \times n \)
+    complex matrices, equipped with the usual trace \( \operatorname{Tr} \).
+    Define
+    \[
+        \psi(a) = n \operatorname{Tr}(a), \qquad a \in A.
+    \]
+    Since \( a^{*}a \) is positive semidefinite for every \( a \in A \), its
+    eigenvalues are non-negative, and hence \(
+    \operatorname{Tr}(a^{*}a) \geq 0 \);
+    thus \( \psi \) is a positive functional. Moreover, \(
+    \operatorname{Tr}(a^{*}a) = 0 \)
+    forces all eigenvalues of \( a^{*}a \) to vanish, which (since \( a^{*}a \)
+        is positive semidefinite, hence diagonalizable with non-negative
+    eigenvalues) implies \( a^{*}a = 0 \) and therefore \( a = 0 \).
+    So \( \psi \)
+    is faithful.
+\end{example}
+
+\begin{example}[A positive functional that is not faithful]
+    Let \( A = \mathbb{C}^{2} = \mathbb{C} \oplus \mathbb{C} \), with
+    coordinatewise multiplication and involution given by complex
+    conjugation in each coordinate. Define
+    \[
+        \psi(x,y) = x, \qquad (x,y) \in A.
+    \]
+    For \( (x,y) \in A \) we have \( (x,y)^{*}(x,y) = (|x|^{2}, |y|^{2}) \),
+    so \( \psi\big((x,y)^{*}(x,y)\big) = |x|^{2} \geq 0 \), and \( \psi \) is
+    positive. However \( \psi\big((0,y)^{*}(0,y)\big) = 0 \) for every
+    \( y \in \mathbb{C} \), while \( (0,y) \neq 0 \) whenever \( y \neq 0 \).
+    Hence \( \psi \) is positive but \emph{not} faithful.
+\end{example}
+
 The following notion is akin to the notion of a group action on a set.
 
 \begin{definition}[Group action on a \(C^{*}\)-algebra]
@@ -131,202 +174,353 @@ The following notion is akin to the notion of a group action on a set.
     in question is clear.
 \end{definition}
 
+% TODO: Give a reference to unitary matrices
+\begin{example}[Group actions on \(C^{*}\)-algebras]
+    \leavevmode
+    \begin{enumerate}
+        \item \emph{Conjugation action.} Let \( A = M_{n}(\mathbb{C}) \)
+            and let \( G = U(n) \) be the group of unitary matrices. Then
+            \( G \) acts on \( A \) via
+            \[
+                \alpha(u)(a) = u a u^{*}, \qquad u \in U(n),\ a \in A.
+            \]
+            Each \( \alpha(u) \) is easily checked to be a \(*\)-automorphism
+            of \( A \), and \( \alpha(u_1 u_2) = \alpha(u_1)\alpha(u_2) \),
+            so \( \alpha \colon G \to \operatorname{Aut}(A) \) is indeed a
+            group homomorphism.
+        \item \emph{Translation action.} Let \( A = C(\mathbb{T}) \), the
+            continuous complex-valued functions on the torus \(
+            \mathbb{T} \), and let
+            \( G = \mathbb{Z} \) act by rotation:
+            \[
+                (n \cdot f)(z) = f(z - n\theta \bmod 2\pi), \qquad n \in
+                \mathbb{Z},\ f \in A,
+            \]
+            for a fixed \( \theta \in \mathbb{R} \). This is precisely the
+            action used to construct the irrational rotation algebra as a
+            crossed product.
+        \item \emph{Trivial action.} For \emph{any} \(C^{*}\)-algebra \( A \)
+            and \emph{any} group \( G \), setting \(
+            \operatorname{triv}(g)(a) = a \)
+            for all \( g \in G,\ a \in A \) trivially defines a group action,
+            since \( \operatorname{triv}(g) = \operatorname{id}_A \in
+            \operatorname{Aut}(A) \)
+            for every \( g \), and the identity map is trivially a group
+            homomorphism from \( G \) into \( \operatorname{Aut}(A) \).
+    \end{enumerate}
+\end{example}
+
 \subsection{Crossed-product \(C^{*}\)-algebra}
 
-% TODO: rewrite this subsection
-
-In this section we will introduce the notion of a crossed-product
-\(C^{*}\)-algebra. We will do so in a limited manner, only to the
-extent to which the theory of such products is necessary for our
-purposes. For a more general reference we refer the Reader to
-\textcite{blackadar}.
-
-The following definitions are based off of \textcite{sierakowski09}.
+In this subsection we introduce the notion of a crossed-product
+\( C^{*} \)-algebra, in the limited form needed for our purposes; for a
+more general treatment we refer the Reader to \textcite{blackadar}. The
+definitions below follow \textcite{sierakowski09}.
 
 \begin{definition}[\( C^{*} \)-dynamical system]
-    A \( C^{*} \)-dynamical system is a triple \( (A, G, \alpha) \),
-    where \( A \) is a \(C^{*}\)-algebra, \( G \) is a group, and \(
-    \alpha\colon G \rightarrow \operatorname{Aut}(A) \) is a group
-    action on \( A \).
-    For a \( C^{*} \) dynamical system \( (A, G, \alpha) \) with \( G
-    \) finite we define
+    A \emph{\( C^{*} \)-dynamical system} is a triple \( (A, G, \alpha) \),
+    where \( A \) is a \( C^{*} \)-algebra, \( G \) is a discrete group,
+    and \( \alpha \colon G \to \operatorname{Aut}(A) \) is a group action
+    on \( A \). For a \( C^{*} \)-dynamical system \( (A,G,\alpha) \) we set
     \[
-        C_{c}(G, A, \alpha) = \left\{ f\colon G \rightarrow A \colon
-        \operatorname{supp}(f) \text{ is finite}\right\},
+        C_c(G,A,\alpha) = \{ f \colon G \to A : f \text{ has finite support} \},
     \]
-    i.e. the space of all finitely supported functions on \( G \) with values
-    in \( A \).
+    the space of all \( A \)-valued functions on \( G \).
+    We usually write \( g \cdot a \) for \( \alpha(g)(a) \).
 \end{definition}
 
-\( C_{c}(G, A, \alpha) \) is equipped with both a product and a \( *
-\)-operation in such a way that the action becomes "inner", i.e. \( g
-\cdot a = u_{g} a u^{*}_{g} \) for all \( g \in G \), \( a \in A \).
-More precisely we define those two operations in the following way:
+If \( G \) is finite, every \( f: G \rightarrow A \) is automatically
+finitely supported.
+A typical element \( a \in C_c(G,A,\alpha) \) is written
+\( a = \sum_{g \in G} a_g u_g \), where only finitely many of the
+\( a_g \in A \) are nonzero, and \( \{u_g\}_{g \in G} \) is a formal
+family of symbols indexed by \( G \) (which specific representation the
+\( u_g \) correspond to depends on the crossed product in question).
+
+The space \( C_c(G,A,\alpha) \) carries both a product and an
+involution, defined precisely so that the group action becomes
+\emph{inner}, i.e.\ so that \( g \cdot a = u_g a u_g^* \) for all
+\( g \in G \), \( a \in A \). Explicitly, for
+\( a = \sum_{g \in G} a_g u_g \) and \( b = \sum_{h \in G} b_h u_h \) in
+\( C_c(G,A,\alpha) \), the product and involution are given by
 \[
-    ab = \sum_{g,h \in G}
+    ab = \sum_{g,h \in G} a_g\,(g \cdot b_h)\, u_{gh},
+    \qquad
+    a^* = \sum_{g \in G} (g^{-1} \cdot a_g^*)\, u_{g^{-1}}.
 \]
 
 \begin{definition}[Covariant representation]
     Fix a dynamical system \( (A, G, \alpha) \). A \emph{covariant
-    representation} \( (\pi, u, H) \) of \( (A, G, \alpha) \) consist of a
-    unitary representation \( u\colon G \rightarrow B(\mathcal{H}) \)
-    of \( G \) and
-    a representation \( \pi\colon A \rightarrow B(\mathcal{H}) \) of
-    \( A \) such
-    that \( u(g) \pi(a) u(g)^{*} = \pi(g \cdot a) \) for every \( g \in G \)
-    and \( a \in A \).
+    representation} \( (\pi, u, \mathcal{H}) \) of \( (A,G,\alpha) \)
+    consists of a unitary representation
+    \( u \colon G \to B(\mathcal{H}) \) of \( G \) and a representation
+    \( \pi \colon A \to B(\mathcal{H}) \) of \( A \) such that
+    \[
+        u(g)\,\pi(a)\,u(g)^* = \pi(g \cdot a)
+    \]
+    for every \( g \in G \) and \( a \in A \).
 \end{definition}
 
-\begin{definition}[Full \(C^{*}\)-algebra norm on \( C_{c}(G, A, \alpha) \)]
-    The full \(C^{*}\)-algebra norm on \( C_{c}(G, A, \alpha) \) is given by
+\begin{definition}[Full \(C^{*}\)-algebra norm on \(C_c(G,A,\alpha)\)]
+    The \emph{full \( C^{*} \)-algebra norm} on \( C_c(G,A,\alpha) \) is
+    given by
     \[
-        \left\| \cdot \right\| = \sup \left\| (\pi \times u)(\cdot) \right\|,
+        \| \cdot \| = \sup \| (\pi \times u)(\cdot) \|,
     \]
-    where the supremum is taken over all covariant representations \(
-    (\pi, u, H) \)
-    of \( (A, G, \alpha) \).
+    where the supremum ranges over all covariant representations
+    \( (\pi, u, \mathcal{H}) \) of \( (A,G,\alpha) \).
 \end{definition}
 
 \begin{definition}[Crossed product \(C^{*}\)-algebra]
-    The crossed product of a \(C^{*}\)-algebra and a discrete group \( G \) is
-    the completion of \( C_{c}(G, A, \alpha) \) with respect to the full norm.
-    We denote the crossed product by \( \tilde{B}
-    \rtimes_{\hat{\alpha}} \hat{G} \).
+    The \emph{crossed product} of a \( C^{*} \)-algebra \( A \) and a
+    discrete group \( G \) is the completion of \( C_c(G,A,\alpha) \)
+    with respect to the full norm. We denote it by
+    % TODO: notation mismatch -- should this be A \rtimes_\alpha G,
+    % matching the A, G, \alpha used to build C_c(G,A,\alpha) above?
+    % \tilde{B} \rtimes_{\hat\alpha} \hat{G} introduces B, \hat\alpha,
+    % \hat{G} without ever defining them in this subsection.
+    \[
+        \tilde{B} \rtimes_{\hat\alpha} \hat{G}.
+    \]
 \end{definition}
+
+\begin{remark}
+    In this work we will not make use of norms of crossed product
+    \(C^{*}\)-algebras and almost all groups will be discrete, so we
+    can treat crossed product \(C^{*}\)-algebras as formal linear
+    combinations of some family \( \{u_g\}_{g \in G} \), which is
+    dependent on the group action in question.
+\end{remark}
+
+The Reader will find some examples of such \(C^{*}\)-algebras below.
+
+\begin{example}[Trivial action recovers the group $C^*$-algebra]
+    Let \( A = \mathbb{C} \) with the trivial action \( \alpha_g =
+    \operatorname{id} \)
+    for all \( g \in G \). Then every element of \( C_c(G,A,\alpha) \) is just
+    a finitely supported function \( G \to \mathbb{C} \), with convolution
+    product and involution reducing to the usual group algebra structure,
+    since the action contributes no twisting. Completing in the full norm
+    yields
+    \[
+        \mathbb{C} \rtimes_\alpha G \;\cong\; C^*(G),
+    \]
+    the (full) group \( C^* \)-algebra of \( G \). For instance, taking
+    \( G = \mathbb{Z} \) gives \( \mathbb{C} \rtimes \mathbb{Z} \cong
+    C(\mathbb{T}) \),
+    since \( C^*(\mathbb{Z}) \) is generated by a single unitary with no
+    relations, i.e.\ the continuous functions on the circle via the
+    Fourier transform.
+\end{example}
+
+\begin{example}[Irrational rotation algebra]
+    Let \( A = C(\mathbb{T}) \), the continuous functions on the torus,
+    and let \( G = \mathbb{Z} \) act by rotation through angle
+    \( 2\pi\theta \) for some fixed \( \theta \in \mathbb{R}
+    \setminus \mathbb{Q} \), i.e.
+    \[
+        \alpha_n(f)(z) = f\big(e^{-2\pi i n \theta} z\big), \qquad z
+        \in \mathbb{T},\; n \in \mathbb{Z}.
+    \]
+    The resulting crossed product
+    \[
+        A_\theta \;:=\; C(\mathbb{T}) \rtimes_\alpha \mathbb{Z}
+    \]
+    is the \emph{irrational rotation algebra} (a noncommutative torus). It
+    is generated by a unitary \( u \) (implementing the \( \mathbb{Z} \)-action)
+    and a unitary \( v \) (generating \( C(\mathbb{T}) \)) subject to the
+    single relation
+    \[
+        uv = e^{2\pi i \theta}\, vu,
+    \]
+    and is a standard first example of a simple, noncommutative
+    \( C^* \)-algebra arising from a crossed product.
+\end{example}
 
 \section{Matrix Lie Groups and Algebras}
 
-In this section we will remind the Reader some notions pertaining to
-the theory of matrix Lie groups and algebras that will be relevant to
-the rest of the thesis. A \emph{Lie group} is a group that is also a
-smooth differential manifold such that the group action and taking inverses
-are smooth maps. A \emph{Lie algebra} \(\mathfrak{g}\) is a vector space
-over any field (in our case over \(\mathbb{C}\)), equipped with a
-bilinear form (often called the Lie bracket)
+In this section we recall some notions from the theory of matrix Lie
+groups and algebras that will be needed later in the thesis. A \emph{Lie
+group} is a group that is simultaneously a smooth manifold, in such a way
+that both the group multiplication and the inversion map are smooth. A
+\emph{Lie algebra} \( \mathfrak{g} \) is a vector space over a field (for
+us, always \( \mathbb{C} \)) equipped with a bilinear form, the \emph{Lie
+bracket},
 \[
-    [\cdot, \cdot]: \mathfrak{g} \times \mathfrak{g} \rightarrow
-    \mathfrak{g}
+    [\cdot, \cdot] \colon \mathfrak{g} \times \mathfrak{g} \rightarrow
+    \mathfrak{g},
 \]
-that is antisymmetric and has the Jacobi property:
+which is antisymmetric and satisfies the Jacobi identity:
 \begin{itemize}
     \item \( [x, y] = -[y, x] \),
     \item \( [x, [y, z]] + [y, [z, x]] + [z, [x, y]] = 0 \).
 \end{itemize}
+These two notions are intimately related: every Lie group gives rise to a
+Lie algebra, obtained as the tangent space at the identity element,
+together with a bracket induced by the group structure.
 
-Those two notions are closely related, as Lie algebras naturally arise
-as tangent spaces of the identity element of Lie groups.
-
-We will be concerned with \emph{matrix Lie groups}, namely subgroups
-of the general linear group
+Our primary interest lies in \emph{matrix Lie groups}, i.e.\ subgroups of
+the general linear group
 \[
-    GL(n,\mathbb{C})=\{A\in M_{n}(\mathbb{C}): \det(A)\neq0\},
+    GL(n,\mathbb{C}) = \{A \in M_n(\mathbb{C}) : \det(A) \neq 0\},
 \]
-equipped with matrix multiplication. Examples include the unitary group
+taken with matrix multiplication as the group operation. Important
+examples include the unitary group
 \[
-    U(n)= \left\{ U \in M_{n}(\mathbb{C}) : U^{*}U = UU^{*} = I \right\},
+    U(n) = \{ U \in M_n(\mathbb{C}) : U^*U = UU^* = I \},
 \]
-as well as its subgroup, the special unitary group
+its subgroup, the special unitary group
 \[
-    SU(n)=\{U\in M_{n}(\mathbb{C}): U^{*} U = U U^{*}=I,\ \det(U)=1\},
+    SU(n) = \{ U \in M_n(\mathbb{C}) : U^*U = UU^* = I,\ \det(U) = 1 \},
 \]
 and the projective unitary group
 \[
-    PU(n)=U(n)/Z(U(n)),
+    PU(n) = U(n)/Z(U(n)),
 \]
-where \(Z(U(n))\) denotes the center of \(U(n)\). In all these cases the
-respective Lie group possess the subspace topology inherited from \(
-M_{n}(\mathbb{C}) \), or, in the case of \( PU(n) \), the quotient topology.
+where \( Z(U(n)) \) denotes the center of \( U(n) \). Each of these groups
+carries the subspace topology inherited from \( M_n(\mathbb{C}) \), except
+for \( PU(n) \), which instead carries the quotient topology induced by
+the projection \( U(n) \to U(n)/Z(U(n)) \).
 
 \begin{proposition}
-    \( Z(U(n)) \cong \left\{ \lambda \in \mathbb{C} : \left| \lambda
-    \right| = 1 \right\}\).
+    \( Z(U(n)) \cong \mathbb{T} \).
 \end{proposition}
 
 \begin{proof}
-    Recall that the center of \(U(n)\) is defined as
+    Recall that the center of \( U(n) \) is
     \[
-        Z(U(n))=\{A\in U(n): \forall\,U\in U(n) \; AU=UA\}.
+        Z(U(n)) = \{ A \in U(n) : AU = UA \text{ for all } U \in U(n) \}.
     \]
 
-    We will show that
+    Let \( A \in Z(U(n)) \). Since \( A \) commutes with every unitary
+    matrix, it in particular commutes with every permutation matrix. Let
+    \( P_{ij} \) denote the permutation matrix exchanging the \( i \)-th
+    and \( j \)-th basis vectors. From
     \[
-        Z(U(n))=\{\lambda I_n: |\lambda|=1\}.
+        AP_{ij} = P_{ij}A
     \]
+    we see that conjugating \( A \) by \( P_{ij} \) leaves it unchanged.
+    But conjugation by \( P_{ij} \) swaps the \( i \)-th and \( j \)-th
+    rows and columns of \( A \); since this holds for every pair
+    \( i,j \), all off-diagonal entries of \( A \) must vanish and all
+    diagonal entries must coincide. Hence \( A = \lambda I_n \) for some
+    \( \lambda \in \mathbb{C} \), where by \( I_{n} \) we denote the
+    \( n \times n \)-identity matrix.
 
-    Let \(A\in Z(U(n))\). Then \(A\) commutes with every unitary matrix.
-    In particular, it commutes with every permutation matrix. Let
-    \(P_{ij}\) denote the permutation matrix that exchanges the \(i\)-th
-    and \(j\)-th basis vectors. Since
+    As \( A \in U(n) \), we have \( A^*A = I \), and substituting
+    \( A = \lambda I_n \) gives
     \[
-        AP_{ij}=P_{ij}A,
+        (\overline{\lambda} I_n)(\lambda I_n) = |\lambda|^2 I_n = I_n,
     \]
-    conjugation by \(P_{ij}\) leaves \(A\) unchanged. As conjugation by
-    \(P_{ij}\) exchanges the \(i\)-th and \(j\)-th rows and columns of
-    \(A\), it follows that all off-diagonal entries of \(A\) must vanish
-    and all diagonal entries must be equal. Hence,
-    \[
-        A=\lambda I_n
-    \]
-    for some \(\lambda\in\mathbb{C}\).
+    so \( |\lambda| = 1 \).
 
-    Since \(A\in U(n)\), we have
+    Conversely, if \( A = \lambda I_n \) with \( |\lambda| = 1 \), then
+    clearly \( A \in U(n) \), and for every \( U \in U(n) \),
     \[
-        A^{*}A=I.
+        AU = \lambda U = UA,
     \]
-    Substituting \(A=\lambda I_n\), we obtain
-    \[
-        (\overline{\lambda}I_n)(\lambda I_n)
-        =
-        |\lambda|^2I_n
-        =
-        I_n,
-    \]
-    which implies
-    \[
-        |\lambda|=1.
-    \]
-
-    Conversely, let \(A=\lambda I_n\) with \(|\lambda|=1\). Then \(A\in
-    U(n)\), and for every \(U\in U(n)\),
-    \[
-        AU=\lambda U=UA.
-    \]
-    Therefore \(A\in Z(U(n))\).
-
-    We conclude that
-    \[
-        Z(U(n)) = \{\lambda I_n: |\lambda|=1\},
-    \]
-    as claimed.
+    so \( A \in Z(U(n)) \). This proves the claim.
 \end{proof}
 
-We will also be interested in
+We will also make use of
 \[
-    SO(n) = \left\{ R \in M_{n}(\mathbb{R}) : R^{T}R = RR^{T} = I,
-    \operatorname{det}(R) = 1 \right\},
+    SO(n) = \{ R \in M_n(\mathbb{R}) : R^TR = RR^T = I,\ \det(R) = 1 \},
 \]
-i.e. the Lie group of orientation-preserving rotations around the
-origin point.
+the Lie group of orientation-preserving rotations fixing the origin.
 
 For matrix Lie algebras, the Lie bracket is given by the matrix
 commutator
 \[
-    [X,Y]=XY-YX,
+    [X,Y] = XY - YX
 \]
-for matrices \(X\) and \(Y\) in the Lie algebra.
+for \( X, Y \) in the Lie algebra; one readily checks that this bracket
+is antisymmetric and satisfies the Jacobi identity.
 
-The Lie algebra corresponding to \(GL(n,\mathbb{C})\) is denoted by
-\(\mathfrak{gl}(n,\mathbb{C})\) and consists of all complex
-\(n\times n\) matrices,
+The Lie algebra associated to \( GL(n,\mathbb{C}) \) is denoted
+\( \mathfrak{gl}(n,\mathbb{C}) \) and consists of \emph{all} complex
+\( n \times n \) matrices,
 \[
-    \mathfrak{gl}(n,\mathbb{C})=M_n(\mathbb{C}).
+    \mathfrak{gl}(n,\mathbb{C}) = M_n(\mathbb{C}).
 \]
+The Lie algebra associated to \( SU(n) \), denoted \( \mathfrak{su}(n) \),
+consists of the traceless skew-Hermitian matrices,
+\[
+    \mathfrak{su}(n) = \{ X \in M_n(\mathbb{C}) : X^* = -X,\
+    \operatorname{Tr}(X) = 0 \}.
+\]
+We may regard \( \mathfrak{su}(2) \) as a \( 3 \)-dimensional real vector
+space (why?).
 
-On the other hand the Lie algebra corresponding to \(SU(n)\) is denoted by
-\(\mathfrak{su}(n)\) and consists of all traceless skew-Hermitian
-matrices,
-\[
-    \mathfrak{su}(n)=\{X\in M_{n}(\mathbb{C}):
-    X^{*}=-X,\ \operatorname{Tr}(X)=0\}.
-\]
-We can treat \( \mathfrak{su}_2 \) as a 3-dimensional vector space (why?).
+\begin{example}[The circle group \( SO(2) \) and its Lie algebra]
+    The group \( SO(2) \) consists of rotation matrices
+    \[
+        R_\theta =
+        \begin{pmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta
+        \end{pmatrix},
+        \qquad \theta \in [0, 2\pi),
+    \]
+    and is isomorphic, as a Lie group, to the circle \( \mathbb{T} \) via
+    \( \theta \mapsto R_\theta \). Differentiating the defining relation
+    \( R^TR = I \) at \( \theta = 0 \) shows that the corresponding Lie
+    algebra \( \mathfrak{so}(2) \) consists of antisymmetric real
+    matrices,
+    \[
+        \mathfrak{so}(2) = \left\{
+            \begin{pmatrix} 0 & -t \\ t & 0
+        \end{pmatrix} : t \in \mathbb{R} \right\},
+    \]
+    a one-dimensional real vector space. Since any two elements of
+    \( \mathfrak{so}(2) \) are scalar multiples of one another, the Lie
+    bracket on \( \mathfrak{so}(2) \) vanishes identically: it is an
+    \emph{abelian} Lie algebra.
+\end{example}
+
+\begin{example}[A basis for \( \mathfrak{su}(2) \)]
+    A convenient real basis for \( \mathfrak{su}(2) \) is given by
+    \( \{ i\sigma_1, i\sigma_2, i\sigma_3 \} \), where \( \sigma_1,
+    \sigma_2, \sigma_3 \) are the
+    Pauli matrices
+    \[
+        \sigma_1 =
+        \begin{pmatrix} 0 & 1 \\ 1 & 0
+        \end{pmatrix}, \qquad
+        \sigma_2 =
+        \begin{pmatrix} 0 & -i \\ i & 0
+        \end{pmatrix}, \qquad
+        \sigma_3 =
+        \begin{pmatrix} 1 & 0 \\ 0 & -1
+        \end{pmatrix}.
+    \]
+    Each \( i\sigma_k \) is traceless and skew-Hermitian, so \( i\sigma_k \in
+    \mathfrak{su}(2) \), and the three matrices are linearly independent
+    over \( \mathbb{R} \); together with \( \dim_{\mathbb{R}} SU(2) = 3 \)
+    this confirms that \( \mathfrak{su}(2) \) is a \( 3 \)-dimensional
+    real vector space, as anticipated above. The commutation relations
+    \[
+        [i\sigma_1, i\sigma_2] = -2i\sigma_3, \qquad [i\sigma_2,
+        i\sigma_3] = -2i\sigma_1, \qquad
+        [i\sigma_3, i\sigma_1] = -2i\sigma_2
+    \]
+    exhibit \( \mathfrak{su}(2) \) as (a rescaling of) the cross-product
+    Lie algebra on \( \mathbb{R}^3 \), and identify \( \mathfrak{su}(2) \)
+    with \( \mathfrak{so}(3) \) up to isomorphism.
+\end{example}
+
+\begin{example}[Non-example: \( GL(n,\mathbb{R}) \) inside \(
+    GL(n,\mathbb{C}) \)]
+    The real general linear group
+    \[
+        GL(n,\mathbb{R}) = \{ A \in M_n(\mathbb{R}) : \det(A) \neq 0 \}
+    \]
+    is a matrix Lie group in its own right, and sits inside
+    \( GL(n,\mathbb{C}) \) as a subgroup, but \emph{not} as a complex Lie
+    subgroup: its associated Lie algebra
+    \[
+        \mathfrak{gl}(n,\mathbb{R}) = M_n(\mathbb{R})
+    \]
+    is only a \emph{real} vector space, and is not closed under
+    multiplication by \( i \). This illustrates that subgroups of
+    \( GL(n,\mathbb{C}) \) need not inherit a complex Lie algebra
+    structure, even though \( \mathfrak{gl}(n,\mathbb{C}) \) itself is a
+    complex vector space.
+\end{example}

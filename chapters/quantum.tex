@@ -5,47 +5,63 @@ graphs. They were first considered by...
 
 \section{Quantum sets}
 
-Let \( B \) be a \(C^*\)-algebra equipped with a faithful positive functional
-\( \psi \). By the Gelfand-Naimark theorem, \( B \) can be realized concretely
-as a closed \(*\)-subalgebra of the bounded linear operators \( B(\mathcal{H})
-\) on some Hilbert space \( \mathcal{H} \). When \( B \) is finite-dimensional,
-this abstract framework simplifies considerably: we can identify \( B \) with
-its own Hilbert space completion \( L^2(B, \psi) \) by defining the inner
-product directly via the functional: \[ \langle x, y \rangle = \psi(x^* y)
-\quad \forall x, y \in B. \]
+Let \( B \) be a \( C^{*} \)-algebra equipped with a faithful positive
+functional \( \psi \). By the Gelfand--Naimark theorem, \( B \) can be
+realized concretely as a closed \( * \)-subalgebra of the bounded linear
+operators \( B(\mathcal{H}) \) on some Hilbert space \( \mathcal{H} \).
+When \( B \) is finite-dimensional, this abstract picture simplifies
+considerably: rather than passing to \( \mathcal{H} \), we can
+identify \( B \) with its own Hilbert space completion \( L^2(B,\psi) \),
+by equipping \( B \) itself with the inner product induced by \( \psi \),
+\[
+    \langle x, y \rangle = \psi(x^{*}y), \qquad x, y \in B.
+\]
+Since \( \psi \) is faithful, this form is positive definite, and since
+\( B \) is already finite-dimensional, it is automatically complete;
+hence \( L^2(B,\psi) \) may simply be taken to be \( B \) itself, viewed
+as a Hilbert space via this inner product.
 
-The following definition introduces one of the central notions used
-in this thesis. It is taken directly from \textcite{tobolski26}.
+This Hilbert space structure is the key extra piece of data that allows
+one to speak of adjoints of maps built from \( B \), and in particular of
+the adjoint of multiplication. This leads to the central definition of
+this thesis, taken directly from \textcite{tobolski26}.
 
 \begin{definition}
     (Quantum set, \textcite[Definition~2.1]{tobolski26})
-    A quantum set \( (B, \psi) \) is a pair consisting of a finite-dimensional
-    \(C^{*}\)-algebra \( B \) and a faithful positive functional \( \psi\colon B
-    \rightarrow \mathbb{C} \) such that
+    A \emph{quantum set} \( (B, \psi) \) is a pair consisting of a
+    finite-dimensional \( C^{*} \)-algebra \( B \) and a faithful positive
+    functional \( \psi \colon B \rightarrow \mathbb{C} \) such that
     \[
-        mm^{*} = \operatorname{Id}_{B}
+        m m^{*} = \operatorname{Id}_{B}
     \]
-    holds for the multiplication map \( m\colon B \otimes B \rightarrow B
-    \) and its adjoint \( m^{*} \) given by
+    holds, where \( m \colon B \otimes B \rightarrow B \) is the
+    multiplication map and \( m^{*} \) is its adjoint with respect to the
+    inner products induced by \( \psi \), i.e.\ the unique linear map
+    determined by
     \[
-        \left\langle m(a \otimes b), c \right\rangle = \left\langle a
-        \otimes b, m^{*}(c) \right\rangle_{\psi \otimes \psi}
+        \left\langle m(a \otimes b), c \right\rangle
+        = \left\langle a \otimes b, m^{*}(c) \right\rangle_{\psi \otimes \psi}
     \]
     for all \( a, b, c \in B \).
 \end{definition}
 
 \begin{remark}
-    We will call any functional with the property given in the
-    definition above a \emph{quantum set functional} on \( B \).
+    We refer to any functional \( \psi \) satisfying the condition in the
+    definition above as a \emph{quantum set functional} on \( B \). The
+    condition \( mm^{*} = \operatorname{Id}_B \) should be thought of as a
+    normalization condition on \( \psi \): not every faithful positive
+    functional on a finite-dimensional \( C^{*} \)-algebra makes
+    \( (B,\psi) \) into a quantum set, only those compatible with the
+    multiplication in this precise sense.
 \end{remark}
 
 \begin{remark}
-    Recall that in general, a \emph{comultiplication} on a
-    \(C^{*}\)-algebra is a \(*\)-homomorphism
+    Recall that, more generally, a \emph{comultiplication} on a
+    \( C^{*} \)-algebra \( A \) is a \( * \)-homomorphism
     \[
-        \Delta: A \rightarrow A\to A\otimes A
+        \Delta \colon A \rightarrow A \otimes A
     \]
-    such that the following diagram commutes:
+    making the following diagram commute (coassociativity):
     \[
         \begin{tikzcd}
             A \arrow[r,"\Delta"] \arrow[d,"\Delta"']
@@ -54,269 +70,336 @@ in this thesis. It is taken directly from \textcite{tobolski26}.
             & A\otimes A\otimes A
         \end{tikzcd}
     \]
-    Note that in general a comultiplication is \emph{not} unique. In our
-    setting it is uniquely determined by the additional structure and the
-    Riesz representation theorem for Hilbert spaces.
+    In general such a \( \Delta \) is far from unique, and need not
+    interact with any given inner product on \( A \) at all. In our
+    setting, however, the situation is much more rigid: once
+    \( (B,\psi) \) is a quantum set, the adjoint \( m^{*} \) of the
+    multiplication map is automatically a comultiplication on \( B \),
+    and it is the \emph{unique} one arising this way, since it is pinned
+    down by \( m \) together with the Riesz representation theorem for
+    the Hilbert space \( L^2(B,\psi) \).
 \end{remark}
 
 \begin{remark}
-    Since in our setup the comultiplication is given by the scalar product
-    and regular multiplication \( m \), we will denote it by \( m^{*} \).
+    Because in our setup the comultiplication is obtained from the
+    ordinary multiplication \( m \) purely by adjunction with respect to
+    \( \psi \), we will not introduce separate notation for it, and will
+    simply write \( m^{*} \) throughout.
 \end{remark}
 
 % TODO: Prove that the examples are correct (do some calculations)
-\begin{example}
-    Every finite set \( X \) gives rise to a quantum set \( (C(X), \psi_{X}) \)
-    with \( \psi_{X}\colon C(X) \rightarrow \mathbb{C} \), \(
-        \psi_{X}(f) = \sum_{x
-    \in X} f(x) \) for any \( f \in C(X) \).
-    Let \( X \) be a finite set and \( C(X) \) be the \(*\)-algebra of
-    complex-valued functions on \( X \), where the involution is given by
-    pointwise complex conjugation: \( f^*(x) = \overline{f(x)} \).
-
-    To show that \( \psi_X \) is positive, we must verify that
-    \( \psi_X(f^* f) \geq 0 \) for all \( f \in C(X) \). For any function
-    \( f \), the product \( f^* f \) evaluates pointwise to:
+\begin{example}[Classical finite sets as quantum sets]
+    Every finite set \( X \) gives rise to a quantum set
+    \( (C(X), \psi_X) \), where \( C(X) \) denotes the \( * \)-algebra of
+    complex-valued functions on \( X \) with pointwise multiplication and
+    involution given by pointwise complex conjugation,
+    \( f^*(x) = \overline{f(x)} \), and where
     \[
-        (f^* f)(x) = \overline{f(x)} f(x) = |f(x)|^2.
+        \psi_X \colon C(X) \rightarrow \mathbb{C}, \qquad
+        \psi_X(f) = \sum_{x \in X} f(x).
     \]
-    Applying the functional yields:
-    \[
-        \psi_X(f^* f) = \sum_{x \in X} |f(x)|^2.
-    \]
-    Thus the functional is positive.
 
-    To prove faithfulness, suppose \( \psi_X(f^* f) = 0 \) for some \( f
-    \in C(X) \). This implies:
+    To see that \( \psi_X \) is positive, note that for any
+    \( f \in C(X) \) the product \( f^*f \) evaluates pointwise as
+    \[
+        (f^*f)(x) = \overline{f(x)}\,f(x) = |f(x)|^2,
+    \]
+    so that
+    \[
+        \psi_X(f^*f) = \sum_{x \in X} |f(x)|^2 \geq 0.
+    \]
+
+    For faithfulness, suppose \( \psi_X(f^*f) = 0 \) for some
+    \( f \in C(X) \), i.e.
     \[
         \sum_{x \in X} |f(x)|^2 = 0.
     \]
-    Because each term \( |f(x)|^2 \) is strictly non-negative, a sum of
-    such terms can only equal zero if every individual term is zero.
-    Thus, we must have:
-    \[
-        |f(x)|^2 = 0 \quad \forall x \in X,
-    \]
-    which directly implies \( f(x) = 0 \) for all \( x \in X \). Therefore,
-    \( f \) is the zero function (\( f = 0 \)), establishing that \(
-    \psi_X \) is faithful.
+    Since each summand \( |f(x)|^2 \) is non-negative, the sum can vanish
+    only if every term does, so \( f(x) = 0 \) for all \( x \in X \), and
+    hence \( f = 0 \). Thus \( \psi_X \) is faithful.
 
-    Let \( \{e_x\}_{x \in X} \) be the standard orthonormal basis of
-    characteristic functions on \( X \). Recall the definitions of the
-    multiplication map \( m \) and its adjoint \( m^* \):
-    \begin{align*}
-        m(f \otimes g) &= fg, \\
-        m^*(e_x) &= e_x \otimes e_x.
-    \end{align*}
-
-    We wish to show that the composition \( mm^*\colon C(X)
-    \rightarrow C(X) \) is the identity operator (\( \text{Id} \)). Let us
-    evaluate the action of \( m m^* \) on an arbitrary basis element \( e_x \):
+    It remains to check the quantum set condition \( mm^* =
+    \operatorname{Id} \).
+    Let \( \{e_x\}_{x \in X} \) denote the orthonormal basis of \( C(X) \)
+    given by the characteristic functions of points, so that
     \[
-        (m m^*)(e_x) = m\big(m^*(e_x)\big) = m(e_x \otimes e_x) = e_x e_x = e_x.
+        m(f \otimes g) = fg, \qquad m^*(e_x) = e_x \otimes e_x.
     \]
-
-    Because the linear operators \( m m^* \) and \( \text{Id} \) agree on
-    every element of the basis \( \{e_x\}_{x \in X} \), by linearity they
-    must be equal on the entire space \( C(X) \). Therefore:
+    Evaluating the composite \( mm^* \) on a basis element gives
     \[
-        m m^* = \text{Id}.
+        (mm^*)(e_x) = m\big(m^*(e_x)\big) = m(e_x \otimes e_x) = e_x e_x = e_x,
     \]
+    since \( e_x \) is idempotent. As \( mm^* \) and \( \operatorname{Id} \)
+    agree on the basis \( \{e_x\}_{x \in X} \), they agree on all of
+    \( C(X) \) by linearity, so \( mm^* = \operatorname{Id} \), and
+    \( (C(X), \psi_X) \) is indeed a quantum set.
 \end{example}
 
-% TODO: Is this necessary?
-\begin{example}
-    In particular, \( (\mathbb{C}^{n}, \psi_{n}) \) with \( \psi_{n}(e_{i}) = 1
-    \) is a quantum set. The functional naturally extends to:
+\begin{example}[The special case \( \mathbb{C}^n \)]
+    Taking \( X = \{1, \dots, n\} \) in the previous example recovers the
+    quantum set \( (\mathbb{C}^n, \psi_n) \), where \( \psi_n \) is
+    determined on the standard basis by \( \psi_n(e_i) = 1 \) and extends
+    linearly to
     \[
-        \psi_n(x) = \sum_{i=1}^n x_i.
+        \psi_n(x) = \sum_{i=1}^n x_i, \qquad x \in \mathbb{C}^n.
     \]
-
-    To show that \(\psi_n\) is positive, we evaluate it on the
-    element \(x^* x\). Using the orthogonality of the basis, we have:
+    Positivity and faithfulness follow exactly as above: writing
+    \( x = \sum_i x_i e_i \) and using orthogonality of the basis,
     \[
-        x^* x = \left( \sum_{i=1}^n \overline{x_i} e_i \right) \left(
-        \sum_{j=1}^n x_j e_j \right) = \sum_{i,j=1}^n \overline{x_i}
-        x_j e_i e_j = \sum_{i=1}^n \overline{x_i} x_i e_i =
-        \sum_{i=1}^n |x_i|^2 e_i.
+        x^*x = \Big(\sum_{i=1}^n \overline{x_i}\,
+        e_i\Big)\Big(\sum_{j=1}^n x_j e_j\Big)
+        = \sum_{i=1}^n \overline{x_i}x_i\, e_i = \sum_{i=1}^n |x_i|^2 e_i,
     \]
-    Applying the functional yields:
+    so that
     \[
-        \psi_n(x^* x) = \psi_n\left( \sum_{i=1}^n |x_i|^2 e_i \right)
-        = \sum_{i=1}^n |x_i|^2 \psi_n(e_i) = \sum_{i=1}^n |x_i|^2.
+        \psi_n(x^*x) = \sum_{i=1}^n |x_i|^2 \psi_n(e_i) =
+        \sum_{i=1}^n |x_i|^2 \geq 0,
     \]
-    Since \(|x_i|^2 \geq 0\) for all \(i\), the sum of these
-    non-negative real numbers is also non-negative, meaning
-    \(\psi_n(x^* x) \geq 0\). Thus, the functional is positive.
-
-    To prove faithfulness, suppose \(\psi_n(x^* x) = 0\) for some \(x
-    \in \mathbb{C}^n\). This implies:
+    which vanishes precisely when every \( x_i = 0 \), i.e.\ when
+    \( x = 0 \). The quantum set condition again reduces to the
+    computation
     \[
-        \sum_{i=1}^n |x_i|^2 = 0.
+        (mm^*)(e_i) = m(e_i \otimes e_i) = e_i, \qquad i = 1,\dots,n,
     \]
-    Because each term \(|x_i|^2\) is strictly non-negative, the sum
-    can only be zero if every individual component satisfies
-    \(|x_i|^2 = 0\) for all \(i \in \{1, \dots, n\}\). This directly
-    implies \(x_i = 0\) for all \(i\). Therefore, \(x = \sum_{i=1}^n
-    0 \cdot e_i = 0\), establishing that \(\psi_n\) is faithful.
-
-    The adjoint map \(m^*\colon \mathbb{C}^n
-    \rightarrow \mathbb{C}^n \otimes \mathbb{C}^n\) acts on a basis
-    element \(e_i\) by:
-    \[
-        m^*(e_i) = e_i \otimes e_i.
-    \]
-
-    We wish to show that the composition \(mm^*\colon \mathbb{C}^n
-    \rightarrow \mathbb{C}^n\) is the identity operator. We check:
-    \[
-        (m m^*)(e_i) = m\big(m^*(e_i)\big) = m(e_i \otimes e_i) = e_i.
-    \]
-    Because the linear operators \(m m^* \) and \(\text{Id}\) agree
-    on every element of the basis \(\{e_i\}_{i=1}^n\), by linearity
-    they must be equal on the entire vector space \(\mathbb{C}^n\). Therefore:
-    \[
-        m m^* = \text{Id}.
-    \]
+    which forces \( mm^* = \operatorname{Id} \) by linearity.
 \end{example}
 
 % TODO: Why is there nTr instead of Tr?
-\begin{example}
-    For any \( n \in \mathbb{N}_{+} \), \( (M_{n}, n
-    \operatorname{Tr}) \) is a quantum set, with \( \operatorname{Tr}
-    \) being the trace. We will later show that this structure can be
-    obtained as the crossed product \( (\mathbb{C}^{n}, \psi_{n}) \) and
-    \( \hat{\mathbb{Z}}_{n} \) with the standard action, i.e.
+\begin{example}[Matrix algebras]
+    For any \( n \in \mathbb{N}_+ \), the pair
+    \( (M_n, n\operatorname{Tr}) \) is a quantum set, where
+    \( \operatorname{Tr} \) denotes the usual trace on \( M_n \). We will
+    later see that this quantum set arises naturally as a crossed
+    product: writing \( \hat{\mathbb{Z}}_n \) for the dual of
+    \( \mathbb{Z}_n \) acting on \( (\mathbb{C}^n, \psi_n) \) via the
+    standard action, one has
     \[
-        (M_{n}, n \operatorname{Tr}) \cong (\mathbb{C}^{n} \rtimes
-        \hat{\mathbb{Z}}_{n}, \psi_{\rtimes}).
+        (M_n, n\operatorname{Tr}) \;\cong\;
+        (\mathbb{C}^n \rtimes \hat{\mathbb{Z}}_n,\ \psi_\rtimes),
     \]
-    This is proven in~\ref{lem:iso}.
+    a fact we prove in \ref{lem:iso}.
 \end{example}
 
 % TODO: give a better name
 \begin{lemma}[Comultiplication for matrix algebras]
-    In the context of \( (M_{n}, n \operatorname{Tr}) \), the
-    comultiplication
-    is given by the formula
+    In the quantum set \( (M_n, n\operatorname{Tr}) \), the
+    comultiplication \( m^* \) is given on matrix units by
     \[
-        m^{*}(e_{ij}) = \sum_{k=1}^{n} e_{ik} \otimes e_{kj}
+        m^*(e_{ij}) = \sum_{k=1}^n e_{ik} \otimes e_{kj},
     \]
-    with \( e_{ij} \) being the matrix with a single \( 1 \) in
-    the \( i \)-th
-    row and \( j \)-th column, and extended linearly.
+    where \( e_{ij} \) denotes the matrix with a single \( 1 \) in the
+    \( i \)-th row and \( j \)-th column, extended linearly to all of
+    \( M_n \).
 \end{lemma}
 
 % TODO: check this proof carefully
 \begin{proof}
-    This is simply a computational excercise. We will use the following
-    well-known formulas:
+    The proof is a direct computation using two standard facts about
+    matrix units:
     \begin{enumerate}
-        \item \( e_{ab}e_{cd} = \delta_{bc}e_{ad} \),
-        \item \( \left\langle e_{ij}, e_{kl} \right\rangle =
-            \operatorname{Tr}(e_{ji}e_{kl}) = \delta_{ik}e_{jl} \),
+        \item \( e_{ab}e_{cd} = \delta_{bc}\, e_{ad} \);
+        \item \( \langle e_{ij}, e_{kl} \rangle =
+            \operatorname{Tr}(e_{ji}e_{kl}) = \delta_{ik}\,\delta_{jl} \),
     \end{enumerate}
-    with
-    \[
-        \delta_{ij} =
-        \begin{cases}
-            1 & \text{if } i = j,\\
-            0 & \text{otherwise}.
-        \end{cases}
-    \]
-    In particular \( \left\{ e_{ij} \right\}_{i,j=1,\dots,n} \) form
-    a orthonormal basis.
+    where \( \delta_{ij} \) is the Kronecker delta. In particular, (2)
+    shows that \( \{e_{ij}\}_{i,j=1,\dots,n} \) forms an orthonormal
+    basis of \( M_n \) with respect to the inner product induced by
+    \( n\operatorname{Tr} \).
 
-    Take arbitrary basis vectors \( e_{ab} \), \( e_{cd} \). Then
+    Fix arbitrary basis vectors \( e_{ab}, e_{cd} \). By (1),
     \[
-        m(e_{ab} \otimes e_{cd}) = e_{ab} e_{cd} = \delta_{bc}e_{ad},
+        m(e_{ab} \otimes e_{cd}) = e_{ab}e_{cd} = \delta_{bc}\, e_{ad},
     \]
-    hence
-    \begin{align*}
-        \left\langle m(e_{ab} \otimes e_{cd}), e_{ij} \right\rangle
-        &= \delta_{bc} \left\langle e_{ad}, e_{ij} \right\rangle \\
-        &= \delta_{bc}\delta_{ai}\delta_{dj}.
-    \end{align*}
-    Now compute the inner product with the proposed adjoint:
-    \begin{align*}
-        \left\langle e_{ab} \otimes e_{cd}, \sum_{k=1}^{n} e_{ik}
-        \otimes e_{kj} \right\rangle
-        &= \sum_{k=1}^{n} \left\langle
-        e_{ab}, e_{ik} \right\rangle
-        \left\langle e_{cd}, e_{kj} \right\rangle \\
-        &= \sum_{k=1}^{n}
-        \delta_{ai}\delta_{bk}\delta_{ck}\delta_{dj} \\
-        &= \delta_{ai}\delta_{bc}\delta_{dj}.
-    \end{align*}
-    The two expressions agree. Since the matrix unix form an orthonormal
-    basis, this linearly extends to all matrices.
+    and hence, for any basis vector \( e_{ij} \),
+    \[
+        \big\langle m(e_{ab} \otimes e_{cd}),\, e_{ij} \big\rangle
+        = \delta_{bc} \big\langle e_{ad}, e_{ij} \big\rangle
+        = \delta_{bc}\,\delta_{ai}\,\delta_{dj}.
+    \]
+    On the other hand, pairing \( e_{ab} \otimes e_{cd} \) against the
+    proposed adjoint gives
+    \[
+        \Big\langle e_{ab} \otimes e_{cd},\ \sum_{k=1}^n e_{ik}
+        \otimes e_{kj} \Big\rangle
+        = \sum_{k=1}^n \langle e_{ab}, e_{ik} \rangle \langle e_{cd},
+        e_{kj} \rangle
+        = \sum_{k=1}^n \delta_{ai}\delta_{bk}\,\delta_{ck}\delta_{dj}
+        = \delta_{ai}\,\delta_{bc}\,\delta_{dj},
+    \]
+    using that the sum over \( k \) collapses to the single term
+    \( k = b = c \). The two expressions coincide, so
+    \[
+        \big\langle m(e_{ab}\otimes e_{cd}), e_{ij} \big\rangle
+        = \big\langle e_{ab}\otimes e_{cd}, m^*(e_{ij}) \big\rangle
+    \]
+    for all basis vectors, and since \( \{e_{ij}\} \) is an orthonormal
+    basis, this identifies \( m^* \) as claimed on the whole of \( M_n \)
+    by linearity.
 \end{proof}
 
 \subsection{Crossed product quantum sets}
 
-\textcite{tobolski26} have introduced the notion of crossed product quantum
-sets. Suppose we are given a finite-dimensional \(C^{*}\)-algebra
-\( \tilde{B}
-\) along with a dual group action \( \hat{a}\colon \hat{G} \rightarrow
-\operatorname{Aut}(\tilde{B}) \) where \( G \) is finite and
-abelian. One can then consider the crossed product
+\textcite{tobolski26} introduced the notion of a \emph{crossed product
+quantum set}. Suppose we are given a finite-dimensional
+\( C^{*} \)-algebra \( \tilde{B} \) together with a dual group action
+\( \hat\alpha \colon \hat{G} \to \operatorname{Aut}(\tilde{B}) \), where
+\( G \) is a finite abelian group. One may then form the crossed
+product
 \[
-    B := \tilde{B} \rtimes_{\hat{\alpha}} \hat{G}.
+    B := \tilde{B} \rtimes_{\hat\alpha} \hat{G}.
 \]
-
-If \( \tilde{B} \) is equipped with a faithful functional \( \tilde{\psi} \)
-in such a way as to make \( (\tilde{B}, \tilde{\psi}) \) a quantum
-set, one can define a new faithful functional on \( B \) to make it a
-quantum set, as described below.
+If \( \tilde{B} \) is equipped with a faithful functional
+\( \tilde\psi \) making \( (\tilde{B}, \tilde\psi) \) a quantum set, one
+can construct a corresponding faithful functional on \( B \) making
+\( B \) into a quantum set as well, as follows.
 
 \begin{definition}
     (Crossed product quantum set, \textcite[Definition~3.1]{tobolski26})
-    Let \( (\tilde{B}, \tilde{\psi}) \) be a quantum set and let \(
-        \hat{\alpha}\colon \hat{G} \rightarrow \operatorname{Aut}(\tilde{B},
-    \tilde{\psi}) \) be an action of the dual of a finite abelian
-    group \( G \). The \emph{crossed product quantum set} is defined as
+    Let \( (\tilde{B}, \tilde\psi) \) be a quantum set, and let
+    \( \hat\alpha \colon \hat{G} \to \operatorname{Aut}(\tilde{B},
+    \tilde\psi) \)
+    be an action of the dual of a finite abelian group \( G \). The
+    \emph{crossed product quantum set} is defined as
     \[
-        (\tilde{B}, \tilde{\psi}) \rtimes_{\hat{\alpha}} \hat{G} :=
-        \left( \tilde{B} \rtimes_{\hat{\alpha}} \hat{G},
-        \psi_{\rtimes} \right),
+        (\tilde{B}, \tilde\psi) \rtimes_{\hat\alpha} \hat{G}
+        := \big( \tilde{B} \rtimes_{\hat\alpha} \hat{G},\ \psi_\rtimes \big),
     \]
-    where \( \tilde{B} \rtimes_{\hat{\alpha}} \hat{G} \) is the
-    crossed product \(C^{*}\)-algebra and \( \psi_{\rtimes} \) is the
+    where \( \tilde{B} \rtimes_{\hat\alpha} \hat{G} \) is the crossed
+    product \( C^{*} \)-algebra, and \( \psi_\rtimes \) is the
     functional given by
     \[
-        \psi_{\rtimes} \left( \sum_{\chi \in \hat{G}}
-        b_{\chi}u_{\chi} \right) = n \tilde{\psi}(b_{1})
+        \psi_\rtimes\Big( \sum_{\chi \in \hat{G}} b_\chi u_\chi \Big)
+        = n\, \tilde\psi(b_1),
     \]
-    with \( n = | \hat{G} | \).
+    with \( n = |\hat{G}| \).
 \end{definition}
 
-The proof that this definition is sensible, i.e. the newly defined
-object is indeed a quantum set, can be seen in \textcite{tobolski26},
-Proposition 3.4.
+The proof that this definition is well posed, i.e. that the resulting
+object is indeed a quantum set, can be found in
+\textcite[Proposition~3.4]{tobolski26}.
 
-\begin{fact}
-    (\textcite{tobolksi26}, Example 3.5)
-    If \( \hat{\alpha} = \operatorname{triv} \), i.e. it is the trivial action,
-    then
+\begin{example}
+    (\textcite[Example~3.5]{tobolski26})
+    If \( \hat\alpha = \operatorname{triv} \) is the trivial action, then
     \[
-        \tilde{B} \rtimes_{\hat{\alpha}} \hat{\hat{G}} \cong
-        \tilde{B} \otimes C(G),
+        \tilde{B} \rtimes_{\hat\alpha} \hat{G} \;\cong\; \tilde{B} \otimes C(G),
     \]
-    where the isomorphism is given by \( b_{\chi} u_{\chi} \mapsto
-    b_{\chi} \otimes \tilde{u}_{\chi} \),
-    where \( \tilde{u}_{\chi} \in C(G) \) is the function that
-    evaluates to \( \chi(g) \) on \( g \in G \).
-\end{fact}
+    via the isomorphism \( b_\chi u_\chi \mapsto b_\chi \otimes
+    \tilde u_\chi \),
+    where \( \tilde u_\chi \in C(G) \) denotes the function
+    \( g \mapsto \chi(g) \) on \( G \).
+\end{example}
 
-% TODO: Prove this lemma
 \begin{lemma}\label{lem:iso}
-    Let \( \hat{\alpha}\colon \hat{\mathbb{Z}}_{n} \rightarrow A\) be
-    the action of cyclically shifting elements. Then
+    Let \( \hat\alpha \colon \hat{\mathbb{Z}}_n \to
+    \operatorname{Aut}(\mathbb{C}^n) \)
+    be the action given by cyclically shifting coordinates. Then
     \[
-        (M_{n}, n \operatorname{Tr}) \cong (\mathbb{C}^{n} \rtimes_{\alpha}
-        \hat{\mathbb{Z}}_{n}, \psi_{\rtimes}).
+        (M_n, n\operatorname{Tr}) \;\cong\; (\mathbb{C}^n
+        \rtimes_{\hat\alpha} \hat{\mathbb{Z}}_n,\ \psi_\rtimes).
     \]
 \end{lemma}
+
+\begin{proof}
+    Identify \( \hat{\mathbb{Z}}_n \) with \( \mathbb{Z}_n =
+    \{0,1,\dots,n-1\} \)
+    (with arithmetic taken modulo \( n \)), so that a general element of
+    \( \mathbb{C}^n \rtimes_{\hat\alpha} \hat{\mathbb{Z}}_n \) is written
+    \( b = \sum_{k \in \mathbb{Z}_n} b_k u_k \) with \( b_k \in \mathbb{C}^n \),
+    and the action is \( \hat\alpha_k(e_i) = e_{i+k} \) on the standard
+    basis \( \{e_i\}_{i \in \mathbb{Z}_n} \) of \( \mathbb{C}^n \), as in
+    the previous examples.
+
+    We construct an explicit \( * \)-isomorphism
+    \( \pi \colon \mathbb{C}^n \rtimes_{\hat\alpha}
+    \hat{\mathbb{Z}}_n \to M_n \)
+    as follows. On \( \mathbb{C}^n \), let \( M_{b_k} \) denote the
+    diagonal matrix with entries \( b_k(0), \dots, b_k(n-1) \), i.e.\
+    \( M_{b_k} = \sum_i b_k(i)\, e_{ii} \) in the matrix unit notation
+    of the earlier lemma. Let \( S \) be the cyclic shift matrix defined
+    by \( S e_i = e_{i+1} \) for the standard basis vectors \( e_i \) of
+    \( \mathbb{C}^n \) (indices mod \( n \)), and set
+    \[
+        \pi(b) = \sum_{k \in \mathbb{Z}_n} M_{b_k}\, S^k, \qquad
+        b = \sum_{k \in \mathbb{Z}_n} b_k u_k.
+    \]
+
+    \textbf{\( \pi \) is a \( * \)-homomorphism.}
+    A direct computation shows that \( S^k M_f S^{-k} = M_{\hat\alpha_k(f)} \)
+    for \( f \in \mathbb{C}^n \), which is exactly the covariance relation
+    \( u_k b u_k^* = \hat\alpha_k(b) \) required of the crossed product.
+    Using this, for \( a = \sum_k a_k u_k \) and \( b = \sum_l b_l u_l \),
+    \[
+        \pi(a)\pi(b)
+        = \sum_{k,l} M_{a_k} S^k M_{b_l} S^l
+        = \sum_{k,l} M_{a_k}\, M_{\hat\alpha_k(b_l)}\, S^{k+l}
+        = \sum_{m} M_{\sum_{k+l=m} a_k \hat\alpha_k(b_l)}\, S^{m}
+        = \pi(ab),
+    \]
+    matching the multiplication rule on \( C_c(\hat{\mathbb{Z}}_n,
+    \mathbb{C}^n, \hat\alpha) \)
+    from the previous subsection, and similarly
+    \[
+        \pi(a)^* = \sum_k S^{-k} M_{a_k^*} = \sum_k
+        M_{\hat\alpha_{-k}(a_k^*)}\, S^{-k} = \pi(a^*),
+    \]
+    matching the involution formula. So \( \pi \) is a \( * \)-homomorphism.
+
+    \textbf{\( \pi \) is bijective.}
+    Write \( e_i = \delta_i \in \mathbb{C}^n \) for the standard basis
+    vectors. Since \( S^k \) sends \( e_j \mapsto e_{j+k} \), the operator
+    \( M_{e_i} S^k \) sends \( e_{i-k} \mapsto e_i \) and annihilates every
+    other basis vector, i.e.
+    \[
+        \pi(e_i u_k) = M_{e_i} S^k = e_{i,\,i-k},
+    \]
+    a matrix unit in the sense of the earlier lemma. As \( i \) ranges
+    over \( \mathbb{Z}_n \) and \( k \) ranges over \( \mathbb{Z}_n \),
+    the pair \( (i, i-k) \) ranges exactly once over all of
+    \( \mathbb{Z}_n \times \mathbb{Z}_n \) (for fixed \( i \), varying
+    \( k \) makes \( i-k \) range over all residues). Hence
+    \( \{\pi(e_i u_k)\}_{i,k \in \mathbb{Z}_n} \) is precisely the full
+    set of matrix units \( \{e_{ab}\}_{a,b \in \mathbb{Z}_n} \), which
+    forms a basis of \( M_n \). Since \( \{e_i u_k\}_{i,k} \) is a basis
+    of \( \mathbb{C}^n \rtimes_{\hat\alpha} \hat{\mathbb{Z}}_n \)
+    (of the same dimension \( n^2 \)) and \( \pi \) carries it bijectively
+    to a basis of \( M_n \), the linear map \( \pi \) is a bijection.
+
+    \textbf{\( \pi \) intertwines the functionals.}
+    Using \( \pi(e_iu_k) = e_{i,i-k} \) and the fact that a matrix unit
+    \( e_{ab} \) has trace \( \delta_{ab} \), we get
+    \[
+        \operatorname{Tr}\big(\pi(e_i u_k)\big) = \delta_{i,\,i-k} =
+        \delta_{k,0}.
+    \]
+    Hence for a general element \( b = \sum_{k} b_k u_k = \sum_{k,i}
+    b_k(i)\, e_i u_k \),
+    \[
+        \operatorname{Tr}(\pi(b))
+        = \sum_{k,i} b_k(i)\, \operatorname{Tr}\big(\pi(e_i u_k)\big)
+        = \sum_{k,i} b_k(i)\, \delta_{k,0}
+        = \sum_i b_0(i)
+        = \tilde\psi(b_0),
+    \]
+    where \( \tilde\psi \) is the quantum set functional
+    \( \tilde\psi(x) = \sum_i x_i \) on \( (\mathbb{C}^n, \tilde\psi) \)
+    from the earlier example, and \( b_0 \) is precisely the coefficient
+    at the trivial character (i.e.\ \( k = 0 \)) appearing in the
+    definition of \( \psi_\rtimes \). Multiplying by \( n =
+    |\hat{\mathbb{Z}}_n| \),
+    \[
+        n\operatorname{Tr}(\pi(b)) = n\,\tilde\psi(b_0) = \psi_\rtimes(b).
+    \]
+
+    Thus \( \pi \) is a \( * \)-isomorphism
+    \( \mathbb{C}^n \rtimes_{\hat\alpha} \hat{\mathbb{Z}}_n \to M_n \)
+    satisfying \( n\operatorname{Tr} \circ \pi = \psi_\rtimes \), which is
+    exactly an isomorphism of quantum sets
+    \[
+        (\mathbb{C}^n \rtimes_{\hat\alpha} \hat{\mathbb{Z}}_n,\ \psi_\rtimes)
+        \;\cong\; (M_n,\ n\operatorname{Tr}). \qedhere
+    \]
+\end{proof}
 
 \section{Quantum graphs}
 
@@ -331,6 +414,7 @@ entrywise multiplication. In turn we can use this property to
 generalise graphs on sets to graphs on quantum sets.
 
 The following definitions are due to \textcite{tobolski26}.
+
 % TODO: Tell where this notion was first introduced
 \begin{definition}
     (Quantum adjacency matrix, \textcite[Definition~2.5]{tobolski26})
@@ -387,7 +471,15 @@ quantum graph.
 
 \section{Voltage and Derived Quantum Graphs}
 
+In this section we will introduce the notions of voltage
+and derived quantum graphs. They were first introduced
+by Gross in \textcite{gross74}. Those notions have been extended
+to quantum graphs by Bjorn and Tobolski in \textcite{tobolski26}.
+
 \subsection{Classical Voltage Graphs}
+
+Voltage graphs can be understood simply as classical graphs
+whose edges have been labeled with elements of some finite group:
 
 % TODO: dać referencję do pracy Grossa i Tuckera
 \begin{definition}[Classical voltage graph]
@@ -398,6 +490,9 @@ quantum graph.
     elements of a finite group \( G \).
 \end{definition}
 
+With every voltage graph one can construct a new graph, called a
+\emph{derived graph}, as below.
+
 \begin{definition}[Classical derived graph]
     The \emph{derived graph} \( \Gamma^{\lambda} \) of \( (\Gamma, \lambda) \)
     is a graph with vertex set \( V \times G \) and edge set \( E \times G \).
@@ -406,158 +501,177 @@ quantum graph.
     \( (u, g) \) to \( (v, g \lambda(e)) \) in \( \Gamma^{\lambda} \).
 \end{definition}
 
-\begin{figure}[htbp]
-    \centering
-    \begin{minipage}{0.4\textwidth}
-        \centering
-        \begin{tikzpicture}[>=Stealth, auto, node distance=2.5cm,
-                main node/.style={circle,draw,minimum
-            size=0.7cm,font=\sffamily\bfseries}]
-            \node[main node] (u) {\( u \)};
-            \node[main node] (v) [right of=u] {\( v \)};
+This is a major result in the theory of voltage and derived graphs.
+It can be found
+in \textcite{gross87}, Theorem 2.2.2.
 
+% TODO: Is \Gamma directed?
+\begin{theorem}[Gross and Tucker Theorem]
+    Let \( \tilde{\Gamma} \) be a graph and let \( G \) be a finite
+    group acting freely on \( \tilde{\Gamma} \) by automorphisms.
+    Then there exists a voltage graph \( (\Gamma, \lambda) \) with
+    edges labeled with elements of \( G \) such that \(
+    \tilde{\Gamma} \) is isomprphic to the derived graph of \(
+    (\Gamma, \lambda) \).
+    The graph \( \Gamma \) is the quotient graph \( \tilde{\Gamma} / G \).
+\end{theorem}
+
+Below one can find are some examples of voltage graphs and their derived graphs.
+
+\begin{center}
+    \centering
+    {\normalsize\sffamily\bfseries Directed base graph over \(
+    \mathbb{Z}_2 \)}\\[4pt]
+    \begin{minipage}[t]{0.435\textwidth}
+        \centering
+        \begin{tikzpicture}[>=Stealth, scale=1.0]
+            \node[base node] (u) at (0,0) {\( u \)};
+            \node[base node] (v) at (2.5,0) {\( v \)};
             \path[->, thick]
-            (u) edge [bend left=25] node {\( e_1, \mathbf{0} \)} (v)
-            (v) edge [bend left=25] node {\( e_2, \mathbf{1} \)} (u);
-        \end{tikzpicture}
-        \caption{Base voltage graph \( \Gamma \) over \( \mathbb{Z}_2 \)}
+            (u) edge [bend left=25] node[edge label] {\( 0 \)} (v)
+            (v) edge [bend left=25] node[edge label] {\( 1 \)} (u);
+        \end{tikzpicture}\\[6pt]
+        \captionof{}{Base voltage graph \( \Gamma \) over \(
+        \mathbb{Z}_2 \)}
     \end{minipage}\hfill
-    \begin{minipage}{0.55\textwidth}
+    \begin{minipage}[t]{0.515\textwidth}
         \centering
-        \begin{tikzpicture}[>=Stealth, auto, main
-                node/.style={circle,draw,minimum
-            size=0.7cm,font=\sffamily\small\bfseries}]
-            % Group level 0 (Blue)
-            \node[main node, draw=blue, text=blue] (u0) at
-            (0,2.8) {\( (u,0) \)};
-            \node[main node, draw=blue, text=blue] (v0) at
-            (2.8,2.8) {\( (v,0) \)};
+        \begin{tikzpicture}[>=Stealth, scale=0.72]
+            \node[font=\sffamily\bfseries\small, text=gray] at
+            (0,4.6)   {Fiber \( u \)};
+            \node[font=\sffamily\bfseries\small, text=gray] at
+            (3.6,4.6) {Fiber \( v \)};
 
-            % Group level 1 (Red)
-            \node[main node, draw=red, text=red] (u1) at (0,0) {\( (u,1) \)};
-            \node[main node, draw=red, text=red] (v1) at (2.8,0) {\( (v,1) \)};
+            \node[derived node, draw=volt0, text=volt0] (u0) at
+            (0,3.6)   {\( u,0 \)};
+            \node[derived node, draw=volt0, text=volt0] (v0) at
+            (3.6,3.6) {\( v,0 \)};
+            \node[derived node, draw=volt1, text=volt1] (u1) at (0,0)
+            {\( u,1 \)};
+            \node[derived node, draw=volt1, text=volt1] (v1) at
+            (3.6,0)   {\( v,1 \)};
 
-            % Edges
-            \path[->, thick, blue] (u0) edge node [above] {\( (e_1,0) \)} (v0);
-            \path[->, thick, red] (u1) edge node [below] {\( (e_1,1) \)} (v1);
-
-            \path[->, thick, purple] (v0) edge node [left,
-            pos=0.7] {\( (e_2,0) \)} (u1);
-            \path[->, thick, purple] (v1) edge node [right,
-            pos=0.7] {\( (e_2,1) \)} (u0);
-        \end{tikzpicture}
-        \caption{Derived graph \( \Gamma^\lambda \) (Directed 4-cycle)}
+            \path[->, thick, volt0, opacity=0.7] (u0) edge (v0);
+            \path[->, thick, volt1, opacity=0.6] (u1) edge (v1);
+            \path[->, thick, volt2, opacity=0.6] (v0) edge (u1);
+            \path[->, thick, volt2, opacity=0.6] (v1) edge (u0);
+        \end{tikzpicture}\\[6pt]
+        \captionof{}{Derived graph \( \Gamma^\lambda \)
+        (directed 4-cycle)}
     \end{minipage}
-\end{figure}
+\end{center}
 
-\begin{figure}[htbp]
+\vspace{0.3cm}
+
+\begin{center}
     \centering
-    \begin{minipage}{0.35\textwidth}
+    {\normalsize\sffamily\bfseries Directed base graph over \(
+    \mathbb{Z}_3 \) (single vertex, two loops)}\\[4pt]
+    \begin{minipage}[t]{0.435\textwidth}
         \centering
-        \begin{tikzpicture}[>=Stealth, auto, main
-                node/.style={circle,draw,minimum
-            size=0.7cm,font=\sffamily\bfseries}]
-            \node[main node] (v) {\( v \)};
-
+        \begin{tikzpicture}[>=Stealth, scale=1.0]
+            \node[base node] (v) at (0,0) {\( v \)};
             \path[->, thick]
             (v) edge [loop left, distance=1.7cm, in=145, out=215]
-            node {\( e_1, \mathbf{1} \)} (v)
+            node[edge label] {\( 1 \)} (v)
             (v) edge [loop right, distance=1.7cm, in=35, out=-35]
-            node {\( e_2, \mathbf{2} \)} (v);
-        \end{tikzpicture}
-        \caption{Base voltage graph \( \Gamma \) over \( \mathbb{Z}_3 \)}
+            node[edge label] {\( 2 \)} (v);
+        \end{tikzpicture}\\[6pt]
+        \captionof{}{Base voltage graph \( \Gamma \) over \(
+        \mathbb{Z}_3 \)}
     \end{minipage}\hfill
-    \begin{minipage}{0.6\textwidth}
+    \begin{minipage}[t]{0.515\textwidth}
         \centering
-        \begin{tikzpicture}[>=Stealth, auto, main
-                node/.style={circle,draw,minimum
-            size=0.75cm,font=\sffamily\small\bfseries}]
-            % Vertices arranged circularly on a 2.6cm radius
-            \node[main node, draw=blue, text=blue] (v0) at
-            (90:2.6) {\( (v,0) \)};
-            \node[main node, draw=red, text=red] (v1) at
-            (210:2.6) {\( (v,1) \)};
-            \node[main node, draw=orange, text=orange] (v2) at
-            (330:2.6) {\( (v,2) \)};
+        \begin{tikzpicture}[>=Stealth, scale=0.72]
+            \node[derived node, draw=volt0, text=volt0] (v0) at
+            (90:2.6)  {\( v,0 \)};
+            \node[derived node, draw=volt1, text=volt1] (v1) at
+            (210:2.6) {\( v,1 \)};
+            \node[derived node, draw=volt2, text=volt2] (v2) at
+            (330:2.6) {\( v,2 \)};
 
-            % e1 lifts: v0 -> v1 -> v2 -> v0 (Bending outwards, solid teal)
-            \path[->, thick, teal]
-            (v0) edge [bend right=32] node [left, pos=0.5] {\( (e_1,0) \)} (v1)
-            (v1) edge [bend right=32] node [below, pos=0.5] {\( (e_1,1) \)} (v2)
-            (v2) edge [bend right=32] node [right, pos=0.5]
-            {\( (e_1,2) \)} (v0);
+            % e1 lifts (voltage 1): v0 -> v1 -> v2 -> v0
+            \path[->, thick, volt1, opacity=0.6]
+            (v0) edge [bend right=32] (v1)
+            (v1) edge [bend right=32] (v2)
+            (v2) edge [bend right=32] (v0);
 
-            % e2 lifts: v0 -> v2 -> v1 -> v0 (Bending inwards, dashed violet)
-            \path[->, thick, dashed, violet]
-            (v0) edge [bend left=12] node [left, pos=0.3] {\( (e_2,0) \)} (v2)
-            (v2) edge [bend left=12] node [above, pos=0.3] {\( (e_2,2) \)} (v1)
-            (v1) edge [bend left=12] node [right, pos=0.3] {\( (e_2,1) \)} (v0);
-        \end{tikzpicture}
-        \caption{Derived graph \( \Gamma^\lambda \) (Two 3-cycles)}
+            % e2 lifts (voltage 2): v0 -> v2 -> v1 -> v0
+            \path[->, thick, volt2, opacity=0.6]
+            (v0) edge [bend left=12] (v2)
+            (v2) edge [bend left=12] (v1)
+            (v1) edge [bend left=12] (v0);
+        \end{tikzpicture}\\[6pt]
+        \captionof{}{Derived graph \( \Gamma^\lambda \) (two \(
+        3 \)-cycles)}
     \end{minipage}
-\end{figure}
+\end{center}
 
-\begin{figure}[htbp]
+\vspace{0.3cm}
+
+\begin{center}
     \centering
-    \begin{minipage}{0.35\textwidth}
+    {\normalsize\sffamily\bfseries Directed theta graph over \(
+    \mathbb{Z}_3 \)}\\[4pt]
+    \begin{minipage}[t]{0.435\textwidth}
         \centering
-        \begin{tikzpicture}[>=Stealth, auto, node distance=2.2cm,
-                main node/.style={circle,draw,minimum
-            size=0.7cm,font=\sffamily\bfseries}]
-            \node[main node] (u) {\( u \)};
-            \node[main node] (v) [right of=u] {\( v \)};
-
-            % Labeled base graph edges
+        \begin{tikzpicture}[>=Stealth, scale=1.0]
+            \node[base node] (u) at (0,0) {\( u \)};
+            \node[base node] (v) at (2.2,0) {\( v \)};
             \path[->, thick]
-            (u) edge [bend left=45] node {\( e_1, \mathbf{0} \)} (v)
-            (u) edge node [fill=white, inner sep=1pt] {\( e_2,
-            \mathbf{1} \)} (v)
-            (u) edge [bend right=45] node [below] {\( e_3, \mathbf{2} \)} (v);
-        \end{tikzpicture}
-        \caption{Base Theta graph \( \Gamma \) with edge labels}
+            (u) edge [bend left=45] node[edge label] {\( 0 \)} (v)
+            (u) edge node[edge label] {\( 1 \)} (v)
+            (u) edge [bend right=45] node[edge label] {\( 2 \)} (v);
+        \end{tikzpicture}\\[6pt]
+        \captionof{}{Base theta graph \( \Gamma \) with edge labels}
     \end{minipage}\hfill
-    \begin{minipage}{0.6\textwidth}
+    \begin{minipage}[t]{0.515\textwidth}
         \centering
-        \begin{tikzpicture}[>=Stealth, auto, main
-                node/.style={circle,draw,minimum
-            size=0.75cm,font=\sffamily\small\bfseries}]
-            % Left Partite Set: u fibers (Clean, standard nodes)
-            \node[main node] (u0) at (0,3) {\( (u,0) \)};
-            \node[main node] (u1) at (0,1.5) {\( (u,1) \)};
-            \node[main node] (u2) at (0,0) {\( (u,2) \)};
+        \begin{tikzpicture}[>=Stealth, scale=0.72]
+            \node[font=\sffamily\bfseries\small, text=gray] at
+            (0,5.3)   {Fiber \( u \)};
+            \node[font=\sffamily\bfseries\small, text=gray] at
+            (4.5,5.3) {Fiber \( v \)};
 
-            % Right Partite Set: v fibers (Clean, standard nodes)
-            \node[main node] (v0) at (3.5,3) {\( (v,0) \)};
-            \node[main node] (v1) at (3.5,1.5) {\( (v,1) \)};
-            \node[main node] (v2) at (3.5,0) {\( (v,2) \)};
+            \node[derived node, draw=volt0, text=volt0] (u0) at
+            (0,4.2)   {\( u,0 \)};
+            \node[derived node, draw=volt1, text=volt1] (u1) at
+            (0,2.1)   {\( u,1 \)};
+            \node[derived node, draw=volt2, text=volt2] (u2) at (0,0)
+            {\( u,2 \)};
+            \node[derived node, draw=volt0, text=volt0] (v0) at
+            (4.5,4.2) {\( v,0 \)};
+            \node[derived node, draw=volt1, text=volt1] (v1) at
+            (4.5,2.1) {\( v,1 \)};
+            \node[derived node, draw=volt2, text=volt2] (v2) at
+            (4.5,0)   {\( v,2 \)};
 
-            % Unlabelled edges colored by their parent edge
-            % mapping to track the lift clearly
-            % Lifts of e1 (voltage 0) -> Navy Blue
-            \path[->, thick, blue!80!black] (u0) edge (v0);
-            \path[->, thick, blue!80!black] (u1) edge (v1);
-            \path[->, thick, blue!80!black] (u2) edge (v2);
+            % Lifts of e1 (voltage 0)
+            \path[->, thick, volt0, opacity=0.7] (u0) edge (v0);
+            \path[->, thick, volt0, opacity=0.7] (u1) edge (v1);
+            \path[->, thick, volt0, opacity=0.7] (u2) edge (v2);
 
-            % Lifts of e2 (voltage 1) -> red
-            \path[->, thick, red] (u0) edge (v1);
-            \path[->, thick, red] (u1) edge (v2);
-            \path[->, thick, red] (u2) edge (v0);
+            % Lifts of e2 (voltage 1)
+            \path[->, thick, volt1, opacity=0.6] (u0) edge (v1);
+            \path[->, thick, volt1, opacity=0.6] (u1) edge (v2);
+            \path[->, thick, volt1, opacity=0.6] (u2) edge (v0);
 
-            % Lifts of e3 (voltage 2) -> purple
-            \path[->, thick, purple] (u0) edge (v2);
-            \path[->, thick, purple] (u1) edge (v0);
-            \path[->, thick, purple] (u2) edge (v1);
-        \end{tikzpicture}
-        \caption{Derived graph \( \Gamma^\lambda \) (\( K_{3,3} \)
-        colored by edge class)}
+            % Lifts of e3 (voltage 2)
+            \path[->, thick, volt2, opacity=0.6] (u0) edge (v2);
+            \path[->, thick, volt2, opacity=0.6] (u1) edge (v0);
+            \path[->, thick, volt2, opacity=0.6] (u2) edge (v1);
+        \end{tikzpicture}\\[6pt]
+        \captionof{}{Derived graph \( \Gamma^\lambda \) (\(
+        K_{3,3} \) colored by edge class)}
     \end{minipage}
-\end{figure}
+\end{center}
 
 \subsection{Generalisation to quantum voltage and derived quantum graphs}
 
-In the following definition we will introduce some key notions. The
-motivation behind the definition of \( X_{g} \) will be given later
-in the thesis.
+Now we will generalise the Gross-Tucker construction to quantum graphs. This was
+first done by Bjorn and Tobolski in \textcite{tobolski26}.
+
+The following definition will introduce some key notions.
 
 % TODO: Maybe replace the dagger?
 \begin{definition}
@@ -591,14 +705,15 @@ in the thesis.
                 \in G} m(X_g \otimes E_\rtimes^\ast \tilde{A}_g
                 E_\rtimes) m^\ast,
             \]
-            where we write (here and in the rest of the section) \( m \)
-            for the multiplication map on \( B \), i.e. \( m = m_\rtimes \).
+            where we write  \( m \) for the multiplication map on \(
+            B \), i.e. \( m = m_\rtimes \).
     \end{enumerate}
 \end{definition}
 
-One can easily check that \( X_{g} \) is a adjacency matrix for any
-\( g \in G \).
+The fact that \( X_{g} \) is an adjacency matrix on the quantum set
+\( (B, \psi) \) is checked in \textcite{tobolski26}, Proposition 4.5.
 
+% TODO: Moze to wyjebac?
 \begin{lemma}
     If \( A, B \in M_n(\{0,1\}) \) and \( m^*: \mathbb{C}^n
     \to \mathbb{C}^n \otimes \mathbb{C}^n \) is the adjoint of the
@@ -651,52 +766,57 @@ One can easily check that \( X_{g} \) is a adjacency matrix for any
 
 \section{Isomorphisms and Quantum Isomorphisms of Quantum Sets}
 
+Quantum isomorphisms were first conveived in \textcite{atserias16} in
+the context of game theory. We will follow the definitions due to
+\textcite{tobolski26}, which in turn follow the work of \textcite{musto18}.
+
 \begin{definition}
     (Quantum isomorphisms, \textcite[Definition~2.8]{tobolski26})
     Let \( (B_{1}, \psi_{1}) \) and \( (B_{2}, \psi_{2}) \) be
-    quantum sets and
-    let \( A_{1}\colon B_{1} \rightarrow B_{1} \) and \( A_{2}\colon B_{2}
-    \rightarrow B_{2} \)
-    be quantum graphs on \( (B_{1}, \psi_{1}) \), \( (B_{2},
+    quantum sets, and let \( A_{1}\colon B_{1} \rightarrow B_{1} \)
+    and \( A_{2}\colon B_{2} \rightarrow B_{2} \)
+    be quantum graphs on \( (B_{1}, \psi_{1}) \) and \( (B_{2},
     \psi_{2}) \), respectively.
     \begin{itemize}
-        \item The two quantum sets are \emph{isomorphic} if there is
+        \item The quantum sets \( (B_1,\psi_1) \) and \( (B_2,\psi_2) \)
+            are called \emph{isomorphic} if there exists
             a \( * \)-isomorphism
-            \( \phi\colon B_{1} \rightarrow B_{2} \) such that \( \psi_{2}
-            \phi = \psi_{1} \).
-            We denote by \( \operatorname{Aut}(B, \psi) \) the group
-            of quantum set
-            automorphisms of a quantum set \( (B, \psi) \).
-        \item The two quantum graphs are \emph{isomorphic} if there
-            is an isomorpshism
-            \( \phi\colon B_{1} \rightarrow B_{2} \) of the underlying
-            quantum sets such that
-            \( \phi A_{1} = A_{2} \phi \). We denote by \(
-            \operatorname{Aut}(A) \) the
-            group of quantum graph automorphisms of a quantum graph \( A \).
-        \item The two quantum sets are \emph{quantum isomorphic}, written
-            \( (B_{1}, \psi_{1}) \cong (B_{2}, \psi_{2}) \), if there is
-            a finite-dimensional Hilbert space \( \mathcal{H} \) and a
+            \( \phi\colon B_{1} \rightarrow B_{2} \) satisfying \( \psi_{2}
+            \circ \phi = \psi_{1} \).
+            The group of all such self-isomorphisms of a quantum set
+            \( (B, \psi) \) is denoted \( \operatorname{Aut}(B, \psi) \).
+        \item Two quantum graphs are called \emph{isomorphic} if the
+            underlying quantum sets admit an isomorphism
+            \( \phi\colon B_{1} \rightarrow B_{2} \) which additionally
+            intertwines the graphs, i.e.\ satisfies
+            \( \phi A_{1} = A_{2} \phi \). The corresponding group of
+            automorphisms of a quantum graph \( A \) is written
+            \( \operatorname{Aut}(A) \).
+        \item The quantum sets \( (B_1,\psi_1) \) and \( (B_2,\psi_2) \)
+            are said to be \emph{quantum isomorphic}, denoted
+            \( (B_{1}, \psi_{1}) \cong_q (B_{2}, \psi_{2}) \), if
+            there exist a finite-dimensional Hilbert space
+            \( \mathcal{H} \) together with a
             unital \( * \)-homomorphism
             \[
-                \rho\colon B_{1} \rightarrow B_{2} \otimes B(\mathcal{H}),
+                \rho\colon B_{1} \rightarrow B_{2} \otimes B(\mathcal{H})
             \]
-            such that the map
+            for which the induced map
             \[
                 p\colon L^{2}(B_{1}) \otimes \mathcal{H} \rightarrow
-                L^{2}(B_{2}) \otimes \mathcal{H}, \; a \otimes \xi
-                \mapsto \rho(a)(1 \otimes \xi)
+                L^{2}(B_{2}) \otimes \mathcal{H}, \qquad a \otimes \xi
+                \longmapsto \rho(a)(1 \otimes \xi),
             \]
-            is unitary as an operator between Hilbert spaces.
-        \item The two quantum graphs are \emph{quantum isomorphic},
-            written \( A_{1} \cong_{q} A_{2} \), if there is a
-            quantum isomorphism \( \rho\colon B_{1} \rightarrow B_{2}
-            \otimes B(\mathcal{H}) \) between the underlying quantum
-            sets such that
+            is a unitary operator between Hilbert spaces.
+        \item Two quantum graphs \( A_1, A_2 \) are \emph{quantum
+            isomorphic}, written \( A_{1} \cong_{q} A_{2} \), if the
+            underlying quantum sets admit a quantum isomorphism
+            \( \rho\colon B_{1} \rightarrow B_{2}
+            \otimes B(\mathcal{H}) \) that in addition satisfies the
+            intertwining condition
             \[
                 \rho A_{1} = (A_{2} \otimes
-                \operatorname{Id}_{B(\mathcal{H})}) \rho
+                \operatorname{Id}_{B(\mathcal{H})}) \, \rho.
             \]
-            holds.
     \end{itemize}
 \end{definition}
