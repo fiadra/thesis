@@ -1,7 +1,13 @@
 \chapter{Quantum graphs over \( 3 \times 3 \) matrices}
 
 The classification of quantum graphs on \( 2 \times 2 \) matrices was
-carried out by \textcite{matsuda22} and \textcite{gromada22} independently.
+carried out independently by \textcite{matsuda22} and \textcite{gromada22}.
+In this chapter we attempt a partial classification of quantum graphs on
+\( 3 \times 3 \) matrices. This case turns out to be considerably harder
+than the \( 2 \times 2 \) case, and a classification of comparable
+simplicity is likely out of reach altogether, as we show in
+Lemma~\ref{lemma:hard-action}. We conclude the chapter by comparing our
+results with those of \textcite{hayes26}.
 
 \section{Pauli matrices and their generalisations}
 
@@ -22,7 +28,8 @@ is given by the Pauli matrices
 \]
 The Pauli matrices are Hermitian, traceless, and linearly independent;
 since \( \dim_{\mathbb{C}} \mathfrak{sl}(2,\mathbb{C}) = 3 \), they form a
-basis of \( \mathfrak{sl}(2,\mathbb{C}) \).
+basis of \( \mathfrak{sl}(2,\mathbb{C}) \). They were already encountered
+in Example~\ref{example:pauli-matrices}.
 
 Because the Pauli matrices are Hermitian rather than skew-Hermitian, they
 do not themselves belong to \( \mathfrak{su}(2) \). Instead, it is the
@@ -76,6 +83,7 @@ position and momentum operators, and is a fundamental feature of the
 generalised Pauli matrices.
 
 \begin{lemma}
+    \label{lemma:pq-orthogonal}
     The matrices \( P^aQ^b \), \( a,b \in \{0,1,2\} \), form an
     orthogonal basis of \( M_3(\mathbb{C}) \) with respect to the
     Hilbert--Schmidt inner product \( \langle A,B \rangle =
@@ -130,43 +138,55 @@ generalised Pauli matrices.
     therefore form an orthogonal basis of \( M_3(\mathbb{C}) \).
 \end{proof}
 
-% Excluding the identity matrix leaves eight traceless matrices, which span
-% \(\mathfrak{su}_{3}(\mathbb{C})\).
-%
-% A basis of \(\mathfrak{su}_{3}\) is then
-% obtained by taking suitable skew-Hermitian linear combinations of these
-% matrices. In particular, the clock and shift matrices provide a natural
-% generalisation of the Pauli matrices for three-level quantum systems.
+Excluding the identity matrix from this basis leaves eight traceless
+matrices, which together span \( \mathfrak{sl}_3(\mathbb{C}) \). A basis
+of \( \mathfrak{su}_3 \) is then obtained by passing to suitable
+skew-Hermitian linear combinations of these eight matrices, exactly as
+the passage from \( \sigma_i \) to \( i\sigma_i \) produced a basis of
+\( \mathfrak{su}(2) \) above. In this sense, the clock and shift matrices
+furnish a natural higher-dimensional generalisation of the Pauli
+matrices, suited to describing three-level quantum systems.
 
 % TODO: subsection on Gell--Mann matrices
 
 \section{Gromada's theorem}
 
-In this section we state...
-
-% TODO: finish this sentence
-
-The following theorem is due to \textcite{gromada22}.
+In this section we state a theorem due to \textcite{gromada22}
+establishing a one-to-one correspondence between certain linear
+subspaces of \( \mathfrak{sl}_n \) and quantum graphs. This result will
+be used to classify all loopfree and undirected quantum graphs on
+\( M_3 \) up to quantum isomorphism, and it also provides an explicit
+recipe for recovering the adjacency matrix corresponding to a given
+subspace.
 
 \begin{theorem}[\textcite{gromada22}, Theorem 3.7]
-    Let \( m \in \{0, 1, \dots, n^2\} \). Quantum graphs on \( M_n \) with
+    Let \( m \in \{0,1,\dots,n^2\} \). Quantum graphs on \( M_n \) with
     \( m \) quantum edges are in one-to-one correspondence with
     \( m \)-dimensional subspaces \( V \subseteq \mathfrak{gl}_n \), the
     adjacency matrix being given by
-    \( A_V = \sum_{s=1}^m \xi_s \otimes \xi_s^* \), where
-    \( (\xi_1, \dots, \xi_m) \) is any orthonormal basis of \( V \).
+    \[
+        A_V = \sum_{s=1}^m \xi_s \otimes \xi_s^*,
+    \]
+    where \( (\xi_1,\dots,\xi_m) \) is any orthonormal basis of \( V \).
 
     The quantum graph has no loops if and only if
     \( V \subseteq \mathfrak{sl}_n \), and is undirected if and only if
     \( V = V^* \).
 
     If \( V, W \subseteq \mathfrak{gl}_n \) correspond to isomorphic
-    quantum graphs, then \( V = UWU^* \) for some \( U \in SU_3 \).
+    quantum graphs, then \( V = UWU^* \) for some \( U \in SU_n \).
 \end{theorem}
 
 \begin{proof}
     See Gromada's paper for the proof.
 \end{proof}
+
+Before applying this correspondence, it will be convenient to have a
+more concrete handle on subspaces satisfying \( V = V^* \), since this
+is precisely the condition singling out undirected quantum graphs. The
+next two lemmas establish that such subspaces always admit a basis of
+self-adjoint elements, and that this self-adjoint data is in fact
+enough to reconstruct \( V \) uniquely.
 
 \begin{lemma}[\textcite{gromada22}, Lemma 3.8]
     Every vector subspace \( V \subseteq \mathfrak{gl}_n \) with
@@ -200,10 +220,9 @@ The following theorem is due to \textcite{gromada22}.
     full self-adjoint basis of \( V \).
 \end{proof}
 
-\begin{remark}
-    The following lemma shows that any undirected graph on \( M_n \) may
-    be thought of as being built out of symmetric quantum edges alone.
-\end{remark}
+The following lemma shows that any undirected quantum graph on
+\( M_n \) may be thought of as being built out of symmetric quantum
+edges alone.
 
 \begin{lemma}
     A complex vector space \( V = V^* \subseteq \mathfrak{gl}_n \)
@@ -249,12 +268,12 @@ By the above lemma, we may regard any self-adjoint
 
 \begin{remark}
     A self-adjoint subspace \( V \subseteq \mathfrak{sl}_3 \) generated
-    by the generalised Pauli matrices can only have even dimension, i.e.\
+    by the generalised Pauli matrices can only have even dimension, i.e.
     \( \dim(V) = m \in \{0,2,4,6,8\} \). Indeed, the non-identity Pauli
     basis generators \( P^aQ^b \in \mathcal{B} \) are non-self-adjoint
     (as \( (a,b) \neq (3-a,3-b) \) in \( \mathbb{Z}_3 \times \mathbb{Z}_3 \))
-    and split into mutually disjoint adjoint pairs \( \{v, v^*\} \).
-    Since \( V = V^* \), including any generator \( v \in V \) forces the
+    and split into mutually disjoint adjoint pairs \( \{v,v^*\} \). Since
+    \( V = V^* \), including any generator \( v \in V \) forces the
     inclusion of its linearly independent partner \( v^* \), so \( V \)
     decomposes as a direct sum of \( 2 \)-dimensional
     reflection-invariant blocks \( \mathcal{P}_k =
@@ -262,11 +281,18 @@ By the above lemma, we may regard any self-adjoint
     Thus \( \dim(V) = 2r \) for some integer \( r \geq 0 \).
 \end{remark}
 
-To characterize all possible loop-free, undirected quantum graphs, it
-therefore suffices to focus on these relevant subspaces.
+To characterize all possible loopfree, undirected quantum graphs, it
+therefore suffices to focus on these self-adjoint subspaces.
 
 \section{Classification of self-reflective subspaces generated by
 \(P\) and \(Q\)}
+
+By the results of the previous section, it suffices to focus on
+self-adjoint subspaces of \( \mathfrak{sl}_3 \). By
+Lemma~\ref{lemma:pq-orthobonal}, the matrices obtained as products of
+\( P \) and \( Q \) are pairwise orthogonal, so what remains is to
+classify the subspaces they span.
+% TODO: finish this sentence
 
 \subsection{Fundamental reflection-invariant pairs}
 
@@ -286,13 +312,15 @@ reflection-invariant blocks of dimension two:
     \mathcal{P}_3 &= \{PQ, P^2Q^2\} && \text{(first mixed block)} \\
     \mathcal{P}_4 &= \{P^2Q, PQ^2\} && \text{(second mixed block)}
 \end{align*}
+For instance, the choice \( S = \{1,3\} \) gives the four-dimensional
+subspace \( W_{1,3} = \operatorname{span}\{P, P^2, PQ, P^2Q^2\} \).
 
 \subsection{Action of the discrete Fourier transform}
 
 Let \( F \) denote the \( 3 \times 3 \) discrete Fourier transform
 matrix. The unitary similarity transformation \( X \mapsto FXF^* \) acts
-as an automorphism of the generalised Pauli algebra, exchanging clock and
-shift operators:
+as an automorphism of the generalised Pauli algebra, exchanging clock
+and shift operators:
 \[
     FPF^* = Q^2, \qquad FQF^* = P.
 \]
@@ -310,7 +338,8 @@ pair-swapping involution:
 Because the fundamental building blocks \( \mathcal{P}_k \) are
 non-overlapping \( 2 \)-dimensional sets, every self-reflective subspace
 generated by powers of \( P \) and \( Q \) is formed by taking a direct
-sum of a subset of these blocks (including the empty set).
+sum of a subset of these blocks (including the empty set, which yields
+the zero subspace).
 
 \begin{theorem}
     Every self-reflective subspace \( V \subseteq M_3 \) generated by
@@ -352,39 +381,207 @@ sum of a subset of these blocks (including the empty set).
     \( 16 \) self-reflective subspaces generated by \( P \) and \( Q \).
 \end{corollary}
 
-The classification above reduces to elementary combinatorics once the
-blocks \( \mathcal{P}_1, \ldots, \mathcal{P}_4 \) are fixed: because
-these four blocks partition the eight non-identity Pauli generators
-into disjoint reflection-invariant pairs, choosing a self-reflective
+This classification reduces to elementary combinatorics once the
+blocks \( \mathcal{P}_1, \dots, \mathcal{P}_4 \) are fixed. Since these
+four blocks partition the eight non-identity Pauli generators into
+disjoint reflection-invariant pairs, choosing a self-reflective
 subspace \( V \) amounts to nothing more than choosing a subset
 \( S \subseteq \{1,2,3,4\} \) of blocks to include, with
-\( V = \bigoplus_{k \in S} \mathcal{P}_k \). There are \( 2^4 = 16 \)
-such subsets in total, matching the count in the corollary, and since
-each included block contributes exactly \( 2 \) dimensions, the
-resulting dimension is always even, explaining why \( V \) can never
-have odd dimension. The counts in each row of the table are then just
-binomial coefficients \( \binom{4}{r} \) for \( r = |S| \) blocks
-chosen (namely \( 1, 4, 6, 4, 1 \) for \( r = 0,1,2,3,4 \)), which is
-also why the table is symmetric under \( m \leftrightarrow 8-m \):
-choosing \( r \) blocks to include is the same data as choosing
-\( 4-r \) blocks to exclude.
+\[
+    V = \bigoplus_{k \in S} \mathcal{P}_k.
+\]
+There are \( 2^4 = 16 \) such subsets in total, matching the count in
+the corollary. Moreover, since each included block contributes exactly
+two dimensions, the resulting dimension \( \dim(V) \) is always even,
+explaining why \( V \) can never have odd dimension. The counts in
+each row of the table are then simply the binomial coefficients
+\( \binom{4}{r} \), for \( r = |S| \) blocks chosen — namely
+\( 1, 4, 6, 4, 1 \) for \( r = 0,1,2,3,4 \) — which is also why the
+table is symmetric under \( m \leftrightarrow 8-m \): choosing \( r \)
+blocks to include is exactly the same data as choosing \( 4-r \)
+blocks to exclude.
+
+\subsection{Full unitary equivalence within each dimension}
+
+The action of the discrete Fourier transform \( F \) considered above
+only produces \( 4 \) orbits among the six four-dimensional subspaces
+\( W_{i,j} \), namely \( \{W_{1,2}\}, \{W_{3,4}\},\) \(\{W_{1,3},W_{2,4}\},
+\{W_{1,4},W_{2,3}\} \). We now show that this is an artifact of
+restricting attention to \( F \) alone: once a second natural unitary
+is brought in, \emph{all six} subspaces of dimension \( 4 \) turn out
+to be unitarily equivalent -- and, more generally, so are all
+subspaces of any fixed dimension \( m \in \{0,2,4,6,8\} \).
+
+Consider the diagonal phase matrix
+\[
+    S =
+    \begin{pmatrix}
+        1 & 0 & 0 \\
+        0 & 1 & 0 \\
+        0 & 0 & \omega \\
+    \end{pmatrix}.
+\]
+Since \( S \) is diagonal, it commutes with \( P \), so
+\( SPS^{-1} = P \) and hence \( S \) fixes the block
+\( \mathcal{P}_1 = \{P,P^2\} \) pointwise. Its effect on \( Q \) is
+more interesting.
+
+\begin{lemma}\label{lem:S-action}
+    Conjugation by \( S \) cyclically permutes the blocks
+    \( \mathcal{P}_2, \mathcal{P}_3, \mathcal{P}_4 \), while fixing
+    \( \mathcal{P}_1 \) pointwise. Explicitly,
+    \[
+        \begin{aligned}
+            SQS^{-1} &= \omega^{-1} PQ, & \qquad SQ^2S^{-1} &= P^2Q^2, \\
+            S(PQ)S^{-1} &= \omega^{-1}P^2Q, & \qquad S(P^2Q^2)S^{-1} &= PQ^2.
+        \end{aligned}
+    \]
+\end{lemma}
+
+\begin{proof}
+    Write \( e_1,e_2,e_3 \) for the standard basis, so that
+    \( Qe_i = e_{i+1} \) (indices mod \( 3 \)) and \( S e_i = s_i e_i \)
+    with \( s_1 = s_2 = 1 \), \( s_3 = \omega \). Then
+    \[
+        (SQS^{-1})e_i = s_i^{-1}(SQ)e_i = s_i^{-1}s_{i+1}\,e_{i+1},
+    \]
+    and computing the ratios \( s_{i+1}/s_i \) for \( i=1,2,3 \) gives
+    \( 1, \omega, \omega^2 \) respectively. Comparing with
+    \( (PQ)e_i = p_{i+1}e_{i+1} \), where \( p_1=1,p_2=\omega,p_3=\omega^2 \),
+    which gives coefficients \( \omega,\omega^2,1 \), we see that
+    \( SQS^{-1} \) has exactly the coefficients of \( PQ \) shifted by
+    a global factor of \( \omega^{-1} \); that is,
+    \( SQS^{-1} = \omega^{-1}PQ \).
+
+    Squaring, and using the commutation relation
+    \( QP = \omega^{-1}PQ \) to simplify
+    \( (PQ)^2 = P(QP)Q = \omega^{-1}P^2Q^2 \), we obtain
+    \[
+        SQ^2S^{-1} = (SQS^{-1})^2 = \omega^{-2}(PQ)^2
+        = \omega^{-2}\cdot\omega^{-1}P^2Q^2 = P^2Q^2,
+    \]
+    since \( \omega^{-3}=1 \).
+
+    For the remaining two identities, use that \( S \) commutes with
+    \( P \):
+    \[
+        S(PQ)S^{-1} = P\,(SQS^{-1}) = P\cdot\omega^{-1}PQ = \omega^{-1}P^2Q,
+    \]
+    \[
+        S(P^2Q^2)S^{-1} = P^2\,(SQ^2S^{-1}) = P^2\cdot P^2Q^2 = P^4Q^2 = PQ^2,
+    \]
+    using \( P^3 = I \) in the last step. Collecting these four
+    identities: \( S \) sends \( \{Q,Q^2\} = \mathcal{P}_2 \) onto
+    \( \{PQ, P^2Q^2\} = \mathcal{P}_3 \) (up to phase), and sends
+    \( \mathcal{P}_3 \) onto \( \{P^2Q,PQ^2\} = \mathcal{P}_4 \) (up to
+    phase). By the same computation applied once more, or simply by
+    counting (three blocks permuted among themselves by a single
+        conjugation must be permuted cyclically or fixed pointwise, and we
+    have already ruled out the latter), \( S \) also sends
+    \( \mathcal{P}_4 \) onto \( \mathcal{P}_2 \). This proves the claim.
+\end{proof}
+
+In terms of the block indices \( \{1,2,3,4\} \), conjugation by
+\( F \) induces the permutation \( \sigma_F = (1\,2)(3\,4) \) (as noted
+above), while conjugation by \( S \) induces the \( 3 \)-cycle
+\( \sigma_S = (2\,3\,4) \).
+
+\begin{remark}
+    A basic fact from finite group theory will be used below: the
+    alternating group \( A_4 \) (of order \( 12 \)) has \emph{no}
+    subgroup of order \( 6 \). Indeed, a subgroup of order \( 6 \)
+    would have index \( 2 \) in \( A_4 \) and hence be normal, but the
+    only normal subgroups of \( A_4 \) are the trivial subgroup, the
+    Klein four-group \( V_4 = \{e,(12)(34),(13)(24),(14)(23)\} \), and
+    \( A_4 \) itself -- none of order \( 6 \).
+\end{remark}
+
+\begin{proposition}\label{prop:full-equivalence}
+    The permutations \( \sigma_F \) and \( \sigma_S \) generate the
+    full alternating group \( A_4 \) acting on the block indices
+    \( \{1,2,3,4\} \). In particular this action is transitive on the
+    six unordered pairs \( \{i,j\} \subseteq \{1,2,3,4\} \).
+\end{proposition}
+
+\begin{proof}
+    Both \( \sigma_F \) (a double transposition) and \( \sigma_S \) (a
+    \( 3 \)-cycle) are even permutations, so the group \( H \) they
+    generate is a subgroup of \( A_4 \). Since \( H \) contains an
+    element of order \( 2 \) and an element of order \( 3 \), its order
+    is divisible by \( 6 \). But \( A_4 \) has no subgroup of order
+    \( 6 \) by the remark above, and the only divisor of \( |A_4|=12 \)
+    that is a multiple of \( 6 \) and admits a subgroup is \( 12 \)
+    itself; hence \( H = A_4 \).
+
+    It remains to check that \( A_4 \) is transitive on unordered
+    pairs. The subgroup of \( A_4 \) fixing a point, say \( 1 \), is
+    \( \{e,(2\,3\,4),(2\,4\,3)\} \), which already acts transitively on
+    the remaining three points \( \{2,3,4\} \); hence \( A_4 \) is
+    \( 2 \)-transitive on \( \{1,2,3,4\} \) (transitive on ordered
+    pairs, as \( |A_4| = 12 = 4 \times 3 \)), and in particular
+    transitive on unordered pairs.
+\end{proof}
+
+\begin{corollary}\label{cor:five-classes}
+    For every dimension \( m \in \{2,4,6\} \), any two of the
+    subspaces of dimension \( m \) listed in
+    Table~\ref{tab:classification-no-dft} are related by conjugation
+    \( V = UWU^* \) for some \( U \in U(3) \), built as a composition
+    of the unitaries \( F \) and \( S \) (and their inverses). Together
+    with the trivial cases \( m=0,8 \), this shows that all sixteen
+    self-reflective subspaces generated by \( P \) and \( Q \) fall
+    into exactly \emph{five} classes under unitary conjugation, one for
+    each dimension \( m \in \{0,2,4,6,8\} \).
+\end{corollary}
+
+\begin{proof}
+    By Proposition~\ref{prop:full-equivalence}, for any two pairs
+    \( \{i,j\}, \{i',j'\} \subseteq \{1,2,3,4\} \) there is a
+    permutation \( \tau \in A_4 \) with \( \tau(\{i,j\}) = \{i',j'\} \),
+    realized as a word in \( \sigma_F, \sigma_S \) and their inverses.
+    Replacing each \( \sigma_F \) or \( \sigma_S \) in this word by the
+    corresponding unitary \( F \) or \( S \) yields a unitary \( U \)
+    with \( U\mathcal{P}_iU^* = \mathcal{P}_{\tau(i)} \) for every block
+    index \( i \) (up to scalar phases on individual generators, which
+    do not affect the spans), and hence
+    \[
+        UW_{i,j}U^* = U\big(\operatorname{span}(\mathcal{P}_i \oplus
+        \mathcal{P}_j)\big)U^*
+        = \operatorname{span}(\mathcal{P}_{\tau(i)} \oplus
+        \mathcal{P}_{\tau(j)}) = W_{i',j'}.
+    \]
+    The same argument, using only the transitivity of \( A_4 \) on
+    single points, gives the case \( m=2 \); the case \( m=6 \) follows
+    by taking orthogonal complements, since \( U_k \) is precisely the
+    orthogonal complement of \( V_k \) inside \( \mathfrak{su}_3 \), and
+    unitary conjugation commutes with taking orthogonal complements.
+
+    Finally, since \( U \) can always be rescaled by a unimodular
+    scalar \( \lambda \) without changing the conjugation action
+    \( (\lambda U)(\cdot)(\lambda U)^* = U(\cdot)U^* \), one may choose
+    \( \lambda \) so that \( \lambda U \in SU(3) \), matching the form
+    required by Gromada's theorem for the corresponding quantum graphs
+    to be isomorphic.
+\end{proof}
 
 \section{Classification of loopfree and undirected graphs on \( M_{3} \)}
 
-In this section we exhibit, for each of the sixteen self-reflective
-subspaces classified above, the corresponding voltage graph on
-\( \mathbb{Z}_3 \) together with its derived (covering) graph. Four
-representative cases are shown below; the base graph \( \Gamma \) has
-its edges and loops labeled by elements of \( \mathbb{Z}_3 \), and the
-derived graph \( \Gamma^\lambda \) consists of three fibers of three
-vertices each, with edge colors indicating voltage:
+In this section we exhibit, for each possible number of quantum edges
+\( m \in \left\{ 0, 2, 4, 6, 8 \right\} \), a unique quantum graph
+that can be represented as a derived quantum graph of a voltage quantum
+graph. Thanks to a result by \textcite{tobolski26}, namely
+\ref{cor:quantum-iso}, those graphs are quantum isomorphic to quantum
+graphs on \( (\mathbb{C}^n \rtimes_{\hat\alpha} \hat{\mathbb{Z}}_n,
+\psi_\rtimes) \), which, in turn, is isomorphic to \( (M_3, 3
+\operatorname{Tr}) \) by \ref{lem:iso}.
+
 \begin{center}
     \vspace{-0.3cm}
     \voltagelegend
     \vspace{-0.3cm}
 \end{center}
 
-\input{ourgraphs}
+\input{graphs/ourgraphs}
 
 % \section{Our graphs are vertex-transitive}
 %
@@ -471,6 +668,7 @@ The proof of this theorem relies on the well-known isomorphism
 does not generalise to higher dimensions, as the following lemma shows.
 
 \begin{lemma}
+    \label{lemma:hard-action}
     The natural action
     \[
         PU(3) \curvearrowright \mathbb{P}(\mathbb{R}^8)
