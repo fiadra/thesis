@@ -89,50 +89,51 @@ this thesis, taken directly from \textcite{tobolski26}.
 
 % TODO: Prove that the examples are correct (do some calculations)
 \begin{example}[Classical finite sets as quantum sets]
-    Every finite set \( X \) gives rise to a quantum set
-    \( (C(X), \psi_X) \), where \( C(X) \) denotes the \( C^{*} \)-algebra of
-    complex-valued functions on \( X \) with pointwise multiplication and
-    involution given by pointwise complex conjugation,
-    \( f^*(x) = \overline{f(x)} \), and where
+    \label{ex:classical_sets}
+    Every finite set \( V \) gives rise to a quantum set
+    \( (C(V), \psi_V) \), where \( C(V) \) denotes the \( C^{*} \)-algebra of
+    complex-valued functions on \( V \) with pointwise multiplication and
+    involution given by pointwise complev conjugation,
+    \( f^*(v) = \overline{f(v)} \), and where
     \[
-        \psi_X \colon C(X) \rightarrow \mathbb{C}, \qquad
-        \psi_X(f) = \sum_{x \in X} f(x).
+        \psi_V \colon C(V) \rightarrow \mathbb{C}, \qquad
+        \psi_V(f) = \sum_{v \in V} f(v).
     \]
 
-    To see that \( \psi_X \) is positive, note that for any
-    \( f \in C(X) \) the product \( f^*f \) evaluates pointwise as
+    To see that \( \psi_V \) is positive, note that for any
+    \( f \in C(V) \) the product \( f^*f \) evaluates pointwise as
     \[
-        (f^*f)(x) = \overline{f(x)}\,f(x) = |f(x)|^2,
+        (f^*f)(v) = \overline{f(v)}\,f(v) = |f(v)|^2,
     \]
     so that
     \[
-        \psi_X(f^*f) = \sum_{x \in X} |f(x)|^2 \geq 0.
+        \psi_V(f^*f) = \sum_{v \in V} |f(v)|^2 \geq 0.
     \]
 
-    For faithfulness, suppose \( \psi_X(f^*f) = 0 \) for some
-    \( f \in C(X) \), i.e.
+    For faithfulness, suppose \( \psi_V(f^*f) = 0 \) for some
+    \( f \in C(V) \), i.e.
     \[
-        \sum_{x \in X} |f(x)|^2 = 0.
+        \sum_{v \in V} |f(v)|^2 = 0.
     \]
-    Since each summand \( |f(x)|^2 \) is non-negative, the sum can vanish
-    only if every term does, so \( f(x) = 0 \) for all \( x \in X \), and
-    hence \( f = 0 \). Thus \( \psi_X \) is faithful.
+    Since each summand \( |f(v)|^2 \) is non-negative, the sum can vanish
+    only if every term does, so \( f(v) = 0 \) for all \( v \in V \), and
+    hence \( f = 0 \). Thus \( \psi_V \) is faithful.
 
     It remains to check the quantum set condition \( mm^* =
     \operatorname{Id} \).
-    Let \( \{e_x\}_{x \in X} \) denote the orthonormal basis of \( C(X) \)
+    Let \( \{e_v\}_{v \in V} \) denote the orthonormal basis of \( C(V) \)
     given by the characteristic functions of points, so that
     \[
-        m(f \otimes g) = fg, \qquad m^*(e_x) = e_x \otimes e_x.
+        m(f \otimes g) = fg, \qquad m^*(e_v) = e_v \otimes e_v.
     \]
     Evaluating the composite \( mm^* \) on a basis element gives
     \[
-        (mm^*)(e_x) = m\big(m^*(e_x)\big) = m(e_x \otimes e_x) = e_x e_x = e_x,
+        (mm^*)(e_v) = m\big(m^*(e_v)\big) = m(e_v \otimes e_v) = e_v e_v = e_v,
     \]
-    since \( e_x \) is idempotent. As \( mm^* \) and \( \operatorname{Id} \)
-    agree on the basis \( \{e_x\}_{x \in X} \), they agree on all of
-    \( C(X) \) by linearity, so \( mm^* = \operatorname{Id} \), and
-    \( (C(X), \psi_X) \) is indeed a quantum set.
+    since \( e_v \) is idempotent. As \( mm^* \) and \( \operatorname{Id} \)
+    agree on the basis \( \{e_v\}_{v \in V} \), they agree on all of
+    \( C(V) \) by linearity, so \( mm^* = \operatorname{Id} \), and
+    \( (C(V), \psi_V) \) is indeed a quantum set.
 \end{example}
 
 \begin{remark}
@@ -152,27 +153,27 @@ this thesis, taken directly from \textcite{tobolski26}.
 \end{remark}
 
 \begin{example}[The special case \( \mathbb{C}^n \)]
-    Taking \( X = \{1, \dots, n\} \) in the previous example recovers the
+    Taking \( V = \{1, \dots, n\} \) in the previous example recovers the
     quantum set \( (\mathbb{C}^n, \psi_n) \), where \( \psi_n \) is
     determined on the standard basis by \( \psi_n(e_i) = 1 \) and extends
     linearly to
     \[
-        \psi_n(x) = \sum_{i=1}^n x_i, \qquad x \in \mathbb{C}^n.
+        \psi_n(v) = \sum_{i=1}^n v_i, \qquad v \in \mathbb{C}^n.
     \]
     Positivity and faithfulness follow exactly as above: writing
-    \( x = \sum_i x_i e_i \) and using orthogonality of the basis,
+    \( v = \sum_i v_i e_i \) and using orthogonality of the basis,
     \[
-        x^*x = \Big(\sum_{i=1}^n \overline{x_i}\,
-        e_i\Big)\Big(\sum_{j=1}^n x_j e_j\Big)
-        = \sum_{i=1}^n \overline{x_i}x_i\, e_i = \sum_{i=1}^n |x_i|^2 e_i,
+        v^*v = \Big(\sum_{i=1}^n \overline{v_i}\,
+        e_i\Big)\Big(\sum_{j=1}^n v_j e_j\Big)
+        = \sum_{i=1}^n \overline{v_i}v_i\, e_i = \sum_{i=1}^n |v_i|^2 e_i,
     \]
     so that
     \[
-        \psi_n(x^*x) = \sum_{i=1}^n |x_i|^2 \psi_n(e_i) =
-        \sum_{i=1}^n |x_i|^2 \geq 0,
+        \psi_n(v^*v) = \sum_{i=1}^n |v_i|^2 \psi_n(e_i) =
+        \sum_{i=1}^n |v_i|^2 \geq 0,
     \]
-    which vanishes precisely when every \( x_i = 0 \), i.e.\ when
-    \( x = 0 \). The quantum set condition again reduces to the
+    which vanishes precisely when every \( v_i = 0 \), i.e.\ when
+    \( v = 0 \). The quantum set condition again reduces to the
     computation
     \[
         (mm^*)(e_i) = m(e_i \otimes e_i) = e_i, \qquad i = 1,\dots,n,
@@ -180,7 +181,6 @@ this thesis, taken directly from \textcite{tobolski26}.
     which forces \( mm^* = \operatorname{Id} \) by linearity.
 \end{example}
 
-% TODO: Why is there nTr instead of Tr?
 \begin{example}[Matrix algebras]
     For any \( n \in \mathbb{N}_+ \), the pair
     \( (M_n, n\operatorname{Tr}) \) is a quantum set, where
@@ -484,6 +484,17 @@ adjancenty matrix and a quantum graph.
     \end{itemize}
 \end{definition}
 
+\begin{remark}
+    The motivation behind the first point in the definition above
+    will become clear thanks to \ref{lem:correspondences}, which says
+    that \( m(A \otimes B)m^* \) can be thought of as taking the
+    intersection of two graphs edgewise. Subsequently \( m(A \otimes
+    \operatorname{Id})m^* \) would keep only loops, i.e. edges going
+    from a vertex to itself. The second point is easy to motivate in
+    a similar manner: a graph is undirected if and only if its
+    adjacency matrix is symmetric.
+\end{remark}
+
 \section{Voltage and Derived Quantum Graphs}
 
 In this section we introduce the notions of voltage and derived
@@ -578,44 +589,47 @@ picture. The following definition makes this precise.
 
 % TODO: Maybe replace the dagger?
 \begin{definition}
+    \label{def:quantum-voltage-graph}
     (\textcite[Definition~4.1]{tobolski26})
-    Let \( (\tilde{B}, \tilde\psi) \), \( \hat\alpha \colon \hat{G} \to
-    \operatorname{Aut}(\tilde{B}, \tilde\psi) \), \( (B, \psi_\rtimes) \),
-    and \( (u_\chi)_{\chi \in \hat{G}} \subset B \) be as above.
+    Suppose \( (\tilde{B}, \tilde\psi) \), the action
+    \( \hat\alpha \colon \hat{G} \to \operatorname{Aut}(\tilde{B},
+    \tilde\psi) \),
+    the crossed product \( (B, \psi_\rtimes) \), and the elements
+    \( (u_\chi)_{\chi \in \hat{G}} \subset B \) are as introduced above.
     \begin{enumerate}
-        \item For every \( g \in G \), define
+        \item For each \( g \in G \), set
             \[
                 X_g := \frac{1}{n} \sum_{\chi \in \hat{G}}
                 \overline{\chi(g)}\, u_\chi u_\chi^\dagger,
             \]
-            i.e.\ \( X_g \) is the operator
+            i.e.\ let \( X_g \) be the linear operator
             \[
                 X_g \colon B \to B, \qquad
                 b \mapsto \frac{1}{n} \sum_{\chi \in \hat{G}}
                 \overline{\chi(g)}\, \langle u_\chi, b
                 \rangle_{\psi_\rtimes}\, u_\chi.
             \]
-        \item A \emph{voltage quantum graph} on the quantum set
-            \( (\tilde{B}, \tilde\psi) \), with respect to the group
-            action \( \hat\alpha \colon \hat{G} \to
+        \item Given the group action
+            \( \hat\alpha \colon \hat{G} \to
             \operatorname{Aut}(\tilde{B}, \tilde\psi) \),
-            is a family \( \tilde{A} = (\tilde{A}_g)_{g \in G} \) of
-            quantum adjacency matrices, indexed by \( G \), satisfying
-            the equivariance condition
+            a \emph{voltage quantum graph} on \( (\tilde{B}, \tilde\psi) \)
+            is a \( G \)-indexed family
+            \( \tilde{A} = (\tilde{A}_g)_{g \in G} \) of quantum
+            adjacency matrices such that
             \[
                 \tilde{A}_g \hat\alpha_\chi = \hat\alpha_\chi \tilde{A}_g
             \]
-            for all \( g \in G \) and \( \chi \in \hat{G} \).
-        \item The \emph{derived quantum graph}
+            holds for every \( g \in G \) and every \( \chi \in \hat{G} \).
+        \item Given such a family \( \tilde{A} \), the associated
+            \emph{derived quantum graph}
             \( \tilde{A} \rtimes_{\hat\alpha} \hat{G} \colon B \to B \)
-            on \( (B, \psi_\rtimes) \) is then defined by
+            on \( (B, \psi_\rtimes) \) is
             \[
                 \tilde{A} \rtimes_{\hat\alpha} \hat{G}
                 := \sum_{g \in G} m\big( X_g \otimes E_\rtimes^*
                 \tilde{A}_g E_\rtimes \big)\, m^*,
             \]
-            where \( m \) denotes the multiplication map on \( B \),
-            i.e.\ \( m = m_\rtimes \).
+            where \( m = m_\rtimes \) is the multiplication map on \( B \).
     \end{enumerate}
 \end{definition}
 
@@ -642,107 +656,197 @@ one that is undirected.
     sum \( \sum_{g \in G} \tilde{A}_g \).
 \end{definition}
 
-% TODO: Napisac motywacje za X_g
-% TODO: Moze to wyjebac?
+We can connect the notions of voltage and derived graphs to their quantum
+equivalents. The following proposition tells us that classical derived graphs
+can be thought of as special kinds of derived quantum graphs.
+
+Below \( (\mathbb{C}_V, \psi_V) \) is used to denote a quantum set derived
+from a finite classical set \( V \), like it was done in
+Example~\ref{ex:classical_sets}.
+
+\begin{proposition}
+    \label{prop:equivalence}
+    (\textcite[Proposition~4.10]{tobolski26})
+    Let \( G \) be a finite abelian group, and let
+    \( (\mathbb{C}^V, \psi_V) \) be a quantum set. Given a
+    pre-simple voltage graph \( (\Gamma,\lambda) \) on \( V \) with
+    labelling \( \lambda \colon E \to G \), let
+    \( \tilde{A}_g \colon \mathbb{C}^V \to \mathbb{C}^V \) denote the
+    adjacency matrix of the (simple, directed) subgraph of \( \Gamma \)
+    consisting of exactly those edges labeled \( g \). Then the
+    assignment
+    \[
+        (\Gamma,\lambda) \;\longmapsto\; \tilde{A} = (\tilde{A}_g)_{g \in G}
+    \]
+    is a one-to-one correspondence between \( G \)-labeled pre-simple
+    voltage graphs on \( n \) and voltage quantum graphs on
+    \( (\mathbb{C}^V, \psi_V) \) with respect to the trivial action on
+    \( (\mathbb{C}^V, \psi_V) \).
+\end{proposition}
+
+\begin{proposition}
+    (\textcite[Proposition~4.10]{tobolski26})
+    In the setting of Proposition~\ref{prop:equivalence},
+    let \( (\Gamma,\lambda) \) be a pre-simple voltage graph with
+    associated voltage quantum graph
+    \( \tilde{A} = (\tilde{A}_g)_{g \in G} \). Then the derived graphs
+    agree under the identification
+    \[
+        \Gamma^\lambda = \tilde{A} \rtimes_{\mathrm{triv}} \hat{G},
+    \]
+    where \( \Gamma^\lambda \) is the Gross--Tucker derived graph, and
+    \( \tilde{A} \rtimes_{\mathrm{triv}} \hat{G} \) is the derived
+    quantum graph of Definition~\ref{def:quantum-voltage-graph};
+    here classical graphs on \( V \times G \) are identified with
+    quantum graphs on \( (\mathbb{C}^V,\psi_V)
+    \rtimes_{\mathrm{triv}} \hat{G} \).
+\end{proposition}
+
+Thus we can identify classical derived graphs with quantum graphs
+on cross-product quantum sets with the trivial action. This will
+come useful later as this will allow us to establish a quantum isomorphism
+between nonclassical graphs on \( (M_3, 3 \operatorname{Tr}) \) and classical
+graphs that happen to be derived graphs.
+
+The lemma below lets us better understand the correspondence between classical
+and quantum derived graphs.
+
 \begin{lemma}
-    If \( A, B \in M_n(\{0,1\}) \) and \( m^*: \mathbb{C}^n
-    \to \mathbb{C}^n \otimes \mathbb{C}^n \) is the adjoint of the
-    multiplication map \( m \), then \( m(A \otimes B)m^* = A \odot B
-    \), the entrywise (Hadamard) product of \( A \) and \( B \).
+    (\textcite[Lemma~4.11]{tobolski26})
+    \label{lem:correspondences}
+    Let \( (\mathbb{C}^V, \psi_V) \) be the quantum set associated with
+    a finite set \( V \), and let
+    \( G \) be a finite abelian group equipped with the trivial action
+    \( \mathrm{triv} \colon \hat{G} \to
+    \operatorname{Aut}(\mathbb{C}^V, \psi_V) \).
+    Then following hold.
+    \begin{enumerate}
+        \item The assignment on generators
+            \[
+                e_v \mapsto \sum_{g \in G} e_{v,g}, \qquad
+                u_\chi \mapsto \sum_{v \in V,\, g \in G} \chi(g)\, e_{v,g}
+            \]
+            extends to an isomorphism
+            \[
+                (\mathbb{C}^V, \psi_V) \rtimes_{\mathrm{triv}} \hat{G}
+                \;\cong\; (\mathbb{C}^{V \times G}, \psi_{V \times G}),
+            \]
+            where the right-hand side is the quantum set associated
+            to the finite set \( V \times G \) as in
+            Example~\ref{pre::ex:classical_graphs_as_quantum_graphs},
+            and \( e_v \), \( e_{v,g} \) denote the indicator functions
+            in \( C(V) \) and \( C(V \times G) \), respectively.
+
+        \item Under this identification, the operator
+            \( X_g \colon B \to B \), \( g \in G \), from
+            Definition~\ref{der::def:derived_quantum_graph}
+            corresponds to the classical graph on \( V \times G \)
+            whose edges are exactly
+            \[
+                (v,h) \to (w, hg), \qquad v,w \in V,\ h \in G.
+            \]
+
+        \item Likewise, the operator
+            \( E_\rtimes^* \tilde{A}_g E_\rtimes \colon B \to B \)
+            from Definition~\ref{der::def:derived_quantum_graph}
+            corresponds to the classical graph on \( V \times G \)
+            whose edges are exactly
+            \[
+                (v,h) \to (w,k), \qquad h,k \in G,\ v
+                \xrightarrow{\tilde{A}_g} w,
+            \]
+            where \( v \xrightarrow{\tilde{A}_g} w \) means that
+            \( v \) and \( w \) are joined by an edge in the classical
+            graph corresponding to the adjacency matrix
+            \( \tilde{A}_g \).
+
+        \item Finally, suppose \( A_1, A_2 \) are quantum adjacency
+            matrices corresponding, in the sense of
+            Example~\ref{pre::ex:classical_graphs_as_quantum_graphs},
+            to classical graphs \( \Gamma_1, \Gamma_2 \) on
+            \( V \times G \). Then
+            \[
+                A_3 := m(A_1 \otimes A_2)\, m^*
+            \]
+            is again a quantum adjacency matrix, and corresponds to
+            the classical graph \( \Gamma_3 := \Gamma_1 \cap \Gamma_2 \)
+            with vertex set \( V \times G \) and edge set given by the
+            intersection of the edge sets of \( \Gamma_1 \) and
+            \( \Gamma_2 \).
+    \end{enumerate}
 \end{lemma}
 
-\begin{proof}
-    Let \( \{e_1, \dots, e_n\} \) be the standard basis of \(
-    \mathbb{C}^n \). The componentwise multiplication map \( m \) acts as:
-    \[
-        m(e_i \otimes e_j) = \delta_{ij} e_i
-    \]
-    By definition of the adjoint via the standard inner product, \(
-        \langle m(e_i \otimes e_j), e_k \rangle = \langle e_i \otimes
-    e_j, m^*(e_k) \rangle \). Since the left-hand side is \(
-    \delta_{ij}\delta_{ik} \), it follows that:
-    \[
-        m^*(e_k) = e_k \otimes e_k
-    \]
-    We expand the action of the matrices \( A \) and \( B \) on a
-    basis vector \( e_k \) via their entries \( A_{ik}, B_{jk} \):
-    \[
-        Ae_k = \sum_{i=1}^n A_{ik} e_i, \quad Be_k = \sum_{j=1}^n B_{jk} e_j
-    \]
-    Applying the composite operator \( m(A \otimes B)m^* \) to \( e_k \) yields:
-    \[
-        m(A \otimes B)m^*(e_k) = m(Ae_k \otimes Be_k)
-    \]
-    \[
-        = m\left( \sum_{i=1}^n \sum_{j=1}^n A_{ik} B_{jk} (e_i
-        \otimes e_j) \right)
-    \]
-    \[
-        = \sum_{i=1}^n \sum_{j=1}^n A_{ik} B_{jk} \delta_{ij} e_i
-    \]
-    \[
-        = \sum_{i=1}^n (A_{ik} B_{ik}) e_i
-    \]
-    Thus, the \( (i,k) \)-th entry of the matrix \( m(A \otimes B)m^*
-    \) is exactly \( A_{ik} B_{ik} \). Because \( A \) and \( B \)
-    are binary, this entry evaluates to \( 1 \) if and only if \(
-    A_{ik} = 1 \) and \( B_{ik} = 1 \), and \( 0 \) otherwise.
-\end{proof}
-
-\begin{remark}
-    \( m(A \otimes B)m^{*} \) can be thought of as taking the intersecion
-    of two quantum matrices blabla...
-\end{remark}
+% TODO: cos tu napisac
 
 \section{Isomorphisms and Quantum Isomorphisms of Quantum Sets}
 
-Quantum isomorphisms were first conveived in \textcite{atserias16} in
-the context of game theory. We will follow the definitions due to
-\textcite{tobolski26}, which in turn follow the work of \textcite{musto18}.
+Quantum isomorphisms were first conveived in
+\textcite{atserias16} in
+the context of game theory. We will follow the
+definitions due to
+\textcite{tobolski26}, which in turn follow the work
+of \textcite{musto18}.
 
 \begin{definition}
-    (Quantum isomorphisms, \textcite[Definition~2.8]{tobolski26})
+    (Quantum isomorphisms,
+    \textcite[Definition~2.8]{tobolski26})
     Let \( (B_{1}, \psi_{1}) \) and \( (B_{2}, \psi_{2}) \) be
-    quantum sets, and let \( A_{1}\colon B_{1} \rightarrow B_{1} \)
+    quantum sets, and let \( A_{1}\colon B_{1}
+    \rightarrow B_{1} \)
     and \( A_{2}\colon B_{2} \rightarrow B_{2} \)
     be quantum graphs on \( (B_{1}, \psi_{1}) \) and \( (B_{2},
     \psi_{2}) \), respectively.
     \begin{itemize}
-        \item The quantum sets \( (B_1,\psi_1) \) and \( (B_2,\psi_2) \)
+        \item The quantum sets \( (B_1,\psi_1) \) and
+            \( (B_2,\psi_2) \)
             are called \emph{isomorphic} if there exists
             a \( * \)-isomorphism
-            \( \phi\colon B_{1} \rightarrow B_{2} \) satisfying \( \psi_{2}
+            \( \phi\colon B_{1} \rightarrow B_{2} \)
+            satisfying \( \psi_{2}
             \circ \phi = \psi_{1} \).
-            The group of all such self-isomorphisms of a quantum set
-            \( (B, \psi) \) is denoted \( \operatorname{Aut}(B, \psi) \).
-        \item Two quantum graphs are called \emph{isomorphic} if the
+            The group of all such self-isomorphisms
+            of a quantum set
+            \( (B, \psi) \) is denoted \(
+            \operatorname{Aut}(B, \psi) \).
+        \item Two quantum graphs are called
+            \emph{isomorphic} if the
             underlying quantum sets admit an isomorphism
-            \( \phi\colon B_{1} \rightarrow B_{2} \) which additionally
+            \( \phi\colon B_{1} \rightarrow B_{2} \)
+            which additionally
             intertwines the graphs, i.e.\ satisfies
-            \( \phi A_{1} = A_{2} \phi \). The corresponding group of
+            \( \phi A_{1} = A_{2} \phi \). The
+            corresponding group of
             automorphisms of a quantum graph \( A \) is written
             \( \operatorname{Aut}(A) \).
-        \item The quantum sets \( (B_1,\psi_1) \) and \( (B_2,\psi_2) \)
+        \item The quantum sets \( (B_1,\psi_1) \) and
+            \( (B_2,\psi_2) \)
             are said to be \emph{quantum isomorphic}, denoted
-            \( (B_{1}, \psi_{1}) \cong_q (B_{2}, \psi_{2}) \), if
+            \( (B_{1}, \psi_{1}) \cong_q (B_{2},
+            \psi_{2}) \), if
             there exist a finite-dimensional Hilbert space
             \( \mathcal{H} \) together with a
             unital \( * \)-homomorphism
             \[
-                \rho\colon B_{1} \rightarrow B_{2} \otimes B(\mathcal{H})
+                \rho\colon B_{1} \rightarrow B_{2}
+                \otimes B(\mathcal{H})
             \]
             for which the induced map
             \[
-                p\colon L^{2}(B_{1}) \otimes \mathcal{H} \rightarrow
-                L^{2}(B_{2}) \otimes \mathcal{H}, \qquad a \otimes \xi
+                p\colon L^{2}(B_{1}) \otimes
+                \mathcal{H} \rightarrow
+                L^{2}(B_{2}) \otimes \mathcal{H},
+                \qquad a \otimes \xi
                 \longmapsto \rho(a)(1 \otimes \xi),
             \]
             is a unitary operator between Hilbert spaces.
-        \item Two quantum graphs \( A_1, A_2 \) are \emph{quantum
-            isomorphic}, written \( A_{1} \cong_{q} A_{2} \), if the
+        \item Two quantum graphs \( A_1, A_2 \) are
+            \emph{quantum
+            isomorphic}, written \( A_{1} \cong_{q}
+            A_{2} \), if the
             underlying quantum sets admit a quantum isomorphism
             \( \rho\colon B_{1} \rightarrow B_{2}
-            \otimes B(\mathcal{H}) \) that in addition satisfies the
+            \otimes B(\mathcal{H}) \) that in
+            addition satisfies the
             intertwining condition
             \[
                 \rho A_{1} = (A_{2} \otimes
@@ -750,3 +854,28 @@ the context of game theory. We will follow the definitions due to
             \]
     \end{itemize}
 \end{definition}
+
+Quantum isomorphisms are a weaker notion than classical isomorphisms.
+Later we will establish quantum isomorphisms between certain classical
+derived graphs and quantum graphs on \( (M_3, 3 \operatorname{Tr}) \).
+The theorem below lets us establish quantum isomorphisms between
+derived quantum graphs differing only by the group action.
+
+\begin{theorem}
+    \label{thm:quantum-iso-different-actions}
+    Let \( (\tilde{B}, \tilde\psi) \), the action
+    \( \hat\alpha \colon \hat{G} \to \operatorname{Aut}(\tilde{B},
+    \tilde\psi) \),
+    and the crossed product
+    \( (\tilde{B} \rtimes_{\hat\alpha} \hat{G}, \psi_\rtimes) \) be as
+    introduced above, and let
+    \( \tilde{A} = (\tilde{A}_g)_{g \in G} \) be a voltage quantum
+    graph on \( (\tilde{B}, \tilde\psi) \) with respect to the action
+    \( \hat\alpha \) of \( \hat{G} \). Then the corresponding derived
+    quantum graphs satisfy the quantum isomorphism
+    \[
+        \tilde{A} \rtimes_{\hat\alpha} \hat{G}
+        \;\cong_q\;
+        \tilde{A} \rtimes_{\mathrm{triv}} G.
+    \]
+\end{theorem}
