@@ -93,7 +93,7 @@ this thesis, taken directly from \textcite{tobolski26}.
     Every finite set \( V \) gives rise to a quantum set
     \( (C(V), \psi_V) \), where \( C(V) \) denotes the \( C^{*} \)-algebra of
     complex-valued functions on \( V \) with pointwise multiplication and
-    involution given by pointwise complev conjugation,
+    involution given by pointwise conjugation,
     \( f^*(v) = \overline{f(v)} \), and where
     \[
         \psi_V \colon C(V) \rightarrow \mathbb{C}, \qquad
@@ -455,7 +455,7 @@ The following definitions are due to \textcite{tobolski26}.
 
 For all intents and purposes we will identify both notions and simply
 call an appropriate \( A\colon B \rightarrow B \) both a quantum
-adjancenty matrix and a quantum graph.
+adjacency matrix and a quantum graph.
 
 % TODO: finish this remark
 \begin{remark}
@@ -471,12 +471,12 @@ adjancenty matrix and a quantum graph.
 \end{remark}
 
 \begin{definition}
-    \label{def:quantum-loopfree}
+    \label{def:quantum-loop-free}
     (\textcite[Definition~4.6]{tobolski26})
     Let \( A \) be a quantum graph on a quantum set \( (B, \psi) \).
     We call the quantum graph
     \begin{itemize}
-        \item \emph{loopfree} if \( m(A \otimes
+        \item \emph{loop-free} if \( m(A \otimes
             \operatorname{Id})m^{*} = 0, \)
         \item \emph{undirected} if \( A = A^{*} \), where the adjoint
             is taken with respect to the inner product induced by
@@ -554,6 +554,7 @@ admitting a free action of a finite group. It can be found in
 
 % TODO: Is \Gamma directed?
 \begin{theorem}[Gross and Tucker theorem]
+    \label{thm:gross-and-tucker}
     Let \( \tilde\Gamma \) be a graph and let \( G \) be a finite group
     acting freely on \( \tilde\Gamma \) by automorphisms. Then there
     exists a voltage graph \( (\Gamma,\lambda) \), with edges labeled
@@ -651,15 +652,14 @@ one that is undirected.
 
 \begin{definition}
     A voltage quantum graph \( \tilde{A} = \{\tilde{A}_g\}_{g \in G} \)
-    is called \emph{loopfree} or \emph{directed} if the respective
-    properties from Definition~\ref{def:quantum-loopfree} hold for the
+    is called \emph{loop-free} or \emph{directed} if the respective
+    properties from Definition~\ref{def:quantum-loop-free} hold for the
     sum \( \sum_{g \in G} \tilde{A}_g \).
 \end{definition}
 
 We can connect the notions of voltage and derived graphs to their quantum
-equivalents. The following proposition tells us that classical derived graphs
-can be thought of as special kinds of derived quantum graphs.
-
+equivalents. The following proposition tells us that classical voltage graphs
+can be thought of as special kinds of voltage quantum graphs.
 Below \( (\mathbb{C}_V, \psi_V) \) is used to denote a quantum set derived
 from a finite classical set \( V \), like it was done in
 Example~\ref{ex:classical_sets}.
@@ -684,8 +684,14 @@ Example~\ref{ex:classical_sets}.
     \( (\mathbb{C}^V, \psi_V) \).
 \end{proposition}
 
+In the same manner classical derived graphs can be identified
+with certain derived quantum graphs. Note that the group action
+in question is trivial, which connects to Theorem~\ref{thm:gross-and-tucker},
+which states that a graph is isomorphic to a derived graph of some voltage
+graph in and only if it allows a free group action of some finite group.
+
 \begin{proposition}
-    (\textcite[Proposition~4.10]{tobolski26})
+    (\textcite[Proposition~4.12]{tobolski26})
     In the setting of Proposition~\ref{prop:equivalence},
     let \( (\Gamma,\lambda) \) be a pre-simple voltage graph with
     associated voltage quantum graph
@@ -711,6 +717,7 @@ graphs that happen to be derived graphs.
 The lemma below lets us better understand the correspondence between classical
 and quantum derived graphs.
 
+%% TODO: Napisac czym jest E i E*
 \begin{lemma}
     (\textcite[Lemma~4.11]{tobolski26})
     \label{lem:correspondences}
@@ -776,78 +783,271 @@ and quantum derived graphs.
     \end{enumerate}
 \end{lemma}
 
-% TODO: cos tu napisac
+\begin{example}
+    (\textcite[Example~4.13]{tobolski26})
+    Consider the voltage graph \( (\Gamma, \lambda) \) consisting of two
+    vertices \( v, w \) along with a single edge \( e \) going
+    from \( v \) to \( w \) and labeled with \( 1_{\mathbb{Z}_3} \),
+    i.e. \( \lambda(e) = 1_{\mathbb{Z}_3} \). The derived graph then has
+    6 vertices, 3 for each vertex of \( \Gamma \).
+
+    \begin{center}
+        \centering
+        {\normalsize\sffamily\bfseries Base graph and its derived
+        cover over \( \mathbb{Z}_3 \)}\\[4pt]
+        \begin{minipage}[t]{0.35\textwidth}
+            \centering
+            \begin{tikzpicture}[>=Stealth, scale=1.0]
+                \node[base node] (v) at (0,0) {\( v \)};
+                \path[->, thick]
+                (v) edge [loop above, looseness=8] node[edge label]
+                {\( 1 \)} (v);
+            \end{tikzpicture}\\[6pt]
+            \captionof{}{Base voltage graph \( \Gamma \)}
+        \end{minipage}\hfill
+        \begin{minipage}[t]{0.55\textwidth}
+            \centering
+            \begin{tikzpicture}[>=Stealth, scale=0.9]
+                \node[derived node] (v0) at (0,0) {\( v_0 \)};
+                \node[derived node] (v1) at (2.2,0) {\( v_1 \)};
+                \node[derived node] (v2) at (4.4,0) {\( v_2 \)};
+                \draw[->, thick, volt1, opacity=0.6] (v0) to (v1);
+                \draw[->, thick, volt1, opacity=0.6] (v1) to (v2);
+                \draw[->, thick, volt1, opacity=0.6] (v2) to [bend
+                right=45] (v0);
+            \end{tikzpicture}\\[6pt]
+            \captionof{}{Derived graph \( \Gamma^\lambda \)}
+        \end{minipage}
+        \label{der::fig:voltage_graph_example}
+    \end{center}
+
+    As discussed above, a classical graph on \( n \) vertices
+    corresponds to a quantum graph on the quantum set
+    \( (\mathbb{C}^n, \psi_n) \). The voltage graph \( (\Gamma,\lambda) \)
+    is thus identified with a voltage quantum graph on
+    \( (\mathbb{C}, \psi_1) \), given by a family
+    \( (\tilde{A}_g)_{g \in \mathbb{Z}_3} \) of quantum adjacency
+    matrices on \( (\mathbb{C}, \psi_1) \). Since \( \Gamma \) has only
+    a single edge, labeled by \( 1_{\mathbb{Z}_3} \), it is
+    straightforward to check that \( (\Gamma,\lambda) \) corresponds
+    to the family \( \tilde{A} = (\tilde{A}_g)_{g \in \mathbb{Z}_3} \)
+    given by
+    \[
+        \tilde{A}_{0_{\mathbb{Z}_3}} = 0, \qquad
+        \tilde{A}_{1_{\mathbb{Z}_3}} = \operatorname{id}_{\mathbb{C}}, \qquad
+        \tilde{A}_{2_{\mathbb{Z}_3}} = 0.
+    \]
+
+    In general one would need to verify that
+    \( (\tilde{A}_g)_{g \in \mathbb{Z}_3} \) satisfies the conditions
+    of Definition~\ref{der::def:derived_quantum_graph} in order to
+    qualify as a voltage quantum graph; here, however, we are
+    regarding \( (\tilde{A}_g)_{g \in \mathbb{Z}_3} \) as a voltage
+    quantum graph with respect to the trivial action \( \mathrm{triv} \)
+    of \( \hat{\mathbb{Z}}_3 \) on \( \mathbb{C} \), for which there is
+    nothing left to check (see
+    Example~\ref{der::ex:classical_voltage_graphs_as_quantum_voltage_graphs}).
+
+    What, then, is the derived quantum graph
+    \( \tilde{A} \rtimes_{\mathrm{triv}} \hat{\mathbb{Z}}_3 \) of this
+    voltage quantum graph? Recall first that the derived quantum
+    graph lives on the crossed product quantum set
+    \[
+        (\mathbb{C}, \psi_1) \rtimes_{\mathrm{triv}} \hat{\mathbb{Z}}_3.
+    \]
+    By part (a) of
+    Lemma~\ref{der::lemma:identification_of_derived_graph_components_classical_case},
+    this quantum set is isomorphic to \( (\mathbb{C}^3, \psi_3) \), and
+    quantum graphs on \( (\mathbb{C}^3, \psi_3) \) correspond to
+    classical graphs on three vertices.
+
+    By Definition~\ref{der::def:derived_quantum_graph}, the derived
+    quantum graph \( A := \tilde{A} \rtimes_{\mathrm{triv}} \hat{\mathbb{Z}}_3
+    \colon \mathbb{C}^3 \to \mathbb{C}^3 \) on \( (\mathbb{C}^3, \psi_3) \)
+    is given by
+    \[
+        A = \sum_{g \in \mathbb{Z}_3} m\big( X_g \otimes E_\rtimes^*
+        \tilde{A}_g E_\rtimes \big)\, m^*.
+    \]
+    By parts (b) and (c) of
+    Lemma~\ref{der::lemma:identification_of_derived_graph_components_classical_case},
+    the quantum graphs \( X_g \) and
+    \( E_\rtimes^* \tilde{A}_g E_\rtimes \) correspond to the
+    classical graphs on \( \{v_0,v_1,v_2\} \) shown in
+    Figure~\ref{der::fig:Xg_graphs_example} and
+    Figure~\ref{der::fig:EAE_graph_example}, respectively.
+
+    \begin{center}
+        \centering
+        {\normalsize\sffamily\bfseries The graphs \( X_g \)}\\[4pt]
+        \begin{minipage}[t]{0.3\textwidth}
+            \centering
+            \begin{tikzpicture}[>=Stealth, scale=0.75]
+                \node[derived node, draw=volt0, text=volt0] (a0) at
+                (0,0)   {\( v_0 \)};
+                \node[derived node, draw=volt0, text=volt0] (b0) at
+                (2.2,0) {\( v_1 \)};
+                \node[derived node, draw=volt0, text=volt0] (c0) at
+                (4.4,0) {\( v_2 \)};
+                \path[->, thick, volt0, opacity=0.7]
+                (a0) edge [loop above] (a0)
+                (b0) edge [loop above] (b0)
+                (c0) edge [loop above] (c0);
+            \end{tikzpicture}\\[6pt]
+            \captionof{}{\( X_0 \)}
+        \end{minipage}\hfill
+        \begin{minipage}[t]{0.3\textwidth}
+            \centering
+            \begin{tikzpicture}[>=Stealth, scale=0.75]
+                \node[derived node, draw=volt1, text=volt1] (a1) at
+                (0,0)   {\( v_0 \)};
+                \node[derived node, draw=volt1, text=volt1] (b1) at
+                (2.2,0) {\( v_1 \)};
+                \node[derived node, draw=volt1, text=volt1] (c1) at
+                (4.4,0) {\( v_2 \)};
+                \draw[->, thick, volt1, opacity=0.6] (a1) to (b1);
+                \draw[->, thick, volt1, opacity=0.6] (b1) to (c1);
+                \draw[->, thick, volt1, opacity=0.6] (c1) to [bend
+                right=45] (a1);
+            \end{tikzpicture}\\[6pt]
+            \captionof{}{\( X_1 \)}
+        \end{minipage}\hfill
+        \begin{minipage}[t]{0.3\textwidth}
+            \centering
+            \begin{tikzpicture}[>=Stealth, scale=0.75]
+                \node[derived node, draw=volt2, text=volt2] (a2) at
+                (0,0)   {\( v_0 \)};
+                \node[derived node, draw=volt2, text=volt2] (b2) at
+                (2.2,0) {\( v_1 \)};
+                \node[derived node, draw=volt2, text=volt2] (c2) at
+                (4.4,0) {\( v_2 \)};
+                \draw[->, thick, volt2, opacity=0.6] (a2) to [bend
+                left=45] (c2);
+                \draw[->, thick, volt2, opacity=0.6] (b2) to (a2);
+                \draw[->, thick, volt2, opacity=0.6] (c2) to (b2);
+            \end{tikzpicture}\\[6pt]
+            \captionof{}{\( X_2 \)}
+        \end{minipage}
+        \label{der::fig:Xg_graphs_example}
+    \end{center}
+
+    \begin{center}
+        \centering
+        {\normalsize\sffamily\bfseries The graphs \( E_\rtimes^*
+        \tilde{A}_g E_\rtimes \)}\\[4pt]
+        \begin{minipage}[t]{0.3\textwidth}
+            \centering
+            \begin{tikzpicture}[>=Stealth, scale=0.75]
+                \node[derived node] (a0) at (0,0)   {\( v_0 \)};
+                \node[derived node] (b0) at (2.2,0) {\( v_1 \)};
+                \node[derived node] (c0) at (4.4,0) {\( v_2 \)};
+            \end{tikzpicture}\\[6pt]
+            \captionof{}{\( E_\rtimes^* \tilde{A}_0 E_\rtimes \)}
+        \end{minipage}\hfill
+        \begin{minipage}[t]{0.3\textwidth}
+            \centering
+            \begin{tikzpicture}[>=Stealth, scale=0.75]
+                \node[derived node] (a1) at (0,0)   {\( v_0 \)};
+                \node[derived node] (b1) at (2.2,0) {\( v_1 \)};
+                \node[derived node] (c1) at (4.4,0) {\( v_2 \)};
+                \draw[->, thick] (a1) to [bend right=15] (b1);
+                \draw[->, thick] (b1) to [bend right=15] (a1);
+                \draw[->, thick] (a1) to [bend right=25] (c1);
+                \draw[->, thick] (c1) to [bend right=25] (a1);
+                \draw[->, thick] (b1) to [bend right=15] (c1);
+                \draw[->, thick] (c1) to [bend right=15] (b1);
+            \end{tikzpicture}\\[6pt]
+            \captionof{}{\( E_\rtimes^* \tilde{A}_1 E_\rtimes \)}
+        \end{minipage}\hfill
+        \begin{minipage}[t]{0.3\textwidth}
+            \centering
+            \begin{tikzpicture}[>=Stealth, scale=0.75]
+                \node[derived node] (a2) at (0,0)   {\( v_0 \)};
+                \node[derived node] (b2) at (2.2,0) {\( v_1 \)};
+                \node[derived node] (c2) at (4.4,0) {\( v_2 \)};
+            \end{tikzpicture}\\[6pt]
+            \captionof{}{\( E_\rtimes^* \tilde{A}_2 E_\rtimes \)}
+        \end{minipage}
+        \label{der::fig:EAE_graph_example}
+    \end{center}
+
+    % TODO: By what?
+    By part (d) of
+    Lemma, the term
+    \[
+        m\big( X_g \otimes E_\rtimes^* \tilde{A}_g E_\rtimes \big)\, m^*
+    \]
+    returns the adjacency matrix of the classical graph obtained by
+    intersecting the graphs of
+    Figure~\ref{der::fig:Xg_graphs_example} and
+    Figure~\ref{der::fig:EAE_graph_example}. Only the term for
+    \( g = 1_{\mathbb{Z}_3} \) contributes to the derived quantum
+    graph \( A \), so that
+    \[
+        A = m\big( X_1 \otimes E_\rtimes^* \tilde{A}_1 E_\rtimes \big)\, m^*,
+    \]
+    and it is straightforward to check that this is exactly the
+    derived graph \( \Gamma^\lambda \) from
+    Figure~\ref{der::fig:voltage_graph_example}.
+
+    This confirms, in the simplest possible case, the general
+    correspondence of
+    Proposition~\ref{prop:equivalence} and the following proposition:
+    starting from a classical voltage graph, treating it as a voltage
+    quantum graph with respect to the trivial action reproduces exactly
+    the classical derived graph via
+    Definition~\ref{der::def:derived_quantum_graph}.
+\end{example}
 
 \section{Isomorphisms and Quantum Isomorphisms of Quantum Sets}
 
-Quantum isomorphisms were first conveived in
-\textcite{atserias16} in
-the context of game theory. We will follow the
-definitions due to
-\textcite{tobolski26}, which in turn follow the work
-of \textcite{musto18}.
+Quantum isomorphisms were first conceived in \textcite{atserias16} in
+the context of game theory. We follow the definitions due to
+\textcite{tobolski26}, which in turn build on the work of
+\textcite{musto18}.
 
 \begin{definition}
-    (Quantum isomorphisms,
-    \textcite[Definition~2.8]{tobolski26})
+    (Quantum isomorphisms, \textcite[Definition~2.8]{tobolski26})
     Let \( (B_{1}, \psi_{1}) \) and \( (B_{2}, \psi_{2}) \) be
-    quantum sets, and let \( A_{1}\colon B_{1}
-    \rightarrow B_{1} \)
-    and \( A_{2}\colon B_{2} \rightarrow B_{2} \)
-    be quantum graphs on \( (B_{1}, \psi_{1}) \) and \( (B_{2},
-    \psi_{2}) \), respectively.
+    quantum sets, and let \( A_{1}\colon B_{1} \rightarrow B_{1} \)
+    and \( A_{2}\colon B_{2} \rightarrow B_{2} \) be quantum graphs on
+    \( (B_{1}, \psi_{1}) \) and \( (B_{2}, \psi_{2}) \), respectively.
     \begin{itemize}
         \item The quantum sets \( (B_1,\psi_1) \) and
-            \( (B_2,\psi_2) \)
-            are called \emph{isomorphic} if there exists
-            a \( * \)-isomorphism
-            \( \phi\colon B_{1} \rightarrow B_{2} \)
-            satisfying \( \psi_{2}
-            \circ \phi = \psi_{1} \).
-            The group of all such self-isomorphisms
-            of a quantum set
-            \( (B, \psi) \) is denoted \(
-            \operatorname{Aut}(B, \psi) \).
-        \item Two quantum graphs are called
-            \emph{isomorphic} if the
+            \( (B_2,\psi_2) \) are called \emph{isomorphic} if there
+            exists a \( * \)-isomorphism \( \phi\colon B_{1}
+            \rightarrow B_{2} \)
+            satisfying \( \psi_{2} \circ \phi = \psi_{1} \). The group
+            of all such self-isomorphisms of a quantum set
+            \( (B, \psi) \) is denoted \( \operatorname{Aut}(B, \psi) \).
+        \item Two quantum graphs are called \emph{isomorphic} if the
             underlying quantum sets admit an isomorphism
-            \( \phi\colon B_{1} \rightarrow B_{2} \)
-            which additionally
+            \( \phi\colon B_{1} \rightarrow B_{2} \) which additionally
             intertwines the graphs, i.e.\ satisfies
-            \( \phi A_{1} = A_{2} \phi \). The
-            corresponding group of
+            \( \phi A_{1} = A_{2} \phi \). The corresponding group of
             automorphisms of a quantum graph \( A \) is written
             \( \operatorname{Aut}(A) \).
         \item The quantum sets \( (B_1,\psi_1) \) and
-            \( (B_2,\psi_2) \)
-            are said to be \emph{quantum isomorphic}, denoted
-            \( (B_{1}, \psi_{1}) \cong_q (B_{2},
-            \psi_{2}) \), if
-            there exist a finite-dimensional Hilbert space
-            \( \mathcal{H} \) together with a
-            unital \( * \)-homomorphism
+            \( (B_2,\psi_2) \) are said to be \emph{quantum isomorphic},
+            denoted \( (B_{1}, \psi_{1}) \cong_q (B_{2}, \psi_{2}) \),
+            if there exist a finite-dimensional Hilbert space
+            \( \mathcal{H} \) together with a unital
+            \( * \)-homomorphism
             \[
-                \rho\colon B_{1} \rightarrow B_{2}
-                \otimes B(\mathcal{H})
+                \rho\colon B_{1} \rightarrow B_{2} \otimes B(\mathcal{H})
             \]
             for which the induced map
             \[
-                p\colon L^{2}(B_{1}) \otimes
-                \mathcal{H} \rightarrow
-                L^{2}(B_{2}) \otimes \mathcal{H},
-                \qquad a \otimes \xi
-                \longmapsto \rho(a)(1 \otimes \xi),
+                p\colon L^{2}(B_{1}) \otimes \mathcal{H} \rightarrow
+                L^{2}(B_{2}) \otimes \mathcal{H}, \qquad
+                a \otimes \xi \longmapsto \rho(a)(1 \otimes \xi),
             \]
             is a unitary operator between Hilbert spaces.
-        \item Two quantum graphs \( A_1, A_2 \) are
-            \emph{quantum
-            isomorphic}, written \( A_{1} \cong_{q}
-            A_{2} \), if the
+        \item Two quantum graphs \( A_1, A_2 \) are \emph{quantum
+            isomorphic}, written \( A_{1} \cong_{q} A_{2} \), if the
             underlying quantum sets admit a quantum isomorphism
-            \( \rho\colon B_{1} \rightarrow B_{2}
-            \otimes B(\mathcal{H}) \) that in
-            addition satisfies the
-            intertwining condition
+            \( \rho\colon B_{1} \rightarrow B_{2} \otimes B(\mathcal{H}) \)
+            that in addition satisfies the intertwining condition
             \[
                 \rho A_{1} = (A_{2} \otimes
                 \operatorname{Id}_{B(\mathcal{H})}) \, \rho.
@@ -855,27 +1055,271 @@ of \textcite{musto18}.
     \end{itemize}
 \end{definition}
 
-Quantum isomorphisms are a weaker notion than classical isomorphisms.
-Later we will establish quantum isomorphisms between certain classical
-derived graphs and quantum graphs on \( (M_3, 3 \operatorname{Tr}) \).
+\begin{remark}
+    Taking \( \mathcal{H} = \mathbb{C} \) in the definition above
+    recovers the ordinary notion of isomorphism as a special case: a
+    unital \( * \)-homomorphism \( \rho \colon B_1 \to B_2 \otimes
+    B(\mathbb{C}) = B_2 \) for which \( p = \rho \) is unitary is
+    exactly a \( * \)-isomorphism \( \phi \colon B_1 \to B_2 \)
+    satisfying \( \psi_2\circ\phi = \psi_1 \), and the intertwining
+    condition \( \rho A_1 = (A_2\otimes\operatorname{Id})\rho \)
+    reduces to \( \phi A_1 = A_2\phi \). In this sense, quantum
+    isomorphism genuinely generalizes the classical notion above: it
+    replaces a single isomorphism \( \phi \) between the quantum sets
+    themselves by a family of maps, twisted by an auxiliary Hilbert
+    space \( \mathcal{H} \), that need only behave like an isomorphism
+    ``on average'' over \( \mathcal{H} \). This is exactly what allows
+    two quantum graphs to be quantum isomorphic without being
+    isomorphic in the ordinary sense, mirroring how, in the game-theoretic
+    origin of the notion, a quantum strategy can win a non-local game
+    that no classical strategy can win.
+\end{remark}
+
+Quantum isomorphism is thus a strictly weaker notion than ordinary
+isomorphism: every isomorphism of quantum sets or quantum graphs is in
+particular a quantum isomorphism, but not conversely. Later, we will
+use this weaker notion to establish quantum isomorphisms between
+certain classical derived graphs and quantum graphs on
+\( (M_3, 3\operatorname{Tr}) \) that are not, and cannot be, isomorphic
+in the ordinary sense.
+
 The theorem below lets us establish quantum isomorphisms between
-derived quantum graphs differing only by the group action.
+derived quantum graphs differing only by the choice of group action.
 
 \begin{theorem}
     \label{thm:quantum-iso-different-actions}
+    (\textcite[Theorem~5.2]{tobolski26})
     Let \( (\tilde{B}, \tilde\psi) \), the action
     \( \hat\alpha \colon \hat{G} \to \operatorname{Aut}(\tilde{B},
     \tilde\psi) \),
     and the crossed product
     \( (\tilde{B} \rtimes_{\hat\alpha} \hat{G}, \psi_\rtimes) \) be as
-    introduced above, and let
-    \( \tilde{A} = (\tilde{A}_g)_{g \in G} \) be a voltage quantum
-    graph on \( (\tilde{B}, \tilde\psi) \) with respect to the action
-    \( \hat\alpha \) of \( \hat{G} \). Then the corresponding derived
-    quantum graphs satisfy the quantum isomorphism
+    introduced above, and let \( \tilde{A} = (\tilde{A}_g)_{g \in G} \)
+    be a voltage quantum graph on \( (\tilde{B}, \tilde\psi) \) with
+    respect to the action \( \hat\alpha \) of \( \hat{G} \). Then the
+    corresponding derived quantum graphs satisfy the quantum
+    isomorphism
     \[
         \tilde{A} \rtimes_{\hat\alpha} \hat{G}
         \;\cong_q\;
-        \tilde{A} \rtimes_{\mathrm{triv}} G.
+        \tilde{A} \rtimes_{\mathrm{triv}} \hat{G}.
     \]
 \end{theorem}
+
+\begin{proof}
+    See \textcite{tobolski26} for details.
+\end{proof}
+
+Theorem~\ref{thm:quantum-iso-different-actions} will be central to our
+strategy in Section~\ref{sec:...}: by choosing \( \hat\alpha \) to be
+the trivial action, we already know from
+Proposition~\ref{prop:equivalence} and
+Lemma~\ref{lem:correspondences} that
+\( \tilde{A}\rtimes_{\mathrm{triv}}\hat{G} \) is (isomorphic to) a
+\emph{classical} derived graph. The theorem then lets us transport
+this classical realization back along any other action \( \hat\alpha \)
+we might prefer to work with, establishing a quantum isomorphism
+between the (possibly non-classical) derived quantum graph
+\( \tilde{A}\rtimes_{\hat\alpha}\hat{G} \) and a genuinely classical
+graph, without having to construct that isomorphism by hand in each
+individual case. This is precisely the tool we will use to show that
+every one of the five equivalence classes of loop-free, undirected
+quantum graphs on \( (M_3, 3\operatorname{Tr}) \) established in
+Corollary~\ref{cor:five-classes} is quantum isomorphic to a classical
+graph on nine vertices.
+
+\section{Gromada's theorem}
+
+In this section we state a theorem due to \textcite{gromada22}
+establishing a one-to-one correspondence between certain linear
+subspaces of \( \mathfrak{sl}_n \) and quantum graphs. This result will
+be used to classify all loop-free and undirected quantum graphs on
+\( M_3 \) up to quantum isomorphism, and it also provides an explicit
+recipe for recovering the adjacency matrix corresponding to a given
+subspace.
+
+\begin{theorem}
+    (\textcite{gromada22}, Theorem 3.7)
+    \label{thm:gromada}
+    Let \( m \in \{0,1,\dots,n^2\} \). Quantum graphs on \( M_n \) with
+    \( m \) quantum edges are in one-to-one correspondence with
+    \( m \)-dimensional subspaces \( V \subseteq \mathfrak{gl}_n \), the
+    adjacency matrix being given by
+    \[
+        A_V = \sum_{s=1}^m \xi_s \otimes \xi_s^*,
+    \]
+    where \( (\xi_1,\dots,\xi_m) \) is any orthonormal basis of \( V \).
+
+    The quantum graph has no loops if and only if
+    \( V \subseteq \mathfrak{sl}_n \), and is undirected if and only if
+    \( V = V^* \).
+
+    If \( V, W \subseteq \mathfrak{gl}_n \) correspond to isomorphic
+    quantum graphs, then \( V = UWU^* \) for some \( U \in SU_n \).
+\end{theorem}
+
+\begin{proof}
+    See Gromada's paper for the proof.
+\end{proof}
+
+Before applying this correspondence, it will be convenient to have a
+more concrete handle on subspaces satisfying \( V = V^* \), since this
+is precisely the condition singling out undirected quantum graphs. The
+next two lemmas establish that such subspaces always admit a basis of
+self-adjoint elements, and that this self-adjoint data is in fact
+enough to reconstruct \( V \) uniquely.
+
+\begin{lemma}[\textcite{gromada22}, Lemma 3.8]
+    Every vector subspace \( V \subseteq \mathfrak{gl}_n \) with
+    \( V = V^* \) admits a self-adjoint basis \( \{\xi_s\} \), i.e.\ with
+    \( \xi_s = \xi_s^* \) for every \( s \).
+\end{lemma}
+
+\begin{proof}
+    We construct the desired basis inductively. Suppose we have already
+    obtained a linearly independent set of self-adjoint vectors
+    \( \{\xi_s\} \) spanning a subspace \( V_1 \subseteq V \). By
+    construction, \( V_1 \) is invariant under the involution, i.e.\
+    \( V_1 = V_1^* \).
+
+    If \( V_1 \neq V \), let \( V_2 = V_1^\perp \) be the orthogonal
+    complement of \( V_1 \) with respect to the inner product. Since the
+    inner product and the involution are compatible, \( V_2 \) is also
+    invariant under \( \cdot^* \).
+
+    Choose any nonzero \( \xi \in V_2 \) and decompose it into its
+    self-adjoint real and imaginary parts,
+    \[
+        \xi_{\mathrm{Re}} = \frac{\xi + \xi^*}{2}, \qquad
+        \xi_{\mathrm{Im}} = \frac{i(\xi^* - \xi)}{2}.
+    \]
+    Both \( \xi_{\mathrm{Re}} \) and \( \xi_{\mathrm{Im}} \) are
+    self-adjoint elements of \( V_2 \), and since \( \xi \neq 0 \), at
+    least one of them is nonzero. We extend our independent set by
+    appending either both (if linearly independent) or the single
+    nonzero one (if not). Iterating this process eventually produces a
+    full self-adjoint basis of \( V \).
+\end{proof}
+
+The following lemma shows that any undirected quantum graph on
+\( M_n \) may be thought of as being built out of symmetric quantum
+edges alone.
+
+\begin{lemma}
+    A complex vector space \( V = V^* \subseteq \mathfrak{gl}_n \)
+    uniquely determines a real vector space, spanned by a basis
+    \( \{\xi_s\} \) of self-adjoint elements \( \xi_s = \xi_s^* \).
+\end{lemma}
+
+\begin{proof}
+    Let \( V \subseteq \mathfrak{gl}_n \) be a complex vector space with
+    \( V = V^* \).
+
+    Since \( V \) is invariant under the Hermitian adjoint, every
+    \( v \in V \) admits the decomposition
+    \[
+        v = \frac{v + v^*}{2} + i\,\frac{v - v^*}{2i}.
+    \]
+    Both summands lie in \( V \), as \( V \) is closed under addition,
+    scalar multiplication, and the adjoint operation, and moreover
+    \[
+        \left(\frac{v+v^*}{2}\right)^* = \frac{v+v^*}{2}, \qquad
+        \left(i\,\frac{v-v^*}{2i}\right)^* = i\,\frac{v-v^*}{2i},
+    \]
+    so both are self-adjoint.
+
+    Now let \( \xi \in V \) be self-adjoint, and let \( \{\xi_s\} \) be a
+    self-adjoint basis of \( V \). Write \( \xi = \sum_s c_s \xi_s \) for
+    some \( c_s \in \mathbb{C} \). Taking the Hermitian adjoint gives
+    \[
+        \xi = \xi^* = \sum_s \overline{c_s}\, \xi_s,
+    \]
+    since each \( \xi_s \) is self-adjoint, and by uniqueness of the
+    expansion with respect to \( \{\xi_s\} \) we get \( c_s = \overline{c_s} \)
+    for every \( s \), i.e.\ every coefficient \( c_s \) is real.
+
+    Hence every self-adjoint element of \( V \) is a real linear
+    combination of \( \{\xi_s\} \), so the self-adjoint part of \( V \)
+    is a real vector space uniquely determined by \( V \).
+\end{proof}
+
+By the above lemma, we may regard any self-adjoint
+\( V \subseteq \mathfrak{sl}_n \) as a real subspace of
+\( \mathfrak{sl}_n \).
+
+% \begin{remark}
+%     A self-adjoint subspace \( V \subseteq \mathfrak{sl}_3 \) generated
+%     by the generalised Pauli matrices can only have even dimension, i.e.
+%     \( \dim(V) = m \in \{0,2,4,6,8\} \). Indeed, the non-identity Pauli
+%     basis generators \( P^aQ^b \in \mathcal{B} \) are non-self-adjoint
+%     (as \( (a,b) \neq (3-a,3-b) \) in \( \mathbb{Z}_3 \times \mathbb{Z}_3 \))
+%     and split into mutually disjoint adjoint pairs \( \{v,v^*\} \). Since
+%     \( V = V^* \), including any generator \( v \in V \) forces the
+%     inclusion of its linearly independent partner \( v^* \), so \( V \)
+%     decomposes as a direct sum of \( 2 \)-dimensional
+%     reflection-invariant blocks \( \mathcal{P}_k =
+%     \operatorname{span}\{v,v^*\} \).
+%     Thus \( \dim(V) = 2r \) for some integer \( r \geq 0 \).
+% \end{remark}
+%
+% To characterize all possible loop-free, undirected quantum graphs, it
+% therefore suffices to focus on these self-adjoint subspaces.
+
+\section{Summary}
+
+This chapter laid the algebraic groundwork for treating classical
+combinatorial structures and their quantum analogues on equal footing.
+The guiding principle throughout has been that a finite set, once
+recast as a commutative \( C^{*} \)-algebra with a suitable functional,
+admits a natural non-commutative generalization -- the quantum set --
+and that every further classical notion built on top of a set (a
+graph, a group action, a labelling, an isomorphism) generalizes
+correspondingly. We saw this principle realized concretely: matrix
+algebras arose as crossed products of classical quantum sets,
+classical voltage and derived graphs embedded as a special
+(trivial-action) case of their quantum counterparts, and Gromada's
+correspondence translated quantum graphs on \( M_n \) into
+linear-algebraic data -- subspaces of \( \mathfrak{gl}_n \) --
+amenable to direct computation.
+
+A recurring theme is that quantum isomorphism is the correct
+generalization of classical isomorphism for this theory: it agrees
+with the ordinary notion when no auxiliary Hilbert space is needed,
+but strictly extends it otherwise, which is precisely what will let us
+relate genuinely non-classical quantum graphs to classical ones in the
+chapters that follow. Figure~\ref{fig:classical-quantum-dictionary}
+summarizes this dictionary between the classical and quantum sides,
+for reference throughout the remainder of the thesis.
+
+\begin{figure}[ht]
+    \begin{center}
+        \begin{tabular}{| c | c |}
+            \hline
+            classical concept & quantum generalization \\
+            \hline
+            finite set & quantum set \( (B, \psi) \) \\
+            bijection & quantum set isomorphism \\
+            vertex & minimal projection \( e_{ii} \in M_n \) \\
+            directed graph, adjacency matrix \( A \) & quantum graph,
+            subspace \( V \subseteq \mathfrak{gl}_n \) \\
+            loop-free graph & \( V \subseteq \mathfrak{sl}_n \) \\
+            undirected graph & self-adjoint subspace \\
+            graph isomorphism & \( V_1 = UV_2U^* \) for some \( U \in U(n) \) \\
+            group action & (dual) group action \( \hat\alpha \colon
+            \hat{G} \to \operatorname{Aut}(B,\psi) \) \\
+            ??? & crossed product quantum set \( \tilde{B}
+            \rtimes_{\hat\alpha} \hat{G} \) \\
+            voltage graph \( (\Gamma, \lambda) \) & voltage quantum
+            graph \( \tilde{A} = (\tilde{A}_g)_{g\in G} \) \\
+            derived graph \( \Gamma^\lambda \) & derived quantum
+            graph \( \tilde{A} \rtimes_{\hat\alpha} \hat{G} \) \\
+            intersection of graphs & \( m(A_1 \otimes A_2)m^* \) \\
+            isomorphism & quantum isomorphism, \( \cong_q \) \\
+            \hline
+        \end{tabular}
+        \caption{A dictionary between classical combinatorial notions
+            and their quantum counterparts, as developed throughout this
+        thesis.}
+        \label{fig:classical-quantum-dictionary}
+    \end{center}
+\end{figure}

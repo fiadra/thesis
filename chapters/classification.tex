@@ -85,14 +85,14 @@ generalised Pauli matrices.
 \begin{lemma}
     \label{lemma:pq-orthogonal}
     The matrices \( P^aQ^b \), \( a,b \in \{0,1,2\} \), form an
-    orthogonal basis of \( M_3(\mathbb{C}) \) with respect to the
+    orthogonal basis of \( M_3 \) with respect to the
     Hilbert--Schmidt inner product \( \langle A,B \rangle =
     \operatorname{Tr}(A^*B) \).
 \end{lemma}
 
 \begin{proof}
     There are \( 3^2 = 9 \) matrices of the form \( P^aQ^b \), matching
-    \( \dim_{\mathbb{C}} M_3(\mathbb{C}) = 9 \); it therefore suffices to
+    \( \dim_{\mathbb{C}} M_3 = 9 \); it therefore suffices to
     show that they are pairwise orthogonal.
 
     Since \( P^* = P^{-1} \) and \( Q^* = Q^{-1} \), we have
@@ -135,7 +135,7 @@ generalised Pauli matrices.
         \langle P^aQ^b, P^cQ^d \rangle = 3\,\delta_{ac}\delta_{bd},
     \]
     so the nine matrices \( P^aQ^b \) are pairwise orthogonal, and
-    therefore form an orthogonal basis of \( M_3(\mathbb{C}) \).
+    therefore form an orthogonal basis of \( M_3 \).
 \end{proof}
 
 Excluding the identity matrix from this basis leaves eight traceless
@@ -148,142 +148,6 @@ furnish a natural higher-dimensional generalisation of the Pauli
 matrices, suited to describing three-level quantum systems.
 
 % TODO: subsection on Gell--Mann matrices
-
-\section{Gromada's theorem}
-
-In this section we state a theorem due to \textcite{gromada22}
-establishing a one-to-one correspondence between certain linear
-subspaces of \( \mathfrak{sl}_n \) and quantum graphs. This result will
-be used to classify all loopfree and undirected quantum graphs on
-\( M_3 \) up to quantum isomorphism, and it also provides an explicit
-recipe for recovering the adjacency matrix corresponding to a given
-subspace.
-
-\begin{theorem}[\textcite{gromada22}, Theorem 3.7]
-    \label{thm:gromada}
-    Let \( m \in \{0,1,\dots,n^2\} \). Quantum graphs on \( M_n \) with
-    \( m \) quantum edges are in one-to-one correspondence with
-    \( m \)-dimensional subspaces \( V \subseteq \mathfrak{gl}_n \), the
-    adjacency matrix being given by
-    \[
-        A_V = \sum_{s=1}^m \xi_s \otimes \xi_s^*,
-    \]
-    where \( (\xi_1,\dots,\xi_m) \) is any orthonormal basis of \( V \).
-
-    The quantum graph has no loops if and only if
-    \( V \subseteq \mathfrak{sl}_n \), and is undirected if and only if
-    \( V = V^* \).
-
-    If \( V, W \subseteq \mathfrak{gl}_n \) correspond to isomorphic
-    quantum graphs, then \( V = UWU^* \) for some \( U \in SU_n \).
-\end{theorem}
-
-\begin{proof}
-    See Gromada's paper for the proof.
-\end{proof}
-
-Before applying this correspondence, it will be convenient to have a
-more concrete handle on subspaces satisfying \( V = V^* \), since this
-is precisely the condition singling out undirected quantum graphs. The
-next two lemmas establish that such subspaces always admit a basis of
-self-adjoint elements, and that this self-adjoint data is in fact
-enough to reconstruct \( V \) uniquely.
-
-\begin{lemma}[\textcite{gromada22}, Lemma 3.8]
-    Every vector subspace \( V \subseteq \mathfrak{gl}_n \) with
-    \( V = V^* \) admits a self-adjoint basis \( \{\xi_s\} \), i.e.\ with
-    \( \xi_s = \xi_s^* \) for every \( s \).
-\end{lemma}
-
-\begin{proof}
-    We construct the desired basis inductively. Suppose we have already
-    obtained a linearly independent set of self-adjoint vectors
-    \( \{\xi_s\} \) spanning a subspace \( V_1 \subseteq V \). By
-    construction, \( V_1 \) is invariant under the involution, i.e.\
-    \( V_1 = V_1^* \).
-
-    If \( V_1 \neq V \), let \( V_2 = V_1^\perp \) be the orthogonal
-    complement of \( V_1 \) with respect to the inner product. Since the
-    inner product and the involution are compatible, \( V_2 \) is also
-    invariant under \( \cdot^* \).
-
-    Choose any nonzero \( \xi \in V_2 \) and decompose it into its
-    self-adjoint real and imaginary parts,
-    \[
-        \xi_{\mathrm{Re}} = \frac{\xi + \xi^*}{2}, \qquad
-        \xi_{\mathrm{Im}} = \frac{i(\xi^* - \xi)}{2}.
-    \]
-    Both \( \xi_{\mathrm{Re}} \) and \( \xi_{\mathrm{Im}} \) are
-    self-adjoint elements of \( V_2 \), and since \( \xi \neq 0 \), at
-    least one of them is nonzero. We extend our independent set by
-    appending either both (if linearly independent) or the single
-    nonzero one (if not). Iterating this process eventually produces a
-    full self-adjoint basis of \( V \).
-\end{proof}
-
-The following lemma shows that any undirected quantum graph on
-\( M_n \) may be thought of as being built out of symmetric quantum
-edges alone.
-
-\begin{lemma}
-    A complex vector space \( V = V^* \subseteq \mathfrak{gl}_n \)
-    uniquely determines a real vector space, spanned by a basis
-    \( \{\xi_s\} \) of self-adjoint elements \( \xi_s = \xi_s^* \).
-\end{lemma}
-
-\begin{proof}
-    Let \( V \subseteq \mathfrak{gl}_n \) be a complex vector space with
-    \( V = V^* \).
-
-    Since \( V \) is invariant under the Hermitian adjoint, every
-    \( v \in V \) admits the decomposition
-    \[
-        v = \frac{v + v^*}{2} + i\,\frac{v - v^*}{2i}.
-    \]
-    Both summands lie in \( V \), as \( V \) is closed under addition,
-    scalar multiplication, and the adjoint operation, and moreover
-    \[
-        \left(\frac{v+v^*}{2}\right)^* = \frac{v+v^*}{2}, \qquad
-        \left(i\,\frac{v-v^*}{2i}\right)^* = i\,\frac{v-v^*}{2i},
-    \]
-    so both are self-adjoint.
-
-    Now let \( \xi \in V \) be self-adjoint, and let \( \{\xi_s\} \) be a
-    self-adjoint basis of \( V \). Write \( \xi = \sum_s c_s \xi_s \) for
-    some \( c_s \in \mathbb{C} \). Taking the Hermitian adjoint gives
-    \[
-        \xi = \xi^* = \sum_s \overline{c_s}\, \xi_s,
-    \]
-    since each \( \xi_s \) is self-adjoint, and by uniqueness of the
-    expansion with respect to \( \{\xi_s\} \) we get \( c_s = \overline{c_s} \)
-    for every \( s \), i.e.\ every coefficient \( c_s \) is real.
-
-    Hence every self-adjoint element of \( V \) is a real linear
-    combination of \( \{\xi_s\} \), so the self-adjoint part of \( V \)
-    is a real vector space uniquely determined by \( V \).
-\end{proof}
-
-By the above lemma, we may regard any self-adjoint
-\( V \subseteq \mathfrak{sl}_n \) as a real subspace of
-\( \mathfrak{sl}_n \).
-
-\begin{remark}
-    A self-adjoint subspace \( V \subseteq \mathfrak{sl}_3 \) generated
-    by the generalised Pauli matrices can only have even dimension, i.e.
-    \( \dim(V) = m \in \{0,2,4,6,8\} \). Indeed, the non-identity Pauli
-    basis generators \( P^aQ^b \in \mathcal{B} \) are non-self-adjoint
-    (as \( (a,b) \neq (3-a,3-b) \) in \( \mathbb{Z}_3 \times \mathbb{Z}_3 \))
-    and split into mutually disjoint adjoint pairs \( \{v,v^*\} \). Since
-    \( V = V^* \), including any generator \( v \in V \) forces the
-    inclusion of its linearly independent partner \( v^* \), so \( V \)
-    decomposes as a direct sum of \( 2 \)-dimensional
-    reflection-invariant blocks \( \mathcal{P}_k =
-    \operatorname{span}\{v,v^*\} \).
-    Thus \( \dim(V) = 2r \) for some integer \( r \geq 0 \).
-\end{remark}
-
-To characterize all possible loopfree, undirected quantum graphs, it
-therefore suffices to focus on these self-adjoint subspaces.
 
 \section{Classification of self-reflective subspaces generated by
 \(P\) and \(Q\)}
@@ -334,7 +198,7 @@ pair-swapping involution:
     F\mathcal{P}_4F^* = \mathcal{P}_3.
 \]
 
-\subsection{Subspace classification theorem}
+\subsection{Subspace classification}
 
 Because the fundamental building blocks \( \mathcal{P}_k \) are
 non-overlapping \( 2 \)-dimensional sets, every self-reflective subspace
@@ -342,40 +206,43 @@ generated by powers of \( P \) and \( Q \) is formed by taking a direct
 sum of a subset of these blocks (including the empty set, which yields
 the zero subspace).
 
-\begin{theorem}
+\begin{proposition}
     Every self-reflective subspace \( V \subseteq M_3 \) generated by
     \( P \) and \( Q \) is classified by its dimension \( m = \dim(V) \),
     as recorded in Table~\ref{tab:classification}.
-\end{theorem}
+\end{proposition}
 
-\begin{table}[h]
-    \centering
-    \begin{tabular}{@{}clc@{}}
-        \toprule
-        \( m \) & Subspaces & Count \\
-        \midrule
-        \( 1,3,5,7 \) & none exist & \( 0 \) \\
-        \addlinespace
-        \( 0 \) & \( V_0 = \{0\} \) & \( 1 \) \\
-        \addlinespace
-        \( 2 \) & \( V_k = \operatorname{span}(\mathcal{P}_k) \), \(
-        k \in \{1,2,3,4\} \) & \( 4 \) \\
-        \addlinespace
-        \( 4 \) & \( W_{i,j} = \operatorname{span}(\mathcal{P}_i
-        \oplus \mathcal{P}_j) \), \( 1 \le i < j \le 4 \) & \( 6 \) \\
-        \addlinespace
-        \( 6 \) & \( U_k = \operatorname{span}\big(\bigoplus_{i \neq
-        k} \mathcal{P}_i\big) \), \( k \in \{1,2,3,4\} \) & \( 4 \) \\
-        \addlinespace
-        \( 8 \) & \( \mathfrak{su}_3 =
-            \operatorname{span}\big(\bigoplus_{k=1}^4 \mathcal{P}_k\big)
-        \) & \( 1 \) \\
-        \bottomrule
-    \end{tabular}
-    \caption{Classification of self-reflective subspaces \( V \subseteq M_3 \)
-    generated by \( P \) and \( Q \), by dimension.}
+\begin{figure}[h]
     \label{tab:classification}
-\end{table}
+    \begin{center}
+        \begin{tabular}{| c | c | c |}
+            \hline
+            \( m \) & subspaces & count \\
+            \hline
+            \( 1,3,5,7 \) & none exist & \( 0 \) \\
+            \hline
+            \( 0 \) & \( V_0 = \{0\} \) & \( 1 \) \\
+            \hline
+            \( 2 \) & \( V_k = \operatorname{span}(\mathcal{P}_k) \),
+            \( k \in \{1,2,3,4\} \) & \( 4 \) \\
+            \hline
+            \( 4 \) & \( W_{i,j} = \operatorname{span}(\mathcal{P}_i
+            \oplus \mathcal{P}_j) \), \( 1 \le i < j \le 4 \) & \( 6 \) \\
+            \hline
+            \( 6 \) & \( U_k = \operatorname{span}\big(\bigoplus_{i
+            \neq k} \mathcal{P}_i\big) \), \( k \in \{1,2,3,4\} \) & \( 4 \) \\
+            \hline
+            \( 8 \) & \( \mathfrak{su}_3 =
+                \operatorname{span}\big(\bigoplus_{k=1}^4
+            \mathcal{P}_k\big) \) & \( 1 \) \\
+            \hline
+        \end{tabular}
+        \caption{Classification of self-reflective subspaces
+            \( V \subseteq M_3 \) generated by \( P \) and \( Q \), by
+        dimension.}
+        \label{tab:classification}
+    \end{center}
+\end{figure}
 
 \begin{corollary}
     Including the trivial subspace \( V_0 \), there exist precisely
@@ -424,13 +291,13 @@ Consider the diagonal phase matrix
 \]
 Since \( S \) is diagonal, it commutes with \( P \), so
 \( SPS^{-1} = P \) and hence \( S \) fixes the block
-\( \mathcal{P}_1 = \{P,P^2\} \) pointwise. Its effect on \( Q \) is
+\( \mathcal{P}_1 = \{P,P^2\} \) point-wise. Its effect on \( Q \) is
 more interesting.
 
 \begin{lemma}\label{lem:S-action}
     Conjugation by \( S \) cyclically permutes the blocks
     \( \mathcal{P}_2, \mathcal{P}_3, \mathcal{P}_4 \), while fixing
-    \( \mathcal{P}_1 \) pointwise. Explicitly,
+    \( \mathcal{P}_1 \) point-wise. Explicitly,
     \[
         \begin{aligned}
             SQS^{-1} &= \omega^{-1} PQ, & \qquad SQ^2S^{-1} &= P^2Q^2, \\
@@ -477,7 +344,7 @@ more interesting.
     \( \mathcal{P}_3 \) onto \( \{P^2Q,PQ^2\} = \mathcal{P}_4 \) (up to
     phase). By the same computation applied once more, or simply by
     counting (three blocks permuted among themselves by a single
-        conjugation must be permuted cyclically or fixed pointwise, and we
+        conjugation must be permuted cyclically or fixed point-wise, and we
     have already ruled out the latter), \( S \) also sends
     \( \mathcal{P}_4 \) onto \( \mathcal{P}_2 \). This proves the claim.
 \end{proof}
@@ -528,7 +395,7 @@ above), while conjugation by \( S \) induces the \( 3 \)-cycle
     subspaces of dimension \( m \) listed in
     Table~\ref{tab:classification} are related by conjugation
     \( V = UWU^* \) for some \( U \in U(3) \), built as a composition
-    of the unitaries \( F \) and \( S \) (and their inverses). Together
+    of the unitary matrices \( F \) and \( S \) (and their inverses). Together
     with the trivial cases \( m=0,8 \), this shows that all sixteen
     self-reflective subspaces generated by \( P \) and \( Q \) fall
     into exactly \emph{five} classes under unitary conjugation, one for
@@ -557,7 +424,7 @@ above), while conjugation by \( S \) induces the \( 3 \)-cycle
     orthogonal complement of \( V_k \) inside \( \mathfrak{su}_3 \), and
     unitary conjugation commutes with taking orthogonal complements.
 
-    Finally, since \( U \) can always be rescaled by a unimodular
+    Finally, since \( U \) can always be rescaled by a
     scalar \( \lambda \) without changing the conjugation action
     \( (\lambda U)(\cdot)(\lambda U)^* = U(\cdot)U^* \), one may choose
     \( \lambda \) so that \( \lambda U \in SU(3) \), matching the form
@@ -565,7 +432,7 @@ above), while conjugation by \( S \) induces the \( 3 \)-cycle
     to be isomorphic.
 \end{proof}
 
-\section{Classification of loopfree and undirected graphs on \( M_{3} \)}
+\section{Classification of loop-free and undirected graphs on \( M_{3} \)}
 
 % Corollary 5.3
 In this section we exhibit, for each possible number of quantum edges
@@ -582,7 +449,7 @@ on 9 vertices.
 
 \begin{proposition}
     \label{prop:4matrices}
-    All four nontrivial, loopfree and undirected graphs on \( (M_3, 3
+    All four nontrivial, loop-free and undirected graphs on \( (M_3, 3
     \operatorname{Tr}) \)
     are
     \begin{table}[h]
@@ -689,74 +556,76 @@ matrices describing derived quantum graphs coming from quantum voltage graphs
 
 \input{graphs/ourgraphs}
 
-% \section{Our graphs are vertex-transitive}
-%
-% \begin{definition}
-%     Let \( R \subseteq M_n(\mathbb{C}) \) be a subspace associated
-%     with a quantum graph \( A \).
-%     A quantum graph \( A \) is called \emph{vertex-transitive}
-%     if, in addition, the set
-%     \[
-%         \{ u \in U(n) : uRu^* = R \}
-%     \]
-%     spans \( M_n(\mathbb{C}) \).
-% \end{definition}
-%
-% \begin{proposition}
-%     Every self-reflective subspace \( V \subseteq M_3 \) generated by
-%     \( P \) and \( Q \) (i.e.\ every direct sum of a subset of the
-%     blocks \( \mathcal{P}_1, \mathcal{P}_2, \mathcal{P}_3, \mathcal{P}_4 \))
-%     gives rise to a vertex-transitive quantum graph.
-% \end{proposition}
-%
-% \begin{proof}
-%     We first show that conjugation by any element \( P^aQ^b \),
-%     \( a,b \in \{0,1,2\} \), preserves each one-dimensional span
-%     \( \operatorname{span}\{P^cQ^d\} \) individually. Using the
-%     commutation relation \( PQ = \omega\,QP \), one computes
-%     \[
-%         Q^bPQ^{-b} = \omega^{-b}P, \qquad P^aQP^{-a} = \omega^{a}Q,
-%     \]
-%     and more generally, for any generator \( P^cQ^d \),
-%     \[
-%         (P^aQ^b)\,P^cQ^d\,(P^aQ^b)^{-1}
-%         = \omega^{\,bc-ad}\; P^cQ^d.
-%     \]
-%     Thus conjugation by \( P^aQ^b \) fixes the generator \( P^cQ^d \)
-%     up to a scalar phase \( \omega^{bc-ad} \), and in particular sends
-%     \( \operatorname{span}\{P^cQ^d\} \) to itself.
-%
-%     Since every block \( \mathcal{P}_k \) is a set of two such
-%     generators, and every self-reflective subspace \( V \) is a direct
-%     sum of some subset of the blocks, it follows that
-%     \[
-%         (P^aQ^b)\, V\, (P^aQ^b)^{-1} = V
-%     \]
-%     for \emph{every} \( a,b \in \{0,1,2\} \), i.e.\ the full
-%     Weyl--Heisenberg group \( \{P^aQ^b\}_{a,b=0,1,2} \) stabilizes
-%     \( V \), regardless of which subset of blocks was chosen.
-%
-%     But we have already shown that the nine matrices \( P^aQ^b \) form
-%     an orthogonal basis of \( M_3(\mathbb{C}) \); in particular they
-%     span \( M_3(\mathbb{C}) \). Since
-%     \[
-%         \{P^aQ^b\}_{a,b=0,1,2} \;\subseteq\; \{ u \in U(3) : uVu^* = V \},
-%     \]
-%     the stabilizer of \( V \) already spans \( M_3(\mathbb{C}) \) on
-%     its own, so \( V \) is vertex-transitive.
-% \end{proof}
-%
-% \begin{remark}
-%     In particular, this covers all sixteen subspaces of
-%     Table~\ref{tab:classification}, including the extremal
-%     cases \( V_0 = \{0\} \) and \( \mathfrak{su}_3 \), whose
-%     stabilizers are trivially all of \( U(3) \). More strikingly, the
-%     proposition shows that vertex-transitivity holds already at the
-%     \emph{minimal} nontrivial dimension \( m = 2 \): even the smallest
-%     quantum graphs \( V_k = \operatorname{span}(\mathcal{P}_k) \) are
-%     vertex-transitive, stabilized by the same \( 9 \)-element
-%     Weyl--Heisenberg group that stabilizes every other subspace in the
-%     classification.
+\section{Our graphs are vertex-transitive}
+
+\begin{definition}
+    (\textcite[Definition~3.3]{hayes26})
+    Let \( V \subseteq M_n \) be a subspace associated
+    with a quantum graph \( A \).
+    A quantum graph \( A \) is called \emph{vertex-transitive}
+    if, in addition, the set
+    \[
+        \{ u \in U(n) : uVu^* = V \}
+    \]
+    spans \( M_n \).
+\end{definition}
+
+\begin{proposition}
+    Every self-reflective subspace \( V \subseteq M_3 \) generated by
+    \( P \) and \( Q \) (i.e.\ every direct sum of a subset of the
+    blocks \( \mathcal{P}_1, \mathcal{P}_2, \mathcal{P}_3, \mathcal{P}_4 \))
+    gives rise to a vertex-transitive quantum graph.
+\end{proposition}
+
+\begin{proof}
+    We first show that conjugation by any element \( P^aQ^b \),
+    \( a,b \in \{0,1,2\} \), preserves each one-dimensional
+    \( \operatorname{span}\{P^cQ^d\} \) individually. Using the
+    commutation relation \( PQ = \omega\,QP \), one computes
+    \[
+        Q^bPQ^{-b} = \omega^{-b}P, \qquad P^aQP^{-a} = \omega^{a}Q,
+    \]
+    and more generally, for any generator \( P^cQ^d \),
+    \[
+        (P^aQ^b)\,P^cQ^d\,(P^aQ^b)^{-1}
+        = \omega^{\,bc-ad}\; P^cQ^d.
+    \]
+    Thus conjugation by \( P^aQ^b \) fixes the generator \( P^cQ^d \)
+    up to a scalar phase \( \omega^{bc-ad} \), and in particular sends
+    \( \operatorname{span}\{P^cQ^d\} \) to itself.
+
+    Since every block \( \mathcal{P}_k \) is a set of two such
+    generators, and every self-reflective subspace \( V \) is a direct
+    sum of some subset of the blocks, it follows that
+    \[
+        (P^aQ^b)\, V\, (P^aQ^b)^{-1} = V
+    \]
+    for \emph{every} \( a,b \in \{0,1,2\} \), i.e.\ the full
+    Weyl--Heisenberg group \( \{P^aQ^b\}_{a,b=0,1,2} \) stabilizes
+    \( V \), regardless of which subset of blocks was chosen.
+
+    But we have already shown that the nine matrices \( P^aQ^b \) form
+    an orthogonal basis of \( M_3 \); in particular they
+    span \( M_3 \). Since
+    \[
+        \{P^aQ^b\}_{a,b=0,1,2} \;\subseteq\; \{ u \in U(3) : uVu^* = V \},
+    \]
+    the stabilizer of \( V \) already spans \( M_3 \) on
+    its own, so \( V \) is vertex-transitive.
+\end{proof}
+
+\begin{remark}
+    In particular, this covers all sixteen subspaces of
+    Table~\ref{tab:classification}, including the extremal
+    cases \( V_0 = \{0\} \) and \( \mathfrak{su}_3 \), whose
+    stabilizers are trivially all of \( U(3) \). More strikingly, the
+    proposition shows that vertex-transitivity holds already at the
+    \emph{minimal} nontrivial dimension \( m = 2 \): even the smallest
+    quantum graphs \( V_k = \operatorname{span}(\mathcal{P}_k) \) are
+    vertex-transitive, stabilized by the same \( 9 \)-element
+    Weyl--Heisenberg group that stabilizes every other subspace in the
+    classification.
+\end{remark}
 
 \section{Classification of different types of graphs}
 
@@ -828,7 +697,7 @@ does not generalise to higher dimensions, as the following lemma shows.
     \[
         I(X_a) = \frac{9a^2(a+1)^2}{8(a^2+a+1)^3}.
     \]
-    This is a nonconstant continuous function of \( a \); for instance,
+    This is a non-constant continuous function of \( a \); for instance,
     \[
         I(X_0) = 0, \qquad I(X_1) = \frac{1}{6},
     \]
@@ -839,7 +708,7 @@ does not generalise to higher dimensions, as the following lemma shows.
     \( \mathbb{P}(\mathbb{R}^8) \) has infinitely many orbits.
 \end{proof}
 
-\subsection{Simple quantum graph that is not quantum isomprphic to a
+\subsection{Simple quantum graph that is not quantum isomorphic to a
 classical graph}
 
 % TODO: write some stuff.
@@ -849,14 +718,151 @@ classical graph}
     The matrix
     \[
         \lambda_{8} = \frac{1}{\sqrt{2}}
-        \begin{matrix}
+        \begin{pmatrix}
             1 & 0 & 0 \\
             0 & 1 & 0 \\
             0 & 0 & -2 \\
-        \end{matrix},
+        \end{pmatrix},
     \]
     which is one of the \emph{Gell--Mann matrices} spanning the
     Lie algebra \( \mathfrak{su}_3 \). Then
     the adjacency matrix \( A = \lambda_{8} \otimes \lambda_{8}
     \) defines a simple graph on \( M_{3} \).
 \end{example}
+
+% \begin{example}
+%     We now exhibit a voltage quantum graph
+%     whose voltage components are genuinely non-classical quantum
+%     adjacency matrices.
+%
+%     Recall that a classical directed graph \( \Gamma \) on
+%     \( n \) vertices corresponds, via Theorem~\ref{thm:gromada}, to
+%     the subspace \( V_\Gamma := \operatorname{span}\{e_{ij} :
+%     (i,j)\in E(\Gamma)\} \subseteq \mathfrak{gl}_n \), spanned by
+%     matrix units. Indeed, since the matrix units \( \{e_{ij}\} \) are
+%     pairwise orthogonal with respect to the Hilbert--Schmidt inner
+%     product, they already form an orthonormal basis of \( V_\Gamma \),
+%     and Gromada's formula gives
+%     \[
+%         A_{V_\Gamma} = \sum_{(i,j)\in E(\Gamma)} e_{ij}\otimes e_{ij}^*
+%         = \sum_{(i,j)\in E(\Gamma)} e_{ij}\otimes e_{ji},
+%     \]
+%     which, restricted to the diagonal matrix units representing
+%     classical vertices, recovers exactly the usual 0/1 adjacency
+%     relation \( i \to j \). Conversely, any subspace \emph{not}
+%     spanned by matrix units fails to encode a classical graph in this
+%     way: such a subspace mixes several matrix units into a single
+%     coherent basis vector, rather than keeping each potential edge as
+%     an independent binary choice.
+%
+%     Consider now, on \( M_2 \), the Pauli matrix
+%     \[
+%         \sigma_1 =
+%         \begin{pmatrix} 0 & 1 \\ 1 & 0
+%         \end{pmatrix} = e_{12} + e_{21}.
+%     \]
+%     Since \( \sigma_1 \) is Hermitian and traceless, the subspace
+%     \( V := \operatorname{span}\{\sigma_1\} \subseteq \mathfrak{sl}_2 \)
+%     is self-adjoint and loop-free, and by Theorem~\ref{thm:gromada} it
+%     determines an undirected, loop-free quantum graph
+%     \( \tilde{A}_1 \colon M_2 \to M_2 \) with \( m=1 \) quantum edge,
+%     given by
+%     \[
+%         \tilde{A}_1(b) = \langle \xi_1, b
+% \rangle_{2\operatorname{Tr}}\, \xi_1,
+%         \qquad \xi_1 := \frac{\sigma_1}{2},
+%     \]
+%     where \( \xi_1 \) is the unit vector spanning \( V \) with respect
+%     to the inner product \( \langle a,b\rangle_{2\operatorname{Tr}} =
+%     2\operatorname{Tr}(a^*b) \) induced by the quantum set
+%     \( (M_2, 2\operatorname{Tr}) \); one checks
+%     \( \langle \sigma_1,\sigma_1\rangle_{2\operatorname{Tr}} =
+%     2\operatorname{Tr}(\sigma_1^2) = 4 \), confirming the
+%     normalization.
+%
+%     Crucially, \( V \) is \emph{not} of the form \( V_\Gamma \) for
+%     any classical graph \( \Gamma \) on two vertices: since
+%     \( \sigma_1 = e_{12}+e_{21} \) has two nonzero entries, no nonzero
+%     scalar multiple of \( \sigma_1 \) equals a single matrix unit
+%     \( e_{ij} \), and \( \dim V = 1 \) rules out \( V \) being spanned
+%     by \emph{both} \( e_{12} \) and \( e_{21} \) either. So \( \tilde{A}_1 \)
+%     is a genuinely non-classical quantum graph on \( M_2 \) -- it does
+%     not literally coincide with the adjacency operator of any
+%     classical directed graph on two vertices, though we make no claim
+%     here about whether it might still be \emph{quantum isomorphic}
+%     (in the sense of the tobolski26 correspondence used for the
+%     \( M_3 \) classification) to some classical graph on a larger
+%     vertex set; we do not pursue that question in this example.
+%
+%     We now build a voltage quantum graph out of \( \tilde{A}_1 \). Let
+%     \( G = \mathbb{Z}_2 = \{0_{\mathbb{Z}_2}, 1_{\mathbb{Z}_2}\} \), and
+%     equip \( (M_2, 2\operatorname{Tr}) \) with the trivial action
+%     \( \mathrm{triv} \) of \( \hat{\mathbb{Z}}_2 \cong \mathbb{Z}_2 \).
+%     Set
+%     \[
+%         \tilde{A}_{0_{\mathbb{Z}_2}} = 0, \qquad
+%         \tilde{A}_{1_{\mathbb{Z}_2}} = \tilde{A}_1,
+%     \]
+%     which, exactly as in the previous example, is trivially a voltage
+%     quantum graph with respect to \( \mathrm{triv} \) -- this should
+%     be thought of as a direct quantum analogue of a single loop
+%     labeled \( 1_{\mathbb{Z}_2} \), except that the loop itself now
+%     carries the non-classical quantum graph \( \tilde{A}_1 \) rather
+%     than the identity (as it did for \( \mathbb{Z}_3 \) in the earlier
+%     example).
+%
+%     Since the trivial action of \( \hat{\mathbb{Z}}_2 \) is being
+%     used, the crossed product quantum set
+%     \( (M_2,2\operatorname{Tr}) \rtimes_{\mathrm{triv}} \hat{\mathbb{Z}}_2 \)
+%     is isomorphic to \( (M_2 \otimes C(\mathbb{Z}_2), \cdot) \cong
+%     (M_2 \oplus M_2, \cdot) \), by the same fact used earlier for the
+%     trivial-action crossed product (recall
+%         \( \tilde{B}\rtimes_{\hat\alpha}\hat{G} \cong \tilde{B}\otimes C(G) \)
+%     when \( \hat\alpha = \mathrm{triv} \)). Concretely, this is a
+%     two-fiber algebra, one copy of \( M_2 \) for each element of
+%     \( \mathbb{Z}_2 \), directly analogous to the two ``fiber columns''
+%     \( v_0,v_1,v_2 \) appearing in the classical derived graphs above
+%     -- except that each fiber is now itself a full copy of \( M_2 \),
+%     rather than a single classical vertex.
+%
+%     By Definition~\ref{der::def:derived_quantum_graph}, the derived
+%     quantum graph \( A :=
+% \tilde{A}\rtimes_{\mathrm{triv}}\hat{\mathbb{Z}}_2 \)
+%     on this eight-dimensional quantum set is
+%     \[
+%         A = \sum_{g \in \mathbb{Z}_2} m\big( X_g \otimes E_\rtimes^*
+%         \tilde{A}_g E_\rtimes \big)\, m^*.
+%     \]
+%     As in the previous example, the fiber operators \( X_0, X_1 \)
+%     depend only on the group \( \mathbb{Z}_2 \), not on
+%     \( \tilde{A} \): \( X_0 \) acts as the identity on each fiber
+%     (a ``loop'' at each copy of \( M_2 \)), while \( X_1 \) swaps the
+%     two fibers. Since \( \tilde{A}_0 = 0 \), only the \( g=1_{\mathbb{Z}_2} \)
+%     term survives, giving
+%     \[
+%         A = m\big( X_1 \otimes E_\rtimes^* \tilde{A}_1 E_\rtimes \big)\, m^*.
+%     \]
+%     Here \( E_\rtimes^*\tilde{A}_1E_\rtimes \) transports the
+%     non-classical rank-one operator
+%     \( b \mapsto \langle\xi_1,b\rangle_{2\operatorname{Tr}}\,\xi_1 \)
+%     across the two fibers of \( M_2\oplus M_2 \), while \( X_1 \)
+%     supplies the classical ``swap the fibers'' structure coming from
+%     the group \( \mathbb{Z}_2 \). The resulting operator \( A \)
+%     therefore combines a classical routing between fibers (via
+%     \( X_1 \)) with a non-classical, Pauli-type operator acting
+%     within each fiber-to-fiber block (via \( \tilde{A}_1 \)).
+%
+%     % TODO: work out the explicit matrix of A on M_2 \oplus M_2 (or
+%     % equivalently on C^8), using the concrete formulas for E_\rtimes
+%     % and m_\rtimes established in Section~\ref{sec:crossed-product},
+%     % and verify directly (e.g. numerically) that A cannot be written
+%     % as a sum of matrix units on any basis of C^8 -- this is needed
+%     % to make the "non-classical" conclusion fully rigorous rather
+%     % than only structurally plausible.
+%
+%     This example illustrates, at least structurally, how the
+%     construction of Definition~\ref{der::def:derived_quantum_graph}
+%     can produce derived quantum graphs built from genuinely
+%     non-classical voltage components, in contrast to the purely
+%     classical derived graph obtained in the previous example.
+% \end{example}
