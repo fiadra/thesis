@@ -7,6 +7,7 @@ remainder of this work. References to further information are
 provided where appropriate.
 
 \section{Group theory}
+\label{sec:group-theory}
 
 In the following section we will introduce some group theoretic notions that
 be used throughout this thesis. We assume that the Reader is familiar with
@@ -18,6 +19,7 @@ be expressed by \( 1_{G} \).
 
 % This is from Dummit & Foote's Algebra, page 167
 \begin{definition}[Dual of a group]
+    \label{def:dual-group}
     Let \( G \) be a group. The \emph{dual group} \( \hat{G} \) is the
     set of all homomorphisms from \( G \) into the torus \(
     \mathbb{T} \) with the group operation defined as
@@ -29,6 +31,7 @@ be expressed by \( 1_{G} \).
 \end{definition}
 
 \begin{remark}
+    \label{rem:characters-self-dual}
     We will often call the elements of the dual group
     \emph{characters}. If a group is
     isomorphic to its complement it will be called \emph{self-dual}.
@@ -38,6 +41,7 @@ The following proposition will be used throughout the thesis, as almost
 all of the groups we will be dealing with will be finite and abelian.
 
 \begin{proposition}
+    \label{prop:finite-abelian-self-dual}
     If \( G \) is finite and abelian, then it is self-dual.
 \end{proposition}
 
@@ -73,6 +77,7 @@ all of the groups we will be dealing with will be finite and abelian.
 \end{proof}
 
 \section{\(C^{*}\)-algebras}
+\label{sec:cstar-algebras}
 
 In the following section we will introduce some notions stemming from the
 theory of \( C^{*} \)-algebras. We assume the Reader is familiar with
@@ -92,11 +97,13 @@ the bilinear multiplication and its unique linear extension, relying
 on the context to distinguish between the two.
 
 \begin{definition}[Linear functional]
+    \label{def:linear-functional}
     A \emph{linear functional} on a \(C^{*}\)-algebra \( A \) is a
     linear function \( \psi: A \rightarrow \mathbb{C} \).
 \end{definition}
 
 \begin{remark}
+    \label{rem:functionals-nickname}
     We will call linear functionals simply as \emph{functionals}.
 \end{remark}
 
@@ -106,6 +113,7 @@ define a norm on a finite-dimensional \(C^{*}\)-algebra equipped with
 a suitable functional.
 
 \begin{definition}[Positive functional]
+    \label{def:positive-functional}
     A functional \( \psi \) on a \(C^{*}\)-algebra \( A \) is called
     \emph{positive}, if
     \[
@@ -115,6 +123,7 @@ a suitable functional.
 \end{definition}
 
 \begin{definition}[Faithful functional]
+    \label{def:faithful-functional}
     A positive functional \( \psi \) on a \(C^{*}\)-algebra \( A \) is
     called \emph{faithful}, if
     \[
@@ -125,11 +134,13 @@ a suitable functional.
 
 % TODO: What literature?
 \begin{remark}
+    \label{rem:state-terminology}
     In the literature, the functional \( \psi \) is often called a \emph{state}.
     % For example see \textcite{gromada22}.
 \end{remark}
 
 \begin{example}[Positive and faithful functionals on matrix algebras]
+    \label{example:trace-functional}
     Let \( A = M_{n}(\mathbb{C}) \), the \(C^{*}\)-algebra of \( n \times n \)
     complex matrices, equipped with the usual trace \( \operatorname{Tr} \).
     Define
@@ -149,6 +160,7 @@ a suitable functional.
 \end{example}
 
 \begin{example}[A positive functional that is not faithful]
+    \label{example:not-faithful-functional}
     Let \( A = \mathbb{C}^{2} = \mathbb{C} \oplus \mathbb{C} \), with
     coordinatewise multiplication and involution given by complex
     conjugation in each coordinate. Define
@@ -165,6 +177,7 @@ a suitable functional.
 The following notion is akin to the notion of a group action on a set.
 
 \begin{definition}[Group action on a \(C^{*}\)-algebra]
+    \label{def:group-action-cstar}
     By \emph{group action} of a group \( G \) on a \(C^{*}\)-algebra \(
     A \) we mean a group homomorphism
     \[
@@ -176,6 +189,7 @@ The following notion is akin to the notion of a group action on a set.
 
 % TODO: Give a reference to unitary matrices
 \begin{example}[Group actions on \(C^{*}\)-algebras]
+    \label{example:group-actions-cstar}
     \leavevmode
     \begin{enumerate}
         \item \emph{Conjugation action.} Let \( A = M_{n}(\mathbb{C}) \)
@@ -198,7 +212,8 @@ The following notion is akin to the notion of a group action on a set.
             \]
             for a fixed \( \theta \in \mathbb{R} \). This is precisely the
             action used to construct the irrational rotation algebra as a
-            crossed product.
+            crossed product (see
+            Example~\ref{example:irrational-rotation-algebra}).
         \item \emph{Trivial action.} For \emph{any} \(C^{*}\)-algebra \( A \)
             and \emph{any} group \( G \), setting \(
             \operatorname{triv}(g)(a) = a \)
@@ -211,6 +226,7 @@ The following notion is akin to the notion of a group action on a set.
 \end{example}
 
 \subsection{Crossed-product \(C^{*}\)-algebra}
+\label{subsec:crossed-product-cstar}
 
 In this subsection we introduce the notion of a crossed-product
 \( C^{*} \)-algebra, in the limited form needed for our purposes; for a
@@ -218,6 +234,7 @@ more general treatment we refer the Reader to \textcite{blackadar}. The
 definitions below follow \textcite{sierakowski09}.
 
 \begin{definition}[\( C^{*} \)-dynamical system]
+    \label{def:cstar-dynamical-system}
     A \emph{\( C^{*} \)-dynamical system} is a triple \( (A, G, \alpha) \),
     where \( A \) is a \( C^{*} \)-algebra, \( G \) is a discrete group,
     and \( \alpha \colon G \to \operatorname{Aut}(A) \) is a group action
@@ -250,6 +267,7 @@ involution, defined precisely so that the group action becomes
 \]
 
 \begin{definition}[Covariant representation]
+    \label{def:covariant-representation}
     Fix a dynamical system \( (A, G, \alpha) \). A \emph{covariant
     representation} \( (\pi, u, \mathcal{H}) \) of \( (A,G,\alpha) \)
     consists of a unitary representation
@@ -262,6 +280,7 @@ involution, defined precisely so that the group action becomes
 \end{definition}
 
 \begin{definition}[Full \(C^{*}\)-algebra norm on \(C_c(G,A,\alpha)\)]
+    \label{def:full-cstar-norm}
     The \emph{full \( C^{*} \)-algebra norm} on \( C_c(G,A,\alpha) \) is
     given by
     \[
@@ -272,6 +291,7 @@ involution, defined precisely so that the group action becomes
 \end{definition}
 
 \begin{definition}[Crossed product \(C^{*}\)-algebra]
+    \label{def:crossed-product-cstar-algebra}
     The \emph{crossed product} of a \( C^{*} \)-algebra \( A \) and a
     discrete group \( G \) is the completion of \( C_c(G,A,\alpha) \)
     with respect to the full norm. We denote it by
@@ -285,6 +305,7 @@ involution, defined precisely so that the group action becomes
 \end{definition}
 
 \begin{remark}
+    \label{rem:no-norms-used}
     In this work we will not make use of norms of crossed product
     \(C^{*}\)-algebras and almost all groups will be discrete, so we
     can treat crossed product \(C^{*}\)-algebras as formal linear
@@ -292,9 +313,12 @@ involution, defined precisely so that the group action becomes
     dependent on the group action in question.
 \end{remark}
 
-The Reader will find some examples of such \(C^{*}\)-algebras below.
+The Reader will find some examples of such \(C^{*}\)-algebras below
+(Examples~\ref{example:trivial-action-group-algebra}
+and~\ref{example:irrational-rotation-algebra}).
 
 \begin{example}[Trivial action recovers the group $C^*$-algebra]
+    \label{example:trivial-action-group-algebra}
     Let \( A = \mathbb{C} \) with the trivial action \( \alpha_g =
     \operatorname{id} \)
     for all \( g \in G \). Then every element of \( C_c(G,A,\alpha) \) is just
@@ -314,6 +338,7 @@ The Reader will find some examples of such \(C^{*}\)-algebras below.
 \end{example}
 
 \begin{example}[Irrational rotation algebra]
+    \label{example:irrational-rotation-algebra}
     Let \( A = C(\mathbb{T}) \), the continuous functions on the torus,
     and let \( G = \mathbb{Z} \) act by rotation through angle
     \( 2\pi\theta \) for some fixed \( \theta \in \mathbb{R}
@@ -338,6 +363,7 @@ The Reader will find some examples of such \(C^{*}\)-algebras below.
 \end{example}
 
 \section{Matrix Lie Groups and Algebras}
+\label{sec:matrix-lie-groups}
 
 In this section we recall some notions from the theory of matrix Lie
 groups and algebras that will be needed later in the thesis. A \emph{Lie
@@ -383,6 +409,7 @@ for \( PU(n) \), which instead carries the quotient topology induced by
 the projection \( U(n) \to U(n)/Z(U(n)) \).
 
 \begin{proposition}
+    \label{prop:center-un}
     \( Z(U(n)) \cong \mathbb{T} \).
 \end{proposition}
 
@@ -452,6 +479,7 @@ We may regard \( \mathfrak{su}(2) \) as a \( 3 \)-dimensional real vector
 space (why?).
 
 \begin{example}[The circle group \( SO(2) \) and its Lie algebra]
+    \label{example:so2}
     The group \( SO(2) \) consists of rotation matrices
     \[
         R_\theta =
@@ -509,6 +537,7 @@ space (why?).
 
 \begin{example}[Non-example: \( GL(n,\mathbb{R}) \) inside \(
     GL(n,\mathbb{C}) \)]
+    \label{example:gl-nr-nonexample}
     The real general linear group
     \[
         GL(n,\mathbb{R}) = \{ A \in M_n(\mathbb{R}) : \det(A) \neq 0 \}

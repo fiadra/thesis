@@ -76,9 +76,9 @@
 \newcommand \advisorgen      [1] {\gdef\@advisorgen{#1}}
 
 \DeclareOption{polish}       {\setboolean{Polish@Main}{true}
-\PassOptionsToPackage{polish,english}{babel}}
+\PassOptionsToPackage{english}{babel}}
 \DeclareOption{english}
-{\setboolean{Polish@Main}{false}\PassOptionsToPackage{english,polish}{babel}}
+{\setboolean{Polish@Main}{false}\PassOptionsToPackage{english}{babel}}
 \DeclareOption{lic}          {\renewcommand \@thesislevel {licencjacka}}
 \DeclareOption{inz}          {\renewcommand \@thesislevel {in\.zynierska}}
 \DeclareOption{mgr}          {\renewcommand \@thesislevel {Master's
@@ -89,7 +89,7 @@ thesis} \renewcommand \@studydegree {II}}
 
 \DeclareOption*{\ClassWarningNoLine{thesis}{Unknown option `\CurrentOption'}}
 
-\ExecuteOptions{polish,lic,longabstract}
+\ExecuteOptions{english,mgr,longabstract}
 \ProcessOptions\relax
 
 \RequirePackage[OT4]{fontenc}
