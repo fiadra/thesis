@@ -463,92 +463,17 @@ on 9 vertices.
 
 \begin{proposition}
     \label{prop:4matrices}
-    All four nontrivial, loop-free and undirected graphs on \( (M_3, 3
-    \operatorname{Tr}) \)
-    are
-    \begin{table}[h]
-        \centering
-        \begin{minipage}[t]{0.45\textwidth}
-            \centering
-            \[
-                \begin{pmatrix}
-                    2 & 0  & 0  & 0  & 0 & 0 & 0 & 0 & 0 \\
-                    0 & -1 & 0  & 0  & 0 & 0 & 0 & 0 & 0 \\
-                    0 & 0  & -1 & 0  & 0 & 0 & 0 & 0 & 0 \\
-                    0 & 0  & 0  & -1 & 0 & 0 & 0 & 0 & 0 \\
-                    0 & 0  & 0  & 0  & 2 & 0 & 0 & 0 & 0 \\
-                    0 & 0  & 0  & 0  & 0 & -1 & 0 & 0 & 0 \\
-                    0 & 0  & 0  & 0  & 0 & 0 & -1 & 0 & 0 \\
-                    0 & 0  & 0  & 0  & 0 & 0 & 0 & -1 & 0 \\
-                    0 & 0  & 0  & 0  & 0 & 0 & 0 & 0 & 2 \\
-                \end{pmatrix}
-            \]
-            \captionof{}{% TODO: caption for first matrix
-            }
-        \end{minipage}\hfill
-        \begin{minipage}[t]{0.45\textwidth}
-            \centering
-            \[
-                \begin{pmatrix}
-                    2 & 0  & 0  & 0  & 1 & 0 & 0 & 0 & 1 \\
-                    0 & -1 & 0  & 0  & 0 & \omega^2 & \omega & 0 & 0 \\
-                    0 & 0  & -1 & \omega  & 0 & 0 & 0 & \omega^2 & 0 \\
-                    0 & 0  & \omega^2  & -1 & 0 & 0 & 0 & \omega & 0 \\
-                    1 & 0  & 0  & 0  & 2 & 0 & 0 & 0 & 1 \\
-                    0 & \omega  & 0  & 0  & 0 & -1 & \omega^2 & 0 & 0 \\
-                    0 & \omega^2  & 0  & 0  & 0 & \omega & -1 & 0 & 0 \\
-                    0 & 0  & \omega  & \omega^2  & 0 & 0 & 0 & -1 & 0 \\
-                    1 & 0  & 0  & 0  & 1 & 0 & 0 & 0 & 2 \\
-                \end{pmatrix}
-            \]
-            \captionof{}{% TODO: caption for second matrix
-            }
-        \end{minipage}
-
-        \vspace{0.5cm}
-
-        \begin{minipage}[t]{0.45\textwidth}
-            \centering
-            \[
-                \begin{pmatrix}
-                    2 & 0  & 0  & 0  & 1 & 0 & 0 & 0 & 1 \\
-                    0 & -1 & 0  & 0  & 0 & -1 & -1 & 0 & 0 \\
-                    0 & 0  & -1 & -1  & 0 & 0 & 0 & -1 & 0 \\
-                    0 & 0  & -1  & -1 & 0 & 0 & 0 & -1 & 0 \\
-                    1 & 0  & 0  & 0  & 2 & 0 & 0 & 0 & 1 \\
-                    0 & -1  & 0  & 0  & 0 & -1 & -1 & 0 & 0 \\
-                    0 & -1  & 0  & 0  & 0 & -1 & -1 & 0 & 0 \\
-                    0 & 0  & -1  & -1  & 0 & 0 & 0 & -1 & 0 \\
-                    1 & 0  & 0  & 0  & 1 & 0 & 0 & 0 & 2 \\
-                \end{pmatrix}
-            \]
-            \captionof{}{% TODO: caption for third matrix
-            }
-        \end{minipage}\hfill
-        \begin{minipage}[t]{0.45\textwidth}
-            \centering
-            \[
-                \begin{pmatrix}
-                    2 & 0  & 0  & 0  & 3 & 0 & 0 & 0 & 3 \\
-                    0 & -1 & 0  & 0  & 0 & 0 & 0 & 0 & 0 \\
-                    0 & 0  & -1 & 0  & 0 & 0 & 0 & 0 & 0 \\
-                    0 & 0  & 0  & -1 & 0 & 0 & 0 & 0 & 0 \\
-                    3 & 0  & 0  & 0  & 2 & 0 & 0 & 0 & 3 \\
-                    0 & 0  & 0  & 0  & 0 & -1 & 0 & 0 & 0 \\
-                    0 & 0  & 0  & 0  & 0 & 0 & -1 & 0 & 0 \\
-                    0 & 0  & 0  & 0  & 0 & 0 & 0 & -1 & 0 \\
-                    3 & 0  & 0  & 0  & 3 & 0 & 0 & 0 & 2 \\
-                \end{pmatrix}
-            \]
-            \captionof{}{% TODO: caption for fourth matrix
-            }
-        \end{minipage}
-
-        % TODO: comment explaining what these four matrices show collectively
-    \end{table}
+    There are four nontrivial, loop-free and undirected graphs on \(
+    (M_3, 3 \operatorname{Tr}) \) up to isomorphism.
+    Their matrices, expressed in the basis of generalised and
+    normalised Pauli matrices
+    (Subsection~\ref{subsec:generalised-pauli-matrices})
+    using the formula from Theorem~\ref{thm:gromada}, are as follows:
+    \input{matrices}
 \end{proposition}
 
-\vspace{0.3cm}
+The trivial case \( m=0 \), corresponding to the empty graph, is
+omitted, since it carries no meaningful structure to discuss.
 
 The matrices in Proposition~\ref{prop:4matrices} were obtained
 by rote computation. For each possible subspace as described in
@@ -557,18 +482,36 @@ using the formula given in Theorem~\ref{thm:gromada} and compared them with
 matrices describing derived quantum graphs coming from quantum voltage graphs
 \(\tilde{A} = \{A_k\}_{k \in \hat{\mathbb{Z}}_3} \) given by the formula
 \[
-    \tilde{A} \rtimes_{\hat\alpha} \hat{\mathbb{Z}}
-    := \sum_{k \in \mathbb{Z}} m\big( X_k \otimes E_\rtimes^*
+    \tilde{A} \rtimes_{\hat\alpha} \hat{\mathbb{Z}}_3
+    := \sum_{k \in \hat{\mathbb{Z}}_3} m\big( X_k \otimes E_\rtimes^*
     \tilde{A}_k E_\rtimes \big)\, m^*.
 \]
-
-% \begin{center}
-%     \vspace{-0.3cm}
-%     \voltagelegend
-%     \vspace{-0.3cm}
-% \end{center}
+The following figures depict the voltage graphs and derived graphs
+that are quantum isomorphic to the graphs given as matrices in
+Figure~\ref{fig:four-matrices-m3}. Concretely, the voltage graph with
+only self-loops (labeled \( 1,2 \) at every vertex) corresponds to the
+case \( m=2 \); adding a single \( 1 \)-voltage triangle to these
+loops gives \( m=4 \); adding both a \( 1 \)- and a \( 2 \)-voltage
+triangle gives \( m=6 \); and the full voltage graph, with edges of
+every voltage \( 0,1,2 \) between every pair of vertices, gives
+\( m=8 \), the complete quantum graph \( \mathfrak{sl}_3 \).
 
 \input{graphs/ourgraphs}
+
+Since each of these voltage quantum graphs arises, via
+Theorem~\ref{thm:quantum-iso-different-actions}, as a trivial-action
+derived quantum graph of an ordinary (classical) voltage graph, the
+discussion above in fact exhibits an explicit quantum isomorphism
+between each nontrivial loop-free, undirected quantum graph on
+\( (M_3, 3\operatorname{Tr}) \) and a classical derived graph on the
+nine vertices \( \{u,v,w\} \times \mathbb{Z}_3 \) shown on the right
+of each figure -- concretely realizing the abstract existence
+statement from the start of this section. Combined with
+Corollary~\ref{cor:five-classes}, this completes the classification
+of loop-free, undirected quantum graphs on \( (M_3, 3\operatorname{Tr}) \)
+up to quantum isomorphism: every such graph is quantum isomorphic to
+exactly one of the five classical graphs exhibited in this section
+(including the trivial \( m=0 \) case).
 
 \section{Vertex-transitive graphs}
 \label{sec:vertex-transitive-graphs}
