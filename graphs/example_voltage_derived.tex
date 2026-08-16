@@ -1,0 +1,31 @@
+\begin{figure}[H]
+    % \centering
+    % {\normalsize\sffamily\bfseries Base graph and its derived
+    % cover over \( \mathbb{Z}_3 \)}\\[4pt]
+    \begin{minipage}[t]{0.35\textwidth}
+        \centering
+        \begin{tikzpicture}[>=Stealth, scale=1.0]
+            \node[base node] (v) at (0,0) {\( v \)};
+            \path[->, thick]
+            (v) edge [loop above, looseness=8] node[edge label]
+            {\( 1 \)} (v);
+        \end{tikzpicture}\\[6pt]
+        \captionof{}{Base voltage graph \( \Gamma \)}
+    \end{minipage}\hfill
+    \begin{minipage}[t]{0.55\textwidth}
+        \centering
+        \begin{tikzpicture}[>=Stealth, scale=0.9]
+            \node[derived node] (v0) at (0,0) {\( v_0 \)};
+            \node[derived node] (v1) at (2.2,0) {\( v_1 \)};
+            \node[derived node] (v2) at (4.4,0) {\( v_2 \)};
+            \draw[->, thick, volt1, opacity=0.6] (v0) to (v1);
+            \draw[->, thick, volt1, opacity=0.6] (v1) to (v2);
+            \draw[->, thick, volt1, opacity=0.6] (v2) to [bend
+            right=45] (v0);
+        \end{tikzpicture}\\[6pt]
+        \captionof{}{Derived graph \( \Gamma^\lambda \)}
+    \end{minipage}
+    \caption{Base voltage graph and its derived cover over \(
+    \mathbb{Z}_3 \).}
+    \label{fig:voltage_graph_example}
+\end{figure}

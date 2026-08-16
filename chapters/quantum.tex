@@ -810,35 +810,7 @@ and quantum derived graphs.
     i.e. \( \lambda(e) = 1_{\mathbb{Z}_3} \). The derived graph then has
     6 vertices, 3 for each vertex of \( \Gamma \).
 
-    \begin{center}
-        \centering
-        {\normalsize\sffamily\bfseries Base graph and its derived
-        cover over \( \mathbb{Z}_3 \)}\\[4pt]
-        \begin{minipage}[t]{0.35\textwidth}
-            \centering
-            \begin{tikzpicture}[>=Stealth, scale=1.0]
-                \node[base node] (v) at (0,0) {\( v \)};
-                \path[->, thick]
-                (v) edge [loop above, looseness=8] node[edge label]
-                {\( 1 \)} (v);
-            \end{tikzpicture}\\[6pt]
-            \captionof{}{Base voltage graph \( \Gamma \)}
-        \end{minipage}\hfill
-        \begin{minipage}[t]{0.55\textwidth}
-            \centering
-            \begin{tikzpicture}[>=Stealth, scale=0.9]
-                \node[derived node] (v0) at (0,0) {\( v_0 \)};
-                \node[derived node] (v1) at (2.2,0) {\( v_1 \)};
-                \node[derived node] (v2) at (4.4,0) {\( v_2 \)};
-                \draw[->, thick, volt1, opacity=0.6] (v0) to (v1);
-                \draw[->, thick, volt1, opacity=0.6] (v1) to (v2);
-                \draw[->, thick, volt1, opacity=0.6] (v2) to [bend
-                right=45] (v0);
-            \end{tikzpicture}\\[6pt]
-            \captionof{}{Derived graph \( \Gamma^\lambda \)}
-        \end{minipage}
-        \label{fig:voltage_graph_example}
-    \end{center}
+    \input{graphs/example_voltage_derived}
 
     As discussed above, a classical graph on \( n \) vertices
     corresponds to a quantum graph on the quantum set
@@ -896,99 +868,9 @@ and quantum derived graphs.
     Figure~\ref{fig:Xg_graphs_example} and
     Figure~\ref{fig:EAE_graph_example}, respectively.
 
-    \begin{center}
-        \centering
-        {\normalsize\sffamily\bfseries The graphs \( X_g \)}\\[4pt]
-        \begin{minipage}[t]{0.3\textwidth}
-            \centering
-            \begin{tikzpicture}[>=Stealth, scale=0.75]
-                \node[derived node, draw=volt0, text=volt0] (a0) at
-                (0,0)   {\( v_0 \)};
-                \node[derived node, draw=volt0, text=volt0] (b0) at
-                (2.2,0) {\( v_1 \)};
-                \node[derived node, draw=volt0, text=volt0] (c0) at
-                (4.4,0) {\( v_2 \)};
-                \path[->, thick, volt0, opacity=0.7]
-                (a0) edge [loop above] (a0)
-                (b0) edge [loop above] (b0)
-                (c0) edge [loop above] (c0);
-            \end{tikzpicture}\\[6pt]
-            \captionof{}{\( X_0 \)}
-        \end{minipage}\hfill
-        \begin{minipage}[t]{0.3\textwidth}
-            \centering
-            \begin{tikzpicture}[>=Stealth, scale=0.75]
-                \node[derived node, draw=volt1, text=volt1] (a1) at
-                (0,0)   {\( v_0 \)};
-                \node[derived node, draw=volt1, text=volt1] (b1) at
-                (2.2,0) {\( v_1 \)};
-                \node[derived node, draw=volt1, text=volt1] (c1) at
-                (4.4,0) {\( v_2 \)};
-                \draw[->, thick, volt1, opacity=0.6] (a1) to (b1);
-                \draw[->, thick, volt1, opacity=0.6] (b1) to (c1);
-                \draw[->, thick, volt1, opacity=0.6] (c1) to [bend
-                right=45] (a1);
-            \end{tikzpicture}\\[6pt]
-            \captionof{}{\( X_1 \)}
-        \end{minipage}\hfill
-        \begin{minipage}[t]{0.3\textwidth}
-            \centering
-            \begin{tikzpicture}[>=Stealth, scale=0.75]
-                \node[derived node, draw=volt2, text=volt2] (a2) at
-                (0,0)   {\( v_0 \)};
-                \node[derived node, draw=volt2, text=volt2] (b2) at
-                (2.2,0) {\( v_1 \)};
-                \node[derived node, draw=volt2, text=volt2] (c2) at
-                (4.4,0) {\( v_2 \)};
-                \draw[->, thick, volt2, opacity=0.6] (a2) to [bend
-                left=45] (c2);
-                \draw[->, thick, volt2, opacity=0.6] (b2) to (a2);
-                \draw[->, thick, volt2, opacity=0.6] (c2) to (b2);
-            \end{tikzpicture}\\[6pt]
-            \captionof{}{\( X_2 \)}
-        \end{minipage}
-        \label{fig:Xg_graphs_example}
-    \end{center}
+    \input{graphs/example_Xg}
 
-    \begin{center}
-        \centering
-        {\normalsize\sffamily\bfseries The graphs \( E_\rtimes^*
-        \tilde{A}_g E_\rtimes \)}\\[4pt]
-        \begin{minipage}[t]{0.3\textwidth}
-            \centering
-            \begin{tikzpicture}[>=Stealth, scale=0.75]
-                \node[derived node] (a0) at (0,0)   {\( v_0 \)};
-                \node[derived node] (b0) at (2.2,0) {\( v_1 \)};
-                \node[derived node] (c0) at (4.4,0) {\( v_2 \)};
-            \end{tikzpicture}\\[6pt]
-            \captionof{}{\( E_\rtimes^* \tilde{A}_0 E_\rtimes \)}
-        \end{minipage}\hfill
-        \begin{minipage}[t]{0.3\textwidth}
-            \centering
-            \begin{tikzpicture}[>=Stealth, scale=0.75]
-                \node[derived node] (a1) at (0,0)   {\( v_0 \)};
-                \node[derived node] (b1) at (2.2,0) {\( v_1 \)};
-                \node[derived node] (c1) at (4.4,0) {\( v_2 \)};
-                \draw[->, thick] (a1) to [bend right=15] (b1);
-                \draw[->, thick] (b1) to [bend right=15] (a1);
-                \draw[->, thick] (a1) to [bend right=25] (c1);
-                \draw[->, thick] (c1) to [bend right=25] (a1);
-                \draw[->, thick] (b1) to [bend right=15] (c1);
-                \draw[->, thick] (c1) to [bend right=15] (b1);
-            \end{tikzpicture}\\[6pt]
-            \captionof{}{\( E_\rtimes^* \tilde{A}_1 E_\rtimes \)}
-        \end{minipage}\hfill
-        \begin{minipage}[t]{0.3\textwidth}
-            \centering
-            \begin{tikzpicture}[>=Stealth, scale=0.75]
-                \node[derived node] (a2) at (0,0)   {\( v_0 \)};
-                \node[derived node] (b2) at (2.2,0) {\( v_1 \)};
-                \node[derived node] (c2) at (4.4,0) {\( v_2 \)};
-            \end{tikzpicture}\\[6pt]
-            \captionof{}{\( E_\rtimes^* \tilde{A}_2 E_\rtimes \)}
-        \end{minipage}
-        \label{fig:EAE_graph_example}
-    \end{center}
+    \input{graphs/example_EAE}
 
     % TODO: By what?
     By part (d) of
@@ -1230,7 +1112,7 @@ The following lemma shows that any undirected quantum graph on
 \( M_n \) may be thought of as being built out of symmetric quantum
 edges alone.
 
-\begin{lemma}[\textref{gromada22}, Remark 3.10]
+\begin{lemma}[\textcite{gromada22}, Remark 3.10]
     \label{lem:self-adjoint-uniqueness}
     A complex vector space \( V = V^* \subseteq \mathfrak{gl}_n \)
     uniquely determines a real vector space, spanned by a basis
@@ -1291,6 +1173,36 @@ By the above lemma, we may regard any self-adjoint
 % To characterize all possible loop-free, undirected quantum graphs, it
 % therefore suffices to focus on these self-adjoint subspaces.
 
+% TODO: Do sprawdzenia! Gromada str. 12
+\begin{remark}[\textcite{gromada22}, Section 2.3]
+    \label{rem:counting-vertices-edges}
+    For a quantum set \( (B,\psi) \), it is tempting to call the
+    minimal central projections of \( B \) (i.e.\ the matrix blocks
+    \( M_{n_i} \) in a decomposition \( B \cong \bigoplus_i M_{n_i} \))
+    its \emph{vertices}. This works well enough for classical sets,
+    where \( B = \mathbb{C}^n \) decomposes into \( n \) copies of
+    \( M_1 = \mathbb{C} \), recovering the usual \( n \) vertices.
+    However, for a genuinely noncommutative quantum set such as
+    \( (M_n, n\operatorname{Tr}) \), this convention is misleading: it
+    would count \( M_n \) as a single \emph{vertex}, even though
+    \( \dim(M_n) = n^2 \) and the quantum graphs living on \( M_n \)
+    behave, in every respect relevant to us, like graphs on \( n^2 \)
+    points rather than on a single point.
+
+    This is exactly why, in Theorem~\ref{thm:gromada}, the number of
+    \emph{quantum edges} \( m \) of a quantum graph on \( M_n \) is
+    counted as \( \dim(V) \) for the corresponding subspace
+    \( V \subseteq \mathfrak{gl}_n \), rather than by some more naive
+    combinatorial count: it is the dimension of the underlying vector
+    space, not a literal count of \emph{vertices} or \emph{edges} in any
+    classical sense, that behaves correctly under quantum
+    isomorphism and yields consistent statements such as
+    Corollary~\ref{cor:sixteen-subspaces} and the classification of
+    Table~\ref{tab:classification}. We will consistently use \( m \),
+    i.e.\ the dimension of the relevant subspace, as our notion of
+    \emph{size} for a quantum graph throughout the next chapter.
+\end{remark}
+
 \section{Summary}
 \label{sec:summary-quantum-sets-and-graphs}
 
@@ -1299,34 +1211,32 @@ combinatorial structures and their quantum analogues on equal footing.
 The guiding principle throughout has been that a finite set, once
 recast as a commutative \( C^{*} \)-algebra with a suitable functional,
 admits a natural non-commutative generalization -- the quantum set --
-and that every further classical notion built on top of a set (a
-graph, a group action, a labelling, an isomorphism) generalizes
+and that many further classical notion built on top of a set generalizes
 correspondingly. We saw this principle realized concretely: matrix
 algebras arose as crossed products of classical quantum sets,
 classical voltage and derived graphs embedded as a special
 (trivial-action) case of their quantum counterparts, and Gromada's
 correspondence translated quantum graphs on \( M_n \) into
 linear-algebraic data -- subspaces of \( \mathfrak{gl}_n \) --
-amenable to direct computation.
+amenable to direct computation. Quantum isomorphisms, which
+are a generalisation of regular isomorphisms, will help us relate
+classical graphs to purely quantum ones in the next chapter.
 
-A recurring theme is that quantum isomorphism is the correct
-generalization of classical isomorphism for this theory: it agrees
-with the ordinary notion when no auxiliary Hilbert space is needed,
-but strictly extends it otherwise, which is precisely what will let us
-relate genuinely non-classical quantum graphs to classical ones in the
-chapters that follow. Figure~\ref{fig:classical-quantum-dictionary}
+Figure~\ref{fig:classical-quantum-dictionary}
 summarizes this dictionary between the classical and quantum sides,
 for reference throughout the remainder of the thesis.
 
 \begin{figure}[ht]
     \begin{center}
+        \small
+        \renewcommand{\arraystretch}{1.15}
         \begin{tabular}{| c | c |}
             \hline
             classical concept & quantum generalization \\
             \hline
             finite set & quantum set \( (B, \psi) \) \\
             bijection & quantum set isomorphism \\
-            vertex & minimal projection \( e_{ii} \in M_n \) \\
+            % vertex & minimal projection \( e_{ii} \in M_n \) \\
             directed graph, adjacency matrix \( A \) & quantum graph,
             subspace \( V \subseteq \mathfrak{gl}_n \) \\
             loop-free graph & \( V \subseteq \mathfrak{sl}_n \) \\

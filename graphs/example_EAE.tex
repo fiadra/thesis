@@ -1,0 +1,41 @@
+\begin{figure}[H]
+    % \centering
+    % {\normalsize\sffamily\bfseries The graphs \( E_\rtimes^*
+    % \tilde{A}_g E_\rtimes \)}\\[4pt]
+    \begin{minipage}[t]{0.3\textwidth}
+        \centering
+        \begin{tikzpicture}[>=Stealth, scale=0.75]
+            \node[derived node] (a0) at (0,0)   {\( v_0 \)};
+            \node[derived node] (b0) at (2.2,0) {\( v_1 \)};
+            \node[derived node] (c0) at (4.4,0) {\( v_2 \)};
+        \end{tikzpicture}\\[6pt]
+        \captionof{}{\( E_\rtimes^* \tilde{A}_0 E_\rtimes \)}
+    \end{minipage}\hfill
+    \begin{minipage}[t]{0.3\textwidth}
+        \centering
+        \begin{tikzpicture}[>=Stealth, scale=0.75]
+            \node[derived node] (a1) at (0,0)   {\( v_0 \)};
+            \node[derived node] (b1) at (2.2,0) {\( v_1 \)};
+            \node[derived node] (c1) at (4.4,0) {\( v_2 \)};
+            \draw[->, thick] (a1) to [bend right=15] (b1);
+            \draw[->, thick] (b1) to [bend right=15] (a1);
+            \draw[->, thick] (a1) to [bend right=25] (c1);
+            \draw[->, thick] (c1) to [bend right=25] (a1);
+            \draw[->, thick] (b1) to [bend right=15] (c1);
+            \draw[->, thick] (c1) to [bend right=15] (b1);
+        \end{tikzpicture}\\[6pt]
+        \captionof{}{\( E_\rtimes^* \tilde{A}_1 E_\rtimes \)}
+    \end{minipage}\hfill
+    \begin{minipage}[t]{0.3\textwidth}
+        \centering
+        \begin{tikzpicture}[>=Stealth, scale=0.75]
+            \node[derived node] (a2) at (0,0)   {\( v_0 \)};
+            \node[derived node] (b2) at (2.2,0) {\( v_1 \)};
+            \node[derived node] (c2) at (4.4,0) {\( v_2 \)};
+        \end{tikzpicture}\\[6pt]
+        \captionof{}{\( E_\rtimes^* \tilde{A}_2 E_\rtimes \)}
+    \end{minipage}
+    \caption{The graphs corresponding to the adjacency matrices
+    \( E_\rtimes^* \tilde{A}_g E_\rtimes \).}
+    \label{fig:EAE_graph_example}
+\end{figure}

@@ -1,0 +1,55 @@
+\begin{figure}[H]
+    % \centering
+    % {\normalsize\sffamily\bfseries The graphs \( X_g \)}\\[4pt]
+    \begin{minipage}[t]{0.3\textwidth}
+        \centering
+        \begin{tikzpicture}[>=Stealth, scale=0.75]
+            \node[derived node, draw=volt0, text=volt0] (a0) at
+            (0,0)   {\( v_0 \)};
+            \node[derived node, draw=volt0, text=volt0] (b0) at
+            (2.2,0) {\( v_1 \)};
+            \node[derived node, draw=volt0, text=volt0] (c0) at
+            (4.4,0) {\( v_2 \)};
+            \path[->, thick, volt0, opacity=0.7]
+            (a0) edge [loop above] (a0)
+            (b0) edge [loop above] (b0)
+            (c0) edge [loop above] (c0);
+        \end{tikzpicture}\\[6pt]
+        \captionof{}{\( X_0 \)}
+    \end{minipage}\hfill
+    \begin{minipage}[t]{0.3\textwidth}
+        \centering
+        \begin{tikzpicture}[>=Stealth, scale=0.75]
+            \node[derived node, draw=volt1, text=volt1] (a1) at
+            (0,0)   {\( v_0 \)};
+            \node[derived node, draw=volt1, text=volt1] (b1) at
+            (2.2,0) {\( v_1 \)};
+            \node[derived node, draw=volt1, text=volt1] (c1) at
+            (4.4,0) {\( v_2 \)};
+            \draw[->, thick, volt1, opacity=0.6] (a1) to (b1);
+            \draw[->, thick, volt1, opacity=0.6] (b1) to (c1);
+            \draw[->, thick, volt1, opacity=0.6] (c1) to [bend
+            right=45] (a1);
+        \end{tikzpicture}\\[6pt]
+        \captionof{}{\( X_1 \)}
+    \end{minipage}\hfill
+    \begin{minipage}[t]{0.3\textwidth}
+        \centering
+        \begin{tikzpicture}[>=Stealth, scale=0.75]
+            \node[derived node, draw=volt2, text=volt2] (a2) at
+            (0,0)   {\( v_0 \)};
+            \node[derived node, draw=volt2, text=volt2] (b2) at
+            (2.2,0) {\( v_1 \)};
+            \node[derived node, draw=volt2, text=volt2] (c2) at
+            (4.4,0) {\( v_2 \)};
+            \draw[->, thick, volt2, opacity=0.6] (a2) to [bend
+            left=45] (c2);
+            \draw[->, thick, volt2, opacity=0.6] (b2) to (a2);
+            \draw[->, thick, volt2, opacity=0.6] (c2) to (b2);
+        \end{tikzpicture}\\[6pt]
+        \captionof{}{\( X_2 \)}
+    \end{minipage}
+    \caption{The graphs corresponding to the adjacency matrices
+    \( X_g \).}
+    \label{fig:Xg_graphs_example}
+\end{figure}

@@ -1,52 +1,58 @@
-\begin{center}
-    \centering
-    {\normalsize\sffamily\bfseries Directed base graph over \(
-    \mathbb{Z}_2 \)}\\[4pt]
-    \begin{minipage}[t]{0.435\textwidth}
-        \centering
-        \begin{tikzpicture}[>=Stealth, scale=1.0]
-            \node[base node] (u) at (0,0) {\( u \)};
-            \node[base node] (v) at (2.5,0) {\( v \)};
-            \path[->, thick]
-            (u) edge [bend left=25] node[edge label] {\( 0 \)} (v)
-            (v) edge [bend left=25] node[edge label] {\( 1 \)} (u);
-        \end{tikzpicture}\\[6pt]
-        \captionof{}{Base voltage graph \( \Gamma \) over \(
-        \mathbb{Z}_2 \)}
-    \end{minipage}\hfill
-    \begin{minipage}[t]{0.515\textwidth}
-        \centering
-        \begin{tikzpicture}[>=Stealth, scale=0.72]
-            \node[font=\sffamily\bfseries\small, text=gray] at
-            (0,4.6)   {Fiber \( u \)};
-            \node[font=\sffamily\bfseries\small, text=gray] at
-            (3.6,4.6) {Fiber \( v \)};
+% ==========================================
+% Directed voltage graph over Z_2
+% ==========================================
+% \begin{figure}[H]
+%     % \centering
+%     % {\normalsize\sffamily\bfseries Directed base graph over \(
+%     % \mathbb{Z}_2 \)}\\[4pt]
+%     \begin{minipage}[t]{0.435\textwidth}
+%         \centering
+%         \begin{tikzpicture}[>=Stealth, scale=1.0]
+%             \node[base node] (u) at (0,0) {\( u \)};
+%             \node[base node] (v) at (2.5,0) {\( v \)};
+%             \path[->, thick]
+%             (u) edge [bend left=25] node[edge label] {\( 0 \)} (v)
+%             (v) edge [bend left=25] node[edge label] {\( 1 \)} (u);
+%         \end{tikzpicture}\\[6pt]
+%         \captionof{}{Base voltage graph \( \Gamma \) over \(
+%         \mathbb{Z}_2 \)}
+%     \end{minipage}\hfill
+%     \begin{minipage}[t]{0.515\textwidth}
+%         \centering
+%         \begin{tikzpicture}[>=Stealth, scale=0.72]
+%             \node[font=\sffamily\bfseries\small, text=gray] at
+%             (0,4.6)   {Fiber \( u \)};
+%             \node[font=\sffamily\bfseries\small, text=gray] at
+%             (3.6,4.6) {Fiber \( v \)};
+%
+%             \node[derived node, draw=volt0, text=volt0] (u0) at
+%             (0,3.6)   {\( u,0 \)};
+%             \node[derived node, draw=volt0, text=volt0] (v0) at
+%             (3.6,3.6) {\( v,0 \)};
+%             \node[derived node, draw=volt1, text=volt1] (u1) at (0,0)
+%             {\( u,1 \)};
+%             \node[derived node, draw=volt1, text=volt1] (v1) at
+%             (3.6,0)   {\( v,1 \)};
+%
+%             \path[->, thick, volt0, opacity=0.7] (u0) edge (v0);
+%             \path[->, thick, volt1, opacity=0.6] (u1) edge (v1);
+%             \path[->, thick, volt2, opacity=0.6] (v0) edge (u1);
+%             \path[->, thick, volt2, opacity=0.6] (v1) edge (u0);
+%         \end{tikzpicture}\\[6pt]
+%         \captionof{}{Derived graph \( \Gamma^\lambda \)
+%         (directed 4-cycle)}
+%     \end{minipage}
+%     \caption{Voltage graph and derived cover over \( \mathbb{Z}_2 \).}
+%     \label{fig:voltage-graph-z2}
+% \end{figure}
 
-            \node[derived node, draw=volt0, text=volt0] (u0) at
-            (0,3.6)   {\( u,0 \)};
-            \node[derived node, draw=volt0, text=volt0] (v0) at
-            (3.6,3.6) {\( v,0 \)};
-            \node[derived node, draw=volt1, text=volt1] (u1) at (0,0)
-            {\( u,1 \)};
-            \node[derived node, draw=volt1, text=volt1] (v1) at
-            (3.6,0)   {\( v,1 \)};
-
-            \path[->, thick, volt0, opacity=0.7] (u0) edge (v0);
-            \path[->, thick, volt1, opacity=0.6] (u1) edge (v1);
-            \path[->, thick, volt2, opacity=0.6] (v0) edge (u1);
-            \path[->, thick, volt2, opacity=0.6] (v1) edge (u0);
-        \end{tikzpicture}\\[6pt]
-        \captionof{}{Derived graph \( \Gamma^\lambda \)
-        (directed 4-cycle)}
-    \end{minipage}
-\end{center}
-
-\vspace{0.3cm}
-
-\begin{center}
-    \centering
-    {\normalsize\sffamily\bfseries Directed base graph over \(
-    \mathbb{Z}_3 \) (single vertex, two loops)}\\[4pt]
+% ==========================================
+% Directed voltage graph over Z_3 (single vertex, two loops)
+% ==========================================
+\begin{figure}[H]
+    % \centering
+    % {\normalsize\sffamily\bfseries Directed base graph over \(
+    % \mathbb{Z}_3 \) (single vertex, two loops)}\\[4pt]
     \begin{minipage}[t]{0.435\textwidth}
         \centering
         \begin{tikzpicture}[>=Stealth, scale=1.0]
@@ -85,14 +91,18 @@
         \captionof{}{Derived graph \( \Gamma^\lambda \) (two \(
         3 \)-cycles)}
     \end{minipage}
-\end{center}
+    \caption{Voltage graph and derived cover over \( \mathbb{Z}_3 \),
+    for a base graph with a single vertex and two loops.}
+    \label{fig:voltage-graph-z3-loops}
+\end{figure}
 
-\vspace{0.3cm}
-
-\begin{center}
-    \centering
-    {\normalsize\sffamily\bfseries Directed theta graph over \(
-    \mathbb{Z}_3 \)}\\[4pt]
+% ==========================================
+% Directed theta graph over Z_3
+% ==========================================
+\begin{figure}[H]
+    % \centering
+    % {\normalsize\sffamily\bfseries Directed theta graph over \(
+    % \mathbb{Z}_3 \)}\\[4pt]
     \begin{minipage}[t]{0.435\textwidth}
         \centering
         \begin{tikzpicture}[>=Stealth, scale=1.0]
@@ -144,4 +154,7 @@
         \captionof{}{Derived graph \( \Gamma^\lambda \) (\(
         K_{3,3} \) colored by edge class)}
     \end{minipage}
-\end{center}
+    \caption{Voltage graph and derived cover for a theta graph over
+    \( \mathbb{Z}_3 \).}
+    \label{fig:voltage-graph-z3-theta}
+\end{figure}
