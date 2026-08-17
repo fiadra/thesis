@@ -480,9 +480,15 @@ adjacency matrix and a quantum graph.
     based on
     \begin{itemize}
         \item an \emph{edge projection}, i.e. a projection \(
-            \tilde{A} \in C(X) \otimes C(X)^{\operatorname{op}} \), see
+            P \in B \otimes B^{\operatorname{op}} \), see
             \textcite{musto18},
-        \item
+        \item operator systems \( S \subseteq B(\mathcal{H}) \),
+            i.e. linear subspaces of of operators on a Hilbert
+            space \( \mathcal{H} \) such that \( S = S^* \) and
+            \( \operatorname{id}_{\mathcal{H}} \in S \), see
+            \textcite{weaver2010},
+        \item linear subspaces \( V \subseteq M_3 \), see
+            \textcite{gromada22}.
     \end{itemize}
     We will make use of the latter definition later in the thesis.
 \end{remark}
@@ -1065,10 +1071,6 @@ subspace.
     quantum graphs, then \( V = UWU^* \) for some \( U \in SU_n \).
 \end{theorem}
 
-\begin{proof}
-    See Gromada's paper for the proof.
-\end{proof}
-
 Before applying this correspondence, it will be convenient to have a
 more concrete handle on subspaces satisfying \( V = V^* \), since this
 is precisely the condition singling out undirected quantum graphs. The
@@ -1229,7 +1231,7 @@ for reference throughout the remainder of the thesis.
 
 \begin{figure}[ht]
     \begin{center}
-        \small
+        \footnotesize
         \renewcommand{\arraystretch}{1.15}
         \begin{tabular}{| c | c |}
             \hline
@@ -1252,7 +1254,7 @@ for reference throughout the remainder of the thesis.
             derived graph \( \Gamma^\lambda \) & derived quantum
             graph \( \tilde{A} \rtimes_{\hat\alpha} \hat{G} \) \\
             intersection of graphs & \( m(A_1 \otimes A_2)m^* \) \\
-            isomorphism & quantum isomorphism, \( \cong_q \) \\
+            isomorphism & quantum isomorphism \\
             \hline
         \end{tabular}
         \caption{A dictionary between classical combinatorial notions
