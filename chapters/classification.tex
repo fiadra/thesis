@@ -515,6 +515,11 @@ exactly one of the five classical graphs exhibited in this section
 
 \section{Vertex-transitive graphs}
 \label{sec:vertex-transitive-graphs}
+Classically, a graph is called vertex-transitive if, for any two
+vertices \( v, w \), there exists a graph automorphism \( f \) with
+\( f(v) = w \). This notion was later extended to the quantum
+setting, and in their recent paper \textcite{hayes26} classify all
+vertex-transitive quantum graphs on \( M_3 \) up to isomorphism.
 
 \begin{definition}[Vertex-transitive graphs, \textcite{hayes26}, Definition 3.3]
     \label{def:vertex-transitive}
@@ -526,6 +531,10 @@ exactly one of the five classical graphs exhibited in this section
     spans \( M_n \), where \( V \subseteq M_n \) is the subspace associated
     with \( A \).
 \end{definition}
+
+The graphs obtained in Proposition~\ref{prop:4matrices} are all
+vertex-transitive, which is proven in the next
+Proposition~\ref{prop:self-reflective-vertex-transitive}.
 
 \begin{proposition}
     \label{prop:self-reflective-vertex-transitive}
@@ -587,11 +596,41 @@ exactly one of the five classical graphs exhibited in this section
     classification.
 \end{remark}
 
+The following Table shows the correspondences between the quantum graphs in
+Proposition~\ref{prop:4matrices} as well as the zero graph and the graphs from
+\textcite[Figure 1]{hayes26}.
+
+\begin{figure}[h]
+    \begin{center}
+        \begin{tabular}{| c | c | c |}
+            \hline
+            \( m \) & Our & Theirs \\
+            \hline
+            \( m = 0 \) & the trivial quantum graph & \(
+            \mathrm{VT}^{3}_{0} \) \\
+            \hline
+            \( m = 2 \) && \( \mathrm{VT}^{3}_{2} \) \\
+            \hline
+            \( m = 4 \) && \( \mathrm{VT}^{3}_{4} \) \\
+            \hline
+            \( m = 6 \) && \( \mathrm{VT}^{3}_{6} \) \\
+            \hline
+            \( m = 8 \) && \( \mathrm{VT}^{3}_{8} \) \\
+            \hline
+        \end{tabular}
+        \caption{Our graphs vs their graphs.}
+        \label{tab:our-graphs-are-vertex-transitive}
+    \end{center}
+\end{figure}
+
 \section{Classification of different types of graphs}
 \label{sec:classification-different-types-of-graphs}
 
-In this section we consider the prospects for classifying quantum graphs
-that are not necessarily loop-free and/or undirected.
+In this section, we examine the prospects for classifying quantum
+graphs without assuming them to be loop-free or undirected.
+Theorem~\ref{thm:2x2-determined-by-m} demonstrates that simple
+quantum graphs on \( M_2 \) can be fully classified, establishing
+that there are only finitely many such graphs up to isomorphism.
 
 \begin{theorem}[\textcite{gromada22}, Theorem 3.11]
     \label{thm:2x2-determined-by-m}
@@ -617,14 +656,13 @@ that are not necessarily loop-free and/or undirected.
     Pauli matrices, we may then naturally view \( V \) as a real
     subspace \( V \subset \mathbb{R}^3 \).
 
-    % TODO: cos na temat PSU
     By Theorem~\ref{thm:gromada}, two such subspaces
     \( V, W \subset \mathbb{R}^3 \) yield isomorphic quantum graphs if
     and only if they are related by conjugation by a unitary matrix
     \( U \in SU(2) \). Under the identification of
     \( \mathfrak{su}(2) \) with \( \mathbb{R}^3 \), this conjugation
     action of \( SU(2) \) corresponds precisely to standard rotations,
-    via the canonical isomorphism \( PSU(2) \cong SO(3) \).
+    via the canonical isomorphism \( PU(2) \cong SO(3) \).
 
     Consequently, the quantum graphs corresponding to \( V \) and
     \( W \) are isomorphic if and only if \( V \) can be mapped onto
@@ -636,7 +674,8 @@ that are not necessarily loop-free and/or undirected.
 
 The proof of this theorem relies on the well-known isomorphism
 \( PU(2) \cong SO(3) \), which plays a key role throughout. This result
-does not generalise to higher dimensions, as the following lemma shows.
+does not generalise to higher dimensions, and in particular to
+dimension 3, as the following lemma shows.
 
 \begin{lemma}
     \label{lemma:hard-action}
@@ -683,7 +722,7 @@ does not generalise to higher dimensions, as the following lemma shows.
 
     Consider now the family
     \[
-        X_a = i\operatorname{diag}(a, 1, -a-1), \qquad a \in \mathbb{R}.
+        X_a = i \mathrm{diag}(a, 1, -a-1), \qquad a \in \mathbb{R}.
     \]
     A direct computation gives
     \[
@@ -775,7 +814,7 @@ obtain a family interpolating between these two configurations.
     yield isomorphic quantum graphs if and only if \( V = U W U^* \)
     for some unitary \( U \in SU(2) \). Under this adjoint action, \(
     U \) acts trivially on the scalar subspace \( \mathbb{R} \cdot
-    I_2 \) and acts by standard rotations via \( PSU(2) \cong SO(3)
+    I_2 \) and acts by standard rotations via \( PU(2) \cong SO(3)
     \) on the vector space \( \mathbb{R}^3 \).
 
     Because rotations in \( SO(3) \) preserve the norm of the vector
