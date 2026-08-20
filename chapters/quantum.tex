@@ -30,7 +30,6 @@ this thesis, taken directly from \textcite{tobolski26}.
 
 \begin{definition}[Quantum set, \textcite{tobolski26}, Definition 2.1]
     \label{def:quantum-set}
-    ()
     A \emph{quantum set} \( (B, \psi) \) is a pair consisting of a
     finite-dimensional \( C^{*} \)-algebra \( B \) and a faithful positive
     functional \( \psi \colon B \rightarrow \mathbb{C} \) such that
@@ -62,7 +61,7 @@ this thesis, taken directly from \textcite{tobolski26}.
 \begin{remark}
     \label{rem:comultiplication-general}
     Recall that, more generally, a \emph{comultiplication} on a
-    \( C^{*} \)-algebra \( A \) is a \( * \)-homomorphism
+    \( C^{*} \)-algebra \( A \) is a coassociative linear comultiplication
     \[
         \Delta \colon A \rightarrow A \otimes A
     \]
@@ -215,7 +214,7 @@ this thesis, taken directly from \textcite{tobolski26}.
     In the quantum set \( (M_n, n\operatorname{Tr}) \), the
     comultiplication \( m^* \) is given on matrix units by
     \[
-        m^*(e_{ij}) = \sum_{k=1}^n e_{ik} \otimes e_{kj},
+        m^*(e_{ij}) = \frac{1}{n}\sum_{k=1}^n e_{ik} \otimes e_{kj},
     \]
     where \( e_{ij} \) denotes the matrix with a single \( 1 \) in the
     \( i \)-th row and \( j \)-th column, extended linearly to all of
@@ -228,10 +227,11 @@ this thesis, taken directly from \textcite{tobolski26}.
     \begin{enumerate}
         \item \( e_{ab}e_{cd} = \delta_{bc}\, e_{ad} \);
         \item \( \langle e_{ij}, e_{kl} \rangle =
-            \operatorname{Tr}(e_{ji}e_{kl}) = \delta_{ik}\,\delta_{jl} \),
+            n\operatorname{Tr}(e_{ji}e_{kl}) = n\,\delta_{ik}\,\delta_{jl} \),
     \end{enumerate}
     where \( \delta_{ij} \) is the Kronecker delta. In particular, (2)
-    shows that \( \{e_{ij}\}_{i,j=1,\dots,n} \) forms an orthonormal
+    shows that \( \{e_{ij}\}_{i,j=1,\dots,n} \) forms an orthogonal
+    (though not orthonormal, since \( \langle e_{ij},e_{ij}\rangle = n \))
     basis of \( M_n \) with respect to the inner product induced by
     \( n\operatorname{Tr} \).
 
@@ -239,30 +239,35 @@ this thesis, taken directly from \textcite{tobolski26}.
     \[
         m(e_{ab} \otimes e_{cd}) = e_{ab}e_{cd} = \delta_{bc}\, e_{ad},
     \]
-    and hence, for any basis vector \( e_{ij} \),
+    and hence, for any basis vector \( e_{ij} \), using (2),
     \[
         \big\langle m(e_{ab} \otimes e_{cd}),\, e_{ij} \big\rangle
         = \delta_{bc} \big\langle e_{ad}, e_{ij} \big\rangle
-        = \delta_{bc}\,\delta_{ai}\,\delta_{dj}.
+        = \delta_{bc}\, n\,\delta_{ai}\,\delta_{dj}.
     \]
     On the other hand, pairing \( e_{ab} \otimes e_{cd} \) against the
     proposed adjoint gives
     \[
-        \Big\langle e_{ab} \otimes e_{cd},\ \sum_{k=1}^n e_{ik}
+        \Big\langle e_{ab} \otimes e_{cd},\ \frac{1}{n}\sum_{k=1}^n e_{ik}
         \otimes e_{kj} \Big\rangle
-        = \sum_{k=1}^n \langle e_{ab}, e_{ik} \rangle \langle e_{cd},
+        = \frac{1}{n}\sum_{k=1}^n \langle e_{ab}, e_{ik} \rangle \langle e_{cd},
         e_{kj} \rangle
-        = \sum_{k=1}^n \delta_{ai}\delta_{bk}\,\delta_{ck}\delta_{dj}
-        = \delta_{ai}\,\delta_{bc}\,\delta_{dj},
+        = \frac{1}{n}\sum_{k=1}^n
+        \big(n\,\delta_{ai}\delta_{bk}\big)\big(n\,\delta_{ck}\delta_{dj}\big).
     \]
-    using that the sum over \( k \) collapses to the single term
-    \( k = b = c \). The two expressions coincide, so
+    The sum over \( k \) collapses to the single term \( k = b = c \),
+    so this equals
+    \[
+        \frac{1}{n}\cdot n^2\, \delta_{ai}\,\delta_{dj}\,\delta_{bc}
+        = n\,\delta_{ai}\,\delta_{bc}\,\delta_{dj}.
+    \]
+    The two expressions coincide, so
     \[
         \big\langle m(e_{ab}\otimes e_{cd}), e_{ij} \big\rangle
         = \big\langle e_{ab}\otimes e_{cd}, m^*(e_{ij}) \big\rangle
     \]
-    for all basis vectors, and since \( \{e_{ij}\} \) is an orthonormal
-    basis, this identifies \( m^* \) as claimed on the whole of \( M_n \)
+    for all basis vectors, and since \( \{e_{ij}\} \) spans \( M_n \),
+    this identifies \( m^* \) as claimed on the whole of \( M_n \)
     by linearity.
 \end{proof}
 
@@ -473,7 +478,7 @@ For all intents and purposes we will identify both notions and simply
 call an appropriate \( A\colon B \rightarrow B \) both a quantum
 adjacency matrix and a quantum graph.
 
-% TODO: finish this remark
+% TODO: finish this remark, change the citation to Kiefer, Schaefer 2026
 \begin{remark}
     \label{rem:other-quantum-graph-definitions}
     There are other equivalent definitions of a quantum graph, namely those
@@ -482,15 +487,12 @@ adjacency matrix and a quantum graph.
         \item an \emph{edge projection}, i.e. a projection \(
             P \in B \otimes B^{\operatorname{op}} \), see
             \textcite{musto18},
-        \item operator systems \( S \subseteq B(\mathcal{H}) \),
-            i.e. linear subspaces of operators on a Hilbert
-            space \( \mathcal{H} \) such that \( S = S^* \) and
-            \( \operatorname{id}_{\mathcal{H}} \in S \), see
-            \textcite{weaver2010},
-        \item linear subspaces \( V \subseteq M_3 \), see
-            \textcite{gromada22}.
+        \item a \( B' \) -- \( B' \)-bimodule \( S \subseteq
+            B(\mathcal{H}) \), see
+            \textcite{weaver2010}.
+            % \item linear subspaces \( V \subseteq M_3 \), see
+            %     \textcite{gromada22}.
     \end{itemize}
-    We will make use of the latter definition later in the thesis.
 \end{remark}
 
 \begin{definition}[\textcite{tobolski26}, Definition~4.6]
@@ -590,12 +592,10 @@ admitting a free action of a finite group. It can be found in
 \end{theorem}
 
 In other words, voltage graphs classify free group actions on graphs
-up to isomorphism: recovering \( (\Gamma,\lambda) \) from
+up to isomorphism: recovering \( \Gamma \) from
 \( \tilde\Gamma \) amounts to nothing more than quotienting by the
-group action, while reconstructing \( \tilde\Gamma \) from
-\( (\Gamma,\lambda) \) is exactly the derived graph construction
-above. Below we give some examples of voltage graphs together with
-their derived graphs.
+group action. However, this is too little to recover the voltage labelling
+\( \lambda \), as different labellings might create isomorphic derived graphs.
 
 \input{graphs/examplegraphs}
 
@@ -679,7 +679,7 @@ one that is undirected.
 \begin{definition}
     \label{def:voltage-quantum-graph-loop-free}
     A voltage quantum graph \( \tilde{A} = \{\tilde{A}_g\}_{g \in G} \)
-    is called \emph{loop-free} or \emph{directed} if the respective
+    is called \emph{loop-free} or \emph{undirected} if the respective
     properties from Definition~\ref{def:quantum-loop-free} hold for the
     sum \( \sum_{g \in G} \tilde{A}_g \).
 \end{definition}
@@ -690,6 +690,11 @@ can be thought of as special kinds of voltage quantum graphs.
 Below \( (\mathbb{C}_V, \psi_V) \) is used to denote a quantum set derived
 from a finite classical set \( V \), like it was done in
 Example~\ref{ex:classical_sets}.
+
+\begin{definition}[Pre-simple voltage graph]
+    A voltage graph \( (\Gamma, \lambda) \) is called \emph{pre-simple} if
+    its derived graph \( \Gamma^{\lambda} \) is simple.
+\end{definition}
 
 \begin{proposition}[\textcite{tobolski26}, Proposition 4.10]
     \label{prop:equivalence}
@@ -705,7 +710,7 @@ Example~\ref{ex:classical_sets}.
         (\Gamma,\lambda) \;\longmapsto\; \tilde{A} = (\tilde{A}_g)_{g \in G}
     \]
     is a one-to-one correspondence between \( G \)-labeled pre-simple
-    voltage graphs on \( n \) and voltage quantum graphs on
+    voltage graphs on \( V \) and voltage quantum graphs on
     \( (\mathbb{C}^V, \psi_V) \) with respect to the trivial action on
     \( (\mathbb{C}^V, \psi_V) \).
 \end{proposition}
@@ -714,7 +719,7 @@ In the same manner classical derived graphs can be identified
 with certain derived quantum graphs. Note that the group action
 in question is trivial, which connects to Theorem~\ref{thm:gross-and-tucker},
 which states that a graph is isomorphic to a derived graph of some voltage
-graph in and only if it allows a free group action of some finite group.
+graph in and only if it allows a free group action of some fixed finite group.
 
 \begin{proposition}[\textcite{tobolski26}, Proposition 4.12]
     \label{prop:derived-graph-identification}
@@ -1059,7 +1064,7 @@ subspace.
     \( m \)-dimensional subspaces \( V \subseteq \mathfrak{gl}_n \), the
     adjacency matrix being given by
     \[
-        A_V = \sum_{s=1}^m \xi_s \otims \xi_s^*,
+        A_V = \sum_{s=1}^m \xi_s \otimes \bar{\xi_s},
     \]
     where \( (\xi_1,\dots,\xi_m) \) is any orthonormal basis of \( V \).
 

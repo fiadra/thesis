@@ -90,7 +90,7 @@ Multiplication in a \(C^{*}\)-algebra \( A \) is a bilinear map
 By the universal property of the tensor product, \( m \) extends uniquely
 to a linear map
 \[
-    m^{*} \colon A \otimes A \to A.
+    \tilde{m} \colon A \otimes A \to A.
 \]
 Throughout this thesis, we will use the same notation \( (m) \) for both
 the bilinear multiplication and its unique linear extension, relying
@@ -135,7 +135,8 @@ a suitable functional.
 % TODO: What literature?
 \begin{remark}
     \label{rem:state-terminology}
-    In the literature, the functional \( \psi \) is often called a \emph{state}.
+    In the literature, a normalised functional \( \psi \) such that
+    \( \psi(1) = 1 \) is often called a \emph{state}.
     % For example see \textcite{gromada22}.
 \end{remark}
 
@@ -207,7 +208,7 @@ The following notion is akin to the notion of a group action on a set.
             \mathbb{T} \), and let
             \( G = \mathbb{Z} \) act by rotation:
             \[
-                (n \cdot f)(z) = f(z - n\theta \bmod 2\pi), \qquad n \in
+                (n \cdot f)(z) = f(e^{-in \theta}z), \qquad n \in
                 \mathbb{Z},\ f \in A,
             \]
             for a fixed \( \theta \in \mathbb{R} \). This is precisely the
@@ -356,7 +357,7 @@ and~\ref{example:irrational-rotation-algebra}).
     and a unitary \( v \) (generating \( C(\mathbb{T}) \)) subject to the
     single relation
     \[
-        uv = e^{2\pi i \theta}\, vu,
+        uv = e^{-2\pi i \theta}\, vu,
     \]
     and is a standard first example of a simple, non-commutative
     \( C^* \)-algebra arising from a crossed product.
@@ -370,7 +371,8 @@ groups and algebras that will be needed later in the thesis. A \emph{Lie
 group} is a group that is simultaneously a smooth manifold, in such a way
 that both the group multiplication and the inversion map are smooth. A
 \emph{Lie algebra} \( \mathfrak{g} \) is a vector space over a field (for
-us, always \( \mathbb{C} \)) equipped with a bilinear form, the \emph{Lie
+us, always \( \mathbb{C} \) or \( \mathbb{R} \)) equipped with a
+bilinear form, the \emph{Lie
 bracket},
 \[
     [\cdot, \cdot] \colon \mathfrak{g} \times \mathfrak{g} \rightarrow
@@ -395,18 +397,27 @@ examples include the unitary group
 \[
     U(n) = \{ U \in M_n(\mathbb{C}) : U^*U = UU^* = I \},
 \]
-its subgroup, the special unitary group
+and its subgroup, the special unitary group
 \[
-    SU(n) = \{ U \in M_n(\mathbb{C}) : U^*U = UU^* = I,\ \det(U) = 1 \},
+    SU(n) = \{ U \in M_n(\mathbb{C}) : U^*U = UU^* = I,\ \det(U) = 1 \}.
 \]
-and the projective unitary group
+Both carry the subspace topology inherited from \( M_n(\mathbb{C}) \).
+
+Alongside these matrix Lie groups proper, we will also make use of the
+\emph{projective unitary group}
 \[
     PU(n) = U(n)/Z(U(n)),
 \]
-where \( Z(U(n)) \) denotes the center of \( U(n) \). Each of these groups
-carries the subspace topology inherited from \( M_n(\mathbb{C}) \), except
-for \( PU(n) \), which instead carries the quotient topology induced by
-the projection \( U(n) \to U(n)/Z(U(n)) \).
+where \( Z(U(n)) \) denotes the center of \( U(n) \). Unlike \( U(n) \)
+and \( SU(n) \), the group \( PU(n) \) is defined as a \emph{quotient}
+of \( U(n) \) by a normal subgroup, and is not presented here as a
+subgroup of \( GL(n,\mathbb{C}) \) in its own right; it carries the
+quotient topology induced by the projection
+\( U(n) \to U(n)/Z(U(n)) \), rather than a subspace topology. (It does
+    in fact admit a faithful representation as a matrix Lie group, e.g.
+    via its adjoint action on \( \mathfrak{su}(n) \), but we will not need
+    this realization and instead work with \( PU(n) \) directly as a
+quotient group throughout.)
 
 \begin{proposition}
     \label{prop:center-un}
@@ -419,20 +430,37 @@ the projection \( U(n) \to U(n)/Z(U(n)) \).
         Z(U(n)) = \{ A \in U(n) : AU = UA \text{ for all } U \in U(n) \}.
     \]
 
-    Let \( A \in Z(U(n)) \). Since \( A \) commutes with every unitary
-    matrix, it in particular commutes with every permutation matrix. Let
-    \( P_{ij} \) denote the permutation matrix exchanging the \( i \)-th
-    and \( j \)-th basis vectors. From
+    Let \( A \in Z(U(n)) \). We first show that \( A \) is diagonal.
+    For any \( \theta \in \mathbb{R} \) and any index \( i \), let
+    \( D_i(\theta) \) denote the diagonal unitary matrix with
+    \( e^{i\theta} \) in the \( i \)-th diagonal position and \( 1 \)
+    elsewhere. Since \( A \) commutes with \( D_i(\theta) \), comparing
+    the \( (i,j) \)-entry (for \( j \neq i \)) of both sides of
+    \( AD_i(\theta) = D_i(\theta) A \) gives
     \[
-        AP_{ij} = P_{ij}A
+        A_{ij}\, 1 = 1\, A_{ij} e^{i\theta}
+        \quad\text{and, symmetrically, comparing the } (j,i)\text{-entry,}\quad
+        A_{ji}\, e^{i\theta} = A_{ji}.
     \]
-    we see that conjugating \( A \) by \( P_{ij} \) leaves it unchanged.
-    But conjugation by \( P_{ij} \) swaps the \( i \)-th and \( j \)-th
-    rows and columns of \( A \); since this holds for every pair
-    \( i,j \), all off-diagonal entries of \( A \) must vanish and all
-    diagonal entries must coincide. Hence \( A = \lambda I_n \) for some
-    \( \lambda \in \mathbb{C} \), where by \( I_{n} \) we denote the
-    \( n \times n \)-identity matrix.
+    The first identity forces \( A_{ij}(e^{i\theta}-1) = 0 \) for every
+    \( \theta \), and since \( e^{i\theta} \neq 1 \) for \( \theta \neq 0 \),
+    we get \( A_{ij} = 0 \); the second identity gives \( A_{ji} = 0 \)
+    by the same argument. As \( i \) was arbitrary, all off-diagonal
+    entries of \( A \) vanish, so \( A \) is diagonal, say
+    \( A = \operatorname{diag}(\lambda_1,\dots,\lambda_n) \).
+
+    Next we show that the diagonal entries \( \lambda_1,\dots,\lambda_n \)
+    all coincide. Since \( A \) commutes with every unitary matrix, it
+    in particular commutes with every permutation matrix. Let
+    \( P_{ij} \) denote the permutation matrix exchanging the \( i \)-th
+    and \( j \)-th basis vectors, for any \( i \neq j \). Since
+    \( P_{ij}AP_{ij}^{-1} \) is the diagonal matrix obtained from \( A \)
+    by swapping its \( i \)-th and \( j \)-th diagonal entries, the
+    relation \( P_{ij}A = AP_{ij} \), i.e.\
+    \( P_{ij}AP_{ij}^{-1} = A \), forces \( \lambda_i = \lambda_j \). As
+    this holds for every pair \( i,j \), all diagonal entries of \( A \)
+    are equal, so \( A = \lambda I_n \) for some \( \lambda \in \mathbb{C} \),
+    where \( I_n \) denotes the \( n \times n \) identity matrix.
 
     As \( A \in U(n) \), we have \( A^*A = I \), and substituting
     \( A = \lambda I_n \) gives
@@ -488,7 +516,7 @@ space (why?).
         \qquad \theta \in [0, 2\pi),
     \]
     and is isomorphic, as a Lie group, to the circle \( \mathbb{T} \) via
-    \( \theta \mapsto R_\theta \). Differentiating the defining relation
+    \( e^{i \theta} \mapsto R_\theta \). Differentiating the defining relation
     \( R^TR = I \) at \( \theta = 0 \) shows that the corresponding Lie
     algebra \( \mathfrak{so}(2) \) consists of antisymmetric real
     matrices,
