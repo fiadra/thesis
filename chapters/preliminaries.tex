@@ -2,26 +2,29 @@
 
 The following sections cover various topics in algebra. They are not
 intended to provide an exhaustive treatment; rather, they are meant
-to equip the Reader with the necessary background to understand the
+to equip the reader with the necessary background to understand the
 remainder of this work. References to further information are
 provided where appropriate.
 
 \section{Group theory}
 \label{sec:group-theory}
 
-In the following section we will introduce some group theoretic notions that
-be used throughout this thesis. We assume that the Reader is familiar with
-the notion of a group. By \( \mathbb{T} \) we will denote the torus, i.e. the
+In the following section, we will introduce some group theoretic notions that
+be used throughout this thesis. We assume that the reader is familiar with
+the notion of a group. We denote the torus by \( \mathbb{T} \), i.e. the
 set of complex numbers with the absolute value of 1, along with multiplication
-as its group action. By \( e_{G} \) we will denote the identity
-element of \( G \). If \( G \) is abelian, its identity element will
-be expressed by \( 1_{G} \).
+as its group action. We denote the identity
+element of \( G \) by \( e_{G} \). If \( G \) is abelian, its
+identity element is expressed by \( 1_{G} \).
 
-% This is from Dummit & Foote's Algebra, page 167
-\begin{definition}[Dual of a group]
+The following definition and proposition will be used throughout the
+thesis, as almost all of the groups we will be dealing with
+will be finite and abelian.
+
+\begin{definition}[Dual of a group, \textcite{rudin61}, Section 1.2]
     \label{def:dual-group}
-    Let \( G \) be a group. The \emph{dual group} \( \hat{G} \) is the
-    set of all homomorphisms from \( G \) into the torus \(
+    Let \( G \) be a finite abelian group. The \emph{dual group} \(
+    \hat{G} \) is the set of all homomorphisms from \( G \) into the torus \(
     \mathbb{T} \) with the group operation defined as
     \[
         \left( \varphi \psi \right)(g) = \varphi(g) \psi(g)
@@ -33,12 +36,9 @@ be expressed by \( 1_{G} \).
 \begin{remark}
     \label{rem:characters-self-dual}
     We will often call the elements of the dual group
-    \emph{characters}. If a group is
-    isomorphic to its complement it will be called \emph{self-dual}.
+    \emph{characters}. If a group is isomorphic to its dual it will
+    be called \emph{self-dual}.
 \end{remark}
-
-The following proposition will be used throughout the thesis, as almost
-all of the groups we will be dealing with will be finite and abelian.
 
 \begin{proposition}
     \label{prop:finite-abelian-self-dual}
@@ -62,7 +62,9 @@ all of the groups we will be dealing with will be finite and abelian.
     generates this group, i.e. \( \hat{G} = \left\{ \chi, \chi^{2},
     \dots, \chi^{n-1}, \chi^{n} = e_{\hat{G}} \right\} \).
 
-    Now since every finite abelian group can be written as a finite product
+    By the fundamental theorem of finite abelian
+    groups (see \textcite[Section 5.2]{dummit04}), since every
+    finite abelian group can be written as a finite product
     of finite cycles, all we need to do is check whether the statement
     holds for a product of two groups \( A, B \) that are themselves
     self-dual, i.e. \( \widehat{A \times B} \cong \widehat{A} \times
@@ -79,9 +81,43 @@ all of the groups we will be dealing with will be finite and abelian.
 \section{\(C^{*}\)-algebras}
 \label{sec:cstar-algebras}
 
-In the following section we will introduce some notions stemming from the
-theory of \( C^{*} \)-algebras. We assume the Reader is familiar with
-the notion of a \(C^{*}\)-algebra. For reference, see \textcite{blackadar}.
+In the following section, we will introduce some notions stemming from the
+theory of \( C^{*} \)-algebras. We assume the reader is familiar with
+the notion of a \(C^{*}\)-algebra. The following definitions are
+taken from \textcite{blackadar}.
+
+\begin{definition}[Banach and \(C^{*}\)-algebras, Definition II.1.1.1]
+    \label{def:c-star-algebra}
+    A \emph{Banach algebra} is a complex algebra which is a Banach
+    space under a norm that is submultiplicative, meaning
+    \[
+        \|ab\| \leq \|a\| \|b\| \quad \text{for all } a, b \in A.
+    \]
+
+    An \emph{involution} on a Banach algebra \( A \) is a
+    conjugate-linear isometric antiautomorphism of order two, usually
+    denoted \( a \mapsto a^* \). In other words, for all \( a, b \in
+    A \) and \( \lambda \in \mathbb{C} \), it satisfies:
+    \[
+        (a + b)^* = a^* + b^*, \quad (ab)^* = b^* a^*, \quad (\lambda
+        a)^* = \bar{\lambda} a^*, \quad (a^*)^* = a, \quad \|a^*\| = \|a\|
+    \]
+
+    A \emph{Banach \( * \)-algebra} is a Banach algebra equipped with
+    an involution. A Banach algebra \( A \) is called \emph{unital} if there
+    is an element \( 1_A \) such that \( 1_A a = a 1_A = a \) for all
+    \( a \in A \). Such an element will be called an \emph{unit}.
+
+    An (abstract) \emph{\( C^* \)-algebra} is a Banach \( *
+    \)-algebra \( A \) satisfying the \( C^* \)-axiom:
+    \[
+        \|a^* a\| = \|a\|^2 \quad \text{for all } a \in A.
+    \]
+\end{definition}
+
+\begin{remark}
+    Throughout this thesis we will assume that \(C^{*}\)-algebras are unital.
+\end{remark}
 
 Multiplication in a \(C^{*}\)-algebra \( A \) is a bilinear map
 \[
@@ -96,7 +132,7 @@ Throughout this thesis, we will use the same notation \( (m) \) for both
 the bilinear multiplication and its unique linear extension, relying
 on the context to distinguish between the two.
 
-\begin{definition}[Linear functional]
+\begin{definition}[Linear functional, II.6.2.1]
     \label{def:linear-functional}
     A \emph{linear functional} on a \(C^{*}\)-algebra \( A \) is a
     linear function \( \psi: A \rightarrow \mathbb{C} \).
@@ -112,7 +148,7 @@ The following notions will be useful for defining an inner product on
 define a norm on a finite-dimensional \(C^{*}\)-algebra equipped with
 a suitable functional.
 
-\begin{definition}[Positive functional]
+\begin{definition}[Positive functional, II.6.7.1]
     \label{def:positive-functional}
     A functional \( \psi \) on a \(C^{*}\)-algebra \( A \) is called
     \emph{positive}, if
@@ -177,9 +213,9 @@ a suitable functional.
 
 The following notion is akin to the notion of a group action on a set.
 
-\begin{definition}[Group action on a \(C^{*}\)-algebra]
+\begin{definition}[Discrete group action on a \(C^{*}\)-algebra]
     \label{def:group-action-cstar}
-    By \emph{group action} of a group \( G \) on a \(C^{*}\)-algebra \(
+    By \emph{group action} of a discrete group \( G \) on a \(C^{*}\)-algebra \(
     A \) we mean a group homomorphism
     \[
         \alpha\colon G \rightarrow \operatorname{Aut}(A).
@@ -188,21 +224,38 @@ The following notion is akin to the notion of a group action on a set.
     in question is clear.
 \end{definition}
 
-% TODO: Give a reference to unitary matrices
 \begin{example}[Group actions on \(C^{*}\)-algebras]
     \label{example:group-actions-cstar}
     \leavevmode
     \begin{enumerate}
-        \item \emph{Conjugation action.} Let \( A = M_{n}(\mathbb{C}) \)
-            and let \( G = U(n) \) be the group of unitary matrices. Then
-            \( G \) acts on \( A \) via
+        \item \emph{Trivial action.} For \emph{any} \(C^{*}\)-algebra \( A \)
+            and \emph{any} group \( G \), setting \(
+            \operatorname{triv}(g)(a) = a \)
+            for all \( g \in G,\ a \in A \) trivially defines a group action,
+            since \( \operatorname{triv}(g) = \operatorname{id}_A \in
+            \operatorname{Aut}(A) \)
+            for every \( g \), and the identity map is trivially a group
+            homomorphism from \( G \) into \( \operatorname{Aut}(A) \).
+        \item \emph{Permutation action.} Let \( A = M_{n}(\mathbb{C}) \)
+            and let \( G = S_n \), the symmetric group on \( n \)
+            letters. For \( \sigma \in S_n \), let \( P_\sigma \) be
+            the associated permutation matrix, i.e.\
+            \( P_\sigma e_i = e_{\sigma(i)} \) on the standard basis
+            \( \{e_i\} \) of \( \mathbb{C}^n \). Then \( G \) acts on
+            \( A \) via
             \[
-                \alpha(u)(a) = u a u^{*}, \qquad u \in U(n),\ a \in A.
+                \alpha(\sigma)(a) = P_\sigma a P_\sigma^{-1},
+                \qquad \sigma \in S_n,\ a \in A,
             \]
-            Each \( \alpha(u) \) is easily checked to be a \(*\)-automorphism
-            of \( A \), and \( \alpha(u_1 u_2) = \alpha(u_1)\alpha(u_2) \),
-            so \( \alpha \colon G \to \operatorname{Aut}(A) \) is indeed a
-            group homomorphism.
+            i.e.\ \( \alpha(\sigma) \) simultaneously permutes the
+            rows and columns of \( a \) according to \( \sigma \). As
+            \( P_\sigma \) is unitary (with \( P_\sigma^{-1} = P_\sigma^* \)),
+            each \( \alpha(\sigma) \) is a \( * \)-automorphism of
+            \( A \), and since \( \sigma \mapsto P_\sigma \) is itself
+            a group homomorphism (\( P_{\sigma\tau} = P_\sigma P_\tau \)),
+            we get \( \alpha(\sigma\tau) = \alpha(\sigma)\alpha(\tau) \),
+            so \( \alpha \colon S_n \to \operatorname{Aut}(A) \) is
+            indeed a group homomorphism.
         \item \emph{Translation action.} Let \( A = C(\mathbb{T}) \), the
             continuous complex-valued functions on the torus \(
             \mathbb{T} \), and let
@@ -215,59 +268,78 @@ The following notion is akin to the notion of a group action on a set.
             action used to construct the irrational rotation algebra as a
             crossed product (see
             Example~\ref{example:irrational-rotation-algebra}).
-        \item \emph{Trivial action.} For \emph{any} \(C^{*}\)-algebra \( A \)
-            and \emph{any} group \( G \), setting \(
-            \operatorname{triv}(g)(a) = a \)
-            for all \( g \in G,\ a \in A \) trivially defines a group action,
-            since \( \operatorname{triv}(g) = \operatorname{id}_A \in
-            \operatorname{Aut}(A) \)
-            for every \( g \), and the identity map is trivially a group
-            homomorphism from \( G \) into \( \operatorname{Aut}(A) \).
     \end{enumerate}
 \end{example}
 
 \subsection{Crossed-product \(C^{*}\)-algebra}
 \label{subsec:crossed-product-cstar}
 
-In this subsection we introduce the notion of a crossed-product
+In this subsection, we introduce the notion of a crossed-product
 \( C^{*} \)-algebra, in the limited form needed for our purposes; for a
-more general treatment we refer the Reader to \textcite{blackadar}. The
-definitions below follow \textcite{sierakowski09}.
+more general treatment we refer the reader to \textcite{blackadar}. The
+definitions below follow \textcite{blackadar}.
 
-\begin{definition}[\( C^{*} \)-dynamical system]
+\begin{definition}[\( C^{*} \)-dynamical system, II.10.3.1]
     \label{def:cstar-dynamical-system}
     A \emph{\( C^{*} \)-dynamical system} is a triple \( (A, G, \alpha) \),
-    where \( A \) is a \( C^{*} \)-algebra, \( G \) is a discrete group,
+    where \( A \) is a unital \( C^{*} \)-algebra, \( G \) is a discrete group,
     and \( \alpha \colon G \to \operatorname{Aut}(A) \) is a group action
     on \( A \). For a \( C^{*} \)-dynamical system \( (A,G,\alpha) \) we set
     \[
-        C_c(G,A,\alpha) = \{ f \colon G \to A : f \text{ has finite support} \},
+        C_c(G,A) = \{ f \colon G \to A : f \text{ has finite support} \},
     \]
-    the space of all \( A \)-valued functions on \( G \).
-    We usually write \( g \cdot a \) for \( \alpha(g)(a) \).
+    the space of all \( A \)-valued functions on \( G \) with finite
+    support. We usually write \( g \cdot a \) for \( \alpha(g)(a) \).
 \end{definition}
 
-If \( G \) is finite, every \( f: G \rightarrow A \) is automatically
-finitely supported.
-A typical element \( a \in C_c(G,A,\alpha) \) is written
-\( a = \sum_{g \in G} a_g u_g \), where only finitely many of the
-\( a_g \in A \) are nonzero, and \( \{u_g\}_{g \in G} \) is a formal
-family of symbols indexed by \( G \) (which specific representation the
-\( u_g \) correspond to depends on the crossed product in question).
+If \( G \) is finite, every \( f \colon G \to A \) is automatically
+finitely supported. For each \( g \in G \), let
+\( u_g \in C_c(G,A) \) denote the function
+\[
+    u_g(h) =
+    \begin{cases}
+        1_A, & h = g, \\
+        0_A, & h \neq g,
+    \end{cases}
+    \qquad h \in G,
+\]
+i.e.\ the indicator function of \( \{g\} \) valued in the unit of
+\( A \). Given \( f \in C_c(G,A) \), write \( a_g := f(g) \in A \)
+for its values; since \( a_g\, u_g(h) = \delta_{g,h}\,a_g \) (using the
+    multiplication of \( A \) and that \( u_g(h) \) is either \( 1_A \) or
+\( 0_A \)), \( f \) is recovered uniquely as
+\[
+    f = \sum_{g \in G} a_g\, u_g,
+\]
+where the sum is finite since only finitely many \( a_g \) are
+nonzero. In this way \( \{u_g\}_{g \in G} \) plays the role of a
+formal basis of \( C_c(G,A) \) as an \( A \)-module, with each
+\( u_g \) concretely realized as the \( A \)-valued indicator function
+of \( g \) above.
 
-The space \( C_c(G,A,\alpha) \) carries both a product and an
+The space \( C_c(G,A) \) carries both a product and an
 involution, defined precisely so that the group action becomes
 \emph{inner}, i.e.\ so that \( g \cdot a = u_g a u_g^* \) for all
 \( g \in G \), \( a \in A \). Explicitly, for
 \( a = \sum_{g \in G} a_g u_g \) and \( b = \sum_{h \in G} b_h u_h \) in
-\( C_c(G,A,\alpha) \), the product and involution are given by
+\( C_c(G,A) \), the product and involution are given by
 \[
     ab = \sum_{g,h \in G} a_g\,(g \cdot b_h)\, u_{gh},
     \qquad
     a^* = \sum_{g \in G} (g^{-1} \cdot a_g^*)\, u_{g^{-1}}.
 \]
 
-\begin{definition}[Covariant representation]
+\begin{definition}[\(C^{*}\)-algebra representation, II.6.1.1]
+    Let \( A \) be a \(C^{*}\)-algebra. A \emph{\(C^{*}\)-algebra
+    representation} \( \pi \)
+    is a *-homomorphism \(\pi: A \rightarrow B(\mathcal{H}) \) for some
+    Hilbert space
+    \( \mathcal{H} \).
+    A \(C^{*}\)-algebra representation is called \emph{unital} if
+    \( \pi(1_A) = \operatorname{Id}_{\mathcal{H}} \).
+\end{definition}
+
+\begin{definition}[Covariant representation, II.10.3.4]
     \label{def:covariant-representation}
     Fix a dynamical system \( (A, G, \alpha) \). A \emph{covariant
     representation} \( (\pi, u, \mathcal{H}) \) of \( (A,G,\alpha) \)
@@ -280,9 +352,9 @@ involution, defined precisely so that the group action becomes
     for every \( g \in G \) and \( a \in A \).
 \end{definition}
 
-\begin{definition}[Full \(C^{*}\)-algebra norm on \(C_c(G,A,\alpha)\)]
+\begin{definition}[Full \(C^{*}\)-algebra norm on \(C_c(G,A)\)]
     \label{def:full-cstar-norm}
-    The \emph{full \( C^{*} \)-algebra norm} on \( C_c(G,A,\alpha) \) is
+    The \emph{full \( C^{*} \)-algebra norm} on \( C_c(G,A) \) is
     given by
     \[
         \| \cdot \| = \sup \| (\pi \times u)(\cdot) \|,
@@ -294,31 +366,23 @@ involution, defined precisely so that the group action becomes
 \begin{definition}[Crossed product \(C^{*}\)-algebra]
     \label{def:crossed-product-cstar-algebra}
     The \emph{crossed product} of a \( C^{*} \)-algebra \( A \) and a
-    discrete group \( G \) is the completion of \( C_c(G,A,\alpha) \)
+    discrete group \( G \) is the completion of \( C_c(G,A) \)
     with respect to the full norm. We denote it by
     % TODO: notation mismatch -- should this be A \rtimes_\alpha G,
     % matching the A, G, \alpha used to build C_c(G,A,\alpha) above?
     % \tilde{B} \rtimes_{\hat\alpha} \hat{G} introduces B, \hat\alpha,
     % \hat{G} without ever defining them in this subsection.
     \[
-        \tilde{B} \rtimes_{\hat\alpha} \hat{G}.
+        A \rtimes_{\alpha} G.
     \]
 \end{definition}
 
-\begin{remark}
-    \label{rem:no-norms-used}
-    In this work we will not make use of norms of crossed product
-    \(C^{*}\)-algebras and almost all groups will be discrete, so we
-    can treat crossed product \(C^{*}\)-algebras as formal linear
-    combinations of some family \( \{u_g\}_{g \in G} \), which is
-    dependent on the group action in question.
-\end{remark}
-
-The Reader will find some examples of such \(C^{*}\)-algebras below
+The reader will find some examples of such \(C^{*}\)-algebras below
 (Examples~\ref{example:trivial-action-group-algebra}
-and~\ref{example:irrational-rotation-algebra}).
+and~\ref{example:irrational-rotation-algebra}). They are both taken
+from \textcite{blackadar}.
 
-\begin{example}[Trivial action recovers the group $C^*$-algebra]
+\begin{example}[Trivial action recovers the group $C^*$-algebra, II.10.3.15]
     \label{example:trivial-action-group-algebra}
     Let \( A = \mathbb{C} \) with the trivial action \( \alpha_g =
     \operatorname{id} \)
@@ -338,7 +402,7 @@ and~\ref{example:irrational-rotation-algebra}).
     Fourier transform.
 \end{example}
 
-\begin{example}[Irrational rotation algebra]
+\begin{example}[Irrational rotation algebra, II.10.4.12]
     \label{example:irrational-rotation-algebra}
     Let \( A = C(\mathbb{T}) \), the continuous functions on the torus,
     and let \( G = \mathbb{Z} \) act by rotation through angle
