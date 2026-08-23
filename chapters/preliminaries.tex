@@ -100,7 +100,7 @@ taken from \textcite{blackadar}.
     A \) and \( \lambda \in \mathbb{C} \), it satisfies:
     \[
         (a + b)^* = a^* + b^*, \quad (ab)^* = b^* a^*, \quad (\lambda
-        a)^* = \bar{\lambda} a^*, \quad (a^*)^* = a, \quad \|a^*\| = \|a\|
+        a)^* = \bar{\lambda} a^*, \quad (a^*)^* = a, \quad \|a^*\| = \|a\|.
     \]
 
     A \emph{Banach \( * \)-algebra} is a Banach algebra equipped with
@@ -128,9 +128,8 @@ to a linear map
 \[
     \tilde{m} \colon A \otimes A \to A.
 \]
-Throughout this thesis, we will use the same notation \( (m) \) for both
-the bilinear multiplication and its unique linear extension, relying
-on the context to distinguish between the two.
+We will not distinguish between \( m \) and \( \tilde{m} \) and
+simply write \( m \), relying on context to distinguish between the two.
 
 \begin{definition}[Linear functional, II.6.2.1]
     \label{def:linear-functional}
@@ -158,7 +157,7 @@ a suitable functional.
     for any \( a \in A \).
 \end{definition}
 
-\begin{definition}[Faithful functional]
+\begin{definition}[Faithful functional, II.6.7.1]
     \label{def:faithful-functional}
     A positive functional \( \psi \) on a \(C^{*}\)-algebra \( A \) is
     called \emph{faithful}, if
@@ -431,57 +430,82 @@ from \textcite{blackadar}.
 \label{sec:matrix-lie-groups}
 
 In this section we recall some notions from the theory of matrix Lie
-groups and algebras that will be needed later in the thesis. A \emph{Lie
-group} is a group that is simultaneously a smooth manifold, in such a way
-that both the group multiplication and the inversion map are smooth. A
-\emph{Lie algebra} \( \mathfrak{g} \) is a vector space over a field (for
-us, always \( \mathbb{C} \) or \( \mathbb{R} \)) equipped with a
-bilinear form, the \emph{Lie
-bracket},
-\[
-    [\cdot, \cdot] \colon \mathfrak{g} \times \mathfrak{g} \rightarrow
-    \mathfrak{g},
-\]
-which is antisymmetric and satisfies the Jacobi identity:
-\begin{itemize}
-    \item \( [x, y] = -[y, x] \),
-    \item \( [x, [y, z]] + [y, [z, x]] + [z, [x, y]] = 0 \).
-\end{itemize}
-These two notions are intimately related: every Lie group gives rise to a
-Lie algebra, obtained as the tangent space at the identity element,
-together with a bracket induced by the group structure.
+groups and algebras that will be needed later in the thesis.
 
-Our primary interest lies in \emph{matrix Lie groups}, i.e.\ subgroups of
-the general linear group
+\begin{definition}[Lie group]
+    \label{def:lie-group}
+    A \emph{Lie group} is a group that is simultaneously a smooth
+    manifold, in such a way that both the group multiplication and
+    the inversion map are smooth.
+\end{definition}
+
+\begin{definition}[Lie algebra]
+    \label{def:lie-algebra}
+    A \emph{Lie algebra} \( \mathfrak{g} \) is a vector space over a
+    field (for us, always \( \mathbb{C} \) or \( \mathbb{R} \))
+    equipped with a bilinear form, the \emph{Lie bracket},
+    \[
+        [\cdot, \cdot] \colon \mathfrak{g} \times \mathfrak{g}
+        \rightarrow \mathfrak{g},
+    \]
+    satisfying:
+    \begin{itemize}
+        \item \emph{antisymmetry}: \( [x,y] = -[y,x] \);
+        \item the \emph{Jacobi identity}:
+            \( [x,[y,z]] + [y,[z,x]] + [z,[x,y]] = 0 \).
+    \end{itemize}
+\end{definition}
+
+\begin{remark}
+    \label{rem:lie-group-lie-algebra}
+    These two notions are intimately related: every Lie group gives
+    rise to a Lie algebra, obtained as the tangent space at the
+    identity element, together with a bracket induced by the group
+    structure.
+\end{remark}
+
+Our primary interest lies in \emph{matrix Lie groups}, i.e.\
+subgroups of the general linear group
 \[
     GL(n,\mathbb{C}) = \{A \in M_n(\mathbb{C}) : \det(A) \neq 0\},
 \]
-taken with matrix multiplication as the group operation. Important
-examples include the unitary group
-\[
-    U(n) = \{ U \in M_n(\mathbb{C}) : U^*U = UU^* = I \},
-\]
-and its subgroup, the special unitary group
-\[
-    SU(n) = \{ U \in M_n(\mathbb{C}) : U^*U = UU^* = I,\ \det(U) = 1 \}.
-\]
-Both carry the subspace topology inherited from \( M_n(\mathbb{C}) \).
+taken with matrix multiplication as the group operation.
 
-Alongside these matrix Lie groups proper, we will also make use of the
-\emph{projective unitary group}
-\[
-    PU(n) = U(n)/Z(U(n)),
-\]
-where \( Z(U(n)) \) denotes the center of \( U(n) \). Unlike \( U(n) \)
-and \( SU(n) \), the group \( PU(n) \) is defined as a \emph{quotient}
-of \( U(n) \) by a normal subgroup, and is not presented here as a
-subgroup of \( GL(n,\mathbb{C}) \) in its own right; it carries the
-quotient topology induced by the projection
-\( U(n) \to U(n)/Z(U(n)) \), rather than a subspace topology. (It does
-    in fact admit a faithful representation as a matrix Lie group, e.g.
-    via its adjoint action on \( \mathfrak{su}(n) \), but we will not need
-    this realization and instead work with \( PU(n) \) directly as a
-quotient group throughout.)
+\begin{definition}[Unitary and special unitary groups]
+    \label{def:un-sun}
+    The \emph{unitary group} is
+    \[
+        U(n) = \{ U \in M_n(\mathbb{C}) : U^*U = UU^* = I \},
+    \]
+    and its subgroup, the \emph{special unitary group}, is
+    \[
+        SU(n) = \{ U \in M_n(\mathbb{C}) : U^*U = UU^* = I,\ \det(U) = 1 \}.
+    \]
+    Both carry the subspace topology inherited from \( M_n(\mathbb{C}) \).
+\end{definition}
+
+\begin{definition}[Projective unitary group]
+    \label{def:pun}
+    The \emph{projective unitary group} is
+    \[
+        PU(n) = U(n)/Z(U(n)),
+    \]
+    where \( Z(U(n)) \) denotes the center of \( U(n) \). Unlike
+    \( U(n) \) and \( SU(n) \), the group \( PU(n) \) is defined as a
+    \emph{quotient} of \( U(n) \) by a normal subgroup, and is not
+    presented here as a subgroup of \( GL(n,\mathbb{C}) \) in its own
+    right; it carries the quotient topology induced by the projection
+    \( U(n) \to U(n)/Z(U(n)) \), rather than a subspace topology.
+\end{definition}
+
+\begin{remark}
+    \label{rem:pun-faithful-rep}
+    The group \( PU(n) \) does in fact admit a faithful representation
+    as a matrix Lie group, e.g.\ via its adjoint action on
+    \( \mathfrak{su}(n) \), but we will not need this realization and
+    instead work with \( PU(n) \) directly as a quotient group
+    throughout.
+\end{remark}
 
 \begin{proposition}
     \label{prop:center-un}
@@ -541,34 +565,62 @@ quotient group throughout.)
     so \( A \in Z(U(n)) \). This proves the claim.
 \end{proof}
 
-We will also make use of
-\[
-    SO(n) = \{ R \in M_n(\mathbb{R}) : R^TR = RR^T = I,\ \det(R) = 1 \},
-\]
-the Lie group of orientation-preserving rotations fixing the origin.
+\begin{definition}[Special orthogonal group]
+    \label{def:son}
+    The \emph{special orthogonal group} is
+    \[
+        SO(n) = \{ R \in M_n(\mathbb{R}) : R^TR = RR^T = I,\ \det(R) = 1 \},
+    \]
+    the Lie group of orientation-preserving rotations fixing the
+    origin.
+\end{definition}
 
-For matrix Lie algebras, the Lie bracket is given by the matrix
-commutator
-\[
-    [X,Y] = XY - YX
-\]
-for \( X, Y \) in the Lie algebra; one readily checks that this bracket
-is antisymmetric and satisfies the Jacobi identity.
+\begin{proposition}[Matrix commutator]
+    \label{prop:matrix-commutator}
+    For matrix Lie algebras, the Lie bracket is given by the matrix
+    commutator
+    \[
+        [X,Y] = XY - YX
+    \]
+    for \( X, Y \) in the Lie algebra; this bracket is antisymmetric
+    and satisfies the Jacobi identity.
+\end{proposition}
 
-The Lie algebra associated to \( GL(n,\mathbb{C}) \) is denoted
-\( \mathfrak{gl}(n,\mathbb{C}) \) and consists of \emph{all} complex
-\( n \times n \) matrices,
-\[
-    \mathfrak{gl}(n,\mathbb{C}) = M_n(\mathbb{C}).
-\]
-The Lie algebra associated to \( SU(n) \), denoted \( \mathfrak{su}(n) \),
-consists of the traceless skew-Hermitian matrices,
-\[
-    \mathfrak{su}(n) = \{ X \in M_n(\mathbb{C}) : X^* = -X,\
-    \operatorname{Tr}(X) = 0 \}.
-\]
-We may regard \( \mathfrak{su}(2) \) as a \( 3 \)-dimensional real vector
-space (why?).
+\begin{proof}
+    Antisymmetry is immediate: \( [X,Y] = XY-YX = -(YX-XY) = -[Y,X] \).
+    For the Jacobi identity, expand each term:
+    \begin{align*}
+        [X,[Y,Z]] &= X(YZ-ZY) - (YZ-ZY)X = XYZ - XZY - YZX + ZYX, \\
+        [Y,[Z,X]] &= YZX - YXZ - ZXY + XZY, \\
+        [Z,[X,Y]] &= ZXY - ZYX - XYZ + YXZ.
+    \end{align*}
+    Summing the three lines, every term cancels against its negative
+    counterpart, giving \( 0 \).
+\end{proof}
+
+\begin{definition}[\( \mathfrak{gl}_n \) and \( \mathfrak{su}_n \)]
+    \label{def:gln-sun-lie-algebras}
+    The Lie algebra associated to \( GL(n,\mathbb{C}) \) is denoted
+    \( \mathfrak{gl}(n,\mathbb{C}) \) and consists of \emph{all}
+    complex \( n \times n \) matrices,
+    \[
+        \mathfrak{gl}(n,\mathbb{C}) = M_n(\mathbb{C}).
+    \]
+    The Lie algebra associated to \( SU(n) \), denoted
+    \( \mathfrak{su}(n) \), consists of the traceless skew-Hermitian
+    matrices,
+    \[
+        \mathfrak{su}(n) = \{ X \in M_n(\mathbb{C}) : X^* = -X,\
+        \operatorname{Tr}(X) = 0 \}.
+    \]
+\end{definition}
+
+\begin{remark}
+    \label{rem:su2-dimension-teaser}
+    We may regard \( \mathfrak{su}(2) \) as a \( 3 \)-dimensional real
+    vector space (why?); this is used explicitly in
+    Example~\ref{example:pauli-matrices} below.
+\end{remark}
 
 \begin{example}[The circle group \( SO(2) \) and its Lie algebra]
     \label{example:so2}
@@ -579,9 +631,8 @@ space (why?).
         \end{pmatrix},
         \qquad \theta \in [0, 2\pi),
     \]
-    and is isomorphic, as a Lie group, to the circle \( \mathbb{T} \) via
-    \( e^{i \theta} \mapsto R_\theta \). Differentiating the defining relation
-    \( R^TR = I \) at \( \theta = 0 \) shows that the corresponding Lie
+    and is isomorphic, as a Lie group, to the torus \( \mathbb{T} \) via
+    \( e^{i \theta} \mapsto R_\theta \). The corresponding Lie
     algebra \( \mathfrak{so}(2) \) consists of antisymmetric real
     matrices,
     \[
@@ -589,7 +640,7 @@ space (why?).
             \begin{pmatrix} 0 & -t \\ t & 0
         \end{pmatrix} : t \in \mathbb{R} \right\},
     \]
-    a one-dimensional real vector space. Since any two elements of
+    and is a one-dimensional real vector space. Since any two elements of
     \( \mathfrak{so}(2) \) are scalar multiples of one another, the Lie
     bracket on \( \mathfrak{so}(2) \) vanishes identically: it is an
     \emph{abelian} Lie algebra.
@@ -625,24 +676,4 @@ space (why?).
     exhibit \( \mathfrak{su}(2) \) as (a rescaling of) the cross-product
     Lie algebra on \( \mathbb{R}^3 \), and identify \( \mathfrak{su}(2) \)
     with \( \mathfrak{so}(3) \) up to isomorphism.
-\end{example}
-
-\begin{example}[Non-example: \( GL(n,\mathbb{R}) \) inside \(
-    GL(n,\mathbb{C}) \)]
-    \label{example:gl-nr-nonexample}
-    The real general linear group
-    \[
-        GL(n,\mathbb{R}) = \{ A \in M_n(\mathbb{R}) : \det(A) \neq 0 \}
-    \]
-    is a matrix Lie group in its own right, and sits inside
-    \( GL(n,\mathbb{C}) \) as a subgroup, but \emph{not} as a complex Lie
-    subgroup: its associated Lie algebra
-    \[
-        \mathfrak{gl}(n,\mathbb{R}) = M_n(\mathbb{R})
-    \]
-    is only a \emph{real} vector space, and is not closed under
-    multiplication by \( i \). This illustrates that subgroups of
-    \( GL(n,\mathbb{C}) \) need not inherit a complex Lie algebra
-    structure, even though \( \mathfrak{gl}(n,\mathbb{C}) \) itself is a
-    complex vector space.
 \end{example}
