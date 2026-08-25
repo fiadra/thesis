@@ -78,6 +78,41 @@ will be finite and abelian.
     \) is an isomorphism.
 \end{proof}
 
+\begin{remark}
+    \label{rem:no-canonical-isomorphism}
+    While every finite abelian group \( G \) is self-dual, there is no
+    canonical isomorphism \( G \cong \hat{G} \): the isomorphism
+    constructed in the proof of
+    Proposition~\ref{prop:finite-abelian-self-dual} depends on a choice
+    of generator for each cyclic factor, and different choices yield
+    different isomorphisms. This is in sharp contrast with the
+    \emph{double} dual \( \hat{\hat{G}} \), which is canonically
+    isomorphic to \( G \) via the evaluation map \( g \mapsto (\chi
+    \mapsto \chi(g)) \), with no arbitrary choices involved.
+
+    This distinction is the reason we consistently work with the dual
+    group \( \hat{G} \), rather than \( G \) itself, when defining
+    actions on quantum sets and crossed products later in this thesis
+    (see e.g.\ Definition~\ref{def:crossed-product-quantum-set}). A
+    group action \( \alpha \colon G \to \operatorname{Aut}(B,\psi) \)
+    and its \emph{dual} counterpart
+    \( \hat\alpha \colon \hat{G} \to \operatorname{Aut}(B,\psi) \) are
+    related by an isomorphism \( G \cong \hat{G} \), but since this
+    isomorphism is not canonical, working with \( \hat\alpha \)
+    directly avoids committing to an arbitrary identification.
+    % More
+    % substantively, the crossed product construction
+    % \( \tilde{B} \rtimes_{\hat\alpha} \hat{G} \) is built from unitaries
+    % \( u_\chi \) indexed by \emph{characters} \( \chi \in \hat{G} \)
+    % rather than by elements of \( G \): these characters are precisely
+    % the data needed to Fourier-decompose functions and operators on
+    % \( \tilde{B} \), generalizing the role played by the classical
+    % Fourier transform on \( C(G) \) for a group \( G \). Working with
+    % \( \hat{G} \) throughout thus keeps the connection to this
+    % Fourier-theoretic picture explicit, rather than obscuring it behind
+    % a choice of isomorphism \( G \cong \hat{G} \) made once and for all.
+\end{remark}
+
 \section{\(C^{*}\)-algebras}
 \label{sec:cstar-algebras}
 
@@ -119,17 +154,62 @@ taken from \textcite{blackadar}.
     Throughout this thesis we will assume that \(C^{*}\)-algebras are unital.
 \end{remark}
 
-Multiplication in a \(C^{*}\)-algebra \( A \) is a bilinear map
-\[
-    m \colon A \times A \to A.
-\]
-By the universal property of the tensor product, \( m \) extends uniquely
-to a linear map
-\[
-    \tilde{m} \colon A \otimes A \to A.
-\]
-We will not distinguish between \( m \) and \( \tilde{m} \) and
-simply write \( m \), relying on context to distinguish between the two.
+\begin{definition}[\(C^{*}\)-algebra representation, II.6.1.1]
+    Let \( A \) be a \(C^{*}\)-algebra. A \emph{\(C^{*}\)-algebra
+    representation} \( \pi \)
+    is a *-homomorphism \(\pi: A \rightarrow B(\mathcal{H}) \) for some
+    Hilbert space
+    \( \mathcal{H} \).
+    A \(C^{*}\)-algebra representation is called \emph{unital} if
+    \( \pi(1_A) = \operatorname{Id}_{\mathcal{H}} \). It is called
+    \emph{faithful} if it is injective.
+\end{definition}
+
+\begin{definition}[Tensor Product of Finite-Dimensional
+    \(C^*\)-Algebras, Section II.9.1]
+    \label{def:tensor-prod}
+    Let \( A \) and \( B \) be finite-dimensional \( C^* \)-algebras.
+    The \emph{tensor product} \( A \otimes B \) is the algebraic
+    tensor product \( A \otimes_{\mathbb{C}} B \) equipped with the
+    structure of a \( C^* \)-algebra, where the multiplication and
+    involution are defined on simple tensors by
+    \[
+        (a_1 \otimes b_1)(a_2 \otimes b_2) = a_1 a_2 \otimes b_1 b_2,
+        \qquad (a \otimes b)^* = a^* \otimes b^*,
+    \]
+    and extended to all of \( A \otimes B \) by linearity, and the
+    norm is defined for any \( x \in A \otimes B \) by
+    \[
+        \| x \| = \| (\pi_A \otimes \pi_B)(x)
+        \|_{B(\mathcal{H}_1 \otimes \mathcal{H}_2)},
+    \]
+    where \( \pi_A \colon A \to B(\mathcal{H}_1) \) and \(
+    \pi_B \colon B \to B(\mathcal{H}_2) \) are faithful \(
+    * \)-representations of \( A \) and \( B \) on finite-dimensional
+    Hilbert spaces \( \mathcal{H}_1 \) and \( \mathcal{H}_2 \).
+\end{definition}
+
+\begin{remark}
+    \label{rem:finite-dimensional-tensor-prod}
+    Because \(A \otimes B\) is finite-dimensional, it is
+    automatically complete under this norm and admits a unique
+    \(C^*\)-norm independent of the choice of faithful representations.
+\end{remark}
+
+\begin{remark}
+    \label{rem:multiplication-in-cstar-algebras}
+    Multiplication in a \(C^{*}\)-algebra \( A \) is a bilinear map
+    \[
+        m \colon A \times A \to A.
+    \]
+    By the universal property of the tensor product, \( m \) extends uniquely
+    to a linear map
+    \[
+        \tilde{m} \colon A \otimes A \to A.
+    \]
+    We will not distinguish between \( m \) and \( \tilde{m} \) and
+    simply write \( m \), relying on context to distinguish between the two.
+\end{remark}
 
 \begin{definition}[Linear functional, II.6.2.1]
     \label{def:linear-functional}
@@ -328,16 +408,6 @@ involution, defined precisely so that the group action becomes
     a^* = \sum_{g \in G} (g^{-1} \cdot a_g^*)\, u_{g^{-1}}.
 \]
 
-\begin{definition}[\(C^{*}\)-algebra representation, II.6.1.1]
-    Let \( A \) be a \(C^{*}\)-algebra. A \emph{\(C^{*}\)-algebra
-    representation} \( \pi \)
-    is a *-homomorphism \(\pi: A \rightarrow B(\mathcal{H}) \) for some
-    Hilbert space
-    \( \mathcal{H} \).
-    A \(C^{*}\)-algebra representation is called \emph{unital} if
-    \( \pi(1_A) = \operatorname{Id}_{\mathcal{H}} \).
-\end{definition}
-
 \begin{definition}[Covariant representation, II.10.3.4]
     \label{def:covariant-representation}
     Fix a dynamical system \( (A, G, \alpha) \). A \emph{covariant
@@ -506,6 +576,64 @@ taken with matrix multiplication as the group operation.
     instead work with \( PU(n) \) directly as a quotient group
     throughout.
 \end{remark}
+
+\begin{proposition}
+    \label{prop:center-un}
+    \( Z(U(n)) \cong \mathbb{T} \).
+\end{proposition}
+
+\begin{proof}
+    Recall that the center of \( U(n) \) is
+    \[
+        Z(U(n)) = \{ A \in U(n) : AU = UA \text{ for all } U \in U(n) \}.
+    \]
+
+    Let \( A \in Z(U(n)) \). We first show that \( A \) is diagonal.
+    For any \( \theta \in \mathbb{R} \) and any index \( i \), let
+    \( D_i(\theta) \) denote the diagonal unitary matrix with
+    \( e^{i\theta} \) in the \( i \)-th diagonal position and \( 1 \)
+    elsewhere. Since \( A \) commutes with \( D_i(\theta) \), comparing
+    the \( (i,j) \)-entry (for \( j \neq i \)) of both sides of
+    \( AD_i(\theta) = D_i(\theta) A \) gives
+    \[
+        A_{ij}\, 1 = 1\, A_{ij} e^{i\theta}
+        \quad\text{and, symmetrically, comparing the } (j,i)\text{-entry,}\quad
+        A_{ji}\, e^{i\theta} = A_{ji}.
+    \]
+    The first identity forces \( A_{ij}(e^{i\theta}-1) = 0 \) for every
+    \( \theta \), and since \( e^{i\theta} \neq 1 \) for \( \theta \neq 0 \),
+    we get \( A_{ij} = 0 \); the second identity gives \( A_{ji} = 0 \)
+    by the same argument. As \( i \) was arbitrary, all off-diagonal
+    entries of \( A \) vanish, so \( A \) is diagonal, say
+    \( A = \operatorname{diag}(\lambda_1,\dots,\lambda_n) \).
+
+    Next we show that the diagonal entries \( \lambda_1,\dots,\lambda_n \)
+    all coincide. Since \( A \) commutes with every unitary matrix, it
+    in particular commutes with every permutation matrix. Let
+    \( P_{ij} \) denote the permutation matrix exchanging the \( i \)-th
+    and \( j \)-th basis vectors, for any \( i \neq j \). Since
+    \( P_{ij}AP_{ij}^{-1} \) is the diagonal matrix obtained from \( A \)
+    by swapping its \( i \)-th and \( j \)-th diagonal entries, the
+    relation \( P_{ij}A = AP_{ij} \), i.e.\
+    \( P_{ij}AP_{ij}^{-1} = A \), forces \( \lambda_i = \lambda_j \). As
+    this holds for every pair \( i,j \), all diagonal entries of \( A \)
+    are equal, so \( A = \lambda I_n \) for some \( \lambda \in \mathbb{C} \),
+    where \( I_n \) denotes the \( n \times n \) identity matrix.
+
+    As \( A \in U(n) \), we have \( A^*A = I \), and substituting
+    \( A = \lambda I_n \) gives
+    \[
+        (\overline{\lambda} I_n)(\lambda I_n) = |\lambda|^2 I_n = I_n,
+    \]
+    so \( |\lambda| = 1 \).
+
+    Conversely, if \( A = \lambda I_n \) with \( |\lambda| = 1 \), then
+    clearly \( A \in U(n) \), and for every \( U \in U(n) \),
+    \[
+        AU = \lambda U = UA,
+    \]
+    so \( A \in Z(U(n)) \). This proves the claim.
+\end{proof}
 
 \begin{proposition}
     \label{prop:center-un}
