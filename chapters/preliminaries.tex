@@ -247,7 +247,6 @@ a suitable functional.
     for any \( a \in A \).
 \end{definition}
 
-% TODO: What literature?
 \begin{remark}
     \label{rem:state-terminology}
     In the literature, a normalised functional \( \psi \) such that
@@ -437,10 +436,6 @@ involution, defined precisely so that the group action becomes
     The \emph{crossed product} of a \( C^{*} \)-algebra \( A \) and a
     discrete group \( G \) is the completion of \( C_c(G,A) \)
     with respect to the full norm. We denote it by
-    % TODO: notation mismatch -- should this be A \rtimes_\alpha G,
-    % matching the A, G, \alpha used to build C_c(G,A,\alpha) above?
-    % \tilde{B} \rtimes_{\hat\alpha} \hat{G} introduces B, \hat\alpha,
-    % \hat{G} without ever defining them in this subsection.
     \[
         A \rtimes_{\alpha} G.
     \]
@@ -501,15 +496,16 @@ from \textcite{blackadar}.
 
 In this section we recall some notions from the theory of matrix Lie
 groups and algebras that will be needed later in the thesis.
+The following definitions are taken from \textcite{hall03}.
 
-\begin{definition}[Lie group]
+\begin{definition}[Lie group, Definition 1.18]
     \label{def:lie-group}
     A \emph{Lie group} is a group that is simultaneously a smooth
     manifold, in such a way that both the group multiplication and
     the inversion map are smooth.
 \end{definition}
 
-\begin{definition}[Lie algebra]
+\begin{definition}[Lie algebra, Definition 2.36]
     \label{def:lie-algebra}
     A \emph{Lie algebra} \( \mathfrak{g} \) is a vector space over a
     field (for us, always \( \mathbb{C} \) or \( \mathbb{R} \))
@@ -526,7 +522,7 @@ groups and algebras that will be needed later in the thesis.
     \end{itemize}
 \end{definition}
 
-\begin{remark}
+\begin{remark}[Corollary 2.35]
     \label{rem:lie-group-lie-algebra}
     These two notions are intimately related: every Lie group gives
     rise to a Lie algebra, obtained as the tangent space at the
@@ -541,7 +537,7 @@ subgroups of the general linear group
 \]
 taken with matrix multiplication as the group operation.
 
-\begin{definition}[Unitary and special unitary groups]
+\begin{definition}[Unitary and special unitary groups, Section 1.2.4]
     \label{def:un-sun}
     The \emph{unitary group} is
     \[
@@ -568,15 +564,6 @@ taken with matrix multiplication as the group operation.
     \( U(n) \to U(n)/Z(U(n)) \), rather than a subspace topology.
 \end{definition}
 
-\begin{remark}
-    \label{rem:pun-faithful-rep}
-    The group \( PU(n) \) does in fact admit a faithful representation
-    as a matrix Lie group, e.g.\ via its adjoint action on
-    \( \mathfrak{su}(n) \), but we will not need this realization and
-    instead work with \( PU(n) \) directly as a quotient group
-    throughout.
-\end{remark}
-
 \begin{proposition}
     \label{prop:center-un}
     \( Z(U(n)) \cong \mathbb{T} \).
@@ -588,112 +575,53 @@ taken with matrix multiplication as the group operation.
         Z(U(n)) = \{ A \in U(n) : AU = UA \text{ for all } U \in U(n) \}.
     \]
 
-    Let \( A \in Z(U(n)) \). We first show that \( A \) is diagonal.
-    For any \( \theta \in \mathbb{R} \) and any index \( i \), let
-    \( D_i(\theta) \) denote the diagonal unitary matrix with
-    \( e^{i\theta} \) in the \( i \)-th diagonal position and \( 1 \)
-    elsewhere. Since \( A \) commutes with \( D_i(\theta) \), comparing
-    the \( (i,j) \)-entry (for \( j \neq i \)) of both sides of
-    \( AD_i(\theta) = D_i(\theta) A \) gives
+    Let \( A = (a_{ij}) \in Z(U(n)) \). Since \( A \) commutes with
+    every unitary matrix, it in particular commutes with every
+    diagonal unitary matrix. Let \( D_k \) be the diagonal matrix
+    whose \( k \)-th diagonal entry is \( -1 \) and all other
+    diagonal entries are \( 1 \). Clearly, \( D_k \in U(n) \). The
+    condition \( AD_k = D_kA \) implies that for all \( j \neq k \),
+    the \( (k, j) \)-th entry satisfies \( -a_{kj} = a_{kj} \), which
+    forces \( a_{kj} = 0 \). Since this holds for all \( k \), all
+    off-diagonal entries of \( A \) must vanish, meaning \( A \) is a
+    diagonal matrix.
+
+    Furthermore, \( A \) also commutes with every permutation matrix,
+    which are orthogonal and hence unitary. Let \( P_{ij} \) denote
+    the permutation matrix exchanging the \( i \)-th and \( j \)-th
+    basis vectors. From
     \[
-        A_{ij}\, 1 = 1\, A_{ij} e^{i\theta}
-        \quad\text{and, symmetrically, comparing the } (j,i)\text{-entry,}\quad
-        A_{ji}\, e^{i\theta} = A_{ji}.
+        AP_{ij} = P_{ij}A
     \]
-    The first identity forces \( A_{ij}(e^{i\theta}-1) = 0 \) for every
-    \( \theta \), and since \( e^{i\theta} \neq 1 \) for \( \theta \neq 0 \),
-    we get \( A_{ij} = 0 \); the second identity gives \( A_{ji} = 0 \)
-    by the same argument. As \( i \) was arbitrary, all off-diagonal
-    entries of \( A \) vanish, so \( A \) is diagonal, say
-    \( A = \operatorname{diag}(\lambda_1,\dots,\lambda_n) \).
+    we see that conjugating \( A \) by \( P_{ij} \) leaves it
+    unchanged. Because \( A \) is diagonal, conjugation by \( P_{ij}
+    \) simply swaps the \( i \)-th and \( j \)-th diagonal entries.
+    Since this holds for every pair \( i,j \), all diagonal entries
+    of \( A \) must coincide. Hence \( A = \lambda I_n \) for some \(
+    \lambda \in \mathbb{C} \), where by \( I_{n} \) we denote the \(
+    n \times n \)-identity matrix.
 
-    Next we show that the diagonal entries \( \lambda_1,\dots,\lambda_n \)
-    all coincide. Since \( A \) commutes with every unitary matrix, it
-    in particular commutes with every permutation matrix. Let
-    \( P_{ij} \) denote the permutation matrix exchanging the \( i \)-th
-    and \( j \)-th basis vectors, for any \( i \neq j \). Since
-    \( P_{ij}AP_{ij}^{-1} \) is the diagonal matrix obtained from \( A \)
-    by swapping its \( i \)-th and \( j \)-th diagonal entries, the
-    relation \( P_{ij}A = AP_{ij} \), i.e.\
-    \( P_{ij}AP_{ij}^{-1} = A \), forces \( \lambda_i = \lambda_j \). As
-    this holds for every pair \( i,j \), all diagonal entries of \( A \)
-    are equal, so \( A = \lambda I_n \) for some \( \lambda \in \mathbb{C} \),
-    where \( I_n \) denotes the \( n \times n \) identity matrix.
-
-    As \( A \in U(n) \), we have \( A^*A = I \), and substituting
+    As \( A \in U(n) \), we have \( A^*A = I_n \), and substituting
     \( A = \lambda I_n \) gives
     \[
         (\overline{\lambda} I_n)(\lambda I_n) = |\lambda|^2 I_n = I_n,
     \]
     so \( |\lambda| = 1 \).
 
-    Conversely, if \( A = \lambda I_n \) with \( |\lambda| = 1 \), then
-    clearly \( A \in U(n) \), and for every \( U \in U(n) \),
+    Conversely, if \( A = \lambda I_n \) with \( |\lambda| = 1 \),
+    then clearly \( A \in U(n) \), and for every \( U \in U(n) \),
     \[
-        AU = \lambda U = UA,
+        AU = (\lambda I_n)U = U(\lambda I_n) = UA,
     \]
-    so \( A \in Z(U(n)) \). This proves the claim.
+    so \( A \in Z(U(n)) \). This shows that \( Z(U(n)) = \{ \lambda
+    I_n : \lambda \in \mathbb{C}, |\lambda| = 1 \} \).
+
+    Finally, the map \( \lambda \mapsto \lambda I_n \) is a natural
+    group isomorphism from \( \mathbb{T} \) to \( Z(U(n)) \), which
+    proves the claim.
 \end{proof}
 
-\begin{proposition}
-    \label{prop:center-un}
-    \( Z(U(n)) \cong \mathbb{T} \).
-\end{proposition}
-
-\begin{proof}
-    Recall that the center of \( U(n) \) is
-    \[
-        Z(U(n)) = \{ A \in U(n) : AU = UA \text{ for all } U \in U(n) \}.
-    \]
-
-    Let \( A \in Z(U(n)) \). We first show that \( A \) is diagonal.
-    For any \( \theta \in \mathbb{R} \) and any index \( i \), let
-    \( D_i(\theta) \) denote the diagonal unitary matrix with
-    \( e^{i\theta} \) in the \( i \)-th diagonal position and \( 1 \)
-    elsewhere. Since \( A \) commutes with \( D_i(\theta) \), comparing
-    the \( (i,j) \)-entry (for \( j \neq i \)) of both sides of
-    \( AD_i(\theta) = D_i(\theta) A \) gives
-    \[
-        A_{ij}\, 1 = 1\, A_{ij} e^{i\theta}
-        \quad\text{and, symmetrically, comparing the } (j,i)\text{-entry,}\quad
-        A_{ji}\, e^{i\theta} = A_{ji}.
-    \]
-    The first identity forces \( A_{ij}(e^{i\theta}-1) = 0 \) for every
-    \( \theta \), and since \( e^{i\theta} \neq 1 \) for \( \theta \neq 0 \),
-    we get \( A_{ij} = 0 \); the second identity gives \( A_{ji} = 0 \)
-    by the same argument. As \( i \) was arbitrary, all off-diagonal
-    entries of \( A \) vanish, so \( A \) is diagonal, say
-    \( A = \operatorname{diag}(\lambda_1,\dots,\lambda_n) \).
-
-    Next we show that the diagonal entries \( \lambda_1,\dots,\lambda_n \)
-    all coincide. Since \( A \) commutes with every unitary matrix, it
-    in particular commutes with every permutation matrix. Let
-    \( P_{ij} \) denote the permutation matrix exchanging the \( i \)-th
-    and \( j \)-th basis vectors, for any \( i \neq j \). Since
-    \( P_{ij}AP_{ij}^{-1} \) is the diagonal matrix obtained from \( A \)
-    by swapping its \( i \)-th and \( j \)-th diagonal entries, the
-    relation \( P_{ij}A = AP_{ij} \), i.e.\
-    \( P_{ij}AP_{ij}^{-1} = A \), forces \( \lambda_i = \lambda_j \). As
-    this holds for every pair \( i,j \), all diagonal entries of \( A \)
-    are equal, so \( A = \lambda I_n \) for some \( \lambda \in \mathbb{C} \),
-    where \( I_n \) denotes the \( n \times n \) identity matrix.
-
-    As \( A \in U(n) \), we have \( A^*A = I \), and substituting
-    \( A = \lambda I_n \) gives
-    \[
-        (\overline{\lambda} I_n)(\lambda I_n) = |\lambda|^2 I_n = I_n,
-    \]
-    so \( |\lambda| = 1 \).
-
-    Conversely, if \( A = \lambda I_n \) with \( |\lambda| = 1 \), then
-    clearly \( A \in U(n) \), and for every \( U \in U(n) \),
-    \[
-        AU = \lambda U = UA,
-    \]
-    so \( A \in Z(U(n)) \). This proves the claim.
-\end{proof}
-
-\begin{definition}[Special orthogonal group]
+\begin{definition}[Special orthogonal group, Section 1.2.3]
     \label{def:son}
     The \emph{special orthogonal group} is
     \[
@@ -726,7 +654,8 @@ taken with matrix multiplication as the group operation.
     counterpart, giving \( 0 \).
 \end{proof}
 
-\begin{definition}[\( \mathfrak{gl}_n \) and \( \mathfrak{su}_n \)]
+\begin{definition}[\( \mathfrak{gl}_n \) and \( \mathfrak{su}_n \),
+    Sections 2.5.2 and 2.5.4]
     \label{def:gln-sun-lie-algebras}
     The Lie algebra associated to \( GL(n,\mathbb{C}) \) is denoted
     \( \mathfrak{gl}(n,\mathbb{C}) \) and consists of \emph{all}
@@ -738,17 +667,37 @@ taken with matrix multiplication as the group operation.
     \( \mathfrak{su}(n) \), consists of the traceless skew-Hermitian
     matrices,
     \[
-        \mathfrak{su}(n) = \{ X \in M_n(\mathbb{C}) : X^* = -X,\
-        \operatorname{Tr}(X) = 0 \}.
+        \mathfrak{su}(n) = \{ A \in M_n(\mathbb{C}) : A^* = -A,\
+        \operatorname{Tr}(A) = 0 \}.
     \]
 \end{definition}
 
-\begin{remark}
-    \label{rem:su2-dimension-teaser}
-    We may regard \( \mathfrak{su}(2) \) as a \( 3 \)-dimensional real
-    vector space (why?); this is used explicitly in
-    Example~\ref{example:pauli-matrices} below.
-\end{remark}
+\begin{proposition}
+    \label{prop:su2-dimension}
+    \( \mathfrak{su}(2) \) is a \( 3 \)-dimensional real vector space.
+\end{proposition}
+
+\begin{proof}
+    The traceless condition removes one real degree of freedom from
+    the diagonal of a skew-Hermitian matrix, since the diagonal
+    entries of a skew-Hermitian matrix are purely imaginary and their
+    sum must vanish; a \( 2\times 2 \) skew-Hermitian matrix is thus
+    determined by one real diagonal parameter \( \alpha \) (with
+    entries \( i\alpha, -i\alpha \)) together with one free complex
+    off-diagonal entry \( b \), the other being forced to
+    \( -\overline{b} \). This gives
+    \[
+        \mathfrak{su}(2) = \left\{
+            \begin{pmatrix}
+                i\alpha & b \\
+                -\overline{b} & -i\alpha
+            \end{pmatrix}
+            : \alpha \in \mathbb{R},\ b \in \mathbb{C}
+        \right\}
+        \cong \mathbb{R} \times \mathbb{C} \cong \mathbb{R}^3
+    \]
+    as real vector spaces, so \( \dim_{\mathbb{R}} \mathfrak{su}(2) = 3 \).
+\end{proof}
 
 \begin{example}[The circle group \( SO(2) \) and its Lie algebra]
     \label{example:so2}
