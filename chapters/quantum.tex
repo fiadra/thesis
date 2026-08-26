@@ -9,7 +9,7 @@ graphs. They were first considered by...
 
 Let \( B \) be a \( C^{*} \)-algebra equipped with a faithful positive
 functional \( \psi \). By the Gelfand--Naimark  theorem
-(\textcite{blackadar}), \( B \) can be
+(\textcite{blackadar}, II.6.4.10), \( B \) can be
 realized concretely as a closed \( * \)-subalgebra of the bounded linear
 operators \( B(\mathcal{H}) \) on some Hilbert space \( \mathcal{H} \).
 When \( B \) is finite-dimensional, this abstract picture simplifies
@@ -23,8 +23,6 @@ Since \( \psi \) is faithful, this form is positive definite, and since
 \( B \) is already finite-dimensional, it is automatically complete;
 hence \( L^2(B,\psi) \) may simply be taken to be \( B \) itself, viewed
 as a Hilbert space via this inner product.
-
-% TODO: Look at Mariusz's comment
 
 This Hilbert space structure is the key extra piece of data that allows
 one to speak of adjoints of maps built from \( B \), and in particular of
@@ -151,11 +149,10 @@ this thesis, taken directly from \textcite{tobolski26}.
     \( (\mathbb{C}^{V}, \psi_V) \) is indeed a quantum set.
 \end{example}
 
-% TODO: Reference the Gelfand Duality Theorem
 \begin{remark}
     \label{rem:gelfand-duality}
     The identification of finite sets and commutative \(C^{*}\)-algebras is
-    inspired by Gelfand's duality theorem~\textcite{negrepontis71},
+    inspired by Gelfand's duality theorem~(\textcite{negrepontis71}),
     which establishes that
     every commutative \(C^{*}\)-algebra is isomorphic to the algebra of
     continuous functions on a compact Hausdorff space. In the
@@ -349,102 +346,110 @@ object is indeed a quantum set, can be found in
 
 \begin{proof}
     Identify \( \hat{\mathbb{Z}}_n \) with \( \mathbb{Z}_n =
-    \{0,1,\dots,n-1\} \)
-    (with arithmetic taken modulo \( n \)), so that a general element of
-    \( \mathbb{C}^n \rtimes_{\hat\alpha} \hat{\mathbb{Z}}_n \) is written
-    \( b = \sum_{k \in \mathbb{Z}_n} b_k u_k \) with \( b_k \in \mathbb{C}^n \),
-    and the action is \( \hat\alpha_k(e_i) = e_{i+k} \) on the standard
-    basis \( \{e_i\}_{i \in \mathbb{Z}_n} \) of \( \mathbb{C}^n \), as in
-    the previous examples.
-
-    We construct an explicit \( * \)-isomorphism
+    \{0,1,\dots,n-1\} \) (arithmetic mod \( n \)), and write
+    \( \{\delta_i\}_{i \in \mathbb{Z}_n} \) for the standard basis of
+    \( \mathbb{C}^n \), so that \( \hat\alpha_k(\delta_i) = \delta_{i+k} \).
+    Since \( \mathbb{Z}_n \) is finite, every element of
+    \( \mathbb{C}^n \rtimes_{\hat\alpha} \hat{\mathbb{Z}}_n \) is a
+    finite sum \( \sum_{k\in\mathbb{Z}_n} b_k u_k \) with \( b_k \in
+    \mathbb{C}^n \);
+    writing each \( b_k = \sum_i b_k(i)\,\delta_i \) in coordinates, this
+    algebra is spanned, as a vector space, by the \( n^2 \) products
+    \[
+        \delta_i u_k, \qquad i,k \in \mathbb{Z}_n.
+    \]
+    It therefore suffices to define a \( * \)-isomorphism
     \( \pi \colon \mathbb{C}^n \rtimes_{\hat\alpha}
-    \hat{\mathbb{Z}}_n \to M_n \)
-    as follows. On \( \mathbb{C}^n \), let \( M_{b_k} \) denote the
-    diagonal matrix with entries \( b_k(0), \dots, b_k(n-1) \), i.e.\
-    \( M_{b_k} = \sum_i b_k(i)\, e_{ii} \) in the matrix unit notation
-    of the earlier lemma. Let \( S \) be the cyclic shift matrix defined
-    by \( S e_i = e_{i+1} \) for the standard basis vectors \( e_i \) of
-    \( \mathbb{C}^n \) (indices mod \( n \)), and set
-    \[
-        \pi(b) = \sum_{k \in \mathbb{Z}_n} M_{b_k}\, S^k, \qquad
-        b = \sum_{k \in \mathbb{Z}_n} b_k u_k.
-    \]
+    \hat{\mathbb{Z}}_n \to M_n (\mathbb{C}) \)
+    on this spanning set, check it respects the algebra's product and
+    involution formulas on \( \delta_i u_k \), and then extend linearly.
 
-    \textbf{\( \pi \) is a \( * \)-homomorphism.}
-    A direct computation shows that \( S^k M_f S^{-k} = M_{\hat\alpha_k(f)} \)
-    for \( f \in \mathbb{C}^n \), which is exactly the covariance relation
-    \( u_k b u_k^* = \hat\alpha_k(b) \) required of the crossed product.
-    Using this, for \( a = \sum_k a_k u_k \) and \( b = \sum_l b_l u_l \),
+    \textbf{Definition of \( \pi \).} Let \( e_{ab} \in M_n
+    (\mathbb{C}) \) denote
+    the matrix unit sending \( \delta_b \mapsto \delta_a \) and every
+    other \( \delta_c \mapsto 0 \), and set
     \[
-        \pi(a)\pi(b)
-        = \sum_{k,l} M_{a_k} S^k M_{b_l} S^l
-        = \sum_{k,l} M_{a_k}\, M_{\hat\alpha_k(b_l)}\, S^{k+l}
-        = \sum_{m} M_{\sum_{k+l=m} a_k \hat\alpha_k(b_l)}\, S^{m}
-        = \pi(ab),
+        \pi(\delta_i u_k) := e_{i,\,i-k}, \qquad i,k \in \mathbb{Z}_n,
     \]
-    matching the multiplication rule on \( C_c(\hat{\mathbb{Z}}_n,
-    \mathbb{C}^n, \hat\alpha) \)
-    from the previous subsection, and similarly
-    \[
-        \pi(a)^* = \sum_k S^{-k} M_{a_k^*} = \sum_k
-        M_{\hat\alpha_{-k}(a_k^*)}\, S^{-k} = \pi(a^*),
-    \]
-    matching the involution formula. So \( \pi \) is a \( * \)-homomorphism.
+    extended linearly to all of \( \mathbb{C}^n
+    \rtimes_{\hat\alpha}\hat{\mathbb{Z}}_n \).
+    Equivalently, writing \( S \) for the cyclic shift matrix
+    \( S\delta_i = \delta_{i+1} \) and \( M_{b_k} = \sum_i b_k(i)\,e_{ii} \)
+    for the diagonal matrix with entries \( b_k \), one checks directly
+    that \( \pi(\delta_i u_k) = M_{\delta_i}S^k \), so this agrees with
+    the general formula \( \pi\big(\sum_k b_k u_k\big) = \sum_k M_{b_k}S^k \).
 
-    \textbf{\( \pi \) is bijective.}
-    Write \( e_i = \delta_i \in \mathbb{C}^n \) for the standard basis
-    vectors. Since \( S^k \) sends \( e_j \mapsto e_{j+k} \), the operator
-    \( M_{e_i} S^k \) sends \( e_{i-k} \mapsto e_i \) and annihilates every
-    other basis vector, i.e.
+    \textbf{\( \pi \) is a \( * \)-homomorphism.} It suffices to check
+    the product and involution formulas on the spanning elements
+    \( \delta_i u_k \). For the product, recall that
+    \( u_k \delta_i u_k^* = \hat\alpha_k(\delta_i) = \delta_{i+k} \) in
+    \( \mathbb{C}^n \rtimes_{\hat\alpha}\hat{\mathbb{Z}}_n \), matching
+    \( S^k M_{\delta_i} S^{-k} = M_{\delta_{i+k}} \) in \( M_n
+    (\mathbb{C}) \), so
     \[
-        \pi(e_i u_k) = M_{e_i} S^k = e_{i,\,i-k},
+        \pi(\delta_i u_k)\,\pi(\delta_j u_l)
+        = e_{i,i-k}\, e_{j,j-l}
+        = \delta_{i-k,\,j}\; e_{i,\,j-l},
     \]
-    a matrix unit in the sense of the earlier lemma. As \( i \) ranges
-    over \( \mathbb{Z}_n \) and \( k \) ranges over \( \mathbb{Z}_n \),
-    the pair \( (i, i-k) \) ranges exactly once over all of
-    \( \mathbb{Z}_n \times \mathbb{Z}_n \) (for fixed \( i \), varying
-    \( k \) makes \( i-k \) range over all residues). Hence
-    \( \{\pi(e_i u_k)\}_{i,k \in \mathbb{Z}_n} \) is precisely the full
-    set of matrix units \( \{e_{ab}\}_{a,b \in \mathbb{Z}_n} \), which
-    forms a basis of \( M_n \). Since \( \{e_i u_k\}_{i,k} \) is a basis
-    of \( \mathbb{C}^n \rtimes_{\hat\alpha} \hat{\mathbb{Z}}_n \)
-    (of the same dimension \( n^2 \)) and \( \pi \) carries it bijectively
-    to a basis of \( M_n \), the linear map \( \pi \) is a bijection.
+    using \( e_{ab}e_{cd} = \delta_{bc}e_{ad} \); this is nonzero
+    exactly when \( j = i-k \), in which case it equals
+    \( e_{i,\,i-k-l} = \pi(\delta_i u_{k+l}) \). On the other side,
+    \[
+        (\delta_i u_k)(\delta_j u_l) = \delta_i\,
+        \hat\alpha_k(\delta_j)\, u_{k+l}
+        = \delta_i\,\delta_{j+k}\,u_{k+l} = \delta_{i,\,j+k}\,\delta_i\,u_{k+l},
+    \]
+    which is likewise nonzero exactly when \( j = i-k \), and then
+    equals \( \delta_i u_{k+l} \). Applying \( \pi \) recovers
+    \( \pi(\delta_i u_{k+l}) = e_{i,i-k-l} \), matching the computation
+    above. So \( \pi \) respects multiplication on the spanning set,
+    hence on all of \( \mathbb{C}^n\rtimes_{\hat\alpha}\hat{\mathbb{Z}}_n \)
+    by bilinearity.
 
-    \textbf{\( \pi \) intertwines the functionals.}
-    Using \( \pi(e_iu_k) = e_{i,i-k} \) and the fact that a matrix unit
-    \( e_{ab} \) has trace \( \delta_{ab} \), we get
+    For the involution, \( (\delta_i u_k)^* = \hat\alpha_{-k}(\delta_i^*)u_{-k}
+    = \delta_{i-k}\,u_{-k} \), so \( \pi\big((\delta_i u_k)^*\big) =
+    \pi(\delta_{i-k}u_{-k}) = e_{i-k,\,i} \), while directly
+    \( \pi(\delta_i u_k)^* = e_{i,i-k}^* = e_{i-k,i} \), matching.
+
+    \textbf{\( \pi \) is bijective.} As \( i,k \) range over
+    \( \mathbb{Z}_n \), the pair \( (i,i-k) \) ranges exactly once over
+    all of \( \mathbb{Z}_n\times\mathbb{Z}_n \) (fix \( i \); varying
+    \( k \) makes \( i-k \) range over all residues), so
+    \( \{\pi(\delta_i u_k)\}_{i,k} = \{e_{ab}\}_{a,b\in\mathbb{Z}_n} \)
+    is exactly the full set of matrix units, a basis of \( M_n (\mathbb{C}) \).
+    Since \( \{\delta_i u_k\}_{i,k} \) is a basis of
+    \( \mathbb{C}^n\rtimes_{\hat\alpha}\hat{\mathbb{Z}}_n \) of the
+    same dimension \( n^2 \), and \( \pi \) carries it bijectively to a
+    basis of \( M_n (\mathbb{C}) \), the linear map \( \pi \) is a bijection.
+
+    \textbf{\( \pi \) intertwines the functionals.} Since a matrix
+    unit \( e_{ab} \) has trace \( \delta_{ab} \),
     \[
-        \operatorname{Tr}\big(\pi(e_i u_k)\big) = \delta_{i,\,i-k} =
-        \delta_{k,0}.
+        \operatorname{Tr}\big(\pi(\delta_i u_k)\big) =
+        \operatorname{Tr}(e_{i,i-k}) = \delta_{i,i-k} = \delta_{k,0}.
     \]
-    Hence for a general element \( b = \sum_{k} b_k u_k = \sum_{k,i}
-    b_k(i)\, e_i u_k \),
+    Hence for a general element \( b=\sum_k b_k u_k =
+    \sum_{k,i}b_k(i)\,\delta_i u_k \),
     \[
-        \operatorname{Tr}(\pi(b))
-        = \sum_{k,i} b_k(i)\, \operatorname{Tr}\big(\pi(e_i u_k)\big)
-        = \sum_{k,i} b_k(i)\, \delta_{k,0}
-        = \sum_i b_0(i)
-        = \tilde\psi(b_0),
+        \operatorname{Tr}(\pi(b)) = \sum_{k,i}b_k(i)\,\delta_{k,0}
+        = \sum_i b_0(i) = \tilde\psi(b_0),
     \]
-    where \( \tilde\psi \) is the quantum set functional
-    \( \tilde\psi(x) = \sum_i x_i \) on \( (\mathbb{C}^n, \tilde\psi) \)
-    from the earlier example, and \( b_0 \) is precisely the coefficient
-    at the trivial character (i.e.\ \( k = 0 \)) appearing in the
-    definition of \( \psi_\rtimes \). Multiplying by \( n =
-    |\hat{\mathbb{Z}}_n| \),
+    where \( \tilde\psi(x) = \sum_i x_i \) is the quantum set functional
+    on \( (\mathbb{C}^n,\tilde\psi) \), and \( b_0 \) is exactly the
+    coefficient at the trivial character appearing in the definition of
+    \( \psi_\rtimes \). Multiplying by \( n = |\hat{\mathbb{Z}}_n| \),
     \[
         n\operatorname{Tr}(\pi(b)) = n\,\tilde\psi(b_0) = \psi_\rtimes(b).
     \]
 
     Thus \( \pi \) is a \( * \)-isomorphism
-    \( \mathbb{C}^n \rtimes_{\hat\alpha} \hat{\mathbb{Z}}_n \to M_n \)
-    satisfying \( n\operatorname{Tr} \circ \pi = \psi_\rtimes \), which is
+    \( \mathbb{C}^n\rtimes_{\hat\alpha}\hat{\mathbb{Z}}_n \to M_n
+    (\mathbb{C}) \)
+    satisfying \( n\operatorname{Tr}\circ\pi = \psi_\rtimes \), which is
     exactly an isomorphism of quantum sets
     \[
         (\mathbb{C}^n \rtimes_{\hat\alpha} \hat{\mathbb{Z}}_n,\ \psi_\rtimes)
-        \;\cong\; (M_n,\ n\operatorname{Tr}). \qedhere
+        \;\cong\; (M_n (\mathbb{C}),\ n\operatorname{Tr}). \qedhere
     \]
 \end{proof}
 
@@ -488,7 +493,6 @@ For all intents and purposes, we will identify both notions and simply
 call an appropriate \( A\colon B \rightarrow B \) both a quantum
 adjacency matrix and a quantum graph.
 
-% TODO: finish this remark, change the citation to Kiefer, Schaefer 2026
 \begin{remark}
     \label{rem:other-quantum-graph-definitions}
     There are other equivalent definitions of a quantum graph, namely those
@@ -553,7 +557,7 @@ provide a rich and flexible source of examples of graphs with
 interesting symmetry, which is the
 perspective we adopt here.
 
-\begin{definition}[Multigraph]
+\begin{definition}[Multigraph, \textcite{diestel25}, Section 1.10]
     \label{def:multigraph}
     A \emph{multigraph} \( \Gamma = (V,E) \) is a graph in which
     multiple distinct edges may join the same pair of vertices, i.e.\
@@ -593,10 +597,9 @@ examples given below.
 The following is a major result in the theory of voltage and derived
 graphs, showing that this construction is not merely a convenient way
 of producing examples, but in fact accounts for \emph{every} graph
-admitting a free action of a finite group. It can be found in
-\textcite[Theorem~2.2.2]{gross87}.
+admitting a free action of a finite group.
 
-\begin{definition}[Graph automorphism]
+\begin{definition}[Graph automorphism, \textcite{diestel25}, Section 1.1]
     \label{def:graph-automorphism}
     Let \( \Gamma = (V, E) \) be a graph. An \emph{automorphism} of
     \( \Gamma \) is a bijection \( f \colon V \to V \) such that
@@ -609,6 +612,7 @@ admitting a free action of a finite group. It can be found in
     \( \operatorname{Aut}(\Gamma) \).
 \end{definition}
 
+% TODO: give a reference
 \begin{definition}[Group action on a graph]
     \label{def:group-action-on-graph}
     Let \( \Gamma = (V,E) \) be a graph and let \( G \) be a group. A
@@ -623,6 +627,7 @@ admitting a free action of a finite group. It can be found in
     \( v \in V \) implies \( g = e_G \).
 \end{definition}
 
+% TODO: give a reference
 \begin{definition}[Quotient graph]
     \label{def:quotient-graph}
     Let \( \Gamma = (V,E) \) be a graph and let \( G \) act on
@@ -633,7 +638,7 @@ admitting a free action of a finite group. It can be found in
     \( u' \in [u] \), \( v' \in [v] \).
 \end{definition}
 
-\begin{theorem}[Gross and Tucker theorem]
+\begin{theorem}[Gross and Tucker theorem, \textcite{gross87}, Theorem 2.2.2]
     \label{thm:gross-and-tucker}
     Let \( \tilde\Gamma \) be a graph and let \( G \) be a finite group
     acting freely on \( \tilde\Gamma \) by automorphisms. Then there
@@ -676,6 +681,17 @@ picture. The following definition makes this precise.
     \( (u_\chi)_{\chi \in \hat{G}} \subseteq B \) are as introduced
     in \ref{subsec:crossed-product-cstar}.
     \begin{enumerate}
+        \item For crossed product quantum set \( \tilde{B}
+            \rtimes_{\hat\alpha} \hat{G} \)
+            we define the linear map
+            \[
+                E_{\rtimes}: \tilde{B} \rtimes_{\hat\alpha} \hat{G}
+                \rightarrow \tilde{B}, \qquad \sum_{\chi \in \hat{G}}
+                b_{\chi} u_{\chi} \mapsto n b_{1},
+            \]
+            and my \( E_{\rtimes}^{*} \) its adjoint with respect to
+            the inner products on \( \tilde{B} \) and \( \tilde{B}
+            \rtimes_{\hat\alpha} \hat{G} \).
         \item For each \( g \in G \), set
             \[
                 X_g := \frac{1}{n} \sum_{\chi \in \hat{G}}
@@ -729,7 +745,7 @@ quantum graph gives rise to a derived quantum graph with no loops, or
 one that is undirected.
 
 \begin{definition}
-    \label{def:voltage-quantum-graph-loop-free} holds for all mathg in G.
+    \label{def:voltage-quantum-graph-loop-free}
     A voltage quantum graph \( \tilde{A} = \{\tilde{A}_g\}_{g \in G} \)
     is called \emph{loop-free} if \( \tilde{A}_{1} \) is loopfree in
     the sense of \ref{def:quantum-loop-free}. \( \tilde{A} \) is
@@ -1150,11 +1166,12 @@ derived quantum graphs differing only by the choice of group action.
     \]
 \end{theorem}
 
-% TODO: Mention what Mariusz wrote in his comment at the bottom
-% of the page
+What is truly remarkable in \ref{thm:quantum-iso-different-actions}
+is that we can start with a classical pre-simple voltage graph with
+dual group action that is compatible with the labeling and obtain a
+genuine quantum graph, i.e. one that is not isomorphic to any classical graph.
 
 Theorem~\ref{thm:quantum-iso-different-actions} will be central to our
-% TODO: fill in the correct section reference once written
 strategy in Section~\ref{sec:classification-loopfree-undirected-m3}
 by choosing \( \hat\alpha \) to be
 the trivial action, we already know from
@@ -1170,8 +1187,6 @@ graph, without having to construct that isomorphism by hand in each
 individual case. This is precisely the tool we will use to show that
 every one of the five equivalence classes of loop-free, undirected
 quantum graphs on \( (M_{3}(\mathbb{C}), 3\operatorname{Tr}) \) established in
-% TODO: cor:five-classes is defined in a later chapter; keep as a
-% forward reference, no fix needed here
 Corollary~\ref{cor:five-classes} is quantum isomorphic to a classical
 graph on nine vertices.
 
@@ -1180,7 +1195,7 @@ graph on nine vertices.
 
 In this section, we state a theorem due to \textcite{gromada22}
 establishing a one-to-one correspondence between certain linear
-subspaces of \( \mathfrak{sl}_n*=(\mathbb{C}) \) and quantum graphs.
+subspaces of \( \mathfrak{sl}(n) \) and quantum graphs.
 This result will
 be used to classify all loop-free and undirected quantum graphs on
 \( M_{3}(\mathbb{C}) \) up to quantum isomorphism, and it also
@@ -1191,7 +1206,7 @@ subspace.
 \begin{definition}[Quantum Edges]
     Let \( A_V \colon M_n \to M_n \) be a quantum graph on \( M_n \)
     associated with a subspace \( V \subseteq
-    \mathfrak{gl}_n(\mathbb{C}) \). The \emph{number of quantum
+    \mathfrak{gl}(n, \mathbb{C}) \). The \emph{number of quantum
     edges} of the quantum graph \( A_V \) is defined as the dimension
     of \( V \):
     \[
@@ -1203,7 +1218,7 @@ subspace.
     \label{thm:gromada}
     Every linear map \( A \colon M_n \to M_n \) defining a quantum
     graph on \( M_n \) corresponds uniquely to a subspace \( V
-    \subseteq \mathfrak{gl}_n(\mathbb{C}) \) via
+    \subseteq \mathfrak{gl}(n, \mathbb{C}) \) via
     \[
         A = A_V := \sum_{s=1}^{\dim(V)} \xi_s \otimes \bar{\xi_s},
     \]
@@ -1214,12 +1229,12 @@ subspace.
     \begin{enumerate}
         \item Has \( m = \dim(V) \) quantum edges;
         \item Has no loops if and only if \( V \subseteq
-            \mathfrak{sl}_n(\mathbb{C}) \);
+            \mathfrak{sl}(n, \mathbb{C}) \);
         \item Is undirected if and only if \( V = V^* := \{x^* \mid x
             \in V\} \).
     \end{enumerate}
 
-    If two subspaces \( V, W \subseteq \mathfrak{gl}_n(\mathbb{C}) \)
+    If two subspaces \( V, W \subseteq \mathfrak{gl}(n, \mathbb{C}) \)
     determine isomorphic quantum graphs \( A_V \cong A_W \), then \(
     V = UWU^* \) for some unitary matrix \( U \in SU_n \).
 \end{theorem}
@@ -1235,7 +1250,7 @@ enough to reconstruct \( V \) uniquely.
 
 \begin{lemma}[\textcite{gromada22}, Lemma 3.8]
     \label{lem:self-adjoint-basis}
-    Every vector subspace \( V \subseteq \mathfrak{gl}_n \) with
+    Every vector subspace \( V \subseteq \mathfrak{gl}(n, \mathbb{C}) \) with
     \( V = V^* \) admits a self-adjoint basis \( \{\xi_s\} \), i.e.\ with
     \( \xi_s = \xi_s^* \) for every \( s \).
 \end{lemma}
@@ -1267,18 +1282,17 @@ enough to reconstruct \( V \) uniquely.
 
 % TODO: Rewrite this
 The following lemma shows that any undirected quantum graph on
-\( M_n \) may be thought of as being built out of symmetric quantum
-edges alone.
+\( M_n \) may be identified with a real vector space.
 
 \begin{lemma}[\textcite{gromada22}, Remark 3.10]
     \label{lem:self-adjoint-uniqueness}
-    A complex vector space \( V = V^* \subseteq \mathfrak{gl}_n \)
+    A complex vector space \( V = V^* \subseteq \mathfrak{gl}(n, \mathbb{C})\)
     uniquely determines a real vector space, spanned by a basis
     \( \{\xi_s\} \) of self-adjoint elements \( \xi_s = \xi_s^* \).
 \end{lemma}
 
 \begin{proof}
-    Let \( V \subseteq \mathfrak{gl}_n(\mathbb{C}) \) be a vector space with
+    Let \( V \subseteq \mathfrak{gl}(n, \mathbb{C}) \) be a vector space with
     \( V = V^* \).
 
     Since \( V \) is invariant under the Hermitian adjoint, every
@@ -1310,8 +1324,8 @@ edges alone.
 \end{proof}
 
 By the above lemma, we may regard any self-adjoint
-\( V \subseteq \mathfrak{sl}_n \) as a real subspace of
-\( \mathfrak{sl}_n \).
+\( V \subseteq \mathfrak{sl}(n) \) as a real subspace of
+\( \mathfrak{sl}(n) \).
 
 % TODO: Rewrite this remark with new definitions
 \begin{remark}[\textcite{gromada22}, Section 2.3]
@@ -1329,18 +1343,15 @@ By the above lemma, we may regard any self-adjoint
     behave, in every respect relevant to us, like graphs on \( n^2 \)
     points rather than on a single point.
 
-    This is exactly why, in Theorem~\ref{thm:gromada}, the number of
-    \emph{quantum edges} \( m \) of a quantum graph on \( M_n \) is
-    counted as \( \dim(V) \) for the corresponding subspace
-    \( V \subseteq \mathfrak{gl}_n \), rather than by some more naive
+    This is exactly why we define \( \operatorname{q-edges}(A_V) \)
+    as the dimension \( \dim(V) \) of the corresponding subspace
+    \( V \subseteq \mathfrak{gl}(n, \mathbb{C}) \), rather than by
+    some more naive
     combinatorial count: it is the dimension of the underlying vector
-    space, not a literal count of \emph{vertices} or \emph{edges} in any
-    classical sense, that behaves correctly under quantum
-    isomorphism and yields consistent statements such as
+    space, not a literal count of \emph{vertices} or \emph{edges} in
+    any classical sense, that yields consistent statements such as
     Corollary~\ref{cor:sixteen-subspaces} and the classification of
-    Table~\ref{tab:classification}. We will consistently use \( m \),
-    i.e.\ the dimension of the relevant subspace, as our notion of
-    \emph{size} for a quantum graph throughout the next chapter.
+    Table~\ref{tab:classification}.
 \end{remark}
 
 \section{Summary}
@@ -1357,7 +1368,7 @@ algebras arose as crossed products of classical quantum sets,
 classical voltage and derived graphs embedded as a special
 (trivial-action) case of their quantum counterparts, and Gromada's
 correspondence translated quantum graphs on \( M_n \) into
-linear-algebraic data -- subspaces of \( \mathfrak{gl}_n \) --
+linear-algebraic data -- subspaces of \( \mathfrak{gl}(n, \mathbb{C}) \) --
 amenable to direct computation. Quantum isomorphisms, which
 are a generalisation of regular isomorphisms, will help us relate
 classical graphs to purely quantum ones in the next chapter.
@@ -1378,8 +1389,8 @@ for reference throughout the remainder of the thesis.
             bijection & quantum set isomorphism \\
             % vertex & minimal projection \( e_{ii} \in M_n \) \\
             directed graph, adjacency matrix \( A \) & quantum graph,
-            subspace \( V \subseteq \mathfrak{gl}_n \) \\
-            loop-free graph & \( V \subseteq \mathfrak{sl}_n \) \\
+            subspace \( V \subseteq \mathfrak{gl}(n, \mathbb{C}) \) \\
+            loop-free graph & \( V \subseteq \mathfrak{sl}(n) \) \\
             undirected graph & self-adjoint subspace \\
             graph isomorphism & \( V_1 = UV_2U^* \) for some \( U \in U(n) \) \\
             group action & (dual) group action \( \hat\alpha \colon

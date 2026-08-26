@@ -15,7 +15,7 @@ the notion of a group. We denote the torus by \( \mathbb{T} \), i.e. the
 set of complex numbers with the absolute value of 1, along with multiplication
 as its group action. We denote the identity
 element of \( G \) by \( e_{G} \). If \( G \) is abelian, its
-identity element is expressed by \( 1_{G} \).
+identity element is expressed by \( 0_{G} \).
 
 The following definition and proposition will be used throughout the
 thesis, as almost all of the groups we will be dealing with
@@ -310,7 +310,7 @@ The following notion is akin to the notion of a group action on a set.
             and \emph{any} group \( G \), setting \(
             \operatorname{triv}(g)(a) = a \)
             for all \( g \in G,\ a \in A \) trivially defines a group action,
-            since \( \operatorname{triv}(g) = \operatorname{id}_A \in
+            since \( \operatorname{triv}(g) = \operatorname{Id}_A \in
             \operatorname{Aut}(A) \)
             for every \( g \), and the identity map is trivially a group
             homomorphism from \( G \) into \( \operatorname{Aut}(A) \).
@@ -349,10 +349,10 @@ The following notion is akin to the notion of a group action on a set.
     \end{enumerate}
 \end{example}
 
-\subsection{Crossed-product \(C^{*}\)-algebra}
+\subsection{Crossed product \(C^{*}\)-algebra}
 \label{subsec:crossed-product-cstar}
 
-In this subsection, we introduce the notion of a crossed-product
+In this subsection, we introduce the notion of a crossed product
 \( C^{*} \)-algebra, in the limited form needed for our purposes; for a
 more general treatment we refer the reader to \textcite{blackadar}. The
 definitions below follow \textcite{blackadar}.
@@ -654,22 +654,30 @@ taken with matrix multiplication as the group operation.
     counterpart, giving \( 0 \).
 \end{proof}
 
-\begin{definition}[\( \mathfrak{gl}_n \) and \( \mathfrak{su}_n \),
-    Sections 2.5.2 and 2.5.4]
+\begin{definition}[\( \mathfrak{gl}_n \), \( \mathfrak{su}_n \), and
+        \( \mathfrak{so}_n \),
+    Sections 2.5.2, 2.5.4, and 2.5.5]
     \label{def:gln-sun-lie-algebras}
-    The Lie algebra associated to \( GL(n,\mathbb{C}) \) is denoted
+    The Lie algebra associated with \( GL(n,\mathbb{C}) \) is denoted
     \( \mathfrak{gl}(n,\mathbb{C}) \) and consists of \emph{all}
     complex \( n \times n \) matrices,
     \[
         \mathfrak{gl}(n,\mathbb{C}) = M_n(\mathbb{C}).
     \]
-    The Lie algebra associated to \( SU(n) \), denoted
+    The Lie algebra associated with \( SU(n) \), denoted
     \( \mathfrak{su}(n) \), consists of the traceless skew-Hermitian
     matrices,
     \[
         \mathfrak{su}(n) = \{ A \in M_n(\mathbb{C}) : A^* = -A,\
         \operatorname{Tr}(A) = 0 \}.
     \]
+    The Lie algebra associated with \( SO(n) \), denoted
+    \( \mathfrak{so}(n) \), consists of the skew-symmetric
+    matrices,
+    \[
+        \mathfrak{so}(n) = \{ A \in M_n(\mathbb{C}) : A^T = -A \},
+    \]
+    where \( A^T \) is the matrix transpose.
 \end{definition}
 
 \begin{proposition}
