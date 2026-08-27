@@ -1,0 +1,18 @@
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[>=Stealth, scale=1.2]
+        % Reusing the 'derived node' style from the previous figures
+        \node[derived node] (v0) at (0,0) {\( v_0 \)};
+        \node[derived node] (v1) at (2.5,0) {\( v_1 \)};
+        \node[derived node] (v2) at (5.0,0) {\( v_2 \)};
+
+        % Edges
+        \draw[->, thick, opacity=0.8] (v0) to [bend left=20] (v1);
+        \draw[->, thick, opacity=0.8] (v1) to [bend left=20] (v0);
+        \draw[->, thick, opacity=0.8] (v1) to (v2);
+        \path[->, thick, opacity=0.8] (v2) edge [loop above, looseness=8] (v2);
+    \end{tikzpicture}
+    \caption{A directed graph on three vertices demonstrating varied
+    edge types.}
+    \label{fig:adj_matrix_example}
+\end{figure}

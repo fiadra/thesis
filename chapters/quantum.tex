@@ -1,8 +1,15 @@
 \chapter{Quantum sets and quantum graphs}
 \label{ch:quantum-sets-and-graphs}
 
-In this chapter we will introduce the notions of quantum sets and quantum
-graphs. They were first considered by...
+In this chapter we introduce the notions of quantum sets and quantum
+graphs. These were first considered independently by
+\textcite{duan13}, in the context of \emph{quantum channels}, and by
+\textcite{weaver2010}, in the context of \emph{quantum relations}.
+\textcite{musto18} later developed a rigorous, categorical framework
+for dealing with quantum sets.
+
+Here we mostly follow the theory developed in \textcite{tobolski26}
+and \textcite{gromada22}.
 
 \section{Quantum sets}
 \label{sec:quantum-sets}
@@ -70,8 +77,8 @@ this thesis, taken directly from \textcite{tobolski26}.
     \[
         \begin{tikzcd}
             A \arrow[r,"\Delta"] \arrow[d,"\Delta"']
-            & A\otimes A \arrow[d,"{\Delta\otimes\mathrm{id}}"] \\
-            A\otimes A \arrow[r,"{\mathrm{id}\otimes\Delta}"']
+            & A\otimes A \arrow[d,"{\Delta\otimes\mathrm{Id}}"] \\
+            A\otimes A \arrow[r,"{\mathrm{Id}\otimes\Delta}"']
             & A\otimes A\otimes A
         \end{tikzcd}
     \]
@@ -200,14 +207,15 @@ this thesis, taken directly from \textcite{tobolski26}.
 \begin{example}[Matrix algebras]
     \label{example:matrix-algebras-quantum-set}
     For any \( n \in \mathbb{N}_+ \), the pair
-    \( (M_n, n\operatorname{Tr}) \) is a quantum set, where
-    \( \operatorname{Tr} \) denotes the usual trace on \( M_n \). We will
+    \( (M_n (\mathbb{C}), n\operatorname{Tr}) \) is a quantum set, where
+    \( \operatorname{Tr} \) denotes the usual trace on \( M_n
+    (\mathbb{C}) \). We will
     later see that this quantum set arises naturally as a crossed
     product: writing \( \hat{\mathbb{Z}}_n \) for the dual of
     \( \mathbb{Z}_n \) acting on \( (\mathbb{C}^n, \psi_n) \) via the
     standard action, one has
     \[
-        (M_n, n\operatorname{Tr}) \;\cong\;
+        (M_n (\mathbb{C}), n\operatorname{Tr}) \;\cong\;
         (\mathbb{C}^n \rtimes \hat{\mathbb{Z}}_n,\ \psi_\rtimes),
     \]
     a fact we prove in \ref{lem:iso}.
@@ -218,14 +226,14 @@ this thesis, taken directly from \textcite{tobolski26}.
 
 \begin{lemma}[Comultiplication for matrix algebras]
     \label{lem:comultiplication-matrix-algebras}
-    In the quantum set \( (M_n, n\operatorname{Tr}) \), the
+    In the quantum set \( (M_n (\mathbb{C}), n\operatorname{Tr}) \), the
     comultiplication \( m^* \) is given on matrix units by
     \[
         m^*(e_{ij}) = \frac{1}{n}\sum_{k=1}^n e_{ik} \otimes e_{kj},
     \]
     where \( e_{ij} \) denotes the matrix with a single \( 1 \) in the
     \( i \)-th row and \( j \)-th column, extended linearly to all of
-    \( M_n \).
+    \( M_n (\mathbb{C}) \).
 \end{lemma}
 
 \begin{proof}
@@ -239,7 +247,7 @@ this thesis, taken directly from \textcite{tobolski26}.
     where \( \delta_{ij} \) is the Kronecker delta. In particular, (2)
     shows that \( \{e_{ij}\}_{i,j=1,\dots,n} \) forms an orthogonal
     (though not orthonormal, since \( \langle e_{ij},e_{ij}\rangle = n \))
-    basis of \( M_n \) with respect to the inner product induced by
+    basis of \( M_n (\mathbb{C}) \) with respect to the inner product induced by
     \( n\operatorname{Tr} \).
 
     Fix arbitrary basis vectors \( e_{ab}, e_{cd} \). By (1),
@@ -273,8 +281,9 @@ this thesis, taken directly from \textcite{tobolski26}.
         \big\langle m(e_{ab}\otimes e_{cd}), e_{ij} \big\rangle
         = \big\langle e_{ab}\otimes e_{cd}, m^*(e_{ij}) \big\rangle
     \]
-    for all basis vectors, and since \( \{e_{ij}\} \) spans \( M_n \),
-    this identifies \( m^* \) as claimed on the whole of \( M_n \)
+    for all basis vectors, and since \( \{e_{ij}\} \) spans \( M_n
+    (\mathbb{C}) \),
+    this identifies \( m^* \) as claimed on the whole of \( M_n (\mathbb{C}) \)
     by linearity.
 \end{proof}
 
@@ -339,7 +348,7 @@ object is indeed a quantum set, can be found in
     \operatorname{Aut}(\mathbb{C}^n) \)
     be the action given by cyclically shifting coordinates. Then
     \[
-        (M_n, n\operatorname{Tr}) \;\cong\; (\mathbb{C}^n
+        (M_n (\mathbb{C}), n\operatorname{Tr}) \;\cong\; (\mathbb{C}^n
         \rtimes_{\hat\alpha} \hat{\mathbb{Z}}_n,\ \psi_\rtimes).
     \]
 \end{lemma}
@@ -360,11 +369,11 @@ object is indeed a quantum set, can be found in
     \]
     It therefore suffices to define a \( * \)-isomorphism
     \( \pi \colon \mathbb{C}^n \rtimes_{\hat\alpha}
-    \hat{\mathbb{Z}}_n \to M_n (\mathbb{C}) \)
+    \hat{\mathbb{Z}}_n \to M_n (\mathbb{C}) (\mathbb{C}) \)
     on this spanning set, check it respects the algebra's product and
     involution formulas on \( \delta_i u_k \), and then extend linearly.
 
-    \textbf{Definition of \( \pi \).} Let \( e_{ab} \in M_n
+    \textbf{Definition of \( \pi \).} Let \( e_{ab} \in M_n (\mathbb{C})
     (\mathbb{C}) \) denote
     the matrix unit sending \( \delta_b \mapsto \delta_a \) and every
     other \( \delta_c \mapsto 0 \), and set
@@ -384,7 +393,7 @@ object is indeed a quantum set, can be found in
     \( \delta_i u_k \). For the product, recall that
     \( u_k \delta_i u_k^* = \hat\alpha_k(\delta_i) = \delta_{i+k} \) in
     \( \mathbb{C}^n \rtimes_{\hat\alpha}\hat{\mathbb{Z}}_n \), matching
-    \( S^k M_{\delta_i} S^{-k} = M_{\delta_{i+k}} \) in \( M_n
+    \( S^k M_{\delta_i} S^{-k} = M_{\delta_{i+k}} \) in \( M_n (\mathbb{C})
     (\mathbb{C}) \), so
     \[
         \pi(\delta_i u_k)\,\pi(\delta_j u_l)
@@ -416,11 +425,13 @@ object is indeed a quantum set, can be found in
     all of \( \mathbb{Z}_n\times\mathbb{Z}_n \) (fix \( i \); varying
     \( k \) makes \( i-k \) range over all residues), so
     \( \{\pi(\delta_i u_k)\}_{i,k} = \{e_{ab}\}_{a,b\in\mathbb{Z}_n} \)
-    is exactly the full set of matrix units, a basis of \( M_n (\mathbb{C}) \).
+    is exactly the full set of matrix units, a basis of \( M_n
+    (\mathbb{C}) (\mathbb{C}) \).
     Since \( \{\delta_i u_k\}_{i,k} \) is a basis of
     \( \mathbb{C}^n\rtimes_{\hat\alpha}\hat{\mathbb{Z}}_n \) of the
     same dimension \( n^2 \), and \( \pi \) carries it bijectively to a
-    basis of \( M_n (\mathbb{C}) \), the linear map \( \pi \) is a bijection.
+    basis of \( M_n (\mathbb{C}) (\mathbb{C}) \), the linear map \(
+    \pi \) is a bijection.
 
     \textbf{\( \pi \) intertwines the functionals.} Since a matrix
     unit \( e_{ab} \) has trace \( \delta_{ab} \),
@@ -443,13 +454,13 @@ object is indeed a quantum set, can be found in
     \]
 
     Thus \( \pi \) is a \( * \)-isomorphism
-    \( \mathbb{C}^n\rtimes_{\hat\alpha}\hat{\mathbb{Z}}_n \to M_n
+    \( \mathbb{C}^n\rtimes_{\hat\alpha}\hat{\mathbb{Z}}_n \to M_n (\mathbb{C})
     (\mathbb{C}) \)
     satisfying \( n\operatorname{Tr}\circ\pi = \psi_\rtimes \), which is
     exactly an isomorphism of quantum sets
     \[
         (\mathbb{C}^n \rtimes_{\hat\alpha} \hat{\mathbb{Z}}_n,\ \psi_\rtimes)
-        \;\cong\; (M_n (\mathbb{C}),\ n\operatorname{Tr}). \qedhere
+        \;\cong\; (M_n (\mathbb{C}) (\mathbb{C}),\ n\operatorname{Tr}). \qedhere
     \]
 \end{proof}
 
@@ -461,10 +472,33 @@ serving as the \emph{set of vertices} and \( E \subseteq V^{2} \)
 serving as the \emph{set of edges}. Such a graph could be interpreted
 as a matrix \( A = [a_{ij}] \in \{0, 1\}^{n \times n} \) with \(
 (v_{i}, v_{j}) \in E \Leftrightarrow a_{ij} = 1 \); such a
-representation is often called the \emph{adjacency matrix}. The key
 property of such matrices is that they are invariant with respect to
-entrywise multiplication. In turn, we can use this property to
-generalise graphs on sets to graphs on quantum sets.
+representation is often called the \emph{adjacency matrix},
+see~\ref{ex:adj-matrix}. The key entrywise multiplication. In turn,
+we can use this property to generalise graphs on sets to graphs on quantum sets.
+
+\begin{example}
+    \label{ex:adj-matrix}
+    Consider the following directed graph on three vertices,
+    featuring a bidirectional connection and a self-loop:
+
+    \input{graphs/example_adj_matrix}
+
+    Ordering the basis by \( \{v_0, v_1, v_2\} \), the corresponding
+    \( 3 \times 3 \) adjacency matrix \( A \) is:
+    \[
+        A =
+        \begin{pmatrix}
+            0 & 1 & 0 \\
+            1 & 0 & 1 \\
+            0 & 0 & 1
+        \end{pmatrix}.
+    \]
+
+    This linear representation is foundational when generalizing to
+    quantum graphs, where the adjacency matrix \( A \in
+    M_n(\mathbb{C}) \) is replaced by a linear map between \(C^{*}\)-algebras.
+\end{example}
 
 The following definitions are due to \textcite{musto18}. We follow
 the approach of \textcite{tobolski26}.
@@ -888,9 +922,9 @@ and quantum derived graphs.
     \label{example:voltage-graph-z3}
     Consider the voltage graph \( (\Gamma, \lambda) \) consisting of one
     vertex \( v \) along with a single edge \( e \) going
-    from \( v \) to itself and labeled with \( 1_{\hat{\mathbb{Z}}_3} \),
-    i.e. \( \lambda(e) = 1_{\hat{\mathbb{Z}}_3} \). The derived graph then has
-    has three, one for each element of \( \hat{\mathbb{Z}}_3 \).
+    from \( v \) to itself and labeled with \( 1_{\mathbb{Z}_3} \),
+    i.e. \( \lambda(e) = 1_{\mathbb{Z}_3} \). The derived graph then has
+    has three, one for each element of \( \mathbb{Z}_3 \).
 
     \input{graphs/example_voltage_derived}
 
@@ -917,16 +951,15 @@ and quantum derived graphs.
     qualify as a voltage quantum graph; here, however, we are
     regarding \( (\tilde{A}_g)_{g \in \mathbb{Z}_3} \) as a voltage
     quantum graph with respect to the trivial action \( \mathrm{triv} \)
-    of \( \hat{\mathbb{Z}}_3 \) on \( \mathbb{C} \), for which there is
-    nothing left to check (see
-    Proposition~\ref{prop:equivalence}).
+    of \( \mathbb{Z}_3 \) on \( \mathbb{C} \), for which there is
+    nothing left to check (see Proposition~\ref{prop:equivalence}).
 
     What is the derived quantum graph
-    \( \tilde{A} \rtimes_{\mathrm{triv}} \hat{\mathbb{Z}}_3 \) of this
+    \( \tilde{A} \rtimes_{\mathrm{triv}} \mathbb{Z}_3 \) of this
     voltage quantum graph? Recall first that the derived quantum
     graph lives on the crossed product quantum set
     \[
-        (\mathbb{C}, \psi_1) \rtimes_{\mathrm{triv}} \hat{\mathbb{Z}}_3.
+        (\mathbb{C}, \psi_1) \rtimes_{\mathrm{triv}} \mathbb{Z}_3.
     \]
     By part (a) of
     Lemma~\ref{lem:correspondences},
@@ -935,7 +968,7 @@ and quantum derived graphs.
     classical graphs on three vertices.
 
     By Definition~\ref{def:quantum-voltage-graph}, the derived
-    quantum graph \( A := \tilde{A} \rtimes_{\mathrm{triv}} \hat{\mathbb{Z}}_3
+    quantum graph \( A := \tilde{A} \rtimes_{\mathrm{triv}} \mathbb{Z}_3
     \colon \mathbb{C}^3 \to \mathbb{C}^3 \) on \( (\mathbb{C}^3, \psi_3) \)
     is given by
     \[
@@ -1050,15 +1083,16 @@ the context of game theory. We follow the definitions due to
     satisfying \( \psi_2\circ\phi = \psi_1 \), and the intertwining
     condition \( \rho A_1 = (A_2\otimes\operatorname{Id})\rho \)
     reduces to \( \phi A_1 = A_2\phi \). In this sense, quantum
-    isomorphisms genuinely generalize the classical notion above: they
-    replace a single isomorphism \( \phi \) between the quantum sets
-    themselves by a family of maps, twisted by an auxiliary Hilbert
-    space \( \mathcal{H} \), that need only behave like an isomorphism
-    \emph{on average} over \( \mathcal{H} \). This is exactly what allows
-    two quantum graphs to be quantum isomorphic without being
-    isomorphic in the ordinary sense, mirroring how, in the game-theoretic
-    origin of the notion, a quantum strategy can win a non-local game
-    that no classical strategy can win.
+    isomorphisms genuinely generalize the classical notion above.
+    % : they
+    % replace a single isomorphism \( \phi \) between the quantum sets
+    % themselves by a family of maps, twisted by an auxiliary Hilbert
+    % space \( \mathcal{H} \), that need only behave like an isomorphism
+    % \emph{on average} over \( \mathcal{H} \). This is exactly what allows
+    % two quantum graphs to be quantum isomorphic without being
+    % isomorphic in the ordinary sense, mirroring how, in the game-theoretic
+    % origin of the notion, a quantum strategy can win a non-local game
+    % that no classical strategy can win.
 \end{remark}
 
 Quantum isomorphism is thus a strictly weaker notion than ordinary
@@ -1189,12 +1223,13 @@ every one of the five equivalence classes of loop-free, undirected
 quantum graphs on \( (M_{3}(\mathbb{C}), 3\operatorname{Tr}) \) established in
 Corollary~\ref{cor:five-classes} is quantum isomorphic to a classical
 graph on nine vertices.
+% TODO: what corollary?
 
 \section{Gromada's theorem}
 \label{sec:gromada-theorem}
 
 In this section, we state a theorem due to \textcite{gromada22}
-establishing a one-to-one correspondence between certain linear
+establishing a correspondence between certain linear
 subspaces of \( \mathfrak{sl}(n) \) and quantum graphs.
 This result will
 be used to classify all loop-free and undirected quantum graphs on
@@ -1204,7 +1239,8 @@ recipe for recovering the adjacency matrix corresponding to a given
 subspace.
 
 \begin{definition}[Quantum Edges]
-    Let \( A_V \colon M_n \to M_n \) be a quantum graph on \( M_n \)
+    Let \( A_V \colon M_n (\mathbb{C}) \to M_n (\mathbb{C}) \) be a
+    quantum graph on \( M_n (\mathbb{C}) \)
     associated with a subspace \( V \subseteq
     \mathfrak{gl}(n, \mathbb{C}) \). The \emph{number of quantum
     edges} of the quantum graph \( A_V \) is defined as the dimension
@@ -1216,8 +1252,9 @@ subspace.
 
 \begin{theorem}[\textcite{gromada22}, Theorem 3.7]
     \label{thm:gromada}
-    Every linear map \( A \colon M_n \to M_n \) defining a quantum
-    graph on \( M_n \) corresponds uniquely to a subspace \( V
+    Every linear map \( A \colon M_n (\mathbb{C}) \to M_n
+    (\mathbb{C}) \) defining a quantum
+    graph on \( M_n (\mathbb{C}) \) corresponds uniquely to a subspace \( V
     \subseteq \mathfrak{gl}(n, \mathbb{C}) \) via
     \[
         A = A_V := \sum_{s=1}^{\dim(V)} \xi_s \otimes \bar{\xi_s},
@@ -1229,14 +1266,14 @@ subspace.
     \begin{enumerate}
         \item Has \( m = \dim(V) \) quantum edges;
         \item Has no loops if and only if \( V \subseteq
-            \mathfrak{sl}(n, \mathbb{C}) \);
+            \mathfrak{sl}(n) \);
         \item Is undirected if and only if \( V = V^* := \{x^* \mid x
             \in V\} \).
     \end{enumerate}
 
     If two subspaces \( V, W \subseteq \mathfrak{gl}(n, \mathbb{C}) \)
     determine isomorphic quantum graphs \( A_V \cong A_W \), then \(
-    V = UWU^* \) for some unitary matrix \( U \in SU_n \).
+    V = UWU^* \) for some unitary matrix \( U \in SU(n) \).
 \end{theorem}
 
 % TODO: Write a remark on the theorem above
@@ -1282,7 +1319,7 @@ enough to reconstruct \( V \) uniquely.
 
 % TODO: Rewrite this
 The following lemma shows that any undirected quantum graph on
-\( M_n \) may be identified with a real vector space.
+\( M_n (\mathbb{C}) \) may be identified with a real vector space.
 
 \begin{lemma}[\textcite{gromada22}, Remark 3.10]
     \label{lem:self-adjoint-uniqueness}
@@ -1335,11 +1372,13 @@ By the above lemma, we may regard any self-adjoint
     \( M_{n_i} \) in a decomposition \( B \cong \bigoplus_i M_{n_i} \))
     its \emph{vertices}. This works well enough for classical sets,
     where \( B = \mathbb{C}^n \) decomposes into \( n \) copies of
-    \( M_1 = \mathbb{C} \), recovering the usual \( n \) vertices.
+    \( M_1 (\mathbb{C}) = \mathbb{C} \), recovering the usual \( n \) vertices.
     However, for a genuinely noncommutative quantum set such as
-    \( (M_n, n\operatorname{Tr}) \), this convention is misleading: it
-    would count \( M_n \) as a single \emph{vertex}, even though
-    \( \dim(M_n) = n^2 \) and the quantum graphs living on \( M_n \)
+    \( (M_n (\mathbb{C}), n\operatorname{Tr}) \), this convention is
+    misleading: it
+    would count \( M_n (\mathbb{C}) \) as a single \emph{vertex}, even though
+    \( \dim(M_n (\mathbb{C})) = n^2 \) and the quantum graphs living
+    on \( M_n (\mathbb{C}) \)
     behave, in every respect relevant to us, like graphs on \( n^2 \)
     points rather than on a single point.
 
@@ -1361,22 +1400,36 @@ This chapter laid the algebraic groundwork for treating classical
 combinatorial structures and their quantum analogues on equal footing.
 The guiding principle throughout has been that a finite set, once
 recast as a commutative \( C^{*} \)-algebra with a suitable functional,
-admits a natural non-commutative generalization -- the quantum set --
+admits a natural non-commutative generalization, the quantum set,
 and that many further classical notion built on top of a set generalizes
 correspondingly. We saw this principle realized concretely: matrix
 algebras arose as crossed products of classical quantum sets,
 classical voltage and derived graphs embedded as a special
 (trivial-action) case of their quantum counterparts, and Gromada's
-correspondence translated quantum graphs on \( M_n \) into
-linear-algebraic data -- subspaces of \( \mathfrak{gl}(n, \mathbb{C}) \) --
-amenable to direct computation. Quantum isomorphisms, which
-are a generalisation of regular isomorphisms, will help us relate
-classical graphs to purely quantum ones in the next chapter.
+correspondence translated quantum graphs on \( M_n (\mathbb{C}) \) into
+linear-algebraic data, i.e. subspaces of \( \mathfrak{gl}(n,
+\mathbb{C}) \), which are amenable to direct computation. Quantum
+isomorphisms, which are a generalisation of regular isomorphisms,
+will help us relate classical graphs to purely quantum ones in the
+next chapter.
 
 Figure~\ref{fig:classical-quantum-dictionary}
 summarizes this dictionary between the classical and quantum sides,
 for reference throughout the remainder of the thesis.
 
+% This chapter established an algebraic framework unifying classical
+% combinatorial structures with their quantum analogues. By recasting
+% finite sets as commutative \( C^* \)-algebras, we generalized them to
+% non-commutative quantum sets and extended their derivative structures
+% accordingly. Concretely, matrix algebras arose as crossed products,
+% classical voltage and derived graphs emerged as trivial-action cases
+% of their quantum counterparts, and Gromada's correspondence mapped
+% quantum graphs on \( M_n(\mathbb{C}) \) to computationally tractable
+% subspaces of \( \mathfrak{gl}(n, \mathbb{C}) \). Building on this
+% foundation, the next chapter uses quantum isomorphisms to bridge
+% classical and purely quantum graphs.
+
+% TODO: write more stuff
 \begin{figure}[ht]
     \begin{center}
         \footnotesize
@@ -1387,7 +1440,7 @@ for reference throughout the remainder of the thesis.
             \hline
             finite set & quantum set \( (B, \psi) \) \\
             bijection & quantum set isomorphism \\
-            % vertex & minimal projection \( e_{ii} \in M_n \) \\
+            % vertex & minimal projection \( e_{ii} \in M_n (\mathbb{C}) \) \\
             directed graph, adjacency matrix \( A \) & quantum graph,
             subspace \( V \subseteq \mathfrak{gl}(n, \mathbb{C}) \) \\
             loop-free graph & \( V \subseteq \mathfrak{sl}(n) \) \\
@@ -1395,8 +1448,8 @@ for reference throughout the remainder of the thesis.
             graph isomorphism & \( V_1 = UV_2U^* \) for some \( U \in U(n) \) \\
             group action & (dual) group action \( \hat\alpha \colon
             \hat{G} \to \operatorname{Aut}(B,\psi) \) \\
-            ??? & crossed product quantum set \( \tilde{B}
-            \rtimes_{\hat\alpha} \hat{G} \) \\
+            % ??? & crossed product quantum set \( \tilde{B}
+            % \rtimes_{\hat\alpha} \hat{G} \) \\
             voltage graph \( (\Gamma, \lambda) \) & voltage quantum
             graph \( \tilde{A} = (\tilde{A}_g)_{g\in G} \) \\
             derived graph \( \Gamma^\lambda \) & derived quantum
