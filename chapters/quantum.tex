@@ -211,12 +211,12 @@ this thesis, taken directly from \textcite{tobolski26}.
     \( \operatorname{Tr} \) denotes the usual trace on \( M_n
     (\mathbb{C}) \). We will
     later see that this quantum set arises naturally as a crossed
-    product: writing \( \hat{\mathbb{Z}}_n \) for the dual of
+    product: writing \( \widehat{\mathbb{Z}}_n \) for the dual of
     \( \mathbb{Z}_n \) acting on \( (\mathbb{C}^n, \psi_n) \) via the
     standard action, one has
     \[
         (M_n (\mathbb{C}), n\operatorname{Tr}) \;\cong\;
-        (\mathbb{C}^n \rtimes \hat{\mathbb{Z}}_n,\ \psi_\rtimes),
+        (\mathbb{C}^n \rtimes \widehat{\mathbb{Z}}_n,\ \psi_\rtimes),
     \]
     a fact we prove in \ref{lem:iso}.
     \( n \operatorname{Tr} \) is chosen instead of simply \(
@@ -292,39 +292,43 @@ this thesis, taken directly from \textcite{tobolski26}.
 
 \textcite{tobolski26} introduced the notion of a \emph{crossed product
 quantum set}. Suppose we are given a finite-dimensional
-\( C^{*} \)-algebra \( \tilde{B} \) together with a dual group action
-\( \hat\alpha \colon \hat{G} \to \operatorname{Aut}(\tilde{B}) \), where
+\( C^{*} \)-algebra \( \widetilde{B} \) together with a dual group action
+\( \widehat\alpha \colon \widehat{G} \to
+\operatorname{Aut}(\widetilde{B}) \), where
 \( G \) is a finite abelian group. By
-\ref{prop:finite-abelian-self-dual}, \( G \cong \hat{G} \). One may
+\ref{prop:finite-abelian-self-dual}, \( G \cong \widehat{G} \). One may
 then form the crossed
 product
 \[
-    B := \tilde{B} \rtimes_{\hat\alpha} \hat{G}.
+    B = \widetilde{B} \rtimes_{\widehat\alpha} \widehat{G}.
 \]
-If \( \tilde{B} \) is equipped with a faithful functional
-\( \tilde\psi \) making \( (\tilde{B}, \tilde\psi) \) a quantum set, one
+If \( \widetilde{B} \) is equipped with a faithful functional
+\( \widetilde\psi \) making \( (\widetilde{B}, \widetilde\psi) \) a
+quantum set, one
 can construct a corresponding faithful functional on \( B \) making
 \( B \) into a quantum set as well, as follows.
 
 \begin{definition}[Crossed product quantum set, Definition 3.1]
     \label{def:crossed-product-quantum-set}
-    Let \( (\tilde{B}, \tilde\psi) \) be a quantum set, and let
-    \( \hat\alpha \colon \hat{G} \to \operatorname{Aut}(\tilde{B},
-    \tilde\psi) \)
+    Let \( (\widetilde{B}, \widetilde\psi) \) be a quantum set, and let
+    \( \widehat\alpha \colon \widehat{G} \to \operatorname{Aut}(\widetilde{B},
+    \widetilde\psi) \)
     be an action of the dual of a finite abelian group \( G \). The
     \emph{crossed product quantum set} is defined as
     \[
-        (\tilde{B}, \tilde\psi) \rtimes_{\hat\alpha} \hat{G}
-        := \big( \tilde{B} \rtimes_{\hat\alpha} \hat{G},\ \psi_\rtimes \big),
+        (\widetilde{B}, \widetilde\psi) \rtimes_{\widehat\alpha} \widehat{G}
+        = \big( \widetilde{B} \rtimes_{\widehat\alpha}
+        \widehat{G},\ \psi_\rtimes \big),
     \]
-    where \( \tilde{B} \rtimes_{\hat\alpha} \hat{G} \) is the crossed
+    where \( \widetilde{B} \rtimes_{\widehat\alpha} \widehat{G} \) is
+    the crossed
     product \( C^{*} \)-algebra, and \( \psi_\rtimes \) is the
     functional given by
     \[
-        \psi_\rtimes\Big( \sum_{\chi \in \hat{G}} b_\chi u_\chi \Big)
-        = n\, \tilde\psi(b_1),
+        \psi_\rtimes\Big( \sum_{\chi \in \widehat{G}} b_\chi u_\chi \Big)
+        = n\, \widetilde\psi(b_1),
     \]
-    with \( n = |\hat{G}| \).
+    with \( n = |\widehat{G}| \).
 \end{definition}
 
 The proof that this definition is well posed, i.e. that the resulting
@@ -333,33 +337,34 @@ object is indeed a quantum set, can be found in
 
 \begin{example}[Example 3.5]
     \label{example:crossed-product-trivial-action}
-    If \( \hat\alpha = \operatorname{triv} \) is the trivial action, then
+    If \( \widehat\alpha = \operatorname{triv} \) is the trivial action, then
     \[
-        \tilde{B} \rtimes_{\hat\alpha} \hat{G} \;\cong\; \tilde{B} \otimes C(G),
+        \widetilde{B} \rtimes_{\widehat\alpha} \widehat{G} \;\cong\;
+        \widetilde{B} \otimes C(G),
     \]
     via the isomorphism \( b_\chi u_\chi \mapsto b_\chi \otimes
-    \tilde u_\chi \),
-    where \( \tilde u_\chi \in C(G) \) denotes the function
+    \widetilde u_\chi \),
+    where \( \widetilde u_\chi \in C(G) \) denotes the function
     \( g \mapsto \chi(g) \) on \( G \).
 \end{example}
 
 \begin{lemma}\label{lem:iso}
-    Let \( \hat\alpha \colon \hat{\mathbb{Z}}_n \to
+    Let \( \widehat\alpha \colon \widehat{\mathbb{Z}}_n \to
     \operatorname{Aut}(\mathbb{C}^n) \)
     be the action given by cyclically shifting coordinates. Then
     \[
         (M_n (\mathbb{C}), n\operatorname{Tr}) \;\cong\; (\mathbb{C}^n
-        \rtimes_{\hat\alpha} \hat{\mathbb{Z}}_n,\ \psi_\rtimes).
+        \rtimes_{\widehat\alpha} \widehat{\mathbb{Z}}_n,\ \psi_\rtimes).
     \]
 \end{lemma}
 
 \begin{proof}
-    Identify \( \hat{\mathbb{Z}}_n \) with \( \mathbb{Z}_n =
+    Identify \( \widehat{\mathbb{Z}}_n \) with \( \mathbb{Z}_n =
     \{0,1,\dots,n-1\} \) (arithmetic mod \( n \)), and write
     \( \{\delta_i\}_{i \in \mathbb{Z}_n} \) for the standard basis of
-    \( \mathbb{C}^n \), so that \( \hat\alpha_k(\delta_i) = \delta_{i+k} \).
+    \( \mathbb{C}^n \), so that \( \widehat\alpha_k(\delta_i) = \delta_{i+k} \).
     Since \( \mathbb{Z}_n \) is finite, every element of
-    \( \mathbb{C}^n \rtimes_{\hat\alpha} \hat{\mathbb{Z}}_n \) is a
+    \( \mathbb{C}^n \rtimes_{\widehat\alpha} \widehat{\mathbb{Z}}_n \) is a
     finite sum \( \sum_{k\in\mathbb{Z}_n} b_k u_k \) with \( b_k \in
     \mathbb{C}^n \);
     writing each \( b_k = \sum_i b_k(i)\,\delta_i \) in coordinates, this
@@ -368,8 +373,8 @@ object is indeed a quantum set, can be found in
         \delta_i u_k, \qquad i,k \in \mathbb{Z}_n.
     \]
     It therefore suffices to define a \( * \)-isomorphism
-    \( \pi \colon \mathbb{C}^n \rtimes_{\hat\alpha}
-    \hat{\mathbb{Z}}_n \to M_n (\mathbb{C}) (\mathbb{C}) \)
+    \( \pi \colon \mathbb{C}^n \rtimes_{\widehat\alpha}
+    \widehat{\mathbb{Z}}_n \to M_n (\mathbb{C}) (\mathbb{C}) \)
     on this spanning set, check it respects the algebra's product and
     involution formulas on \( \delta_i u_k \), and then extend linearly.
 
@@ -378,10 +383,10 @@ object is indeed a quantum set, can be found in
     the matrix unit sending \( \delta_b \mapsto \delta_a \) and every
     other \( \delta_c \mapsto 0 \), and set
     \[
-        \pi(\delta_i u_k) := e_{i,\,i-k}, \qquad i,k \in \mathbb{Z}_n,
+        \pi(\delta_i u_k) = e_{i,\,i-k}, \qquad i,k \in \mathbb{Z}_n,
     \]
     extended linearly to all of \( \mathbb{C}^n
-    \rtimes_{\hat\alpha}\hat{\mathbb{Z}}_n \).
+    \rtimes_{\widehat\alpha}\widehat{\mathbb{Z}}_n \).
     Equivalently, writing \( S \) for the cyclic shift matrix
     \( S\delta_i = \delta_{i+1} \) and \( M_{b_k} = \sum_i b_k(i)\,e_{ii} \)
     for the diagonal matrix with entries \( b_k \), one checks directly
@@ -391,8 +396,8 @@ object is indeed a quantum set, can be found in
     \textbf{\( \pi \) is a \( * \)-homomorphism.} It suffices to check
     the product and involution formulas on the spanning elements
     \( \delta_i u_k \). For the product, recall that
-    \( u_k \delta_i u_k^* = \hat\alpha_k(\delta_i) = \delta_{i+k} \) in
-    \( \mathbb{C}^n \rtimes_{\hat\alpha}\hat{\mathbb{Z}}_n \), matching
+    \( u_k \delta_i u_k^* = \widehat\alpha_k(\delta_i) = \delta_{i+k} \) in
+    \( \mathbb{C}^n \rtimes_{\widehat\alpha}\widehat{\mathbb{Z}}_n \), matching
     \( S^k M_{\delta_i} S^{-k} = M_{\delta_{i+k}} \) in \( M_n (\mathbb{C})
     (\mathbb{C}) \), so
     \[
@@ -405,17 +410,19 @@ object is indeed a quantum set, can be found in
     \( e_{i,\,i-k-l} = \pi(\delta_i u_{k+l}) \). On the other side,
     \[
         (\delta_i u_k)(\delta_j u_l) = \delta_i\,
-        \hat\alpha_k(\delta_j)\, u_{k+l}
+        \widehat\alpha_k(\delta_j)\, u_{k+l}
         = \delta_i\,\delta_{j+k}\,u_{k+l} = \delta_{i,\,j+k}\,\delta_i\,u_{k+l},
     \]
     which is likewise nonzero exactly when \( j = i-k \), and then
     equals \( \delta_i u_{k+l} \). Applying \( \pi \) recovers
     \( \pi(\delta_i u_{k+l}) = e_{i,i-k-l} \), matching the computation
     above. So \( \pi \) respects multiplication on the spanning set,
-    hence on all of \( \mathbb{C}^n\rtimes_{\hat\alpha}\hat{\mathbb{Z}}_n \)
+    hence on all of \(
+    \mathbb{C}^n\rtimes_{\widehat\alpha}\widehat{\mathbb{Z}}_n \)
     by bilinearity.
 
-    For the involution, \( (\delta_i u_k)^* = \hat\alpha_{-k}(\delta_i^*)u_{-k}
+    For the involution, \( (\delta_i u_k)^* =
+        \widehat\alpha_{-k}(\delta_i^*)u_{-k}
     = \delta_{i-k}\,u_{-k} \), so \( \pi\big((\delta_i u_k)^*\big) =
     \pi(\delta_{i-k}u_{-k}) = e_{i-k,\,i} \), while directly
     \( \pi(\delta_i u_k)^* = e_{i,i-k}^* = e_{i-k,i} \), matching.
@@ -428,7 +435,7 @@ object is indeed a quantum set, can be found in
     is exactly the full set of matrix units, a basis of \( M_n
     (\mathbb{C}) (\mathbb{C}) \).
     Since \( \{\delta_i u_k\}_{i,k} \) is a basis of
-    \( \mathbb{C}^n\rtimes_{\hat\alpha}\hat{\mathbb{Z}}_n \) of the
+    \( \mathbb{C}^n\rtimes_{\widehat\alpha}\widehat{\mathbb{Z}}_n \) of the
     same dimension \( n^2 \), and \( \pi \) carries it bijectively to a
     basis of \( M_n (\mathbb{C}) (\mathbb{C}) \), the linear map \(
     \pi \) is a bijection.
@@ -443,23 +450,25 @@ object is indeed a quantum set, can be found in
     \sum_{k,i}b_k(i)\,\delta_i u_k \),
     \[
         \operatorname{Tr}(\pi(b)) = \sum_{k,i}b_k(i)\,\delta_{k,0}
-        = \sum_i b_0(i) = \tilde\psi(b_0),
+        = \sum_i b_0(i) = \widetilde\psi(b_0),
     \]
-    where \( \tilde\psi(x) = \sum_i x_i \) is the quantum set functional
-    on \( (\mathbb{C}^n,\tilde\psi) \), and \( b_0 \) is exactly the
+    where \( \widetilde\psi(x) = \sum_i x_i \) is the quantum set functional
+    on \( (\mathbb{C}^n,\widetilde\psi) \), and \( b_0 \) is exactly the
     coefficient at the trivial character appearing in the definition of
-    \( \psi_\rtimes \). Multiplying by \( n = |\hat{\mathbb{Z}}_n| \),
+    \( \psi_\rtimes \). Multiplying by \( n = |\widehat{\mathbb{Z}}_n| \),
     \[
-        n\operatorname{Tr}(\pi(b)) = n\,\tilde\psi(b_0) = \psi_\rtimes(b).
+        n\operatorname{Tr}(\pi(b)) = n\,\widetilde\psi(b_0) = \psi_\rtimes(b).
     \]
 
     Thus \( \pi \) is a \( * \)-isomorphism
-    \( \mathbb{C}^n\rtimes_{\hat\alpha}\hat{\mathbb{Z}}_n \to M_n (\mathbb{C})
+    \( \mathbb{C}^n\rtimes_{\widehat\alpha}\widehat{\mathbb{Z}}_n \to
+        M_n (\mathbb{C})
     (\mathbb{C}) \)
     satisfying \( n\operatorname{Tr}\circ\pi = \psi_\rtimes \), which is
     exactly an isomorphism of quantum sets
     \[
-        (\mathbb{C}^n \rtimes_{\hat\alpha} \hat{\mathbb{Z}}_n,\ \psi_\rtimes)
+        (\mathbb{C}^n \rtimes_{\widehat\alpha}
+        \widehat{\mathbb{Z}}_n,\ \psi_\rtimes)
         \;\cong\; (M_n (\mathbb{C}) (\mathbb{C}),\ n\operatorname{Tr}). \qedhere
     \]
 \end{proof}
@@ -674,23 +683,23 @@ admitting a free action of a finite group.
 
 \begin{theorem}[Gross and Tucker theorem, \textcite{gross87}, Theorem 2.2.2]
     \label{thm:gross-and-tucker}
-    Let \( \tilde\Gamma \) be a graph and let \( G \) be a finite group
-    acting freely on \( \tilde\Gamma \) by automorphisms. Then there
+    Let \( \widetilde\Gamma \) be a graph and let \( G \) be a finite group
+    acting freely on \( \widetilde\Gamma \) by automorphisms. Then there
     exists a voltage graph \( (\Gamma,\lambda) \), with edges labeled
-    by elements of \( G \), such that \( \tilde\Gamma \) is isomorphic
+    by elements of \( G \), such that \( \widetilde\Gamma \) is isomorphic
     to the derived graph of \( (\Gamma,\lambda) \). The graph
-    \( \Gamma \) is the quotient graph \( \tilde\Gamma / G \).
+    \( \Gamma \) is the quotient graph \( \widetilde\Gamma / G \).
 \end{theorem}
 
 In other words, voltage graphs classify free group actions on graphs
 up to isomorphism: recovering \( \Gamma \) from
-\( \tilde\Gamma \) amounts to nothing more than quotienting by the
+\( \widetilde\Gamma \) amounts to nothing more than quotienting by the
 group action. However, this is not enough to recover the voltage labelling
 \( \lambda \), as different labellings might create isomorphic derived graphs.
 
 \input{graphs/examplegraphs}
 
-\subsection{Generalisation to Quantum Voltage and Derived Quantum Graphs}
+\subsection{Generalisation to Voltage Quantum and Derived Quantum Graphs}
 \label{subsec:quantum-voltage-and-derived-graphs}
 
 We now turn to generalising the Gross--Tucker construction to the
@@ -708,55 +717,58 @@ picture. The following definition makes this precise.
 
 \begin{definition}[\textcite{tobolski26}, Definition 4.1]
     \label{def:quantum-voltage-graph}
-    Suppose \( (\tilde{B}, \tilde\psi) \), the action
-    \( \hat\alpha \colon \hat{G} \to \operatorname{Aut}(\tilde{B},
-    \tilde\psi) \),
+    Suppose \( (\widetilde{B}, \widetilde\psi) \), the action
+    \( \widehat\alpha \colon \widehat{G} \to \operatorname{Aut}(\widetilde{B},
+    \widetilde\psi) \),
     the crossed product \( (B, \psi_\rtimes) \), and the elements
-    \( (u_\chi)_{\chi \in \hat{G}} \subseteq B \) are as introduced
+    \( (u_\chi)_{\chi \in \widehat{G}} \subseteq B \) are as introduced
     in \ref{subsec:crossed-product-cstar}.
     \begin{enumerate}
-        \item For crossed product quantum set \( \tilde{B}
-            \rtimes_{\hat\alpha} \hat{G} \)
+        \item For crossed product quantum set \( \widetilde{B}
+            \rtimes_{\widehat\alpha} \widehat{G} \)
             we define the linear map
             \[
-                E_{\rtimes}: \tilde{B} \rtimes_{\hat\alpha} \hat{G}
-                \rightarrow \tilde{B}, \qquad \sum_{\chi \in \hat{G}}
+                E_{\rtimes}: \widetilde{B} \rtimes_{\widehat\alpha} \widehat{G}
+                \rightarrow \widetilde{B}, \qquad \sum_{\chi \in \widehat{G}}
                 b_{\chi} u_{\chi} \mapsto n b_{1},
             \]
             and my \( E_{\rtimes}^{*} \) its adjoint with respect to
-            the inner products on \( \tilde{B} \) and \( \tilde{B}
-            \rtimes_{\hat\alpha} \hat{G} \).
+            the inner products on \( \widetilde{B} \) and \( \widetilde{B}
+            \rtimes_{\widehat\alpha} \widehat{G} \).
         \item For each \( g \in G \), set
             \[
-                X_g := \frac{1}{n} \sum_{\chi \in \hat{G}}
+                X_g = \frac{1}{n} \sum_{\chi \in \widehat{G}}
                 \overline{\chi(g)}\, u_\chi u_\chi^*,
             \]
             i.e.\ let \( X_g \) be the linear operator
             \[
                 X_g \colon B \to B, \qquad
-                b \mapsto \frac{1}{n} \sum_{\chi \in \hat{G}}
+                b \mapsto \frac{1}{n} \sum_{\chi \in \widehat{G}}
                 \overline{\chi(g)}\, \langle u_\chi, b
                 \rangle_{\psi_\rtimes}\, u_\chi.
             \]
         \item Given the group action
-            \( \hat\alpha \colon \hat{G} \to
-            \operatorname{Aut}(\tilde{B}, \tilde\psi) \),
-            a \emph{voltage quantum graph} on \( (\tilde{B}, \tilde\psi) \)
+            \( \widehat\alpha \colon \widehat{G} \to
+            \operatorname{Aut}(\widetilde{B}, \widetilde\psi) \),
+            a \emph{voltage quantum graph} on \( (\widetilde{B},
+            \widetilde\psi) \)
             is a \( G \)-indexed family
-            \( \tilde{A} = (\tilde{A}_g)_{g \in G} \) of quantum
+            \( \widetilde{A} = (\widetilde{A}_g)_{g \in G} \) of quantum
             adjacency matrices such that
             \[
-                \tilde{A}_g \hat\alpha_\chi = \hat\alpha_\chi \tilde{A}_g
+                \widetilde{A}_g \widehat\alpha_\chi = \widehat\alpha_\chi
+                \widetilde{A}_g
             \]
-            holds for every \( g \in G \) and every \( \chi \in \hat{G} \).
-        \item Given such a family \( \tilde{A} \), the associated
+            holds for every \( g \in G \) and every \( \chi \in \widehat{G} \).
+        \item Given such a family \( \widetilde{A} \), the associated
             \emph{derived quantum graph}
-            \( \tilde{A} \rtimes_{\hat\alpha} \hat{G} \colon B \to B \)
+            \( \widetilde{A} \rtimes_{\widehat\alpha} \widehat{G}
+            \colon B \to B \)
             on \( (B, \psi_\rtimes) \) is
             \[
-                \tilde{A} \rtimes_{\hat\alpha} \hat{G}
-                := \sum_{g \in G} m\big( X_g \otimes E_\rtimes^*
-                \tilde{A}_g E_\rtimes \big)\, m^*,
+                \widetilde{A} \rtimes_{\widehat\alpha} \widehat{G}
+                = \sum_{g \in G} m\big( X_g \otimes E_\rtimes^*
+                \widetilde{A}_g E_\rtimes \big)\, m^*,
             \]
             where \( m = m_\rtimes \) is the multiplication map on \( B \).
     \end{enumerate}
@@ -769,7 +781,7 @@ sitting inside the crossed product. The fact that \( X_g \) is itself
 an adjacency matrix on the quantum set \( (B,\psi_\rtimes) \) is
 checked in \textcite[Proposition~4.5]{tobolski26}, and the derived
 quantum graph is then built by combining these fiber projections with
-the individual voltage components \( \tilde{A}_g \), summed over all
+the individual voltage components \( \widetilde{A}_g \), summed over all
 \( g \in G \) -- mirroring how, in the classical construction, each
 edge of \( \Gamma^\lambda \) is assigned both to a specific fiber and
 to a specific lift of an edge of \( \Gamma \).
@@ -780,11 +792,11 @@ one that is undirected.
 
 \begin{definition}
     \label{def:voltage-quantum-graph-loop-free}
-    A voltage quantum graph \( \tilde{A} = \{\tilde{A}_g\}_{g \in G} \)
-    is called \emph{loop-free} if \( \tilde{A}_{1} \) is loopfree in
-    the sense of \ref{def:quantum-loop-free}. \( \tilde{A} \) is
-    called \emph{undirected} if \( \tilde{A}^{*}_{g} =
-    \tilde{A}_{g^{-1}} \) holds for all \( g \in G \).
+    A voltage quantum graph \( \widetilde{A} = \{\widetilde{A}_g\}_{g \in G} \)
+    is called \emph{loop-free} if \( \widetilde{A}_{1} \) is loopfree in
+    the sense of \ref{def:quantum-loop-free}. \( \widetilde{A} \) is
+    called \emph{undirected} if \( \widetilde{A}^{*}_{g} =
+    \widetilde{A}_{g^{-1}} \) holds for all \( g \in G \).
 \end{definition}
 
 % TODO: Rewrite this in accordance with Mariusz's comment
@@ -806,12 +818,13 @@ Example~\ref{ex:classical_sets}.
     \( (\mathbb{C}^V, \psi_V) \) be a quantum set. Given a
     pre-simple voltage graph \( (\Gamma,\lambda) \) on \( V \) with
     labelling \( \lambda \colon E \to G \), let
-    \( \tilde{A}_g \colon \mathbb{C}^V \to \mathbb{C}^V \) denote the
+    \( \widetilde{A}_g \colon \mathbb{C}^V \to \mathbb{C}^V \) denote the
     adjacency matrix of the (simple, directed) subgraph of \( \Gamma \)
     consisting of exactly those edges labeled \( g \). Then the
     assignment
     \[
-        (\Gamma,\lambda) \;\longmapsto\; \tilde{A} = (\tilde{A}_g)_{g \in G}
+        (\Gamma,\lambda) \;\longmapsto\; \widetilde{A} =
+        (\widetilde{A}_g)_{g \in G}
     \]
     is a one-to-one correspondence between \( G \)-labeled pre-simple
     voltage graphs on \( V \) and voltage quantum graphs on
@@ -830,17 +843,17 @@ graph in and only if it allows a free group action of some fixed finite group.
     In the setting of Proposition~\ref{prop:equivalence},
     let \( (\Gamma,\lambda) \) be a pre-simple voltage graph with
     associated voltage quantum graph
-    \( \tilde{A} = (\tilde{A}_g)_{g \in G} \). Then the derived graphs
+    \( \widetilde{A} = (\widetilde{A}_g)_{g \in G} \). Then the derived graphs
     agree under the identification
     \[
-        \Gamma^\lambda = \tilde{A} \rtimes_{\mathrm{triv}} \hat{G},
+        \Gamma^\lambda = \widetilde{A} \rtimes_{\mathrm{triv}} \widehat{G},
     \]
     where \( \Gamma^\lambda \) is the Gross--Tucker derived graph, and
-    \( \tilde{A} \rtimes_{\mathrm{triv}} \hat{G} \) is the derived
+    \( \widetilde{A} \rtimes_{\mathrm{triv}} \widehat{G} \) is the derived
     quantum graph of Definition~\ref{def:quantum-voltage-graph};
     here classical graphs on \( V \times G \) are identified with
     quantum graphs on \( (\mathbb{C}^V,\psi_V)
-    \rtimes_{\mathrm{triv}} \hat{G} \).
+    \rtimes_{\mathrm{triv}} \widehat{G} \).
 \end{proposition}
 
 Thus we can identify classical derived graphs with quantum graphs
@@ -859,7 +872,7 @@ and quantum derived graphs.
     Let \( (\mathbb{C}^V, \psi_V) \) be the quantum set associated with
     a finite set \( V \), and let
     \( G \) be a finite abelian group equipped with the trivial action
-    \( \mathrm{triv} \colon \hat{G} \to
+    \( \mathrm{triv} \colon \widehat{G} \to
     \operatorname{Aut}(\mathbb{C}^V, \psi_V) \).
     Then following hold.
     \begin{enumerate}
@@ -870,7 +883,7 @@ and quantum derived graphs.
             \]
             extends to an isomorphism
             \[
-                (\mathbb{C}^V, \psi_V) \rtimes_{\mathrm{triv}} \hat{G}
+                (\mathbb{C}^V, \psi_V) \rtimes_{\mathrm{triv}} \widehat{G}
                 \;\cong\; (\mathbb{C}^{V \times G}, \psi_{V \times G}),
             \]
             where the right-hand side is the quantum set associated
@@ -889,18 +902,18 @@ and quantum derived graphs.
             \]
 
         \item Likewise, the operator
-            \( E_\rtimes^* \tilde{A}_g E_\rtimes \colon B \to B \)
+            \( E_\rtimes^* \widetilde{A}_g E_\rtimes \colon B \to B \)
             from Definition~\ref{def:quantum-voltage-graph}
             corresponds to the classical graph on \( V \times G \)
             whose edges are exactly
             \[
                 (v,h) \to (w,k), \qquad h,k \in G,\ v
-                \xrightarrow{\tilde{A}_g} w,
+                \xrightarrow{\widetilde{A}_g} w,
             \]
-            where \( v \xrightarrow{\tilde{A}_g} w \) means that
+            where \( v \xrightarrow{\widetilde{A}_g} w \) means that
             \( v \) and \( w \) are joined by an edge in the classical
             graph corresponding to the adjacency matrix
-            \( \tilde{A}_g \).
+            \( \widetilde{A}_g \).
 
         \item Finally, suppose \( A_1, A_2 \) are quantum adjacency
             matrices corresponding, in the sense of
@@ -908,10 +921,10 @@ and quantum derived graphs.
             to classical graphs \( \Gamma_1, \Gamma_2 \) on
             \( V \times G \). Then
             \[
-                A_3 := m(A_1 \otimes A_2)\, m^*
+                A_3 = m(A_1 \otimes A_2)\, m^*
             \]
             is again a quantum adjacency matrix, and corresponds to
-            the classical graph \( \Gamma_3 := \Gamma_1 \cap \Gamma_2 \)
+            the classical graph \( \Gamma_3 = \Gamma_1 \cap \Gamma_2 \)
             with vertex set \( V \times G \) and edge set given by the
             intersection of the edge sets of \( \Gamma_1 \) and
             \( \Gamma_2 \).
@@ -933,29 +946,30 @@ and quantum derived graphs.
     \( (\mathbb{C}^n, \psi_n) \). The voltage graph \( (\Gamma,\lambda) \)
     is thus identified with a voltage quantum graph on
     \( (\mathbb{C}, \psi_1) \), given by a family
-    \( (\tilde{A}_g)_{g \in \mathbb{Z}_3} \) of quantum adjacency
+    \( (\widetilde{A}_g)_{g \in \mathbb{Z}_3} \) of quantum adjacency
     matrices on \( (\mathbb{C}, \psi_1) \). Since \( \Gamma \) has only
     a single edge, labeled by \( 1_{\mathbb{Z}_3} \), it is
     straightforward to check that \( (\Gamma,\lambda) \) corresponds
-    to the family \( \tilde{A} = (\tilde{A}_g)_{g \in \mathbb{Z}_3} \)
+    to the family \( \widetilde{A} = (\widetilde{A}_g)_{g \in \mathbb{Z}_3} \)
     given by
     \[
-        \tilde{A}_{0_{\mathbb{Z}_3}} = 0, \qquad
-        \tilde{A}_{1_{\mathbb{Z}_3}} = \operatorname{id}_{\mathbb{C}}, \qquad
-        \tilde{A}_{2_{\mathbb{Z}_3}} = 0.
+        \widetilde{A}_{0_{\mathbb{Z}_3}} = 0, \qquad
+        \widetilde{A}_{1_{\mathbb{Z}_3}} =
+        \operatorname{id}_{\mathbb{C}}, \qquad
+        \widetilde{A}_{2_{\mathbb{Z}_3}} = 0.
     \]
 
     In general one would need to verify that
-    \( (\tilde{A}_g)_{g \in \mathbb{Z}_3} \) satisfies the conditions
+    \( (\widetilde{A}_g)_{g \in \mathbb{Z}_3} \) satisfies the conditions
     of Definition~\ref{def:quantum-voltage-graph} in order to
     qualify as a voltage quantum graph; here, however, we are
-    regarding \( (\tilde{A}_g)_{g \in \mathbb{Z}_3} \) as a voltage
+    regarding \( (\widetilde{A}_g)_{g \in \mathbb{Z}_3} \) as a voltage
     quantum graph with respect to the trivial action \( \mathrm{triv} \)
     of \( \mathbb{Z}_3 \) on \( \mathbb{C} \), for which there is
     nothing left to check (see Proposition~\ref{prop:equivalence}).
 
     What is the derived quantum graph
-    \( \tilde{A} \rtimes_{\mathrm{triv}} \mathbb{Z}_3 \) of this
+    \( \widetilde{A} \rtimes_{\mathrm{triv}} \mathbb{Z}_3 \) of this
     voltage quantum graph? Recall first that the derived quantum
     graph lives on the crossed product quantum set
     \[
@@ -968,17 +982,17 @@ and quantum derived graphs.
     classical graphs on three vertices.
 
     By Definition~\ref{def:quantum-voltage-graph}, the derived
-    quantum graph \( A := \tilde{A} \rtimes_{\mathrm{triv}} \mathbb{Z}_3
+    quantum graph \( A = \widetilde{A} \rtimes_{\mathrm{triv}} \mathbb{Z}_3
     \colon \mathbb{C}^3 \to \mathbb{C}^3 \) on \( (\mathbb{C}^3, \psi_3) \)
     is given by
     \[
         A = \sum_{g \in \mathbb{Z}_3} m\big( X_g \otimes E_\rtimes^*
-        \tilde{A}_g E_\rtimes \big)\, m^*.
+        \widetilde{A}_g E_\rtimes \big)\, m^*.
     \]
     By parts (b) and (c) of
     Lemma~\ref{lem:correspondences},
     the quantum graphs \( X_g \) and
-    \( E_\rtimes^* \tilde{A}_g E_\rtimes \) correspond to the
+    \( E_\rtimes^* \widetilde{A}_g E_\rtimes \) correspond to the
     classical graphs on \( \{v_0,v_1,v_2\} \) shown in
     Figure~\ref{fig:Xg_graphs_example} and
     Figure~\ref{fig:EAE_graph_example}, respectively.
@@ -991,7 +1005,7 @@ and quantum derived graphs.
     By part (d) of
     Lemma~\ref{lem:correspondences}, the term
     \[
-        m\big( X_g \otimes E_\rtimes^* \tilde{A}_g E_\rtimes \big)\, m^*
+        m\big( X_g \otimes E_\rtimes^* \widetilde{A}_g E_\rtimes \big)\, m^*
     \]
     returns the adjacency matrix of the classical graph obtained by
     intersecting the graphs of
@@ -1000,7 +1014,8 @@ and quantum derived graphs.
     \( g = 1_{\mathbb{Z}_3} \) contributes to the derived quantum
     graph \( A \), so that
     \[
-        A = m\big( X_1 \otimes E_\rtimes^* \tilde{A}_1 E_\rtimes \big)\, m^*,
+        A = m\big( X_1 \otimes E_\rtimes^* \widetilde{A}_1 E_\rtimes
+        \big)\, m^*,
     \]
     and it is straightforward to check that this is exactly the
     derived graph \( \Gamma^\lambda \) from
@@ -1130,7 +1145,7 @@ in the ordinary sense.
     \textbf{Existence of a quantum isomorphism.}
     Set \( \mathcal{H} = \mathbb{C}^2 \). Let \( \{e_0,e_1,e_2,e_3\} \)
     denote the standard basis of minimal projections of
-    \( \mathbb{C}^4 \), and let \( \sigma_0 := I_2 \) together with
+    \( \mathbb{C}^4 \), and let \( \sigma_0 = I_2 \) together with
     the Pauli matrices \( \sigma_1,\sigma_2,\sigma_3 \) of
     Example~\ref{example:pauli-matrices} form the family
     \( \{\sigma_0,\sigma_1,\sigma_2,\sigma_3\} \subseteq U(2) \).
@@ -1183,20 +1198,21 @@ derived quantum graphs differing only by the choice of group action.
 
 \begin{theorem}[\textcite{tobolski26}, Theorem~5.2]
     \label{thm:quantum-iso-different-actions}
-    Let \( (\tilde{B}, \tilde\psi) \), the action
-    \( \hat\alpha \colon \hat{G} \to \operatorname{Aut}(\tilde{B},
-    \tilde\psi) \),
+    Let \( (\widetilde{B}, \widetilde\psi) \), the action
+    \( \widehat\alpha \colon \widehat{G} \to \operatorname{Aut}(\widetilde{B},
+    \widetilde\psi) \),
     and the crossed product
-    \( (\tilde{B} \rtimes_{\hat\alpha} \hat{G}, \psi_\rtimes) \) be as
-    introduced above, and let \( \tilde{A} = (\tilde{A}_g)_{g \in G} \)
-    be a voltage quantum graph on \( (\tilde{B}, \tilde\psi) \) with
-    respect to the action \( \hat\alpha \) of \( \hat{G} \). Then the
+    \( (\widetilde{B} \rtimes_{\widehat\alpha} \widehat{G},
+    \psi_\rtimes) \) be as
+    introduced above, and let \( \widetilde{A} = (\widetilde{A}_g)_{g \in G} \)
+    be a voltage quantum graph on \( (\widetilde{B}, \widetilde\psi) \) with
+    respect to the action \( \widehat\alpha \) of \( \widehat{G} \). Then the
     corresponding derived quantum graphs satisfy the quantum
     isomorphism
     \[
-        \tilde{A} \rtimes_{\hat\alpha} \hat{G}
+        \widetilde{A} \rtimes_{\widehat\alpha} \widehat{G}
         \;\cong_q\;
-        \tilde{A} \rtimes_{\mathrm{triv}} \hat{G}.
+        \widetilde{A} \rtimes_{\mathrm{triv}} \widehat{G}.
     \]
 \end{theorem}
 
@@ -1207,16 +1223,16 @@ genuine quantum graph, i.e. one that is not isomorphic to any classical graph.
 
 Theorem~\ref{thm:quantum-iso-different-actions} will be central to our
 strategy in Section~\ref{sec:classification-loopfree-undirected-m3}
-by choosing \( \hat\alpha \) to be
+by choosing \( \widehat\alpha \) to be
 the trivial action, we already know from
 Proposition~\ref{prop:equivalence} and
 Lemma~\ref{lem:correspondences} that
-\( \tilde{A}\rtimes_{\mathrm{triv}}\hat{G} \) is (isomorphic to) a
+\( \widetilde{A}\rtimes_{\mathrm{triv}}\widehat{G} \) is (isomorphic to) a
 \emph{classical} derived graph. The above theorem then lets us transport
-this classical realization back along any other action \( \hat\alpha \)
+this classical realization back along any other action \( \widehat\alpha \)
 we might prefer to work with, establishing a quantum isomorphism
 between the (possibly non-classical) derived quantum graph
-\( \tilde{A}\rtimes_{\hat\alpha}\hat{G} \) and a genuinely classical
+\( \widetilde{A}\rtimes_{\widehat\alpha}\widehat{G} \) and a genuinely classical
 graph, without having to construct that isomorphism by hand in each
 individual case. This is precisely the tool we will use to show that
 every one of the five equivalence classes of loop-free, undirected
@@ -1246,7 +1262,7 @@ subspace.
     edges} of the quantum graph \( A_V \) is defined as the dimension
     of \( V \):
     \[
-        \operatorname{q-edges}(A_V) := \dim(V).
+        \operatorname{q-edges}(A_V) = \dim(V).
     \]
 \end{definition}
 
@@ -1257,7 +1273,7 @@ subspace.
     graph on \( M_n (\mathbb{C}) \) corresponds uniquely to a subspace \( V
     \subseteq \mathfrak{gl}(n, \mathbb{C}) \) via
     \[
-        A = A_V := \sum_{s=1}^{\dim(V)} \xi_s \otimes \bar{\xi_s},
+        A = A_V = n^2 \sum_{s=1}^{\dim(V)} \xi_s \otimes \bar{\xi_s},
     \]
     where \( (\xi_1,\dots,\xi_{\dim(V)}) \) is any orthonormal basis
     of \( V \) with respect to the Hilbert--Schmidt inner product.
@@ -1267,7 +1283,7 @@ subspace.
         \item Has \( m = \dim(V) \) quantum edges;
         \item Has no loops if and only if \( V \subseteq
             \mathfrak{sl}(n) \);
-        \item Is undirected if and only if \( V = V^* := \{x^* \mid x
+        \item Is undirected if and only if \( V = V^* = \{x^* \mid x
             \in V\} \).
     \end{enumerate}
 
@@ -1282,6 +1298,13 @@ subspace.
     \ref{thm:gromada} will be called its
     \emph{Gromada subspace}.
 \end{def}
+
+\begin{remark}
+    The statement of Theorem~\ref{thm:gromada} differs from its
+    original formulation by a factor of \( n^2 \) in front of the
+    sum. This rescaling is necessary to account for the different
+    conventions used in the two works.
+\end{remark}
 
 % TODO: Write a remark on the theorem above
 
@@ -1453,14 +1476,14 @@ for reference throughout the remainder of the thesis.
             loop-free graph & \( V \subseteq \mathfrak{sl}(n) \) \\
             undirected graph & self-adjoint subspace \\
             graph isomorphism & \( V_1 = UV_2U^* \) for some \( U \in U(n) \) \\
-            group action & (dual) group action \( \hat\alpha \colon
-            \hat{G} \to \operatorname{Aut}(B,\psi) \) \\
-            % ??? & crossed product quantum set \( \tilde{B}
-            % \rtimes_{\hat\alpha} \hat{G} \) \\
+            group action & (dual) group action \( \widehat\alpha \colon
+            \widehat{G} \to \operatorname{Aut}(B,\psi) \) \\
+            % ??? & crossed product quantum set \( \widetilde{B}
+            % \rtimes_{\widehat\alpha} \widehat{G} \) \\
             voltage graph \( (\Gamma, \lambda) \) & voltage quantum
-            graph \( \tilde{A} = (\tilde{A}_g)_{g\in G} \) \\
+            graph \( \widetilde{A} = (\widetilde{A}_g)_{g\in G} \) \\
             derived graph \( \Gamma^\lambda \) & derived quantum
-            graph \( \tilde{A} \rtimes_{\hat\alpha} \hat{G} \) \\
+            graph \( \widetilde{A} \rtimes_{\widehat\alpha} \widehat{G} \) \\
             intersection of graphs & \( m(A_1 \otimes A_2)m^* \) \\
             isomorphism & quantum isomorphism \\
             \hline

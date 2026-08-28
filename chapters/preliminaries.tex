@@ -24,12 +24,14 @@ will be finite and abelian.
 \begin{definition}[Dual of a group, \textcite{rudin61}, Section 1.2]
     \label{def:dual-group}
     Let \( G \) be a finite abelian group. The \emph{dual group} \(
-    \hat{G} \) is the set of all homomorphisms from \( G \) into the torus \(
+    \widehat{G} \) is the set of all homomorphisms from \( G \) into
+    the torus \(
     \mathbb{T} \) with the group operation defined as
     \[
         \left( \varphi \psi \right)(g) = \varphi(g) \psi(g)
     \]
-    for all \( \varphi, \psi \in \hat{G} \) and \( g \in G\), where the latter
+    for all \( \varphi, \psi \in \widehat{G} \) and \( g \in G\),
+    where the latter
     multiplication takes place in \( \mathbb{C} \).
 \end{definition}
 
@@ -59,8 +61,8 @@ will be finite and abelian.
     \chi(g) \in \mu_{n} \) we get a
     different character. It is then easy to see that \( \chi: G \rightarrow
     \mathbb{T} \) such that \( \chi(g) = \exp\left( 2 \pi i / n \right) \)
-    generates this group, i.e. \( \hat{G} = \left\{ \chi, \chi^{2},
-    \dots, \chi^{n-1}, \chi^{n} = e_{\hat{G}} \right\} \).
+    generates this group, i.e. \( \widehat{G} = \left\{ \chi, \chi^{2},
+    \dots, \chi^{n-1}, \chi^{n} = e_{\widehat{G}} \right\} \).
 
     By the fundamental theorem of finite abelian
     groups (see \textcite[Section 5.2]{dummit04}), since every
@@ -81,7 +83,7 @@ will be finite and abelian.
 \begin{remark}
     \label{rem:no-canonical-isomorphism}
     While every finite abelian group \( G \) is self-dual, there is no
-    canonical isomorphism \( G \cong \hat{G} \): the isomorphism
+    canonical isomorphism \( G \cong \widehat{G} \): the isomorphism
     constructed in the proof of
     Proposition~\ref{prop:finite-abelian-self-dual} depends on a choice
     of generator for each cyclic factor, and different choices yield
@@ -91,26 +93,27 @@ will be finite and abelian.
     \mapsto \chi(g)) \), with no arbitrary choices involved.
 
     This distinction is the reason we consistently work with the dual
-    group \( \hat{G} \), rather than \( G \) itself, when defining
+    group \( \widehat{G} \), rather than \( G \) itself, when defining
     actions on quantum sets and crossed products later in this thesis
     (see e.g.\ Definition~\ref{def:crossed-product-quantum-set}). A
     group action \( \alpha \colon G \to \operatorname{Aut}(B,\psi) \)
     and its \emph{dual} counterpart
-    \( \hat\alpha \colon \hat{G} \to \operatorname{Aut}(B,\psi) \) are
-    related by an isomorphism \( G \cong \hat{G} \), but since this
-    isomorphism is not canonical, working with \( \hat\alpha \)
+    \( \widehat\alpha \colon \widehat{G} \to \operatorname{Aut}(B,\psi) \) are
+    related by an isomorphism \( G \cong \widehat{G} \), but since this
+    isomorphism is not canonical, working with \( \widehat\alpha \)
     directly avoids committing to an arbitrary identification.
     % More
     % substantively, the crossed product construction
-    % \( \tilde{B} \rtimes_{\hat\alpha} \hat{G} \) is built from unitaries
-    % \( u_\chi \) indexed by \emph{characters} \( \chi \in \hat{G} \)
+    % \( \widetilde{B} \rtimes_{\widehat\alpha} \widehat{G} \) is built
+    % from unitaries
+    % \( u_\chi \) indexed by \emph{characters} \( \chi \in \widehat{G} \)
     % rather than by elements of \( G \): these characters are precisely
     % the data needed to Fourier-decompose functions and operators on
-    % \( \tilde{B} \), generalizing the role played by the classical
+    % \( \widetilde{B} \), generalizing the role played by the classical
     % Fourier transform on \( C(G) \) for a group \( G \). Working with
-    % \( \hat{G} \) throughout thus keeps the connection to this
+    % \( \widehat{G} \) throughout thus keeps the connection to this
     % Fourier-theoretic picture explicit, rather than obscuring it behind
-    % a choice of isomorphism \( G \cong \hat{G} \) made once and for all.
+    % a choice of isomorphism \( G \cong \widehat{G} \) made once and for all.
 \end{remark}
 
 \section{\(C^{*}\)-algebras}
@@ -205,9 +208,9 @@ taken from \textcite{blackadar}.
     By the universal property of the tensor product, \( m \) extends uniquely
     to a linear map
     \[
-        \tilde{m} \colon A \otimes A \to A.
+        \widetilde{m} \colon A \otimes A \to A.
     \]
-    We will not distinguish between \( m \) and \( \tilde{m} \) and
+    We will not distinguish between \( m \) and \( \widetilde{m} \) and
     simply write \( m \), relying on context to distinguish between the two.
 \end{remark}
 
