@@ -963,7 +963,7 @@ and quantum derived graphs.
     \[
         \widetilde{A}_{0_{\mathbb{Z}_3}} = 0, \qquad
         \widetilde{A}_{1_{\mathbb{Z}_3}} =
-        \operatorname{id}_{\mathbb{C}}, \qquad
+        \operatorname{Id}_{\mathbb{C}}, \qquad
         \widetilde{A}_{2_{\mathbb{Z}_3}} = 0.
     \]
 
@@ -983,7 +983,7 @@ and quantum derived graphs.
     \[
         (\mathbb{C}, \psi_1) \rtimes_{\mathrm{triv}} \mathbb{Z}_3.
     \]
-    By part (a) of
+    By part (1) of
     Lemma~\ref{lem:correspondences},
     this quantum set is isomorphic to \( (\mathbb{C}^3, \psi_3) \), and
     quantum graphs on \( (\mathbb{C}^3, \psi_3) \) correspond to
@@ -997,7 +997,7 @@ and quantum derived graphs.
         A = \sum_{g \in \mathbb{Z}_3} m\big( X_g \otimes E_\rtimes^*
         \widetilde{A}_g E_\rtimes \big)\, m^*.
     \]
-    By parts (b) and (c) of
+    By parts (2) and (3) of
     Lemma~\ref{lem:correspondences},
     the quantum graphs \( X_g \) and
     \( E_\rtimes^* \widetilde{A}_g E_\rtimes \) correspond to the
@@ -1009,7 +1009,7 @@ and quantum derived graphs.
 
     \input{graphs/example_EAE}
 
-    By part (d) of
+    By part (4) of
     Lemma~\ref{lem:correspondences}, the term
     \[
         m\big( X_g \otimes E_\rtimes^* \widetilde{A}_g E_\rtimes \big)\, m^*
@@ -1378,9 +1378,9 @@ subspace.
 
 \begin{remark}
     The statement of Theorem~\ref{thm:gromada} differs from its
-    original formulation by a factor of \( n^2 \) in front of the
-    sum. This rescaling is necessary to account for the different
-    conventions used in the two works.
+    original formulation by a factor of \( n^2 \) and the choice of inner
+    product. This rescaling accounts for differing conventions in the
+    literature.
 \end{remark}
 
 Before applying this correspondence, it will be convenient to have a
@@ -1555,6 +1555,8 @@ for reference throughout the remainder of the thesis.
         loop-free graph & \( m(A \otimes \operatorname{Id}) m^* = 0
         \), \( V \subseteq \mathfrak{sl}(n) \) \\
         undirected graph & \( A = A^* \), \( V = V^* \) \\
+        number of edges/vertices & number of quantum edges
+        \( \operatorname{q\text{-}edges}(A_V) = \dim(V) \) \\
         \hline
         \multicolumn{2}{l}{\emph{Symmetry \& Isomorphism}} \\
         \hline
@@ -1575,6 +1577,6 @@ for reference throughout the remainder of the thesis.
         \hline
     \end{tabular}
     \caption{A dictionary between classical combinatorial notions and
-    their quantum counterparts, as developed throughout this thesis.}
+    their quantum counterparts.}
     \label{fig:classical-quantum-dictionary}
 \end{figure}
