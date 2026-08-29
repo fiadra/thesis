@@ -172,7 +172,7 @@ triplesToTest = {
 },
 
 {
-  "Only 1- and 2- cycles",
+  "Only 1- and 2- cycles and a 1-loop",
   {{0,0,0},
    {0,0,0},
    {0,0,0}},
@@ -185,7 +185,7 @@ triplesToTest = {
 },
 
 {
-  "Only 1- and 2- cycles",
+  "Only 1- and 2- cycles and a 1-loop, and a 2-loop going in the other direction",
   {{0,0,0},
    {0,0,0},
    {0,0,0}},
@@ -198,7 +198,7 @@ triplesToTest = {
 },
 
 {
-  "Only 1- cycles and all 2's",
+  "Only 1- cycles and all 2's, and a 1-triangle",
   {{0,0,0},
    {0,0,0},
    {0,0,0}},
