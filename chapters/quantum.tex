@@ -1351,7 +1351,9 @@ subspace.
         A = n^2 \sum_{s=1}^{\dim(V)} \xi_s \otimes \bar{\xi_s},
     \]
     where \( (\xi_1,\dots,\xi_{\dim(V)}) \) is any orthonormal basis
-    of \( V \) with respect to the Hilbert--Schmidt inner product.
+    of \( V \) with respect to the inner product on the quantum set
+    \( (M_n (\mathbb{C}), \psi_n) \), i.e. \( \left\langle a, b
+    \right\rangle_{\psi_n} = n \operatorname{Tr}(a^* b) \).
 
     Furthermore, the quantum graph \( A \):
     \begin{enumerate}
@@ -1471,7 +1473,8 @@ By the above lemma, we may regard any self-adjoint
     \label{rem:counting-vertices-edges}
     For a quantum set \( (B,\psi) \), it is tempting to call the
     minimal central projections of \( B \) (i.e.\ the matrix blocks
-    \( M_{n_i} \) in a decomposition \( B \cong \bigoplus_i M_{n_i} \))
+        \( M_{n_i} (\mathbb{C}) \) in a decomposition \( B \cong
+    \bigoplus_i M_{n_i} (\mathbb{C}) \))
     its \emph{vertices}. This works well enough for classical sets,
     where \( B = \mathbb{C}^n \) decomposes into \( n \) copies of
     \( M_1 (\mathbb{C}) = \mathbb{C} \), recovering the usual \( n \) vertices.
