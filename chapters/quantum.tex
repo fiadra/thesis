@@ -544,7 +544,7 @@ adjacency matrix and a quantum graph.
         \item an \emph{edge projection}, i.e. a projection \(
             P \in B \otimes B^{\operatorname{op}} \), see
             \textcite{musto18},
-        \item a \( B' \) -- \( B' \)-bimodule \( S \subseteq
+        \item a \( B' - B' \)-bimodule \( S \subseteq
             B(\mathcal{H}) \), see \textcite{weaver2010}.
             % \item linear subspaces \( V \subseteq M_{3}(\mathbb{C}) \), see
             %     \textcite{gromada22}.
@@ -655,8 +655,7 @@ admitting a free action of a finite group.
     \( \operatorname{Aut}(\Gamma) \).
 \end{definition}
 
-% TODO: give a reference
-\begin{definition}[Group action on a graph]
+\begin{definition}[Group action on a graph, \textcite{godsil01}, Section 2.1]
     \label{def:group-action-on-graph}
     Let \( \Gamma = (V,E) \) be a graph and let \( G \) be a group. A
     \emph{group action} of \( G \) on \( \Gamma \) is a group
@@ -670,8 +669,7 @@ admitting a free action of a finite group.
     \( v \in V \) implies \( g = e_G \).
 \end{definition}
 
-% TODO: give a reference
-\begin{definition}[Quotient graph]
+\begin{definition}[Quotient graph, \textcite{godsil01}, Section 9.3]
     \label{def:quotient-graph}
     Let \( \Gamma = (V,E) \) be a graph and let \( G \) act on
     \( \Gamma \). The \emph{quotient graph} \( \Gamma/G \) is the
@@ -680,6 +678,8 @@ admitting a free action of a finite group.
     \( [v] \) whenever \( (u',v') \in E \) for some
     \( u' \in [u] \), \( v' \in [v] \).
 \end{definition}
+
+These notions allow us to state the following fundamental reconstruction result.
 
 \begin{theorem}[Gross and Tucker theorem, \textcite{gross87}, Theorem 2.2.2]
     \label{thm:gross-and-tucker}
@@ -696,6 +696,17 @@ up to isomorphism: recovering \( \Gamma \) from
 \( \widetilde\Gamma \) amounts to nothing more than quotienting by the
 group action. However, this is not enough to recover the voltage labelling
 \( \lambda \), as different labellings might create isomorphic derived graphs.
+
+\begin{remark}
+    The freeness hypothesis is essential: if a non-identity element
+    of \( G \) fixes
+    a vertex, the natural candidate for a voltage assignment fails to
+    be well-defined.
+\end{remark}
+
+The following figures present examples of voltage graphs together
+with their derived graphs. The colouring of vertices and edges
+indicates the corresponding group element (voltage).
 
 \input{graphs/examplegraphs}
 
@@ -866,7 +877,6 @@ graphs that happen to be derived graphs.
 The lemma below lets us better understand the correspondence between classical
 and quantum derived graphs.
 
-%% TODO: Napisac czym jest E i E*
 \begin{lemma}[\textcite{tobolski26}, Lemma 4.11]
     \label{lem:correspondences}
     Let \( (\mathbb{C}^V, \psi_V) \) be the quantum set associated with
@@ -1001,7 +1011,6 @@ and quantum derived graphs.
 
     \input{graphs/example_EAE}
 
-    % TODO: By what?
     By part (d) of
     Lemma~\ref{lem:correspondences}, the term
     \[
@@ -1237,9 +1246,8 @@ graph, without having to construct that isomorphism by hand in each
 individual case. This is precisely the tool we will use to show that
 every one of the five equivalence classes of loop-free, undirected
 quantum graphs on \( (M_{3}(\mathbb{C}), 3\operatorname{Tr}) \) established in
-Corollary~\ref{cor:five-classes} is quantum isomorphic to a classical
+Theorem~\ref{thm:4matrices} is quantum isomorphic to a classical
 graph on nine vertices.
-% TODO: what corollary?
 
 \section{Gromada's theorem}
 \label{sec:gromada-theorem}
@@ -1305,8 +1313,6 @@ subspace.
     sum. This rescaling is necessary to account for the different
     conventions used in the two works.
 \end{remark}
-
-% TODO: Write a remark on the theorem above
 
 Before applying this correspondence, it will be convenient to have a
 more concrete handle on subspaces satisfying \( V = V^* \), since this
@@ -1394,7 +1400,6 @@ By the above lemma, we may regard any self-adjoint
 \( V \subseteq \mathfrak{sl}(n) \) as a real subspace of
 \( \mathfrak{sl}(n) \).
 
-% TODO: Rewrite this remark with new definitions
 \begin{remark}[\textcite{gromada22}, Section 2.3]
     \label{rem:counting-vertices-edges}
     For a quantum set \( (B,\psi) \), it is tempting to call the
@@ -1460,37 +1465,46 @@ for reference throughout the remainder of the thesis.
 % classical and purely quantum graphs.
 
 % TODO: write more stuff
-\begin{figure}[ht]
-    \begin{center}
-        \footnotesize
-        \renewcommand{\arraystretch}{1.15}
-        \begin{tabular}{| c | c |}
-            \hline
-            classical concept & quantum generalization \\
-            \hline
-            finite set & quantum set \( (B, \psi) \) \\
-            bijection & quantum set isomorphism \\
-            % vertex & minimal projection \( e_{ii} \in M_n (\mathbb{C}) \) \\
-            directed graph, adjacency matrix \( A \) & quantum graph,
-            subspace \( V \subseteq \mathfrak{gl}(n, \mathbb{C}) \) \\
-            loop-free graph & \( V \subseteq \mathfrak{sl}(n) \) \\
-            undirected graph & self-adjoint subspace \\
-            graph isomorphism & \( V_1 = UV_2U^* \) for some \( U \in U(n) \) \\
-            group action & (dual) group action \( \widehat\alpha \colon
-            \widehat{G} \to \operatorname{Aut}(B,\psi) \) \\
-            % ??? & crossed product quantum set \( \widetilde{B}
-            % \rtimes_{\widehat\alpha} \widehat{G} \) \\
-            voltage graph \( (\Gamma, \lambda) \) & voltage quantum
-            graph \( \widetilde{A} = (\widetilde{A}_g)_{g\in G} \) \\
-            derived graph \( \Gamma^\lambda \) & derived quantum
-            graph \( \widetilde{A} \rtimes_{\widehat\alpha} \widehat{G} \) \\
-            intersection of graphs & \( m(A_1 \otimes A_2)m^* \) \\
-            isomorphism & quantum isomorphism \\
-            \hline
-        \end{tabular}
-        \caption{A dictionary between classical combinatorial notions
-            and their quantum counterparts, as developed throughout this
-        thesis.}
-        \label{fig:classical-quantum-dictionary}
-    \end{center}
+\begin{figure}[htbp]
+    \centering
+    \footnotesize
+    \renewcommand{\arraystretch}{1.15}
+    \begin{tabular}{|l|l|}
+        \hline
+        \textbf{Classical concept} & \textbf{Quantum generalization} \\
+        \hline
+        \multicolumn{2}{l}{\emph{Foundational Framework}} \\
+        \hline
+        finite set & quantum set \( (B, \psi) \) \\
+        bijection & quantum set isomorphism \\
+        \hline
+        \multicolumn{2}{l}{\emph{Graph Structure \& Properties}} \\
+        \hline
+        directed graph, adjacency matrix \( A \) & quantum graph \( A
+        \), subspace \( V \subseteq \mathfrak{gl}(n, \mathbb{C}) \) \\
+        loop-free graph & \( m(A \otimes \operatorname{Id}) m^* = 0
+        \), \( V \subseteq \mathfrak{sl}(n) \) \\
+        undirected graph & \( A = A^* \), \( V = V^* \) \\
+        \hline
+        \multicolumn{2}{l}{\emph{Symmetry \& Isomorphism}} \\
+        \hline
+        graph isomorphism & \( V_1 = UV_2U^* \) for some \( U \in SU(n) \) \\
+        group action & (dual) group action \( \widehat\alpha \colon
+        \widehat{G} \to \operatorname{Aut}(B,\psi) \) \\
+        \hline
+        \multicolumn{2}{l}{\emph{Coverings \& Quotients}} \\
+        \hline
+        voltage graph \( (\Gamma, \lambda) \) & voltage quantum graph
+        \( \widetilde{A} = (\widetilde{A}_g)_{g\in G} \) \\
+        derived graph \( \Gamma^\lambda \) & derived quantum graph \(
+        \widetilde{A} \rtimes_{\widehat\alpha} \widehat{G} \) \\
+        \hline
+        \multicolumn{2}{l}{\emph{Graph Operations}} \\
+        \hline
+        intersection of graphs & \( m(A_1 \otimes A_2)m^* \) \\
+        \hline
+    \end{tabular}
+    \caption{A dictionary between classical combinatorial notions and
+    their quantum counterparts, as developed throughout this thesis.}
+    \label{fig:classical-quantum-dictionary}
 \end{figure}
