@@ -87,19 +87,22 @@ duality is the finite-dimensional analogue of the relation between
 position and momentum operators, and is a fundamental feature of the
 generalised Pauli matrices.
 
+To simplify later calculations, we first establish the following
+auxiliary lemma.
+
 \begin{lemma}
     \label{lemma:qp-commutation}
-    For all \( k, \ell \in \{0,1,2\} \), the generalised Pauli
+    For all \( a, b \in \mathbb{Z} \), the generalised Pauli
     matrices \( P, Q \) satisfy
     \[
-        Q^k P^\ell = \omega^{-k\ell}\, P^\ell Q^k.
+        Q^a P^b = \omega^{-ab}\, P^b Q^a.
     \]
 \end{lemma}
 
 \begin{proof}
     We first establish the base case
-    \( k=\ell=1 \), namely \( QP = \omega^{-1}PQ \), and then extend
-    to general \( k,\ell \) by induction.
+    \( a=b=1 \), namely \( QP = \omega^{-1}PQ \), and then extend
+    to general \( a, b \) by induction.
 
     For the base case, apply both sides to a basis vector \( e_i \).
     Since \( Pe_i = \omega^i e_i \),
@@ -114,31 +117,49 @@ generalised Pauli matrices.
     \( i \), so \( QP = \omega^{-1} PQ \), which is exactly
     \( Q^1P^1 = \omega^{-1\cdot 1} P^1Q^1 \).
 
-    We now show \( Q^kP = \omega^{-k}PQ^k \) for every
-    \( k \in \{0,1,2\} \), by induction on \( k \). The case \( k=0 \)
-    is trivial, and \( k=1 \) is the base case above. For the
-    inductive step, suppose \( Q^kP = \omega^{-k}PQ^k \) holds; then
+    We now show \( Q^aP = \omega^{-a}PQ^a \) for every
+    \( a \in \mathbb{Z} \), by induction on \( a \). The case \( a=0 \)
+    is trivial, and \( a=1 \) is the base case above. For the forward
+    inductive step, suppose \( Q^aP = \omega^{-a}PQ^a \) holds; then
     \[
-        Q^{k+1}P = Q(Q^kP) = Q(\omega^{-k}PQ^k) = \omega^{-k}(QP)Q^k
-        = \omega^{-k}(\omega^{-1}PQ)Q^k = \omega^{-(k+1)}PQ^{k+1},
+        Q^{a+1}P = Q(Q^aP) = Q(\omega^{-a}PQ^a) = \omega^{-a}(QP)Q^a
+        = \omega^{-a}(\omega^{-1}PQ)Q^a = \omega^{-(a+1)}PQ^{a+1},
     \]
     using the base case \( QP=\omega^{-1}PQ \) in the second-to-last
-    step. This proves \( Q^kP = \omega^{-k}PQ^k \) for all
-    \( k \in \{0,1,2\} \).
-
-    Finally, we extend to general \( \ell \) by an analogous induction
-    on \( \ell \), using the relation \( Q^kP = \omega^{-k}PQ^k \) just
-    established as the new base case. The case \( \ell=0 \) is
-    trivial. For the inductive step, suppose
-    \( Q^kP^\ell = \omega^{-k\ell}P^\ell Q^k \) holds; then
+    step. For the backward inductive step, we multiply the base equation
+    \( QP = \omega^{-1}PQ \) on the left and right by \( Q^{-1} \) to obtain
+    \( P Q^{-1} = \omega^{-1} Q^{-1} P \), which rearranges to
+    \( Q^{-1}P = \omega PQ^{-1} \). Suppose \( Q^aP = \omega^{-a}PQ^a
+    \) holds; then
     \[
-        Q^kP^{\ell+1} = (Q^kP^\ell)P = \omega^{-k\ell}P^\ell(Q^kP)
-        = \omega^{-k\ell}P^\ell(\omega^{-k}PQ^k)
-        = \omega^{-k(\ell+1)}P^{\ell+1}Q^k,
+        Q^{a-1}P = Q^{-1}(Q^aP) = Q^{-1}(\omega^{-a}PQ^a) =
+        \omega^{-a}(Q^{-1}P)Q^a
+        = \omega^{-a}(\omega PQ^{-1})Q^a = \omega^{-(a-1)}PQ^{a-1}.
     \]
-    completing the induction. Hence
-    \( Q^kP^\ell = \omega^{-k\ell}P^\ell Q^k \) for all
-    \( k,\ell \in \{0,1,2\} \).
+    This proves \( Q^aP = \omega^{-a}PQ^a \) for all \( a \in \mathbb{Z} \).
+
+    Finally, we extend to general \( b \) by an analogous induction
+    on \( b \), using the relation \( Q^aP = \omega^{-a}PQ^a \) just
+    established as the new base case. The case \( b=0 \) is
+    trivial. For the forward inductive step, suppose
+    \( Q^aP^b = \omega^{-ab}P^b Q^a \) holds; then
+    \[
+        Q^aP^{b+1} = (Q^aP^b)P = \omega^{-ab}P^b(Q^aP)
+        = \omega^{-ab}P^b(\omega^{-a}PQ^a)
+        = \omega^{-a(b+1)}P^{b+1}Q^a,
+    \]
+    completing the forward induction. For the backward inductive step,
+    we multiply the relation \( Q^aP = \omega^{-a}PQ^a \) on the left and right
+    by \( P^{-1} \) to obtain \( P^{-1}Q^a = \omega^{-a}Q^aP^{-1} \), meaning
+    \( Q^aP^{-1} = \omega^a P^{-1}Q^a \). Suppose \( Q^aP^b =
+    \omega^{-ab}P^b Q^a \) holds; then
+    \[
+        Q^aP^{b-1} = (Q^aP^b)P^{-1} = \omega^{-ab}P^b(Q^aP^{-1})
+        = \omega^{-ab}P^b(\omega^a P^{-1}Q^a)
+        = \omega^{-a(b-1)}P^{b-1}Q^a,
+    \]
+    completing the induction. Hence \( Q^aP^b = \omega^{-ab}P^b Q^a
+    \) for all \( a,b \in \mathbb{Z} \).
 \end{proof}
 
 \begin{lemma}
@@ -149,55 +170,67 @@ generalised Pauli matrices.
     \operatorname{Tr}(A^*B) \).
 \end{lemma}
 
-% TODO: Rewrite this with 3-a, 3-b
 \begin{proof}
-    There are \( 3^2 = 9 \) matrices of the form \( P^aQ^b \), matching
-    \( \dim_{\mathbb{C}} M_{3}(\mathbb{C}) = 9 \); it therefore suffices to
-    show that they are pairwise orthogonal.
+    Since \( \dim_{\mathbb{C}} M_{3}(\mathbb{C}) = 9 \) and there are
+    exactly \( 3^2 = 9 \) matrices of the form \( P^aQ^b \) for \(
+    a,b \in \{0,1,2\} \), it suffices to show that they are pairwise orthogonal.
 
-    Since \( P^* = P^{-1} \) and \( Q^* = Q^{-1} \), we have
-    \( (P^aQ^b)^* = Q^{-b}P^{-a} \), so
+    Recall that \( P \) and \( Q \) are unitary matrices, so \( P^* =
+    P^{-1} \) and \( Q^* = Q^{-1} \). This gives \( (P^aQ^b)^* =
+    (Q^b)^*(P^a)^* = Q^{-b}P^{-a} \). The Hilbert--Schmidt inner
+    product expands as
     \[
         \langle P^aQ^b, P^cQ^d \rangle
+        = \operatorname{Tr}\big((P^aQ^b)^*P^cQ^d\big)
         = \operatorname{Tr}\big(Q^{-b}P^{-a}P^cQ^d\big)
         = \operatorname{Tr}\big(Q^{-b}P^{c-a}Q^d\big).
     \]
-    Using the commutation relation
-    \( Q^kP^\ell = \omega^{-k\ell}P^\ell Q^k \) from
-    Lemma~\ref{lemma:qp-commutation},
-    we obtain
+    Because Lemma~\ref{lemma:qp-commutation} holds for all integer
+    exponents, we can directly apply it to the terms \( Q^{-b} \) and
+    \( P^{c-a} \):
     \[
-        Q^{-b}P^{c-a} = \omega^{b(c-a)}\, P^{c-a}Q^{-b},
+        Q^{-b}P^{c-a} = \omega^{-(-b)(c-a)}\, P^{c-a}Q^{-b} =
+        \omega^{b(c-a)}\, P^{c-a}Q^{-b}.
     \]
-    and hence
+    Substituting this back into the trace yields
     \[
         \langle P^aQ^b, P^cQ^d \rangle
+        = \operatorname{Tr}\big(\omega^{b(c-a)} P^{c-a}Q^{-b}Q^d\big)
         = \omega^{b(c-a)} \operatorname{Tr}\big(P^{c-a}Q^{d-b}\big).
     \]
 
-    If \( b \neq d \), then \( Q^{d-b} \) is a nontrivial permutation
-    matrix, so \( P^{c-a}Q^{d-b} \) has zero diagonal entries and
-    \( \operatorname{Tr}(P^{c-a}Q^{d-b}) = 0 \).
+    To evaluate this trace, we consider two cases. First, if \( b
+    \neq d \), the exponent \( d-b \in \{-2,-1,1,2\} \), meaning \(
+    Q^{d-b} \) is a nontrivial cyclic permutation matrix. Multiplying
+    the diagonal matrix \( P^{c-a} \) by \( Q^{d-b} \) results in a
+    matrix with zeros everywhere on the main diagonal, forcing \(
+    \operatorname{Tr}(P^{c-a}Q^{d-b}) = 0 \).
 
-    If \( b = d \), then
+    Second, if \( b = d \), then \( Q^{d-b} = Q^0 = I \), and the
+    inner product simplifies to
     \[
         \langle P^aQ^b, P^cQ^b \rangle = \operatorname{Tr}(P^{c-a}).
     \]
-    Since \( P^{c-a} = \operatorname{diag}(1,\omega^{c-a},\omega^{2(c-a)}) \),
+    Since \( P^{c-a} = \operatorname{diag}(1, \omega^{c-a},
+    \omega^{2(c-a)}) \), its trace is given by a geometric series:
     \[
         \operatorname{Tr}(P^{c-a}) = 1 + \omega^{c-a} + \omega^{2(c-a)}
         =
-        \begin{cases} 3, & a = c, \\ 0, & a \neq c,
+        \begin{cases}
+            3, & a = c, \\
+            0, & a \neq c.
         \end{cases}
     \]
-    using \( 1 + \omega + \omega^2 = 0 \).
+    (The latter case follows from the identity \( 1 + \omega +
+        \omega^2 = 0 \), which applies since \( a \neq c \) implies \(
+    c-a \not\equiv 0 \pmod 3 \)).
 
-    Combining both cases gives
+    Combining both cases, we conclude that
     \[
-        \langle P^aQ^b, P^cQ^d \rangle = 3\,\delta_{ac}\delta_{bd},
+        \langle P^aQ^b, P^cQ^d \rangle = 3\,\delta_{ac}\delta_{bd}.
     \]
-    so the nine matrices \( P^aQ^b \) are pairwise orthogonal, and
-    therefore form an orthogonal basis of \( M_{3}(\mathbb{C}) \).
+    Therefore, the nine matrices \( P^aQ^b \) are pairwise orthogonal
+    and form an orthogonal basis for \( M_{3}(\mathbb{C}) \).
 \end{proof}
 
 Excluding the identity matrix from this basis leaves eight traceless
@@ -237,17 +270,25 @@ undirected quantum graphs on \( M_{3}(\mathbb{C}) \), rather than all of them.
 \subsection{Fundamental adjoint-invariant pairs}
 \label{subsec:fundamental-adjoint-invariant-pairs}
 
-Since \( P \) and \( Q \) are unitary (\( P^* = P^2 \), \( Q^* = Q^2 \)),
-the conjugate transpose of an arbitrary generator satisfies
+Since \( P \) and \( Q \) are unitary, we have \( P^* = P^{-1} \) and
+\( Q^* = Q^{-1} \), meaning the conjugate transpose of an arbitrary
+basis matrix is \( (P^aQ^b)^* = Q^{-b}P^{-a} \). By
+Lemma~\ref{lemma:qp-commutation}, we can commute these matrices to obtain
+\[
+    Q^{-b}P^{-a} = \omega^{-(-b)(-a)} P^{-a}Q^{-b} = \omega^{-ab} P^{-a}Q^{-b}.
+\]
+Because \( P^3 = Q^3 = I \), we can rewrite the negative exponents
+modulo 3, yielding the relation
 \[
     (P^aQ^b)^* = \omega^{-ab}\, P^{3-a}Q^{3-b}.
 \]
-Because any self-adjoint subspace spanned by a subset of
-\( \{P^aQ^b\} \) must be closed under conjugate transposition, each
-basis generator \( P^aQ^b \) must appear alongside
-its adjoint partner \( P^{3-a}Q^{3-b} \). This partitions
-the eight non-identity generators into four mutually exclusive,
-adjoint-invariant blocks of dimension two:
+For any subspace spanned by a subset of \( \{P^aQ^b\} \) to be
+self-adjoint, it must be closed under conjugate transposition.
+Consequently, whenever \( P^aQ^b \) is included in the generating
+set, its conjugate counterpart \( P^{3-a}Q^{3-b} \) must also be
+included. This pairing naturally partitions the eight non-identity
+basis matrices into four disjoint, adjoint-invariant subspaces of dimension two:
+
 \begin{align*}
     \mathcal{P}_1 &= \{P, P^2\} && \text{(purely diagonal block)} \\
     \mathcal{P}_2 &= \{Q, Q^2\} && \text{(purely shift block)} \\
@@ -287,42 +328,45 @@ matrix. Recall that, by~\ref{dft-relations},
 \end{lemma}
 
 \begin{proof}
-    Since \( F \) is unitary and \( FPF^* = Q^2 \), \( FQF^* = P \),
+    Since \( F \) is unitary and satisfies \( FPF^* = Q^2 \) and \(
+    FQF^* = P \),
     conjugation by \( F \) is a \( * \)-automorphism sending
-    \( P \mapsto Q^2 \) and \( Q \mapsto P \), and hence
+    \( P \mapsto Q^2 \) and \( Q \mapsto P \). Hence, for any
+    integers \( a,b \),
     \[
-        F(P^aQ^b)F^* = (FPF^*)^a(FQF^*)^b = Q^{2a}P^b
+        F(P^aQ^b)F^* = (FPF^*)^a(FQF^*)^b = Q^{2a}P^b.
     \]
-    for any \( a,b \). Applying this to each generator:
+    Applying this to the basis matrices of \( \mathcal{P}_1 \), we have
     \[
         FPF^* = Q^2, \qquad FP^2F^* = Q^4 = Q,
     \]
-    so \( F\mathcal{P}_1F^* = F\{P,P^2\}F^* = \{Q^2,Q\} = \mathcal{P}_2 \),
-    and since \( F^2 \) conjugation is an involution (as
-        \( F\mathcal{P}_1F^*=\mathcal{P}_2 \) is equivalent to
-        \( F\mathcal{P}_2F^*=\mathcal{P}_1 \), by applying \( F(\cdot)F^* \)
-    to both sides and using \( F^*F=I \)), we also get
-    \( F\mathcal{P}_2F^* = \mathcal{P}_1 \).
+    so \( F\mathcal{P}_1F^* = \operatorname{span}\{Q^2,Q\} = \mathcal{P}_2 \).
+    Because conjugation by \( F^2 \) maps \( P \mapsto Q^2 \mapsto
+    P^2 \) and \( P^2 \mapsto Q \mapsto P \), it preserves the
+    subspace \( \mathcal{P}_1 \). Therefore, applying \( F(\cdot)F^*
+    \) to both sides of \( F\mathcal{P}_1F^* = \mathcal{P}_2 \)
+    yields \( F\mathcal{P}_2F^* = \mathcal{P}_1 \).
 
-    Similarly,
+    Similarly, applying the \( F \)-conjugation to the generators of
+    \( \mathcal{P}_3 \) yields
     \[
         F(PQ)F^* = Q^2P, \qquad F(P^2Q^2)F^* = Q^4P^2 = QP^2.
     \]
     Using the commutation relation
-    \( Q^kP^\ell = \omega^{-k\ell}P^\ell Q^k \) from
-    Lemma~\ref{lemma:qp-commutation}, we rewrite
+    \( Q^aP^b = \omega^{-ab}P^b Q^a \) from
+    Lemma~\ref{lemma:qp-commutation}, we can rewrite
     \( Q^2P = \omega^{-2}PQ^2 = \omega PQ^2 \) and
-    \( QP^2 = \omega^{-2}P^2Q = \omega P^2Q \), so
+    \( QP^2 = \omega^{-2}P^2Q = \omega P^2Q \). Thus,
     \[
         F(PQ)F^* = \omega\, PQ^2, \qquad F(P^2Q^2)F^* = \omega\, P^2Q.
     \]
-    Since scalar multiples do not affect spans,
+    Since scalar multiples do not affect the linear span,
     \[
-        F\mathcal{P}_3F^* = F\{PQ,P^2Q^2\}F^*
+        F\mathcal{P}_3F^*
         = \operatorname{span}\{\omega PQ^2, \omega P^2Q\}
-        = \{PQ^2,P^2Q\} = \mathcal{P}_4,
+        = \operatorname{span}\{PQ^2,P^2Q\} = \mathcal{P}_4.
     \]
-    and, applying \( F(\cdot)F^* \) once more as above,
+    By the same logic as before, applying \( F(\cdot)F^* \) once more gives
     \( F\mathcal{P}_4F^* = \mathcal{P}_3 \).
 \end{proof}
 
@@ -498,7 +542,7 @@ above), while conjugation by \( S \) induces the \( 3 \)-cycle
     would have index \( 2 \) in \( A_4 \) and hence be normal, but the
     only normal subgroups of \( A_4 \) are the trivial subgroup, the
     Klein four-group \( V_4 = \{e,(12)(34),(13)(24),(14)(23)\} \), and
-    \( A_4 \) itself -- none of order \( 6 \).
+    \( A_4 \) itself, none of order \( 6 \).
 \end{remark}
 
 \begin{proposition}\label{prop:full-equivalence}
@@ -593,14 +637,13 @@ above), while conjugation by \( S \) induces the \( 3 \)-cycle
 generalised Pauli basis}
 \label{sec:classification-loopfree-undirected-m3}
 
-% Corollary 5.3
 In this section we exhibit, for each possible number of quantum edges
 \( m \in \left\{ 0, 2, 4, 6, 8 \right\} \), a representative quantum
 graph among those classified in
-Section~\ref{sec:classification-self-adjoint-subspaces} -- i.e.\
+Section~\ref{sec:classification-self-adjoint-subspaces}, i.e.\
 among the loop-free, undirected quantum graphs on \( M_{3}(\mathbb{C}) \) whose
 Gromada subspace is a direct sum of the blocks
-\( \mathcal{P}_1,\ldots,\mathcal{P}_4 \) -- realized as a derived
+\( \mathcal{P}_1,\ldots,\mathcal{P}_4 \), realized as a derived
 quantum graph of a voltage quantum graph. As already emphasized in
 Section~\ref{sec:classification-self-adjoint-subspaces}, this
 covers only part of the loop-free, undirected quantum graphs on
@@ -662,6 +705,15 @@ every voltage \( 0,1,2 \) between every pair of vertices, gives
 
 \input{graphs/ourgraphs}
 
+Since each of these voltage quantum graphs arises, via
+Theorem~\ref{thm:quantum-iso-different-actions}, as a
+derived quantum graph of an classical voltage graph, the
+discussion above in fact exhibits an explicit quantum isomorphism
+between each of the four representative quantum graphs of
+Theorem~\ref{thm:4matrices} and a classical derived graph on the
+nine vertices \( \{u,v,w\} \times \mathbb{Z}_3 \) shown on the
+right of each figure.
+
 \begin{proof}[Proof of Theorem~\ref{thm:4matrices}]
     By \ref{prop:subspace-classification-by-dimension}, every \( m
     \)-dimensional Gromada subspace is classified up to unitary
@@ -700,43 +752,43 @@ every voltage \( 0,1,2 \) between every pair of vertices, gives
 \end{proof}
 
 % TODO: Look at those two paragraphs
+\begin{remark}
+    \label{rem:scope-representative-graphs}
+    We emphasize that this result applies exclusively to the
+    representative graphs constructed in this section. Specifically,
+    it concerns only those graphs whose Gromada subspace is spanned
+    by sums of the blocks \( \mathcal{P}_1,\ldots,\mathcal{P}_4 \)
+    introduced in
+    Section~\ref{sec:classification-self-adjoint-subspaces}. It does
+    not extend to the full family of loop-free, undirected quantum
+    graphs on \( (M_{3}(\mathbb{C}), 3\operatorname{Tr}) \), which is
+    considerably larger. This distinction becomes immediately
+    apparent when comparing our representatives with the complete
+    classification of vertex-transitive quantum graphs on \(
+    M_{3}(\mathbb{C}) \) by \textcite{hayes26}, which we discuss in
+    Section~\ref{sec:vertex-transitive-graphs}.
+\end{remark}
 
-Since each of these voltage quantum graphs arises, via
-Theorem~\ref{thm:quantum-iso-different-actions}, as a trivial-action
-derived quantum graph of an ordinary (classical) voltage graph, the
-discussion above in fact exhibits an explicit quantum isomorphism
-between each of the four representative quantum graphs of
-Proposition~\ref{thm:4matrices} and a classical derived graph on the
-nine vertices \( \{u,v,w\} \times \hat{\mathbb{Z}}_3 \) shown on the
-right of each figure -- concretely realizing the abstract existence
-statement from the start of this section.
-
-Two caveats about the scope of this result are worth stating
-explicitly. First, this concerns only the representative graphs
-constructed in this section -- those whose Gromada subspace is a
-direct sum of the blocks \( \mathcal{P}_1,\ldots,\mathcal{P}_4 \) from
-Section~\ref{sec:classification-self-adjoint-subspaces} -- and not
-the full family of loop-free, undirected quantum graphs on
-\( (M_{3}(\mathbb{C}), 3\operatorname{Tr}) \), which is considerably larger, as
-already emphasized; a comparison with the complete classification of
-vertex-transitive quantum graphs on \( M_{3}(\mathbb{C}) \) due to
-\textcite{hayes26}, given in Section~\ref{sec:vertex-transitive-graphs},
-bears this out directly. Second, while Corollary~\ref{cor:five-classes}
-shows that our five representatives (including the trivial \( m=0 \)
-case) fall into five \emph{distinct} classes under ordinary unitary
-conjugation, this does not by itself imply that they remain distinct
-under the strictly weaker relation of quantum isomorphism: the number
-of quantum edges \( m \) is not in general an invariant of quantum
-isomorphism, so two of our representatives with different values of
-\( m \) could still, in principle, be quantum isomorphic. We do not
-investigate this question here, and make no claim that the five
-classical graphs exhibited in this section represent five distinct
-quantum-isomorphism classes.
+\begin{remark}
+    \label{rem:quantum-iso-classes}
+    Although Theorem~\ref{thm:4matrices} establishes that our
+    four representative graphs, as well as the empty graph
+    representing \( m = 0 \),
+    belong to five \emph{distinct} classes under unitary conjugation,
+    this does not guarantee they remain distinct under the strictly
+    weaker relation of quantum isomorphism. Because the number of
+    quantum edges, \( m \), is not generally a quantum isomorphism
+    invariant, representatives with different values of \( m \) could
+    theoretically be quantum isomorphic. We do not investigate this
+    question here, and we make no claim that the five classical
+    graphs exhibited in this section represent distinct quantum
+    isomorphism classes.
+\end{remark}
 
 \section{Vertex-transitive graphs}
 \label{sec:vertex-transitive-graphs}
 Classically, a graph is called vertex-transitive if, for any two
-vertices \( v, w \), there exists a graph automorphism \( f \) with
+vertices \( v, w \), there exists a graph automorphism \( f \) such that
 \( f(v) = w \). This notion was later extended to the quantum
 setting, and in their recent paper \textcite{hayes26} classify all
 vertex-transitive quantum graphs on \( M_{3}(\mathbb{C}) \) up to isomorphism.
@@ -749,13 +801,12 @@ vertex-transitive quantum graphs on \( M_{3}(\mathbb{C}) \) up to isomorphism.
         \{ u \in U(n) : uVu^* = V \}
     \]
     spans \( M_n(\mathbb{C}) \), where \( V \subseteq M_n(\mathbb{C})
-    \) is the subspace associated
-    with \( A \).
+    \) is the Gromada subspace of \( A \).
 \end{definition}
 
 The representative graphs obtained in Proposition~\ref{thm:4matrices}
 are all vertex-transitive, which is proven in the next
-Proposition~\ref{prop:self-adjoint-vertex-transitive} -- indeed the
+Proposition~\ref{prop:self-adjoint-vertex-transitive}. The
 proposition below establishes vertex-transitivity for the whole family
 of sixteen subspaces generated by \( P \) and \( Q \), not merely the
 five representatives.
@@ -763,10 +814,9 @@ five representatives.
 \begin{proposition}
     \label{prop:self-adjoint-vertex-transitive}
     Every self-adjoint subspace \( V \subseteq M_{3}(\mathbb{C})
-    \) generated by
-    \( P \) and \( Q \) (i.e.\ every direct sum of a subset of the
-    blocks \( \mathcal{P}_1, \mathcal{P}_2, \mathcal{P}_3, \mathcal{P}_4 \))
-    gives rise to a vertex-transitive quantum graph.
+    \) spanned by subsets of \( \left\{ P^a Q^b \right\}_{a, b \in
+    \left\{ 0, 1, 2 \right\}} \) gives rise to a vertex-transitive
+    quantum graph.
 \end{proposition}
 
 \begin{proof}
@@ -822,8 +872,8 @@ five representatives.
     classification.
 \end{remark}
 
-The following table shows the correspondences between the (five)
-representative quantum graphs of Proposition~\ref{thm:4matrices},
+The following table shows the correspondences between the four
+representative quantum graphs of Theorem~\ref{thm:4matrices},
 together with the trivial graph, and the vertex-transitive graphs
 classified by \textcite[Figure 1]{hayes26}.
 
@@ -831,21 +881,23 @@ classified by \textcite[Figure 1]{hayes26}.
     \begin{center}
         \begin{tabular}{| c | c | c |}
             \hline
-            \( m \) & Our & Theirs \\
+            \( m \) & Quantum graphs from Figure~\ref{fig:four-matrices-m3} &
+            Hayes et al. \\
             \hline
-            \( m = 0 \) & the trivial quantum graph & \(
+            \( m = 0 \) & the empty quantum graph & \(
             \mathrm{VT}^{3}_{0} \) \\
             \hline
-            \( m = 2 \) && \( \mathrm{VT}^{3}_{2} \) \\
+            \( m = 2 \) & \( \Gamma_2 \) & \( \mathrm{VT}^{3}_{2} \) \\
             \hline
-            \( m = 4 \) && \( \mathrm{VT}^{3}_{4} \) \\
+            \( m = 4 \) & \( \Gamma_4 \) & \( \mathrm{VT}^{3}_{4} \) \\
             \hline
-            \( m = 6 \) && \( \mathrm{VT}^{3}_{6} \) \\
+            \( m = 6 \) & \( \Gamma_6 \) & \( \mathrm{VT}^{3}_{6} \) \\
             \hline
-            \( m = 8 \) && \( \mathrm{VT}^{3}_{8} \) \\
+            \( m = 8 \) & \( \Gamma_8 \) & \( \mathrm{VT}^{3}_{8} \) \\
             \hline
         \end{tabular}
-        \caption{Our graphs vs their graphs.}
+        \caption{Corresponding quantum graphs in
+        \ref{fig:four-matrices-m3} and Hayes et al. }
         \label{tab:our-graphs-are-vertex-transitive}
     \end{center}
 \end{figure}
@@ -861,7 +913,7 @@ classified by \textcite[Figure 1]{hayes26}.
     Section~\ref{sec:classification-loopfree-undirected-m3}. This
     gives independent confirmation that our five representative graphs
     do not exhaust the loop-free, undirected quantum graphs on
-    \( M_{3}(\mathbb{C}) \) -- consistent with the restriction to the
+    \( M_{3}(\mathbb{C}) \), which is consistent with the restriction to the
     Pauli-coordinate family already noted in
     Section~\ref{sec:classification-self-adjoint-subspaces}.
     % TODO: once Table~\ref{tab:our-graphs-are-vertex-transitive} is
@@ -869,17 +921,42 @@ classified by \textcite[Figure 1]{hayes26}.
     % classes appear in Hayes' classification beyond our five.
 \end{remark}
 
-\section{Classification of different types of graphs}
+\section{General classification of quantum graphs on \( M_3 (\mathbb{C}) \)}
 \label{sec:classification-different-types-of-graphs}
 
 In this section, we examine the prospects for classifying quantum
 graphs without assuming them to be loop-free or undirected.
+
+Most of the quantum graphs we have been dealing with have been
+quantum isomorphic to classical graphs. We will explicitly show a
+quantum graph on \( M_{3}(\mathbb{C}) \) that is not isomorphic to
+any classical graph.
+
+\begin{example}[\textcite{gromada22}, Example 8.5]
+    \label{example:gell-mann-not-classical}
+    The matrix
+    \[
+        \lambda_{8} = \frac{1}{\sqrt{2}}
+        \begin{pmatrix}
+            1 & 0 & 0 \\
+            0 & 1 & 0 \\
+            0 & 0 & -2 \\
+        \end{pmatrix},
+    \]
+    which is one of the \emph{Gell--Mann matrices}. Then
+    the adjacency matrix \( A = \lambda_{8} \otimes \lambda_{8}
+    \) defines a simple graph on \( M_{3}(\mathbb{C}) \). What's more,
+    this quantum graph is not quantum isomorphic to any classical graph.
+\end{example}
+
+The proof that the quantum graph in
+Example~\ref{example:gell-mann-not-classical} is not quantum
+isomorphic to any classical graph is non-elementary and is therefore
+omitted. We refer the interested reader to \textcite{gromada22} for the details.
+
 Theorem~\ref{thm:2x2-determined-by-m} demonstrates that simple
 quantum graphs on \( M_2(\mathbb{C}) \) can be fully classified, establishing
 that there are only finitely many such graphs up to isomorphism.
-The following proof is due to \textcite{gromada22}. We repeat it here
-because we wish to point out a step that cannot be replicated on
-\( M_3 (\mathbb{C}) \).
 
 \begin{theorem}[\textcite{gromada22}, Theorem 3.11]
     \label{thm:2x2-determined-by-m}
@@ -887,6 +964,10 @@ because we wish to point out a step that cannot be replicated on
     isomorphism solely by
     the number of quantum edges \( m \in \{0,1,2,3\} \).
 \end{theorem}
+
+The following proof is due to \textcite{gromada22}. We repeat it here
+because we wish to point out a step that cannot be replicated in
+\( M_3 (\mathbb{C}) \).
 
 \begin{proof}
     \label{prf:1x2-determined-by-m}
@@ -898,12 +979,12 @@ because we wish to point out a step that cannot be replicated on
     By Theorem~\ref{thm:gromada}, any simple quantum graph on
     \( M_2(\mathbb{C}) \) with \( m \) quantum edges is uniquely
     determined by an \( m \)-dimensional self-adjoint subspace
-    \( V \subset \mathfrak{sl}_2(\mathbb{C}) \). By
+    \( V \subseteq \mathfrak{sl}(2) \). By
     Lemma~\ref{lem:self-adjoint-uniqueness}, it suffices to regard
     \( V \) as a real vector space, or equivalently, to identify
     \( \mathrm{i} V \) with a subspace of the Lie algebra
-    \( \mathfrak{su}(2) \); passing to the standard basis given by the
-    Pauli matrices, we may then naturally view \( V \) as a real
+    \( \mathfrak{su}(2) \); by \ref{prop:su2-dimension}, we may then
+    naturally view \( V \) as a real
     subspace \( V \subset \mathbb{R}^3 \).
 
     By Theorem~\ref{thm:gromada}, two such subspaces
@@ -922,10 +1003,10 @@ because we wish to point out a step that cannot be replicated on
     quantum graph is completely determined by \( m = \dim V \).
 \end{proof}
 
-The proof of this theorem relies on the well-known isomorphism
-\( PU(2) \cong SO(3) \), which plays a key role throughout. This result
-does not generalise to higher dimensions, and in particular to
-dimension 3, as the following lemma shows.
+The proof of Theorem~\ref{thm:2x2-determined-by-m} relies on the
+well-known isomorphism \( PU(2) \cong SO(3) \), which plays a key
+role throughout. This result does not generalise to higher
+dimensions, and in particular to dimension 3, as the following lemma shows.
 
 \begin{lemma}
     \label{lemma:hard-action}
@@ -993,7 +1074,7 @@ dimension 3, as the following lemma shows.
         I(0) = 0, \qquad I(1) = \frac{1}{6},
     \]
     so by the intermediate value theorem \( I \) takes infinitely many
-    distinct values as \( a \) ranges over \( [0,1] \). Since \( I \) is
+    distinct values as \( a \)ranges over \( [0,1] \). Since \( I \) is
     constant on each \( PU(3) \)-orbit meeting the family
     \( \{\operatorname{span}\{X_a\} : a \in [0,1]\} \), distinct values
     of \( I(a) \) force the corresponding lines
@@ -1003,28 +1084,15 @@ dimension 3, as the following lemma shows.
     orbits.
 \end{proof}
 
-\subsection{Simple quantum graph that is not quantum isomorphic to a
-classical graph}
-\label{subsec:simple-graph-not-classical}
-
-Most of the quantum graphs we have been dealing with have been
-quantum isomorphic to classical graphs. We will explicitly show a
-quantum graph on \( M_{3}(\mathbb{C}) \) that is not isomorphic to
-any classical graph.
-
-\begin{example}[\textcite{gromada22}, Example 8.5]
-    \label{example:gell-mann-not-classical}
-    The matrix
-    \[
-        \lambda_{8} = \frac{1}{\sqrt{2}}
-        \begin{pmatrix}
-            1 & 0 & 0 \\
-            0 & 1 & 0 \\
-            0 & 0 & -2 \\
-        \end{pmatrix},
-    \]
-    which is one of the \emph{Gell--Mann matrices} spanning the
-    Lie algebra \( \mathfrak{sl}(3) \). Then
-    the adjacency matrix \( A = \lambda_{8} \otimes \lambda_{8}
-    \) defines a simple graph on \( M_{3}(\mathbb{C}) \).
-\end{example}
+As Lemma~\ref{lemma:hard-action} illustrates, the landscape of
+quantum graphs on \( M_3(\mathbb{C}) \) is vastly more complex than
+that of \( M_2(\mathbb{C}) \). Even in the simplest non-trivial case
+of a single quantum edge (\( m=1 \)), there exists an uncountable
+family of pairwise non-isomorphic quantum graphs parameterized by
+continuous invariants. Consequently, the discrete parameter \( m \)
+is entirely insufficient for classification in higher dimensions. A
+complete, general classification of quantum graphs on \(
+M_3(\mathbb{C}) \) would therefore require navigating a highly
+intricate space of \( PU(3) \)-orbits, making the problem
+significantly more difficult and fundamentally different from the
+finite classification established in Theorem~\ref{thm:2x2-determined-by-m}.
