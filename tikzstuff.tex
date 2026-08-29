@@ -50,31 +50,84 @@
 % C_3 in each fiber)
 \newcommand{\drawderivedloops}{
     \foreach \name in {u, v, w} {
-        \draw[-, thick, darkgray, opacity=0.85] (\name0) to (\name1);
-        \draw[-, thick, darkgray, opacity=0.85] (\name1) to (\name2);
-        \draw[-, thick, darkgray, opacity=0.85, bend right=40]
+        \draw[-, thick, black, opacity=0.85] (\name0) to (\name1);
+        \draw[-, thick, black, opacity=0.85] (\name1) to (\name2);
+        \draw[-, thick, black, opacity=0.85, bend right=40]
         (\name0) to (\name2);
     }
 }
 
-% Macro to draw lifts of a single undirected edge between fibers
 \newcommand{\drawlift}[3]{
-    % #1 = source fiber, #2 = target fiber, #3 = voltage (relative to
-    % src -> dst orientation)
+    % #1 = source fiber, #2 = target fiber, #3 = voltage
     \ifnum#3=0
-    \draw[-, thick, volt0, opacity=0.7] (#10) to (#20);
-    \draw[-, thick, volt0, opacity=0.7] (#11) to (#21);
-    \draw[-, thick, volt0, opacity=0.7] (#12) to (#22);
+    \draw[->, >=stealth, thick, volt0, opacity=0.7,
+    shorten >=2.2pt, shorten <=2.2pt]
+    (#10) to (#20);
+    \draw[->, >=stealth, thick, volt0, opacity=0.7,
+    shorten >=2.2pt, shorten <=2.2pt]
+    (#11) to (#21);
+    \draw[->, >=stealth, thick, volt0, opacity=0.7,
+    shorten >=2.2pt, shorten <=2.2pt]
+    (#12) to (#22);
     \fi
     \ifnum#3=1
-    \draw[-, thick, volt1, opacity=0.6] (#10) to (#21);
-    \draw[-, thick, volt1, opacity=0.6] (#11) to (#22);
-    \draw[-, thick, volt1, opacity=0.6] (#12) to (#20);
+    \draw[->, >=stealth, thick, volt1, opacity=0.6,
+    shorten >=2.2pt, shorten <=2.2pt]
+    (#10) to (#21);
+    \draw[->, >=stealth, thick, volt1, opacity=0.6,
+    shorten >=2.2pt, shorten <=2.2pt]
+    (#11) to (#22);
+    \draw[->, >=stealth, thick, volt1, opacity=0.6,
+    shorten >=2.2pt, shorten <=2.2pt]
+    (#12) to (#20);
     \fi
     \ifnum#3=2
-    \draw[-, thick, volt2, opacity=0.6] (#10) to (#22);
-    \draw[-, thick, volt2, opacity=0.6] (#11) to (#20);
-    \draw[-, thick, volt2, opacity=0.6] (#12) to (#21);
+    \draw[->, >=stealth, thick, volt2, opacity=0.6,
+    shorten >=2.2pt, shorten <=2.2pt]
+    (#10) to (#22);
+    \draw[->, >=stealth, thick, volt2, opacity=0.6,
+    shorten >=2.2pt, shorten <=2.2pt]
+    (#11) to (#20);
+    \draw[->, >=stealth, thick, volt2, opacity=0.6,
+    shorten >=2.2pt, shorten <=2.2pt]
+    (#12) to (#21);
+    \fi
+}
+
+\newcommand{\drawliftgrey}[3]{
+    % #1 = source fiber, #2 = target fiber, #3 = voltage
+    \ifnum#3=0
+    \draw[->, >=stealth, thick, darkgrey, opacity=0.7,
+    shorten >=2.2pt, shorten <=2.2pt]
+    (#10) to (#20);
+    \draw[->, >=stealth, thick, darkgrey, opacity=0.7,
+    shorten >=2.2pt, shorten <=2.2pt]
+    (#11) to (#21);
+    \draw[->, >=stealth, thick, darkgrey, opacity=0.7,
+    shorten >=2.2pt, shorten <=2.2pt]
+    (#12) to (#22);
+    \fi
+    \ifnum#3=1
+    \draw[->, >=stealth, thick, darkgrey, opacity=0.6,
+    shorten >=2.2pt, shorten <=2.2pt]
+    (#10) to (#21);
+    \draw[->, >=stealth, thick, darkgrey, opacity=0.6,
+    shorten >=2.2pt, shorten <=2.2pt]
+    (#11) to (#22);
+    \draw[->, >=stealth, thick, darkgrey, opacity=0.6,
+    shorten >=2.2pt, shorten <=2.2pt]
+    (#12) to (#20);
+    \fi
+    \ifnum#3=2
+    \draw[->, >=stealth, thick, darkgrey, opacity=0.6,
+    shorten >=2.2pt, shorten <=2.2pt]
+    (#10) to (#22);
+    \draw[->, >=stealth, thick, darkgrey, opacity=0.6,
+    shorten >=2.2pt, shorten <=2.2pt]
+    (#11) to (#20);
+    \draw[->, >=stealth, thick, darkgrey, opacity=0.6,
+    shorten >=2.2pt, shorten <=2.2pt]
+    (#12) to (#21);
     \fi
 }
 

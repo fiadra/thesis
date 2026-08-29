@@ -78,15 +78,15 @@
 
             % e1 lifts (voltage 1): v0 -> v1 -> v2 -> v0
             \path[->, thick, volt1, opacity=0.6]
-            (v0) edge [bend right=32] (v1)
-            (v1) edge [bend right=32] (v2)
-            (v2) edge [bend right=32] (v0);
+            (v0) edge [bend right=20] (v1)
+            (v1) edge [bend right=20] (v2)
+            (v2) edge [bend right=20] (v0);
 
             % e2 lifts (voltage 2): v0 -> v2 -> v1 -> v0
             \path[->, thick, volt2, opacity=0.6]
-            (v0) edge [bend left=12] (v2)
-            (v2) edge [bend left=12] (v1)
-            (v1) edge [bend left=12] (v0);
+            (v0) edge [bend right=20] (v2)
+            (v2) edge [bend right=20] (v1)
+            (v1) edge [bend right=20] (v0);
         \end{tikzpicture}\\[6pt]
         \captionof{}{Derived graph \( \Gamma^\lambda \) (two \(
         3 \)-cycles)}
@@ -151,8 +151,7 @@
             \path[->, thick, volt2, opacity=0.6] (u1) edge (v0);
             \path[->, thick, volt2, opacity=0.6] (u2) edge (v1);
         \end{tikzpicture}\\[6pt]
-        \captionof{}{Derived graph \( \Gamma^\lambda \) (\(
-        K_{3,3} \) colored by edge class)}
+        \captionof{}{Derived graph \( \Gamma^\lambda \)}
     \end{minipage}
     \caption{Voltage graph and derived cover for a theta graph over
     \( \mathbb{Z}_3 \).}

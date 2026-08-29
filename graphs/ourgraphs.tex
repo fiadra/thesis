@@ -54,9 +54,12 @@
         \begin{tikzpicture}[scale=0.62]
             \drawfibers
             \drawderivedloops
-            \drawlift{u}{v}{1}
-            \drawlift{v}{w}{1}
-            \drawlift{w}{u}{1}
+            \drawliftgrey{u}{v}{1}
+            \drawliftgrey{v}{w}{1}
+            \drawliftgrey{w}{u}{1}
+            \drawliftgrey{u}{w}{2}
+            \drawliftgrey{v}{u}{2}
+            \drawliftgrey{w}{v}{2}
             \drawfibernodes
         \end{tikzpicture}
         \captionof{}{Derived \( \Gamma^\lambda \): exactly 18
@@ -95,10 +98,22 @@
         \begin{tikzpicture}[scale=0.62]
             \drawfibers
             \drawderivedloops
-            \foreach \src/\dst in {u/v, v/w, w/u} {
-                \drawlift{\src}{\dst}{1}
-                \drawlift{\src}{\dst}{2}
-            }
+            \drawliftgrey{u}{v}{1}
+            \drawliftgrey{u}{w}{1}
+            \drawliftgrey{v}{u}{1}
+            \drawliftgrey{v}{w}{1}
+            \drawliftgrey{w}{u}{1}
+            \drawliftgrey{w}{v}{1}
+            \drawliftgrey{u}{v}{2}
+            \drawliftgrey{u}{w}{2}
+            \drawliftgrey{v}{u}{2}
+            \drawliftgrey{v}{w}{2}
+            \drawliftgrey{w}{u}{2}
+            \drawliftgrey{w}{v}{2}
+            % \foreach \src/\dst in {u/v, v/w, w/u} {
+            %     \drawlift{\src}{\dst}{1}
+            %     \drawlift{\src}{\dst}{2}
+            % }
             \drawfibernodes
         \end{tikzpicture}
         \captionof{}{Derived \( \Gamma^\lambda \): partial
@@ -140,11 +155,29 @@
         \begin{tikzpicture}[scale=0.62]
             \drawfibers
             \drawderivedloops
-            \foreach \src/\dst in {u/v, v/w, w/u} {
-                \drawlift{\src}{\dst}{0}
-                \drawlift{\src}{\dst}{1}
-                \drawlift{\src}{\dst}{2}
-            }
+            \drawliftgrey{u}{v}{0}
+            \drawliftgrey{u}{w}{0}
+            \drawliftgrey{v}{u}{0}
+            \drawliftgrey{v}{w}{0}
+            \drawliftgrey{w}{u}{0}
+            \drawliftgrey{w}{v}{0}
+            \drawliftgrey{u}{v}{1}
+            \drawliftgrey{u}{w}{1}
+            \drawliftgrey{v}{u}{1}
+            \drawliftgrey{v}{w}{1}
+            \drawliftgrey{w}{u}{1}
+            \drawliftgrey{w}{v}{1}
+            \drawliftgrey{u}{v}{2}
+            \drawliftgrey{u}{w}{2}
+            \drawliftgrey{v}{u}{2}
+            \drawliftgrey{v}{w}{2}
+            \drawliftgrey{w}{u}{2}
+            \drawliftgrey{w}{v}{2}
+            % \foreach \src/\dst in {u/v, v/w, w/u} {
+            %     \drawlift{\src}{\dst}{0}
+            %     \drawlift{\src}{\dst}{1}
+            %     \drawlift{\src}{\dst}{2}
+            % }
             \drawfibernodes
         \end{tikzpicture}
         \captionof{}{Derived \( \Gamma^\lambda \): perfect
