@@ -476,20 +476,20 @@ object is indeed a quantum set, can be found in
 \section{Quantum graphs}
 \label{sec:quantum-graphs}
 
-A graph is classically defined as a pair \( (V, E) \) with \( V \)
-serving as the \emph{set of vertices} and \( E \subseteq V^{2} \)
-serving as the \emph{set of edges}. Such a graph could be interpreted
-as a matrix \( A = [a_{ij}] \in \{0, 1\}^{n \times n} \) with \(
-(v_{i}, v_{j}) \in E \Leftrightarrow a_{ij} = 1 \); such a
-property of such matrices is that they are invariant with respect to
-representation is often called the \emph{adjacency matrix},
-see~\ref{ex:adj-matrix}. The key entrywise multiplication. In turn,
-we can use this property to generalise graphs on sets to graphs on quantum sets.
+A classical directed graph is defined as a pair \( (V, E) \)
+consisting of a vertex set \( V \) and an edge set \( E \subseteq V
+\times V \). Such a graph can be represented by its adjacency matrix
+\( A = [a_{ij}] \in \{0, 1\}^{n \times n} \), where \( a_{ij} = 1 \)
+if and only if \( (v_i, v_j) \in E \). For an undirected graph, the
+edge relation is symmetric, which corresponds to a symmetric
+adjacency matrix (\( A = A^T \)). Because adjacency matrices interact
+naturally with entrywise multiplication, this matrix-based
+perspective provides the foundation for generalizing graphs to quantum sets.
+For reference see \textcite{diestel25}.
 
 \begin{example}
     \label{ex:adj-matrix}
-    Consider the following directed graph on three vertices,
-    featuring a bidirectional connection and a self-loop:
+    Consider the following directed graph on three vertices:
 
     \input{graphs/example_adj_matrix}
 
@@ -506,7 +506,7 @@ we can use this property to generalise graphs on sets to graphs on quantum sets.
 
     This linear representation is foundational when generalizing to
     quantum graphs, where the adjacency matrix \( A \in
-    M_n(\mathbb{C}) \) is replaced by a linear map between \(C^{*}\)-algebras.
+    M_n(\mathbb{C}) \) is replaced by a linear map on a quantum set.
 \end{example}
 
 The following definitions are due to \textcite{musto18}. We follow
@@ -1248,6 +1248,75 @@ every one of the five equivalence classes of loop-free, undirected
 quantum graphs on \( (M_{3}(\mathbb{C}), 3\operatorname{Tr}) \) established in
 Theorem~\ref{thm:4matrices} is quantum isomorphic to a classical
 graph on nine vertices.
+
+\begin{proposition}
+    \label{prop:quantum-iso-transitive-via-ordinary}
+    Let \( A_1, A_2, A_3 \) be quantum graphs on quantum sets
+    \( (B_1,\psi_1) \), \( (B_2,\psi_2) \), \( (B_3,\psi_3) \),
+    respectively. If \( A_1 \cong A_2 \) and \( A_2 \cong_q A_3 \),
+    then \( A_1 \cong_q A_3 \).
+\end{proposition}
+
+\begin{proof}
+    Let \( \varphi \colon B_1 \to B_2 \) be an ordinary isomorphism
+    witnessing \( A_1 \cong A_2 \), so \( \psi_2\circ\varphi = \psi_1 \)
+    and \( \varphi A_1 = A_2 \varphi \). Let
+    \( \rho \colon B_2 \to B_3 \otimes B(\mathcal{H}) \) be a quantum
+    isomorphism witnessing \( A_2 \cong_q A_3 \), so the induced map
+    \( p \colon L^2(B_2)\otimes\mathcal{H} \to L^2(B_3)\otimes\mathcal{H} \)
+    is unitary and \( \rho A_2 = (A_3\otimes\operatorname{Id})\rho \).
+
+    Define
+    \[
+        \tau = \rho \circ \varphi \colon B_1 \to B_3 \otimes B(\mathcal{H}).
+    \]
+    Since \( \varphi \) and \( \rho \) are both unital
+    \( * \)-homomorphisms, so is \( \tau \).
+
+    \textbf{\( \tau \) intertwines \( A_1 \) and \( A_3 \).} Using
+    \( \varphi A_1 = A_2\varphi \) and \( \rho A_2 =
+    (A_3\otimes\operatorname{Id})\rho \),
+    \[
+        \tau A_1 = \rho\varphi A_1 = \rho A_2 \varphi
+        = (A_3\otimes\operatorname{Id})\rho\varphi =
+        (A_3\otimes\operatorname{Id})\tau.
+    \]
+
+    \textbf{The induced map is unitary.} Let
+    \[
+        q \colon L^2(B_1)\otimes\mathcal{H} \to
+        L^2(B_3)\otimes\mathcal{H}, \qquad
+        a\otimes\xi \mapsto \tau(a)(1\otimes\xi)
+    \]
+    be the map induced by \( \tau \), as in
+    Definition~\ref{def:quantum-isomorphisms}. Since
+    \( \psi_2\circ\varphi = \psi_1 \), the map \( \varphi \) is a
+    linear isometry \( L^2(B_1) \to L^2(B_2) \) for the inner products
+    induced by \( \psi_1,\psi_2 \)
+    (\( \langle \varphi(a),\varphi(b)\rangle_{\psi_2} =
+            \psi_2(\varphi(a)^*\varphi(b))
+    = \psi_2(\varphi(a^*b)) = \psi_1(a^*b) = \langle a,b\rangle_{\psi_1} \)),
+    and it is bijective since \( \varphi \) is an isomorphism; hence
+    \( \varphi \colon L^2(B_1) \to L^2(B_2) \) is unitary. Consequently
+    \[
+        \varphi\otimes\operatorname{Id}_{\mathcal{H}} \colon
+        L^2(B_1)\otimes\mathcal{H} \to L^2(B_2)\otimes\mathcal{H}
+    \]
+    is unitary as well. Now, for \( a\in B_1 \), \( \xi\in\mathcal{H} \),
+    \[
+        q(a\otimes\xi) = \tau(a)(1\otimes\xi) = \rho(\varphi(a))(1\otimes\xi)
+        = p(\varphi(a)\otimes\xi) =
+        p\big((\varphi\otimes\operatorname{Id}_{\mathcal{H}})(a\otimes\xi)\big),
+    \]
+    so \( q = p \circ (\varphi\otimes\operatorname{Id}_{\mathcal{H}}) \), a
+    composition of unitaries, hence itself unitary.
+
+    Thus \( \tau \) is a unital \( * \)-homomorphism inducing a unitary
+    map \( q \) and satisfying \( \tau A_1 =
+    (A_3\otimes\operatorname{Id})\tau \),
+    i.e.\ \( \tau \) is a quantum isomorphism witnessing
+    \( A_1 \cong_q A_3 \).
+\end{proof}
 
 \section{Gromada's theorem}
 \label{sec:gromada-theorem}
